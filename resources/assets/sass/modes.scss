@@ -1,0 +1,82 @@
+html.device-mobile-optimized {
+  overflow-x: hidden;
+}
+
+body {
+  // When in Mobile and in Public Viewer Mode
+  &.device-mobile-optimized {
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    #SITE_CONTAINER {
+      width: 320px;
+      overflow-x: visible;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    // Prevents any block directly inside a body to be wider than it. On some browsers anything that is wider than body can result unexpected zooming
+    > * {
+      max-width: 100% !important;
+    }
+
+    // On Mobile, site structure should have no inner scroll either
+    .SITE_ROOT {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  }
+
+  &.device-mobile-non-optimized {
+
+    #SITE_CONTAINER {
+      > :not(.mobile-non-optimized-overflow){
+        // On Mobile with non-optimized view, site structure should have no inner scroll either
+        .SITE_ROOT {
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+      }
+    }
+
+    &.fullScreenMode {
+      background-color: #5f6360;
+
+      .SITE_ROOT,
+      #SITE_BACKGROUND,
+      #MOBILE_ACTIONS_MENU {
+        visibility: hidden;
+      }
+    }
+  }
+
+  // When in full screen mode
+  &.fullScreenMode {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+
+    // When in wixapps full screen mode for wixapps zoom
+    &.device-mobile-optimized {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+
+      //When in wixapps full screen mode for wixapps zoom temporarily hide site structure
+      .SITE_ROOT,
+      #SITE_STRUCTURE {
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+      }
+
+      #SITE_STRUCTURE,
+      #SITE_BACKGROUND {
+        height: auto !important;
+      }
+    }
+  }
+}
+
+.SITE_ROOT {
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto;
+}

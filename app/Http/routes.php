@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
+Route::get('/template', function () {
+    return view('template');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
