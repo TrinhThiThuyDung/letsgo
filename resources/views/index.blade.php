@@ -7,6 +7,7 @@
   <link href="{{url('css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('fonts/latin.css')}}">
+    <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
    
     <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
@@ -31,11 +32,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">HOME</a></li>
-        <li><a href="#band">BAND</a></li>
-        <li><a href="#tour">TOUR</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-         <li><a href="#contact">SIGN IN</a></li>
+        <li><a href="#myPage">TRANG CHỦ</a></li>
+        <li><a href="#band">GIỚI THIỆU</a></li>
+        <li><a href="#tour">HÌNH ẢNH</a></li>
+         <li><a href="#contact">ĐĂNG NHẬP</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
@@ -119,11 +119,12 @@
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
-  <div class="container">
-    <div class="row">
+  <div class="container" style="width: 100%;">
+    <div class="row" style="width: 100%;  background-color: #f7f8fa; margin: 0px;">
       <div class="col-md-12">
         <!-- Nav tabs -->
         <div class="card">
+        
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
@@ -131,11 +132,391 @@
                 <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
                 <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
             </ul>
-
+           
+        </div>
             <!-- Tab panes -->
-          <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="home"></div>
-              <div role="tabpanel" class="tab-pane" id="profile"></div>
+          <div class=" row tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+               <!--  <div class="container gal-container"> --><div class="gal-container">
+                  <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#1">
+                        <img src="http://placemi.com/i3xhd/1000x750">
+                      </a>
+                      <div class="modal fade" id="1" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/i3xhd/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the first one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#2">
+                        <img src="http://placemi.com/gut3z/1000x750">
+                      </a>
+                      <div class="modal fade" id="2" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/gut3z/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the second one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#3">
+                        <img src="http://placemi.com/yggpo/1000x750">
+                      </a>
+                      <div class="modal fade" id="3" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/yggpo/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the third one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#4">
+                        <img src="http://placemi.com/49zqo/1000x750">
+                      </a>
+                      <div class="modal fade" id="4" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/49zqo/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the fourth one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#5">
+                        <img src="http://placemi.com/k2mjk/1000x750">
+                      </a>
+                      <div class="modal fade" id="5" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/k2mjk/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the fifth one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#6">
+                        <img src="http://placemi.com/lv0ga/1000x750">
+                      </a>
+                      <div class="modal fade" id="6" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/lv0ga/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the sixth one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#7">
+                        <img src="http://placemi.com/3rezh/1000x750">
+                      </a>
+                      <div class="modal fade" id="7" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/3rezh/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the seventh one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#8">
+                        <img src="http://placemi.com/nfjhz/1000x750">
+                      </a>
+                      <div class="modal fade" id="8" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/nfjhz/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the eighth one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#9">
+                        <img src="http://placemi.com/59h1p/1000x750">
+                      </a>
+                      <div class="modal fade" id="9" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/59h1p/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the ninth one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#10">
+                        <img src="http://placemi.com/lybbn/1000x750">
+                      </a>
+                      <div class="modal fade" id="10" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/lybbn/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the tenth one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#11">
+                        <img src="http://placemi.com/vnatq/1000x750">
+                      </a>
+                      <div class="modal fade" id="11" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/vnatq/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the leventh one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#12">
+                        <img src="http://placemi.com/wbjov/1000x750">
+                      </a>
+                      <div class="modal fade" id="12" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/wbjov/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the 12th one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#13">
+                        <img src="http://placemi.com/ts4a8/1000x750">
+                      </a>
+                      <div class="modal fade" id="13" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/ts4a8/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the 13th one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#14">
+                        <img src="http://placemi.com/i8yd4/1000x750">
+                      </a>
+                      <div class="modal fade" id="14" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/i8yd4/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the 14th one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#15">
+                        <img src="http://placemi.com/ak6mk/1000x750">
+                      </a>
+                      <div class="modal fade" id="15" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/ak6mk/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the 15th one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                      <a href="#" data-toggle="modal" data-target="#16">
+                        <img src="http://placemi.com/pgco7/1000x750">
+                      </a>
+                      <div class="modal fade" id="16" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                              <img src="http://placemi.com/pgco7/1000x750">
+                            </div>
+                              <div class="col-md-12 description">
+                                <h4>This is the 16th one on my Gallery</h4>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div></div>
+              <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="row">
+        <div class="text-center">
+            <h1>Sample Image Gallery</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+              </div>
               <div role="tabpanel" class="tab-pane" id="messages"></div>
               <div role="tabpanel" class="tab-pane" id="settings"></div>
           </div>
@@ -147,11 +528,81 @@
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-  <h3>LOGIN</h3>
- 
+  
+  <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <a href="#" class="active" id="login-form-link">Login</a>
+              </div>
+              <div class="col-xs-6">
+                <a href="#" id="register-form-link">Register</a>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+                  <div class="form-group">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                  </div>
+                  <div class="form-group text-center">
+                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                    <label for="remember"> Remember Me</label>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="text-center">
+                          <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                  <div class="form-group">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   
 </div>
-
+</div>
 <div id="googleMap"></div>
 
 <!-- Footer -->
