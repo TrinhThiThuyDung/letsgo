@@ -159,6 +159,15 @@ body {
       resize: none;
   }
 
+/*ABOUT*/
+.about-content{
+  background-image: url("https://drscdn.500px.org/photo/141852085/m%3D2048/9c3f9a7554ab47d8679653cd75b88f25");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 1px;
+  width: 100% !important;
+}
+/*ABOUT*/
 
 /*LOGIN CSS*/
 
