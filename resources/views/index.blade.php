@@ -98,21 +98,41 @@
 </div>
 
 <!-- Container (The Band Section) -->
-<div id="band" class="container text-center about-content">
-  <h3>LET'S GO</h3>
-  <p><em>We love Go!</em></p>
-  <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <br>
-  <div class="row">
+<div id="band" class="container text-center about-content" style="padding: 0px; margin: 5px 5px 5px 5px; ">
+ 
+  <div class="row" style="margin-right: -6px;">
     <div class="col-sm-4">
-  
-    
+      <div class="about-img">
+        <img src="https://drscdn.500px.org/photo/141852085/m%3D2048/9c3f9a7554ab47d8679653cd75b88f25">
+      </div>
+      <div class="about-text">
+       <h3>LET'S GO</h3>
+        <p><em>We love Go!</em></p>
+        <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <br>
+      </div>
     </div>
     <div class="col-sm-4">
-     
+      <div class="about-img">
+        <img src="https://drscdn.500px.org/photo/142115879/q%3D80_m%3D1500/01d6cc31145600e760d6049d0f952da5">
+      </div>
+      <div class="about-text">
+       <h3>LET'S GO</h3>
+        <p><em>We love Go!</em></p>
+        <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <br>
+      </div>
     </div>
     <div class="col-sm-4">
-     
+     <div class="about-img">
+        <img src="https://drscdn.500px.org/photo/142148445/q%3D80_m%3D1500/30154086377288684116c20b6fd2cbf0">
+     </div>
+      <div class="about-text">
+       <h3>LET'S GO</h3>
+        <p><em>We love Go!</em></p>
+        <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <br>
+      </div>
     </div>
   </div>
 </div>
@@ -126,18 +146,21 @@
         <div class="card">
         
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                <li role="presentation" class="active"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Khoảnh khắc cuộc sống</a></li>
+                <li role="presentation"><a href="#nature" aria-controls="nature" role="tab" data-toggle="tab">Thiên nhiên </a></li>
                                         
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                <li role="presentation"><a href="#people" aria-controls="people" role="tab" data-toggle="tab">Con người</a></li>
+                <li role="presentation"><a href="#animals" aria-controls="animals" role="tab" data-toggle="tab">Động vật</a></li>
+                <li role="presentation"><a href="#discovery" aria-controls="discovery" role="tab" data-toggle="tab">Khám phá</a></li>
+                <li role="presentation"><a href="#more" aria-controls="more" role="tab" data-toggle="tab">Xem nhiều hơn </a></li>
             </ul>
            
         </div>
             <!-- Tab panes -->
           <div class=" row tab-content">
-              <div role="tabpanel" class="tab-pane active" id="home">
-               <!--  <div class="container gal-container"> --><div class="gal-container">
+              <div role="tabpanel" class="tab-pane active" id="moment">
+               <!--  <div class="container gal-container"> -->
+               <div class="gal-container">
                   <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
                     <div class="box">
                       <a href="#" data-toggle="modal" data-target="#1">
@@ -459,66 +482,68 @@
                     </div>
                   </div>
               </div></div>
-              <div role="tabpanel" class="tab-pane" id="profile">
-                <div class="row">
-        <div class="text-center">
+              <div role="tabpanel" class="tab-pane" id="nature">
+               <!--  <div class="row"> -->
+        <!-- <div class="text-center">
             <h1>Sample Image Gallery</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="well">
-                    <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
-                </div>
-            </div>
-        </div>
-    </div>
+        </div> -->
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="well">
+                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
+                          </div>
+                      </div>
+                  </div>
+                <!-- </div> -->
               </div>
-              <div role="tabpanel" class="tab-pane" id="messages"></div>
-              <div role="tabpanel" class="tab-pane" id="settings"></div>
+              <div role="tabpanel" class="tab-pane" id="people"></div>
+              <div role="tabpanel" class="tab-pane" id="animals"></div>
+              <div role="tabpanel" class="tab-pane" id="discovery"></div>
+              <div role="tabpanel" class="tab-pane" id="more"></div>
           </div>
         </div>
       </div>
@@ -527,92 +552,132 @@
 </div>
 
 <!-- Container (Contact Section) -->
-<div id="contact" class="container">
-  
-  <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-login">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-6">
-                <a href="#" class="active" id="login-form-link">Login</a>
+<!-- <div id="contact" class="container login">
+  <div class="box-login" style="width: 80%;">
+    <div class="row" style="width: 60%; border: 1px solid blue; margin-left: 10px;">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-login">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-6">
+                  <a href="#" class="active" id="login-form-link">Login</a>
+                </div>
+                <div class="col-xs-6">
+                  <a href="#" id="register-form-link">Register</a>
+                </div>
               </div>
-              <div class="col-xs-6">
-                <a href="#" id="register-form-link">Register</a>
-              </div>
+              <hr>
             </div>
-            <hr>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="form-group text-center">
-                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                    <label for="remember"> Remember Me</label>
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-                      </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+                    <div class="form-group">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="text-center">
-                          <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                    <div class="form-group">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group text-center">
+                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                      <label for="remember"> Remember Me</label>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
                         </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-                <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="text-center">
+                            <a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                  <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                    <div class="form-group">
+                      <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-  
-</div>
-</div>
-<div id="googleMap"></div>
+    
+    </div>
+  </div>
+</div> -->
+
 
 <!-- Footer -->
-<footer class="text-center">
+<!-- <footer class="text-center">
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
   <p> Trang Web độc quyền sáng chế =))) <a href="" data-toggle="tooltip" title=""></a></p> 
-</footer>
+</footer> -->
+<div id = "register" class="well2 bg-secondary">
+    <div class="container center">
+        <div class="row" style="margin-top: 81px;">
+          <div class="grid_8 preffix_2">
+            <h2>Subscribe</h2>
 
+            <form id="subscribe-form" class="subscribe-form">
+
+              <label class="email">
+                <input type="email" value="E - mail">
+                <span class="error">*Invalid email.</span>
+                <span class="success">Your subscription request has been sent!</span>
+              </label>
+              <a class="btn" data-type="submit" href="#">Subscribe</a>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+ <!--========================================================
+                            FOOTER
+  =========================================================-->
+  <footer>
+    <div class="parallax" data-url="{{url('/images/parallax2.jpg')}}" data-mobile="true" data-speed="0.5 " data-direction="inverted">
+      <div class="well4">
+        <div class="container center wow fadeInUp" data-wow-delay="0.2s">
+          <hr/>
+          <h2>Professional web performance </h2>
+
+          <h3>Сreating something special for each customer</h3>
+          <a class="btn" href='#'>Get Started Now!</a>
+
+          <div class="copyright">
+            © <span id="copyright-year"></span> Your Logo. All Rights Reserved
+            <!-- {%FOOTER_LINK} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
 </body>
