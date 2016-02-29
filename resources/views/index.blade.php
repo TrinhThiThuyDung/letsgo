@@ -638,9 +638,9 @@
   </a><br><br>
   <p> Trang Web độc quyền sáng chế =))) <a href="" data-toggle="tooltip" title=""></a></p> 
 </footer> -->
-<div id = "register" class="well2 bg-secondary">
-    <div class="container center">
-        <div class="row" style="margin-top: 81px;">
+<div id = "register" class="well2 bg-secondary" style="padding-bottom: 17px;">
+    <div class="container center" style="padding: 0px;">
+        <div class="row">
           <div class="grid_8 preffix_2">
             <h2>Subscribe</h2>
 
