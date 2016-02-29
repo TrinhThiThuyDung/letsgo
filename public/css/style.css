@@ -265,6 +265,13 @@ body {
 .parallax_cnt {
   position: relative;
 }
+.well4 {
+  padding: 98px 0 33px;
+}
+.well5 {
+  padding-top: 15px;
+  padding-bottom: 18px;
+}
 
 /*==================     Subscribe Form     ======================*/
 .subscribe-form {
@@ -349,7 +356,10 @@ label.invalid .error {
   text-align: center;
   color: #38A46B;
 }
-
+.preffix_2 h2{
+  text-transform: uppercase; 
+  line-height: 48px;
+}
 @media (max-width: 479px) {
   .subscribe-form label {
     width: 100%;
@@ -380,6 +390,8 @@ footer .btn {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  padding: 2% 1%;
+  
 }
 footer hr {
   background: #FFF;
@@ -399,4 +411,39 @@ footer * + .copyright {
   margin-top: 71px;
 }
 /*===============FOOTER======================*/
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    -ms-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
 /*================== FOOTER - LOGIN FORM ==================*/

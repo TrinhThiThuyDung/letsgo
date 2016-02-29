@@ -662,13 +662,14 @@
   =========================================================-->
   <footer>
     <div class="parallax" data-url="{{url('/images/parallax2.jpg')}}" data-mobile="true" data-speed="0.5 " data-direction="inverted">
+      <div class="parallax_image" style="height: 599px; transform: translate3d(0px, -34.0608px, 0px); background-image: url('{{url("images/parallax2.jpg")}}');"></div>
       <div class="well4">
         <div class="container center wow fadeInUp" data-wow-delay="0.2s">
           <hr/>
           <h2>Professional web performance </h2>
 
           <h3>Сreating something special for each customer</h3>
-          <a class="btn" href='#'>Get Started Now!</a>
+          <a class="btn" href='#' style="line-height: 24px;">Get Started Now!</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> Your Logo. All Rights Reserved
@@ -677,9 +678,15 @@
         </div>
       </div>
     </div>
+    <!-- <div class="well5 center">
+      <div class="container">
+        <a href='#'><img alt="Tempalte Monster"/></a>
+      </div>
+    </div> -->
   </footer>
 
 
 </body>
 
 </html>
+<script type="text/javascript" src="{{url('/js/wow.js')}}"></script>
