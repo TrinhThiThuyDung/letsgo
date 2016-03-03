@@ -46,7 +46,7 @@
         <li><a href="#myPage">TRANG CHỦ</a></li>
         <li><a href="#about">GIỚI THIỆU</a></li>
         <li><a href="#gallerry-image">HÌNH ẢNH</a></li>
-        <li><a href="#">ĐĂNG NHẬP</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#myModal">ĐĂNG NHẬP</a></li>
         <li><a href="#register">ĐĂNG KÝ</a></li>
         <!-- <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
@@ -63,6 +63,25 @@
   </div>
 </nav>
 
+<!-- ================ MODEL LOGIN ================= -->
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>This is a large modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ================ MODEL LOGIN ================= -->
 <!--========================================================
                             CAROUSEL SLIDE IMAGE
   =========================================================-->
@@ -79,7 +98,10 @@
       <div class="item active">
         <img src="{{url('/images/header-background.jpeg')}}" alt="New York" >
         <div class="carousel-caption">
-          <h3>LET'S GO</h3> <br> <h4>Cùng đi để có những bức ảnh là duy nhất</h4>
+          <h3>LET'S GO</h3> <br> 
+          <h4> 
+
+          </h4>
          <!--  <p>The atmosphere in New York is lorem ipsum.</p> -->
         </div>      
       </div>
@@ -577,16 +599,16 @@
     <div class="container center">
         <div class="row">
           <div class="grid_8 preffix_2">
-            <h2>Subscribe</h2>
+            <h2> ĐĂNG KÝ </h2>
 
             <form id="subscribe-form" class="subscribe-form">
 
               <label class="email">
                 <input type="email" value="E - mail">
-                <span class="error">*Invalid email.</span>
-                <span class="success">Your subscription request has been sent!</span>
+                <span class="error">*Mail không hợp lệ!</span>
+                <span class="success">Đã gửi đăng ký của bạn!</span>
               </label>
-              <a class="btn" data-type="submit" href="#">Subscribe</a>
+              <a class="btn" data-type="submit" href="#">ĐĂNG KÝ</a>
             </form>
           </div>
         </div>
@@ -600,13 +622,13 @@
       <div class="well4">
         <div class="container center wow fadeInUp" data-wow-delay="0.2s">
           <hr/>
-          <h2>Professional web performance </h2>
+          <h2>DANG KY LET'S GO</h2>
 
-          <h3>Сreating something special for each customer</h3>
-          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">Get Started Now!</a>
+          <h3 style="text-transform: uppercase;">de cung luu giu nhung buc anh dep nhat cua ban</h3>
+          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">BAT DAU NGAY!</a>
 
           <div class="copyright">
-            © <span id="copyright-year"></span> Your Logo. All Rights Reserved
+            © <span id="copyright-year"></span> BACH KHOA HA NOI - HEDSPI
             <!-- {%FOOTER_LINK} -->
           </div>
         </div>

@@ -116,9 +116,6 @@
   padding-top: 31px;
   padding-bottom: 30px;
 }
-.container .grid_8 {
-  width: 770px;
-}
 .center {
   text-align: center;
 }
@@ -245,6 +242,7 @@
   padding: 12px 20px;
   font-size: 19px;
   line-height: 24px;
+  width: 200px;
 }
 .subscribe-form label + a[data-type="submit"] {
   margin-top: 0;
