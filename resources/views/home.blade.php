@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> LET'S GO | Trang chủ</title>
+  <title>Trang chủ</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('css/grid.css')}}">
-   
+
     <link rel="stylesheet" href="{{url('fonts/latin.css')}}">
     <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
    
     <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 
-   <!--  <link rel="icon" type="image/png" sizes="32x32" href="{{url('favicon-32x32.png')}}"> -->
-   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
   
     <script src="{{url('js/jquery-1.12.0.min.js')}}"></script>
     <script src="{{url('js/jquery-2.2.0.min.js')}}"></script>
@@ -23,11 +21,9 @@
     <script src="{{url('js/main.js')}}"></script>
     <script src="{{url('js/sForm.js')}}"></script>
     <script src="{{url('js/jquery.rd-parallax.js')}}"></script>
-    <script src="{{url('js/wow.js')}}"></script>
   
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
 <!--========================================================
                             NAVBAR HEADER
   =========================================================-->
@@ -46,8 +42,7 @@
         <li><a href="#myPage">TRANG CHỦ</a></li>
         <li><a href="#about">GIỚI THIỆU</a></li>
         <li><a href="#gallerry-image">HÌNH ẢNH</a></li>
-        <li><a href="#">ĐĂNG NHẬP</a></li>
-        <li><a href="#register">ĐĂNG KÝ</a></li>
+         <li><a href="#register">ĐĂNG NHẬP</a></li>
         <!-- <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
@@ -79,24 +74,24 @@
       <div class="item active">
         <img src="{{url('/images/header-background.jpeg')}}" alt="New York" >
         <div class="carousel-caption">
-          <h3>LET'S GO</h3> <br> <h4>Cùng đi để có những bức ảnh là duy nhất</h4>
-         <!--  <p>The atmosphere in New York is lorem ipsum.</p> -->
+          <h3>New York</h3>
+          <p>The atmosphere in New York is lorem ipsum.</p>
         </div>      
       </div>
 
       <div class="item">
         <img src="{{url('/images/header-img.jpg')}}" alt="Chicago" >
         <div class="carousel-caption">
-          <h3>Let Us Show You the Way to Success</h3>
-          <!-- <p>Thank you, Chicago - A night we won't forget.</p> -->
+          <h3>Chicago</h3>
+          <p>Thank you, Chicago - A night we won't forget.</p>
         </div>      
       </div>
     
       <div class="item">
         <img src="{{url('/images/banner.jpg')}}" alt="Los Angeles">
         <div class="carousel-caption">
-          <h3>Let Us Show You the Way to Success</h3>
-         <!--  <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p> -->
+          <h3>LA</h3>
+          <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
         </div>      
       </div>
     </div>
@@ -115,9 +110,9 @@
 <!--========================================================
                             ABOUT WEB
   =========================================================-->
-<div id="about" class="container text-center about-content" style="margin: 6px 13px;">
+<div id="about" class="container text-center about-content">
  
-  <div class="row" style="/*margin-right: -6px;*/">
+  <div class="row" style="margin-right: -6px;">
     <div class="col-sm-4">
       <div class="about-img">
         <img src="https://drscdn.500px.org/photo/141852085/m%3D2048/9c3f9a7554ab47d8679653cd75b88f25">
@@ -158,7 +153,7 @@
                             GALLERY IMAGE
   =========================================================-->
 <div id="gallerry-image" class="bg-1">
-  <div class="container gallerry-image">
+  <div class="container" style="margin: 10px;">
     <div class="row" style="background-color: #f7f8fa; margin-top: 15px; margin-bottom: 30px;">
       <div class="col-md-12">
         <!-- Nav tabs -->
@@ -603,7 +598,7 @@
           <h2>Professional web performance </h2>
 
           <h3>Сreating something special for each customer</h3>
-          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">Get Started Now!</a>
+          <a class="btn" href='#' style="line-height: 24px;">Get Started Now!</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> Your Logo. All Rights Reserved
@@ -623,3 +618,4 @@
 </body>
 
 </html>
+<script type="text/javascript" src="{{url('/js/wow.js')}}"></script>

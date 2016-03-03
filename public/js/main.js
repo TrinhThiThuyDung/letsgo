@@ -1,18 +1,41 @@
-$(function() {
+//========================
+//PRELOADER
+//========================
+$(window).load(function() { // makes sure the whole site is loaded
+	$('#status').fadeOut(); // will first fade out the loading animation
+	$('#preloader').delay(350).fadeOut('slow');
+    // will fade out the white DIV that covers the website.
+	$('body').delay(350).css({'overflow':'visible'});
+});
 
-    $('#login-form-link').click(function(e) {
-		$("#login-form").delay(100).fadeIn(100);
- 		$("#register-form").fadeOut(100);
-		$('#register-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-	$('#register-form-link').click(function(e) {
-		$("#register-form").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
-		$('#login-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
+//========================
+//NAVBAR
+//========================
+(function ($) {
+  $(document).ready(function(){
+
+    // hide .navbar first
+    $(".navbar").hide();
+
+    // fade in .navbar
+    $(function () {
+        $(window).scroll(function () {
+
+                 // set distance user needs to scroll before we start fadeIn
+            if ($(this).scrollTop() > 40) {
+                $('.navbar')
+                .removeClass('animated fadeOutUp')
+                .addClass('animated fadeInDown')
+                .fadeIn();
+                
+            } else {
+                $('.navbar')
+                .removeClass('animated fadeInDown')
+                .addClass('animated fadeOutUp')
+                .fadeOut();
+            }
+        });
+    });
 
 });
+  }(jQuery));

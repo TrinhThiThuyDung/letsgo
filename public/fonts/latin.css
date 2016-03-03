@@ -348,3 +348,10 @@ Imaging with any questions regarding Web fonts:  http://webfonts.fonts.com
 	src:url("//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/2250f930-9a6d-4486-a0eb-6b407c5d6c9b.eot?#iefix");
 	src:url("//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/2250f930-9a6d-4486-a0eb-6b407c5d6c9b.eot?#iefix") format("eot"),url("//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/3c5beda8-45cc-4f76-abca-8eccfeb6220c.woff2") format("woff2"),url("//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/b36b499f-d776-461c-bacb-fcbebe1cb9b4.woff") format("woff"),url("//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/896d3828-26ce-462a-9f70-62e0b5c90a70.ttf") format("truetype"),url("//static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/0dccbec2-a882-4dd9-8da0-3a035c808ce0.svg#0dccbec2-a882-4dd9-8da0-3a035c808ce0") format("svg");
 }
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Signika-Bold'), url(http://fonts.gstatic.com/s/signika/v6/7M5kxD4eGxuhgFaIk95pBfk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}

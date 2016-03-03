@@ -209,3 +209,10 @@ i.red{
     filter: none; /* IE6-9 */
     -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
 }
+
+/************GALLERRY**************/
+.container.gallerry-image{
+  margin-left: 13px !important;
+    padding-bottom: 35px !important;
+    padding-top: 30px !important;
+}

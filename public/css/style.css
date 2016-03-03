@@ -1,64 +1,42 @@
-@charset "utf-8";
-/* CSS Document */
-
-body {
-  font: Verdana, Arial, Helvetica, sans-serif;
-  /*background-color: #42413C;*/
-  background-color: rgb(242, 240, 225) !important;
-  margin: 0;
-  padding: 0;
-  color: #000;
+/*========================================================
+                    CAROUSEL SLIDE IMAGE CSS
+=========================================================*/
+.carousel-caption{
+  top: 30%;
+  bottom: 30%;
 }
-body {
-  overflow-x: auto;
-  overflow-y: scroll; 
-  height: 100%;
+.carousel-inner img {
+  width: 100%; /* Set width to 100% */
+  margin: auto;
+  object-fit: cover;
+  height: 639px !important;
+}
+.carousel-inner.item img{
+   height: 639px !important;
+}
+.carousel-caption h3 {
+  color: #fff !important;
 }
 
-body {
-      font: 400 15px/1.8 Lato, sans-serif;
-      color: #777;
+.carousel-caption h3{
+  color: #fff;
+  font-family: 'Signika', sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+}
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none; /* Hide taohe carousel text when the screen is less than 600 pixels wide */
   }
-  h3, h4 {
-      margin: 10px 0 30px 0;
-      letter-spacing: 10px;      
-      font-size: 20px;
-      color: #111;
-  }
-  .container {
-      padding: 80px 120px;
-  }
-  .person {
-      border: 10px solid transparent;
-      margin-bottom: 25px;
-      width: 80%;
-      height: 80%;
-      opacity: 0.7;
-  }
-  .person:hover {
-      border-color: #f1f1f1;
-  }
-  .carousel-inner img {
-     
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-     object-fit: cover;
-    height: 639px !important;
-  }
-  .carousel-caption h3 {
-      color: #fff !important;
-  }
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
-    }
-  }
-  
-  .bg-1 {
-      background: #2d2d30;
-      color: #bdbdbd;
-      width: 100% !important;
-  }
+}
+/*========================================================
+                            SLIDE IMAGE
+  =========================================================*/
+.bg-1 {
+  background: #2d2d30;
+  color: #bdbdbd;
+  width: 100% !important;
+}
   .bg-1 h3 {color: #fff;}
   .bg-1 p {font-style: italic;}
   .list-group-item:first-child {
@@ -78,44 +56,16 @@ body {
       margin-top: 15px;
       color: #555;
   }
-  .btn {
-      padding: 10px 20px;
-      background-color: #333;
-      color: #f1f1f1;
-      border-radius: 0;
-      transition: .2s;
-  }
-  .btn:hover, .btn:focus {
-      border: 1px solid #333;
-      background-color: #fff;
-      color: #000;
-  }
-  .modal-header, h4, .close {
-      background-color: #333;
-      color: #fff !important;
-      text-align: center;
-      font-size: 30px;
-  }
-  .modal-header, .modal-body {
-      padding: 40px 50px;
-  }
-  .nav-tabs li a {
-      color: #777;
-  }
-  #googleMap {
-      width: 100%;
-      height: 400px;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-  }  
+/***************TABBAR MENU*******************/
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      background-color: #2d2d30;
+  
       border: 0;
       font-size: 11px !important;
       letter-spacing: 4px;
       opacity: 0.9;
+      background-color: rgba(51, 51, 51, 0.92) !important;
   }
   .navbar li a, .navbar .navbar-brand { 
       color: #d5d5d5 !important;
@@ -140,32 +90,13 @@ body {
   .dropdown-menu li a:hover {
       background-color: red !important;
   }
-  /*footer {
-      background-color: #2d2d30;
-      color: #f5f5f5;
-      padding: 32px;
-  }
-  footer a {
-      color: #f5f5f5;
-  }
-  footer a:hover {
-      color: #777;
-      text-decoration: none;
-  }  
-  .form-control {
-      border-radius: 0;
-  }
-  textarea {
-      resize: none;
-  }*/
+/*************************************************************/
 
-/*ABOUT*/
+
+
+/*********************ABOUT***************************/
 .about-content{
-  background-image: url("");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 1px;
-  width: 100% !important;
+  padding: 0 !important;
 }
 .about-img img{
    width: 100%; 
@@ -174,7 +105,7 @@ body {
 .about-text{
 
 }
-/*ABOUT*/
+/***************************ABOUT***********************/
 
 /*================== FOOTER - LOGIN FORM ==================*/
 .center hr, hr.center {
@@ -191,7 +122,7 @@ body {
 .center {
   text-align: center;
 }
-/*==================    Buttons    ======================*/
+/*==================    BUTTONS    ======================*/
 .btn {
   display: inline-block;
   padding: 18.5px 20px 18.5px 20px;
@@ -211,7 +142,41 @@ body {
   }
 }
 
-/*=================Register Form=============*/
+
+/*==================  RD Parallax    ======================*/
+.well4 {
+  padding: 98px 0 33px;
+}
+.well5 {
+  padding-top: 15px;
+  padding-bottom: 18px;
+}
+.parallax {
+  position: relative;
+  overflow: hidden;
+}
+.parallax_image, .parallax_pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-position: center center;
+  will-change: transform;
+}
+.parallax_image {
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.parallax_pattern {
+  background-repeat: repeat;
+}
+.parallax_cnt {
+  position: relative;
+}
+
+/*==================     Subscribe Form     ======================*/
 .bg-secondary {
   background: #576475;
   white-space: nowrap;
@@ -239,41 +204,6 @@ body {
   text-align: -webkit-center;
     display: -webkit-inline-box;
 }
-/*=================Register Form=============*/
-/*==================  RD Parallax    ======================*/
-.parallax {
-  position: relative;
-  overflow: hidden;
-}
-.parallax_image, .parallax_pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background-position: center center;
-  will-change: transform;
-}
-.parallax_image {
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-.parallax_pattern {
-  background-repeat: repeat;
-}
-.parallax_cnt {
-  position: relative;
-}
-.well4 {
-  padding: 98px 0 33px;
-}
-.well5 {
-  padding-top: 15px;
-  padding-bottom: 18px;
-}
-
-/*==================     Subscribe Form     ======================*/
 .subscribe-form {
   position: relative;
   display: inline-block;
@@ -446,4 +376,4 @@ footer * + .copyright {
   animation-name: fadeInUp;
 }
 
-/*================== FOOTER - LOGIN FORM ==================*/
+/*================== FOOTER - LOGIN FORM ==================
