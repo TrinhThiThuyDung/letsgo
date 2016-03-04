@@ -46,8 +46,9 @@
         <li><a href="#myPage">TRANG CHỦ</a></li>
         <li><a href="#about">GIỚI THIỆU</a></li>
         <li><a href="#gallerry-image">HÌNH ẢNH</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#myModal">ĐĂNG NHẬP</a></li>
         <li><a href="#register">ĐĂNG KÝ</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#myModal">ĐĂNG NHẬP</a></li>
+        
         <!-- <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
