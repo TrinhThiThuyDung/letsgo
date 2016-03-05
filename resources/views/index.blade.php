@@ -5,10 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
+    
     <link rel="stylesheet" href="{{url('css/grid.css')}}">
-   
     <link rel="stylesheet" href="{{url('fonts/latin.css')}}">
+
+   <link rel="stylesheet" href="{{url('css/style.css')}}">
+    <link rel="stylesheet" href="{{url('css/login.css')}}">
     <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
    
     <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
@@ -69,20 +71,48 @@
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>This is a large modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="middlePage">
+          <div class="page-header">
+            <h1 class="logo">Techulus <small>Welcome to our place!</small></h1>
+          </div>
+
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-5" >
+                        <a href="#"><img class="id" src="http://techulus.com/buttons/fb.png" /></a><br/>
+                        <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/>
+                        <a href="#"><img class="id" src="http://techulus.com/buttons/gplus.png" /></a>
+                      </div>
+                    <div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
+                      <form class="form-horizontal">
+                        <fieldset>
+
+                          <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md">
+                          <div class="spacing">
+                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1"><small> Remember me</small>
+                          </div>
+
+
+                          <input id="textinput" name="textinput" type="text" placeholder="Enter Password" class="form-control input-md">
+                          <div class="spacing"><a href="#"><small> Forgot Password?</small></a><br/></div>
+
+                          <button style="width: 120px !important;" id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Sign In</button>
+                        </fieldset>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 <!-- ================ MODEL LOGIN ================= -->
+
 <!--========================================================
                             CAROUSEL SLIDE IMAGE
   =========================================================-->
@@ -97,7 +127,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="{{url('/images/header-background.jpeg')}}" alt="New York" >
+        <img src="{{url('/images/header-image/header-1.jpg')}}" alt="New York" >
         <div class="carousel-caption">
           <h3>LET'S GO</h3> <br> 
           <h4> 
@@ -108,7 +138,7 @@
       </div>
 
       <div class="item">
-        <img src="{{url('/images/header-img.jpg')}}" alt="Chicago" >
+        <img src="{{url('/images/header-image/header-2.jpg')}}" alt="Chicago" >
         <div class="carousel-caption">
           <h3>Let Us Show You the Way to Success</h3>
           <!-- <p>Thank you, Chicago - A night we won't forget.</p> -->
@@ -116,7 +146,7 @@
       </div>
     
       <div class="item">
-        <img src="{{url('/images/banner.jpg')}}" alt="Los Angeles">
+        <img src="{{url('/images/header-image/header-3.jpg')}}" alt="Los Angeles">
         <div class="carousel-caption">
           <h3>Let Us Show You the Way to Success</h3>
          <!--  <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p> -->
@@ -143,7 +173,7 @@
   <div class="row" style="/*margin-right: -6px;*/">
     <div class="col-sm-4">
       <div class="about-img">
-        <img src="https://drscdn.500px.org/photo/141852085/m%3D2048/9c3f9a7554ab47d8679653cd75b88f25">
+        <img src="{{url('/images/header-background.jpeg')}}">
       </div>
       <div class="about-text">
        <h3>LET'S GO</h3>
@@ -596,7 +626,7 @@
                             REGISTER FORM
   =========================================================-->
 
-<div id = "register" class="well2 bg-secondary" style="padding-bottom: 17px;">
+<!-- <div id = "register" class="well2 bg-secondary" style="padding-bottom: 17px;">
     <div class="container center">
         <div class="row">
           <div class="grid_8 preffix_2">
@@ -614,7 +644,7 @@
           </div>
         </div>
       </div>
-</div>
+</div> -->
  <!--========================================================
                             FOOTER
   =========================================================-->
@@ -626,7 +656,7 @@
           <h2>DANG KY LET'S GO</h2>
 
           <h3 style="text-transform: uppercase;">de cung luu giu nhung buc anh dep nhat cua ban</h3>
-          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">BAT DAU NGAY!</a>
+          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">DANG KY NGAY!</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> BACH KHOA HA NOI - HEDSPI
