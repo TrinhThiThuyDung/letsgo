@@ -25,7 +25,6 @@
     <script src="{{url('js/main.js')}}"></script>
     <script src="{{url('js/sForm.js')}}"></script>
     <script src="{{url('js/jquery.rd-parallax.js')}}"></script>
-    <script src="{{url('js/wow.js')}}"></script>
   
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -44,14 +43,14 @@
       <a class="navbar-brand" href="#myPage">LET'S GO</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
         <li><a href="#myPage">TRANG CHỦ</a></li>
         <li><a href="#about">GIỚI THIỆU</a></li>
         <li><a href="#gallerry-image">HÌNH ẢNH</a></li>
-        <li><a href="#register">ĐĂNG KÝ</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#myModal">ĐĂNG NHẬP</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modelRegister">ĐĂNG KÝ</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#modelLogin">ĐĂNG NHẬP</a></li>
         
-        <!-- <li class="dropdown">
+       <!--  <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -60,20 +59,19 @@
             <li><a href="#">Media</a></li> 
           </ul>
         </li> -->
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+        <!-- <li><a href="#" data-toggle="collapse" data-target="#search"><span class="glyphicon glyphicon-search"></span></a></li> -->
       </ul>
     </div>
   </div>
 </nav>
-
 <!-- ================ MODEL LOGIN ================= -->
 
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="modelLogin" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="middlePage">
+        <div class="middlePage" style="left: 10%;">
           <div class="page-header">
-            <h1 class="logo">Techulus <small>Welcome to our place!</small></h1>
+            <h1 class="logo">LET"S GO <small>Welcome to our Let's go world!</small></h1>
           </div>
 
                 <div class="panel panel-info">
@@ -111,8 +109,121 @@
         </div>
       </div>
     </div>
-<!-- ================ MODEL LOGIN ================= -->
 
+
+<!-- ================ MODEL REGISTER=============== -->
+<div class="modal fade" id="modelRegister" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="container middlePage">
+          <div class="page-header">
+            <h1 class="logo">LET"S GO <small>Welcome to our Let's go world!</small></h1>
+          </div>
+          <div class="panel panel-info">
+            
+              <div class="panel-heading">
+                <h3 class="panel-title">Please Register New Account</h3>
+              </div>
+              <div class="panel-body">
+                <div class="stepwizard ">
+                 <div class="stepwizard-row setup-panel">
+                  <div class="stepwizard-step">
+                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                    <p>Step 1</p>
+                  </div>
+                <div class="stepwizard-step">
+                    <a href="#step-2" type="button" class="btn btn-default btn-circle disabled" disabled="disabled">2</a>
+                    <p>Step 2</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-3" type="button" class="btn btn-default btn-circle disabled" disabled="disabled">3</a>
+                    <p>Step 3</p>
+                </div>
+              </div>
+            </div>
+            <form role="form">
+                <div class="row setup-content" id="step-1">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <h3> Step 1</h3>
+                            <div class="form-group">
+                                <label class="control-label">First Name</label>
+                                <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Last Name</label>
+                                <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                            </div>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="step-2">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <h3> Step 2</h3>
+                            <div class="form-group">
+                                <label class="control-label">Email</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Email" />
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="control-label">Address</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
+                            </div> -->
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row setup-content" id="step-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <h3> Step 3</h3>
+                            <div class="form-group">
+                                <label class="control-label">Password</label>
+                                <input maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Password" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Confirm Password</label>
+                                <input maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Confirm Password" />
+                            </div>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="or">
+              <span class="signup_only">or</span>
+            </div>
+            <div class="rom">
+            <div class="col-md-12" >
+                  <a href="#" class="social"><img class="id" src="http://techulus.com/buttons/fb.png" /></a>
+                  <a href="#" class="social"><img class="id" src="http://techulus.com/buttons/tw.png" /></a>
+                  <a href="#" class="social"><img class="id" src="http://techulus.com/buttons/gplus.png" /></a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<!--========================================================
+                            COLLAPSE SEARCH
+  =========================================================-->
+  <div id="search" class="collapse">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <form id="custom-search-form" class="form-search form-horizontal pull-right">
+            <div class="input-append span12">
+              <input type="text" class="search-query mac-style" placeholder="Search">
+              <button type="submit" class="btn"><i class="icon-search"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
 <!--========================================================
                             CAROUSEL SLIDE IMAGE
   =========================================================-->
@@ -622,41 +733,19 @@
     </div>
   </div>
 </div>
-<!--========================================================
-                            REGISTER FORM
-  =========================================================-->
 
-<!-- <div id = "register" class="well2 bg-secondary" style="padding-bottom: 17px;">
-    <div class="container center">
-        <div class="row">
-          <div class="grid_8 preffix_2">
-            <h2> ĐĂNG KÝ </h2>
-
-            <form id="subscribe-form" class="subscribe-form">
-
-              <label class="email">
-                <input type="email" value="E - mail">
-                <span class="error">*Mail không hợp lệ!</span>
-                <span class="success">Đã gửi đăng ký của bạn!</span>
-              </label>
-              <a class="btn" data-type="submit" href="#">ĐĂNG KÝ</a>
-            </form>
-          </div>
-        </div>
-      </div>
-</div> -->
  <!--========================================================
                             FOOTER
   =========================================================-->
   <footer>
-    <div class="parallax" data-url="{{url('/images/parallax2.jpg')}}" data-mobile="true" data-speed="0.5 " data-direction="inverted">
+    <div id="register" class="parallax" data-url="{{url('/images/content-image/parallax.jpg')}}" data-mobile="true" data-speed="0.5 " data-direction="inverted">
       <div class="well4">
         <div class="container center wow fadeInUp" data-wow-delay="0.2s">
-          <hr/>
-          <h2>DANG KY LET'S GO</h2>
+          
+          <h2>ĐĂNG KÝ LET'S GO</h2>
 
-          <h3 style="text-transform: uppercase;">de cung luu giu nhung buc anh dep nhat cua ban</h3>
-          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">DANG KY NGAY!</a>
+          <h3 style="text-transform: uppercase;">để cùng lưu giữ lại những giây phút đẹp của bạn qua những bức ảnh</h3>
+          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">ĐĂNG KÝ NGAY</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> BACH KHOA HA NOI - HEDSPI
@@ -667,7 +756,8 @@
     </div>
    <div class="well5 center">
       <div class="container">
-        <a href='#'><img src="{{url('images/tm-logo.png')}}" alt="Tempalte Monster"/></a>
+        <div>
+          <span style="color: red;">Design By </span> TrinhThiThuyDung<span class="glyphicons glyphicons-cat"></span> </div>
       </div>
     </div>
   </footer>
