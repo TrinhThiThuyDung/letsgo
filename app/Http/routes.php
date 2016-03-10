@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/template', function () {
-    return view('template');
+
+Route::get('/home-image', function () {
+    return view('home-image');
 });
 /*
 |--------------------------------------------------------------------------
