@@ -19,6 +19,10 @@ Route::get('/', function () {
 Route::get('/home-image', function () {
     return view('home-image');
 });
+
+Route::get('/private/', function () {
+    return view('private');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes

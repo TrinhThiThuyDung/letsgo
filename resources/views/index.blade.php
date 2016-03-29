@@ -201,20 +201,7 @@
 <!--========================================================
                             COLLAPSE SEARCH
   =========================================================-->
-  <div id="search" class="collapse">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <form id="custom-search-form" class="form-search form-horizontal pull-right">
-            <div class="input-append span12">
-              <input type="text" class="search-query mac-style" placeholder="Search">
-              <button type="submit" class="btn"><i class="icon-search"></i></button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-</div>
+ <!--       -->
 <!--========================================================
                             CAROUSEL SLIDE IMAGE
   =========================================================-->
@@ -229,7 +216,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="{{url('/images/header-image/header-1.jpg')}}" alt="New York" >
+        <img src="{{url('/images/header-image/header-1.jpg')}}" alt="New York" style="height: 636px;">
         <div class="carousel-caption">
           <h3>LET'S GO</h3> <br> 
           <h4> 
@@ -240,7 +227,7 @@
       </div>
 
       <div class="item">
-        <img src="{{url('/images/header-image/header-2.jpg')}}" alt="Chicago" >
+        <img src="{{url('/images/header-image/header-2.jpg')}}" alt="Chicago" style="height: 636px;">
         <div class="carousel-caption">
           <h3>Let Us Show You the Way to Success</h3>
           <!-- <p>Thank you, Chicago - A night we won't forget.</p> -->
@@ -248,7 +235,7 @@
       </div>
     
       <div class="item">
-        <img src="{{url('/images/header-image/header-3.jpg')}}" alt="Los Angeles">
+        <img src="{{url('/images/header-image/header-3.jpg')}}" alt="Los Angeles" style="height: 636px;">
         <div class="carousel-caption">
           <h3>Let Us Show You the Way to Success</h3>
          <!--  <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p> -->
@@ -270,7 +257,7 @@
 <!--========================================================
                             ABOUT WEB
   =========================================================-->
-<div id="about" class="container text-center about-content" style="margin: 6px 13px;">
+<div id="about" class="container text-center about-content" style="margin: 6px 0;">
  
   <div class="row" style="/*margin-right: -6px;*/">
     <div class="col-sm-4">
@@ -320,7 +307,8 @@
         <div class="card">
         
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Khoảnh khắc cuộc sống</a></li>
+                <li style="margin-left: 1%;" role="presentation" class="active"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Tất cả</a></li>
+                  <li role="presentation"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Cuộc sống</a></li>
                 <li role="presentation"><a href="#nature" aria-controls="nature" role="tab" data-toggle="tab">Thiên nhiên </a></li>
                                         
                 <li role="presentation"><a href="#people" aria-controls="people" role="tab" data-toggle="tab">Con người</a></li>
@@ -655,7 +643,8 @@
                       </div>
                     </div>
                   </div>
-              </div></div>
+              </div>
+            </div>
               <div role="tabpanel" class="tab-pane" id="nature">
                <!--  <div class="row"> -->
         <!-- <div class="text-center">
@@ -724,7 +713,6 @@
     </div>
   </div>
 </div>
-
  <!--========================================================
                             FOOTER
   =========================================================-->
@@ -752,8 +740,6 @@
       </div>
     </div>
   </footer>
-
-
 </body>
 
 </html>

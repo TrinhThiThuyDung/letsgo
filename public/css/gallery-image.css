@@ -11,7 +11,7 @@ border: none !important;
      float: left;
   /*right: 5%;
   left: 5%;*/
-  width: 200px;
+  width: 14%;
   text-align: center;
 }
 .nav-tabs > li > a { 
@@ -74,7 +74,7 @@ border: none !important;
 	padding: 3px;
 }
 .gal-item .box{
-	height: 350px;
+	height: 350px !important;
 	overflow: hidden;
 }
 .box img{
@@ -214,7 +214,7 @@ i.red{
 
 /************GALLERRY**************/
 .container.gallerry-image{
-  margin-left: 13px !important;
+ /* margin-left: 13px !important;*/
     padding-bottom: 35px !important;
     padding-top: 30px !important;
 }
