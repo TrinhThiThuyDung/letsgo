@@ -40,7 +40,7 @@
 </style>
 
 </head>
-<body id="imagePage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body id="imagePage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background: #fff !important;">
 
 	   <nav id="myNav" class="navbar navbar-inverse navbar-fixed-top" style="height: 62px;">
       <div class="container">

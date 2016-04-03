@@ -56,3 +56,8 @@ h3, h4 {
     width: 100% !important;
   }
 }
+@media (min-width: 768px){
+.container {
+   width: auto !important;
+  }
+}

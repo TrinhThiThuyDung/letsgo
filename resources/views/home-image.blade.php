@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+ <link rel="stylesheet" href="{{url('css/albums.css')}}">
+
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}">
 
     <!-- Start WOWSlider.com HEAD section -->
 <!-- <link rel="stylesheet" type="text/css" href="{{url('engine1/style.css')}}" /> -->
@@ -36,52 +38,60 @@
  <!--    <script src="{{url('js/function.js')}}"></script>
      <script src="{{url('js/html5.js')}}"></script>
       <script src="{{url('js/ma5gallery.js')}}"></script> -->
-      <script src="{{url('js/album.js')}}"></script>
+      <script src="{{url('js/albums.js')}}"></script>
    
   
 
 </head>
 <body id="imagePage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-   <nav id="myNav" class="navbar navbar-inverse navbar-fixed-top" style="height: 62px;">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header" style="margin-left: 3%;">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand text-uppercase logo" style="margin: 11px 6px !important; padding: 11px 11px !important;  color: #04DAF1;" href="{{url('/')}}">LET'S GO</a>
-        </div>
-   
-        <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+    <!-- ==================== HEADER LAYOUT ==================== -->
+   <div id="header" class="welcome" style="height: 300px;">
+        <div class="container">
+          <div class="row">
+       
+          <div class="welcome-content">
+           <div class="wel-img">
+             <img src="{{url('/images/cat-logo1.png')}}">
+           </div>
+           <div class="wel-content"></div>
+            </div>
+      
+      </div>
+    </div>
+ </div>
+    <!-- ==================== HEADER LAYOUT ====================== -->
+
+    <!-- ==================== CONTENT LAYOUT ==================== -->
+  <div class="pageWidth">
+    <nav id="myNav" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="row">
         <div class="collapse navbar-collapse" id="navigation">
-        <ul class=" nav navbar-nav navbar-left menu" style="height: 62px;">
-          <li>
-            <a href="{{url('/')}}" > TRANG CHỦ</a>
-          </li>
-          <li class="" style="height: 66%;
-    text-align: center;
-    width: 1px;
-    background-color: #1B6E69 !important;
-    margin-top: 3%;
-    margin-bottom: 3%;"></li>
-          <li>
-            <a href="#">THEO DÕI </a>
-          </li>
-        </ul>
-        <form action="" class="search-form">
+           <div class="navbar-header" style="/*margin-left: 3%;*/">
+             <a class="navbar-brand text-uppercase logo" style="margin: auto !important; color: #04DAF1;" href="{{url('/')}}">LET'S GO</a>
+           </div>
+           <ul class=" nav navbar-nav navbar-left menu">
+            <li>
+              <a href="{{url('/')}}" > TRANG CHỦ</a>
+            </li>
+            <li class="" style="height: 66%; text-align: center;width: 1px;background-color: #1B6E69 !important;margin: 3% 0;"></li>
+            <li>
+              <a href="#">THEO DÕI </a>
+            </li>
+          </ul>
+<!--           <form action="" class="search-form">
                 <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
                 <label for="search" class="sr-only">Search</label>
                 <input type="text" class="form-control" name="search" id="search" placeholder="search">
                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right user-detail" id="nav-user">
-            <li style="margin-right: 30px !important;"><button style="margin: 3.5px;" type="button" class="btn btn-success navbar-btn btn-circle" >Đăng Ảnh</button></li>
-             <li class="dropdown detail-hover">
+            </form> -->
+             <ul class="nav navbar-nav navbar-right user-detail" id="nav-user"  style="    margin-right: 8px;">
+              <li><button style="margin: 3px;" type="button" class="btn btn-success navbar-btn btn-circle" >Đăng Ảnh</button></li>
+                <li class="dropdown detail-hover">
                   <a href="#"  class="dropdown-toggle" data-toggle="dropdown">
                    <strong>
                    <img src="{{url('/images/user_alerts.png')}}">
@@ -136,7 +146,6 @@
                   </div>
                   </ul>
                 </li>
-            <!-- ====Persional===== -->
                 <li class="dropdown detail-hover">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <strong>
@@ -153,8 +162,7 @@
                                 <div class="profile-userpic">
                                   <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xtl1/v/t1.0-1/c22.0.160.160/p160x160/12809768_1561885120795333_7785380619686698052_n.jpg?oh=ab3ce4a2385490ddaccffdd8e80efac5&oe=575379CB&__gda__=1465997005_4aa837d030c5295622dcacacd6a476e8" class="img-responsive" alt="">
                                 </div>
-                                <!-- END SIDEBAR USERPIC -->
-                                <!-- SIDEBAR USER TITLE -->
+                             
                                 <div class="profile-usertitle">
                                   <div class="profile-usertitle-name">
                                     Tiểu Long Hoàng
@@ -163,8 +171,7 @@
                                     Sinh viên
                                   </div>
                                 </div>
-                                <!-- END SIDEBAR USER TITLE -->
-                                <!-- SIDEBAR BUTTONS -->
+                             
                                 <div class="profile-userbuttons">
                                   <button type="button" class="btn btn-success btn-sm">Thông tin</button>
                                   <button type="button" class="btn btn-danger btn-sm">Đăng xuất</button>
@@ -205,37 +212,34 @@
       
                   </ul>
                 </li>
-            </ul>
-              
+                <li>
+                  <form action="" class="search-form">
+                <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
+                <label for="search" class="sr-only">Search</label>
+                <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+            </form> 
+                </li>
+             </ul>
         </div>
-      </div>
-    </nav>
-
-    <!-- ==================== HEADER LAYOUT ==================== -->
-    <div id="header" class="welcome" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4" style="width: 3%;"></div>
-        <div class="col-md-4" style="width: 94%;">
-          <div class="welcome-content">
-            <img src="{{url('images/wel/cover-26.jpg')}}" width="1207" height="300">
-            </div>
-        </div>
-        <div class="col-md-4" style="width: 3%;"></div>
-      </div>
     </div>
- </div>
+  </div>
+  </nav>
+
+     <div class="pageContent">
+     
  <div id="gallerry-images">
   <div class="container gallerry-image" >
   <!--   <div class="row" style=" margin-top: 15px; margin-bottom: 30px;"> -->
       <!-- <div class="col-md-12"> -->
-           <div id="album " class="album-gal" title="Album title">
+           <div id="album " class="album-gal carouselGallery-col-60" title="Album title">
               <div class=" wrap-images  item-1 ">
                 <div class="box-1">
-                  <div class="photo full" style="background-image: url('{{url('../images/home-images/photo-1.jpg')}}'); background-position: 50% 50%;">
-                    <a class="photo-link" data-href = "{{url('../images/home-images/photo-1.jpg')}}" data-slide='9' href="{{url('../images/home-images/photo-1.jpg')}}">
+                  <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="0" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-1.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-1.jpg')}}'); background-position: 50% 50%;">
+                 <!--    <a class="photo-link" data-href = "{{url('../images/home-images/photo-1.jpg')}}" data-slide='9' href="{{url('../images/home-images/photo-1.jpg')}}">
 
-                    </a>
+                    </a> -->
                     <div class="action">
                         <div class="view">
                           <a href="" class="like">
@@ -269,9 +273,9 @@
           <div class="wrap-images item-3">
              <div class="item-big">
                     <div class="box-1">
-                      <div class="photo" style="background-image: url('{{url('../images/home-images/photo-9.jpg')}}'); background-position: 50% 50%;">
-                             <a class="photo-link" data-href = "{{url('../images/home-images/photo-9.jpg')}}" data-slide='8' href="{{url('../images/home-images/photo-9.jpg')}}">
-                             </a>
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="1" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-9.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-9.jpg')}}'); background-position: 50% 50%;">
+                           <!--   <a class="photo-link" data-href = "{{url('../images/home-images/photo-9.jpg')}}" data-slide='8' href="{{url('../images/home-images/photo-9.jpg')}}">
+                             </a> -->
                          <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -303,9 +307,9 @@
                  <div class="item-small">
                     <div class="small-1">
                       <div class="box-1">
-                        <div class="photo" style="background-image: url('{{url('../images/home-images/photo-2.jpg')}}'); background-position: 50% 50%;">
-                             <a class="photo-link" data-href = "{{url('../images/home-images/photo-2.jpg')}}" data-slide='7' href="{{url('../images/home-images/photo-2.jpg')}}">
-                             </a>
+                        <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="2" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-2.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-2.jpg')}}'); background-position: 50% 50%;">
+                           <!--   <a class="photo-link" data-href = "{{url('../images/home-images/photo-2.jpg')}}" data-slide='7' href="{{url('../images/home-images/photo-2.jpg')}}">
+                             </a> -->
                               <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -336,9 +340,9 @@
                   </div>
                   <div class="small-2">
                     <div class="box-1">
-                      <div class="photo" style="background-image: url('{{url('../images/home-images/photo-3.jpg')}}'); background-position: 50% 50%;">
-                          <a class="photo-link" data-href = "{{url('../images/home-images/photo-3.jpg')}}" data-slide='6' href="{{url('../images/home-images/photo-3.jpg')}}">
-                          </a>
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="3" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-3.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-3.jpg')}}'); background-position: 50% 50%;">
+                        <!--   <a class="photo-link" data-href = "{{url('../images/home-images/photo-3.jpg')}}" data-slide='6' href="{{url('../images/home-images/photo-3.jpg')}}">
+                          </a> -->
                           <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -374,10 +378,10 @@
 
                 <div class="medium m1">
                   <div class="box-1">
-                     <div class="photo" style="background-image: url('{{url('../images/home-images/photo-4.jpg')}}'); background-position: 50% 50%;">
-                    <a class="photo-link" data-href = "{{url('../images/home-images/photo-4.jpg')}}" data-slide='5' href="{{url('../images/home-images/photo-4.jpg')}}">
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="4" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-4.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-4.jpg')}}'); background-position: 50% 50%;">
+                  <!--   <a class="photo-link" data-href = "{{url('../images/home-images/photo-4.jpg')}}" data-slide='5' href="{{url('../images/home-images/photo-4.jpg')}}">
 
-                    </a>
+                    </a> -->
                     <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -408,9 +412,9 @@
                 </div>
                  <div class="medium m2">
                   <div class="box-1">
-                     <div class="photo" style="background-image: url('{{url('../images/home-images/photo-5.jpg')}}'); background-position: 50% 50%;">
-                    <a class="photo-link" data-href = "{{url('../images/home-images/photo-5.jpg')}}" data-slide = '4' href="{{url('../images/home-images/photo-5.jpg')}}">
-                    </a>
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="5" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-5.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-5.jpg')}}'); background-position: 50% 50%;">
+                   <!--  <a class="photo-link" data-href = "{{url('../images/home-images/photo-5.jpg')}}" data-slide = '4' href="{{url('../images/home-images/photo-5.jpg')}}">
+                    </a> -->
                     <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -441,9 +445,9 @@
                 </div>
                  <div class="medium m3">
                   <div class="box-1">
-                     <div class="photo" style="background-image: url('{{url('../images/home-images/photo-6.jpg')}}'); background-position: 50% 50%;">
-                    <a class="photo-link" data-href = "{{url('../images/home-images/photo-6.jpg')}}" data-slide = '5'  href="{{url('../images/home-images/photo-6.jpg')}}">
-                    </a>
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="6" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-6.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-6.jpg')}}'); background-position: 50% 50%;">
+                  <!--   <a class="photo-link" data-href = "{{url('../images/home-images/photo-6.jpg')}}" data-slide = '5'  href="{{url('../images/home-images/photo-6.jpg')}}">
+                    </a> -->
                     <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -476,9 +480,9 @@
                 <div class=" wrap-images item-2">
                    <div class="item-big">
                     <div class="box-1">
-                       <div class="photo" style="background-image: url('{{url('../images/home-images/photo-7.jpg')}}'); background-position: 50% 50%;">
-                    <a class="photo-link" data-href = "{{url('../images/home-images/photo-7.jpg')}}" data-slide = '6'  href="{{url('../images/home-images/photo-7.jpg')}}">
-                    </a>
+                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="7" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-7.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-7.jpg')}}'); background-position: 50% 50%;">
+                  <!--   <a class="photo-link" data-href = "{{url('../images/home-images/photo-7.jpg')}}" data-slide = '6'  href="{{url('../images/home-images/photo-7.jpg')}}">
+                    </a> -->
                     <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -509,9 +513,9 @@
                    </div>
                  <div class="item-small">
                     <div class="box-1">
-                      <div class="photo" style="background-image: url('{{url('../images/home-images/photo-8.jpg')}}'); background-position: 50% 50%;">
-                        <a class="photo-link" data-href = "{{url('../images/home-images/photo-8.jpg')}}" data-slide = '7'  href="{{url('../images/home-images/photo-4.jpg')}}">
-                        </a>
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="8" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('../images/home-images/photo-8.jpg')}}" data-posturl="https://instagram.com/p/9_dViYwVWJ/"  style="background-image: url('{{url('../images/home-images/photo-8.jpg')}}'); background-position: 50% 50%;">
+                     <!--    <a class="photo-link" data-href = "{{url('../images/home-images/photo-8.jpg')}}" data-slide = '7'  href="{{url('../images/home-images/photo-4.jpg')}}">
+                        </a> -->
                         <div class="action">
                               <div class="view">
                                   <a href="" class="like">
@@ -547,8 +551,10 @@
       
    <!--  </div> -->
   </div>
-</div>  
+  </div>  
  
+   </div>
+  </div>
       <footer>
         <div class="container" style="height: 100%;">
             <div class="footerlinks"><!-- FOOTER LINKS START -->            
@@ -572,3 +578,17 @@
      </footer><!-- FOOTER END -->
 </body>
 </html>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>

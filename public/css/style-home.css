@@ -1,23 +1,56 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
 body{
-  background-image: url('../images/category-23px-light.png');
+ /*background: url(../images/background-content.jpg);
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-size: 100% 100%;*/
+    background: rgb(37, 35, 35) !important;
   position: relative;
 }
-
+.pageWidth{
+  margin: auto;
+   width: 1070px;
+    position: relative;
+}
+.pageContent {
+  background-color: rgb(255, 255, 255);
+    padding: 0px 10px 10px;
+    position: relative;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -khtml-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    box-shadow: 0px 0px 12px rgba(50,50,50,0.2);
+   
+    margin: 10px 10px;
+    zoom: 1;
+    
+  }
  /*========================================================
                     LOGO CSS
+}
 }
 =========================================================*/
 .logo{
 
   font-family: reklamescriptw00-medium,cursive;
-  font-size: 35px !important;
+  font-size: 30px !important;
   letter-spacing: 7px !important;
 }
  /*==== NAV ===== */
   .navbar-inverse {
-    background-color: rgb(54, 132, 134) !important;
-    border-color: rgb(54, 132, 134) !important;
+    /*background-color: rgb(54, 132, 134) !important;
+    border-color: rgb(54, 132, 134) !important;*/
+    background-color: #FBFFFF !important;
+    border-color: #FBFFFF !important;
+    background: url(../images/background-nav.png) repeat-x;
+    background-size: 100% 100%;
   }
   .navbar-index{
     letter-spacing: 4px;
@@ -34,11 +67,19 @@ body{
    padding: 6px 36px !important;
 
 }
-
+.collapse{
+  width: 1070px !important;
+  margin: auto !important;
+}
+@media screen and max-width: 980{
+  .collapse{
+    width: 1200px !important;
+  }
+}
  .search-form .form-group {
   float: right !important;
   transition: all 0.35s, border-radius 0s;
-  width: 32px;
+  width: 200px;
   height: 32px;
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -68,7 +109,7 @@ body{
 }
 .search-form .form-group:hover,
 .search-form .form-group.hover {
-  width: 15%;
+ /* width: 15%;*/
   border-radius: 4px 25px 25px 4px;
 }
 .search-form .form-group span.form-control-feedback {
@@ -96,16 +137,18 @@ body{
 }
 
 .btn-success {
-    color: #fff;
-    background-color: rgba(41, 125, 169, 0.55);
-    border-color: rgba(41, 125, 169, 0.55);
+    color: #fff !important;
+    background-color: rgba(41, 125, 169, 0) !important;
+    border-color: rgba(41, 125, 169, 0.55) !important;
+}
+.btn-success:hover{
+   background-color: rgba(41, 125, 169, 0.55) !important;
 }
 .user-detail > li{
   float: right !important;
-  height: 40px !important; 
-margin-top: 4px !important;
-   margin: 1.5px;
-  width: 150px;
+ 
+   margin: 1px;
+  min-width: 120px;
   text-align: center;
 }
 .user-detail > li > a{
@@ -124,15 +167,17 @@ margin-top: 4px !important;
 }
 
 .user-detail {
-  width: 40%;
-  height: 50px !important;
-  margin: 6px !important;
-  background-color: rgba(7, 54, 63, 0.76);
 
-  border-radius: 25px;
-  
+  height: 40px !important;
+ 
+ /* background-color: rgba(7, 54, 63, 0.76);*/
+  position: relative;
+  top: 4px; 
+  width: 59%;
 }
-
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+   background-color: rgba(26, 214, 223, 0.14) !important;
+}
 .navbar-nav > span{
    padding: 0px 3px;
 }
@@ -321,24 +366,24 @@ margin-top: 4px !important;
 }
 /*************************************************************/
 /*================= MENU ===============*/
-
-.menu{
-  
-}
 .menu > li  a{
   height: 100% !important;
-  width: 123px;
-padding: 15px 0px !important;
+  max-width: 123px;
+/*padding: 15px 0px !important;*/
   text-align: center;
 }
 .menu > li a {
   color: #d9edf7 !important;
   font-size: 15px;
   font-family: Tahoma, Helvetica, Arial, sans-serif;
-  margin: 6px;
+  /*margin: 6px;*/
+  padding: 13px !important;
+     margin: 2px !important; 
+     border-radius: 2px;
 }
-.menu li:hover{
-  background-color: rgba(73, 218, 222, 0.22) !important;
+.menu li a:hover{
+  /*background-color: rgba(73, 218, 222, 0.22) !important;*/
+  background-color: rgba(26, 214, 223, 0.14) !important;
 }
 
 /*================================
@@ -370,8 +415,8 @@ footer * + .copyright {
 =========================================================*/
 
 .welcome{
-  margin-top: 67px;
-  margin-bottom: 10px;
+ /* margin-top: 67px;
+  margin-bottom: 10px;*/
 }
 .content {
    background: url(https://drscdn.500px.org/photo/144090499/m%3D2048/f0570c73fe921271082e71ae311eee6c) no-repeat fixed center;
@@ -390,15 +435,17 @@ footer * + .copyright {
   height: 100%;
   object-fit: cover;
     -o-object-fit: cover;
+    position: relative;
+    top: -20px;
 }
 /*=========================================================
                       GALLERY IMAGE
 ==========================================================*/
 #gallerry-images{
-    width: 92%;
-    position: relative;
+    width: 100%;
+  /*  position: relative;
     left: 4%;
-    right: 4%;
+    right: 4%;*/
 }
 
 
@@ -769,7 +816,7 @@ color: #DCFFF5
  border-bottom-color: rgba(137, 137, 137, 0.298039);
     border-bottom-style: solid;
     border-bottom-width: 1px;
-  padding-top: 15px;
+  /*padding-top: 15px;*/
   font-weight: bold;
 }
 .nav-tabs > li > a, 
@@ -780,8 +827,9 @@ color: #DCFFF5
 .nav-tabs > li.active > a:focus {
   border: none !important;
   border-radius: 0 !important;
-  min-width: 168px !important;
+/*  min-width: 168px !important;*/
    /*border-radius: 5px !important;*/
+   height: 100%;
 
 }
 
