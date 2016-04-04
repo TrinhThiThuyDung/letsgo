@@ -62,7 +62,7 @@ body{
     padding-right: 25px;
 }
 .btn-circle {
-    border-radius: 20px;
+    /*border-radius: 20px;*/
    /* margin-right: 34px;*/
    padding: 6px 36px !important;
 
@@ -139,7 +139,7 @@ body{
 .btn-success {
     color: #fff !important;
     background-color: rgba(41, 125, 169, 0) !important;
-    border-color: rgba(41, 125, 169, 0.55) !important;
+    border-color: rgba(41, 125, 169, 0) !important;
 }
 .btn-success:hover{
    background-color: rgba(41, 125, 169, 0.55) !important;
@@ -162,7 +162,7 @@ body{
 .user-detail > li > a:hover {
   /*background-color: rgba(255, 255, 255, 0.15) !important;*/
   /*background-color:  rgb(37, 100, 38) !important;*/
-  background-color: rgba(26, 214, 223, 0.14) !important;
+  background-color: rgba(41, 125, 169, 0.55) !important;
   border-radius:4px;
 }
 
