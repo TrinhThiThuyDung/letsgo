@@ -11,6 +11,7 @@
    
     <script src="{{url('js/sForm.js')}}"></script>
     <script src="{{url('js/jquery.rd-parallax.js')}}"></script>
+    <!-- <script src="{{url('js/api/login.js')}}"></script> -->
 
 @endsection
 

@@ -46,8 +46,8 @@ use NeoEloquent;
  	public function createUser($user)
  	{
  		$result_create = User::create([
-							'last_name'=>$user['l_name'],
-							'first_name'=>$user['f_name'],
+							'last_name'=>$user['last_name'],
+							'first_name'=>$user['first_name'],
 							'email'=>$user['email'],
 							'password'=>bcrypt($user['password']),
 						]);

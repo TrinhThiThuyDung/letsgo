@@ -5,25 +5,28 @@
 
 namespace App\Models\Entities;
 
-use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 use Illuminate\Auth\Authenticatable;
-use NeoEloquent;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
- class User extends NeoEloquent
+ class User extends Models
  {
- 	
- 	use SoftDeletes;
+ 	 use SoftDeletes;
  	
  	protected $label = "User";
 
  	protected $fillable = [
+ 		'id',
  	    'last_name',
  	    'first_name',
  	    'email',
  	    'password',
  	    'phone',
  	    'gender',
- 	    'address'
+ 	    'address',
+ 	    'birthday',
+ 	    'avatar',
+ 	    'position'
  	    ];
 
    //Cac quan he se co voi cac model khac

@@ -77,76 +77,76 @@
       <div class="modal-content">
         <div class="container middlePage">
           <div class="page-header">
-            <h1 class="logo">LET"S GO <small>Welcome to our Let's go world!</small></h1>
+            <h1 class="logo">LET'S GO <small>Chào mừng tới thế giới của Let's Go!</small></h1>
           </div>
           <div class="panel panel-info">
             
               <div class="panel-heading">
-                <h3 class="panel-title">Please Register New Account</h3>
+                <h3 class="panel-title">Đăng Ký Một Tài Khoản Mới</h3>
               </div>
               <div class="panel-body">
                 <div class="stepwizard ">
                  <div class="stepwizard-row setup-panel">
                   <div class="stepwizard-step">
                     <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                    <p>Step 1</p>
+                    <p>Bước 1</p>
                   </div>
                 <div class="stepwizard-step">
                     <a href="#step-2" type="button" class="btn btn-default btn-circle disabled" disabled="disabled">2</a>
-                    <p>Step 2</p>
+                    <p>Bước 2</p>
                 </div>
                 <div class="stepwizard-step">
                     <a href="#step-3" type="button" class="btn btn-default btn-circle disabled" disabled="disabled">3</a>
-                    <p>Step 3</p>
+                    <p>Bước 3</p>
                 </div>
               </div>
             </div>
-            <form role="form">
+            <form role="form" id="form-signup" method="post" action="{{url('/auth/register')}}">
                 <div class="row setup-content" id="step-1">
                     <div class="col-xs-12">
                         <div class="col-md-12">
-                            <h3> Step 1</h3>
+                            <h3> Bước 1</h3>
                             <div class="form-group">
-                                <label class="control-label">First Name</label>
-                                <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
+                                <label class="control-label">Họ của bạn</label>
+                                <input name="first_name"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Họ Của Bạn"  />
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Last Name</label>
-                                <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
+                                <label class="control-label"> Tên của bạn </label>
+                                <input name="last_name" maxlength="100" type="text" required="required" class="form-control" placeholder=" Tên của bạn" />
                             </div>
-                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Tiếp Nào</button>
                         </div>
                     </div>
                 </div>
                 <div class="row setup-content" id="step-2">
                     <div class="col-xs-12">
                         <div class="col-md-12">
-                            <h3> Step 2</h3>
+                            <h3> Bước 2</h3>
                             <div class="form-group">
                                 <label class="control-label">Email</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Email" />
+                                <input name="email" maxlength="200" type="text" required="required" class="form-control" placeholder="Email" />
                             </div>
                             <!-- <div class="form-group">
                                 <label class="control-label">Address</label>
                                 <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
                             </div> -->
-                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Go On</button>
                         </div>
                     </div>
                 </div>
                 <div class="row setup-content" id="step-3">
                     <div class="col-xs-12">
                         <div class="col-md-12">
-                            <h3> Step 3</h3>
+                            <h3> Bước 3</h3>
                             <div class="form-group">
-                                <label class="control-label">Password</label>
-                                <input maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Password" />
+                                <label class="control-label">Mật Khẩu</label>
+                                <input name="password" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Password" />
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Confirm Password</label>
-                                <input maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Confirm Password" />
+                                <label class="control-label">Xác Nhận Mật Khẩu</label>
+                                <input name="confirm_password" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Confirm Password" />
                             </div>
-                            <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Đăng Ký!</button>
                         </div>
                     </div>
                 </div>

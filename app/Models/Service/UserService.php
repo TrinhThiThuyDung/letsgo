@@ -21,6 +21,11 @@ class UserService implements UserServiceInterface
 		if ( count($result) > 0 ) {
 			return null;
 		}
+		/*$result = UserFacade::where('email' , '=' ,  $user['email'] )->get();
+
+		if($result != null){
+			return null;
+		}*/
 
  		$user = UserFacade::createUser($user);
 

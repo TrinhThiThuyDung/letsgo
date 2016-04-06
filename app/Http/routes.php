@@ -34,6 +34,24 @@ Route::get('/private/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+/*
+ * sign in 
+ *
+ */
+Route::get('/auth/signin','AuthController@getLogin');
+Route::post('/auth/signin','AuthController@postLogin');
+
+
+/*
+ * Sign out
+ *
+ */
+Route::get('/auth/logout','AuthController@getLogout');
+
+/*
+ * Dang ky new user
+ *
+ */
+
+Route::get('/auth/register','AuthController@getRegister');
+Route::post('/auth/register','AuthController@postRegister');
