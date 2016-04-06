@@ -93,7 +93,10 @@ class AuthController extends Controller
         }
         return view('users.register');
     }
-
+/* public function getTest(Request $request)
+    {
+      Album::insertGetId(['id_user' => 1, 'id_kind' => 1]);
+    }*/
     /**
      * post sign up for user.
      * @param $request from form chua data thong tin user dang ki moi
@@ -107,11 +110,12 @@ class AuthController extends Controller
         $result = UserServiceFacade::createNewUser($user);
         
         if ( $result == null ) {
-            return redirect('/auth/register')->withErrors(array("already_email" => "This email alrealy use!"))->withInput();
+            return redirect('register')->withErrors(array("already_email" => "This email alrealy use!"))->withInput();
         }
         $request->session()->push('user.id', $result['id']);
         $request->session()->push('user.name', $result['user_name']);
-        return redirect('/');
+     
+        return redirect('/photo');
            
     }
 

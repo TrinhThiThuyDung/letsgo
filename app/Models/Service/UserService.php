@@ -15,19 +15,11 @@ class UserService implements UserServiceInterface
 	 **/
 	function createNewUser($user){
 
-		$select = array(' id ' );
-		$result = UserFacade::findByProperty( $select , 'email' , $user['email'] , 'User' );
-		
-		if ( count($result) > 0 ) {
-			return null;
-		}
-		/*$result = UserFacade::where('email' , '=' ,  $user['email'] )->get();
-
-		if($result != null){
-			return null;
-		}*/
-
  		$user = UserFacade::createUser($user);
+
+ 		if ($user == null) {
+ 			return null;
+ 		}
 
  		$user_name = $user['last_name']." ".$user['first_name'];               //tao user name cho user de luu vao session
 

@@ -5,11 +5,16 @@
 namespace App\Models\Repository;
 
 use App\Models\Entities\User;
-use NeoEloquent;
+use Illuminate\Database\Eloquent\Model;
 
 
  class UserRepositoryEloquent extends BaseRepository implements UserRepository
  {
+
+ 	 public function model()
+    {
+        return 'App\Models\Entities\User';
+    }
 
 
  	/**
@@ -45,7 +50,13 @@ use NeoEloquent;
 
  	public function createUser($user)
  	{
- 		$result_create = User::create([
+ 		$check_user = User::where('email' , '=' , $user['email']);
+
+ 		if ($check_user != null ) {
+ 			return null;
+ 		}
+ 		
+ 		$result_create = User::insertGetId([
 							'last_name'=>$user['last_name'],
 							'first_name'=>$user['first_name'],
 							'email'=>$user['email'],

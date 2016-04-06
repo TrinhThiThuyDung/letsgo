@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use App\Http\Requests;
 
-class MainController extends Controller
+class PhotoController extends Controller
 {
 	 /*
     |--------------------------------------------------------------------------
@@ -22,16 +22,16 @@ class MainController extends Controller
 
     
 
-	public function index(Request $request)
+	public function getIndex(Request $request)
 	{
 
-		/*if ((session()->has('user.id'))==false){
+		if (($request->session()->has('user.id'))==false){
 			return redirect('/auth/signin');
 		}
-		$my_name = $request->session()->get('user.name');
+		/*$my_name = session()->get('user.name');*/
 		
-		return view('home')->with('my_name',$my_name);*/
-		return view('/index');
+		/*return view('home')->with('my_name',$my_name);*/
+		return view('photo');
 		
 	}
 }

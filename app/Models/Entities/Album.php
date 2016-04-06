@@ -5,28 +5,23 @@
 
 namespace App\Models\Entities;
 
-use Illuminate\Auth\Authenticatable;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
- class User extends Model
+ class Album extends Model
  {
  	 use SoftDeletes;
  	
- 	protected $label = "User";
+ 	protected $label = "Album";
 
  	protected $fillable = [
  		'id',
- 	    'last_name',
- 	    'first_name',
- 	    'email',
- 	    'password',
- 	    'phone',
- 	    'gender',
- 	    'address',
- 	    'birthday',
- 	    'avatar',
- 	    'position'
+ 	    'id_user',
+ 	    'id_kind',
+ 	    'time_post',
+ 	    'title'
+ 	  
  	    ];
 
    //Cac quan he se co voi cac model khac
