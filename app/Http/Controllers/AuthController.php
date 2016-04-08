@@ -110,12 +110,14 @@ class AuthController extends Controller
         $result = UserServiceFacade::createNewUser($user);
         
         if ( $result == null ) {
-            return redirect('register')->withErrors(array("already_email" => "This email alrealy use!"))->withInput();
+            /*return redirect('register')->withErrors(array("already_email" => "This email alrealy use!"))->withInput();*/
+            return response()->json(['error' => 'already_email']);
         }
         $request->session()->push('user.id', $result['id']);
         $request->session()->push('user.name', $result['user_name']);
      
-        return redirect('/photo');
+        /*return redirect('/photo');*/
+        return response()->json(['id' => $result['id'] , 'name' => $result['user_name']])->->withCookie('id', $result['id']);;
            
     }
 
