@@ -25,20 +25,23 @@ use Illuminate\Database\Eloquent\Model;
 
  	public function checkLogin($user){
  		
- 		//$result_user = array('id' => $result['id'] );
- 		return $result['id'];
- 		/*if($result==null){
- 			return "0";   //khong ton tai user.
- 		}
- 		
- 		$password = md5($user['password']);
- 		
+ 		if (! empty($user)) {
+ 			$where = array(
+ 				'email' 	=> $user['email'],
+ 				'password' 	=> md5($user['password']);
+ 				);
+ 			$check_user = User::where( $where )->first();
+ 			if ( $check_user == null ) {
+ 				return null;
+ 			}
+ 			else {
+ 				$user_name = $user['last_name']." ".$user['first_name'];   //tao user name cho user de luu vao session
 
- 		if ($password!=$result['password']) {
- 			return "-1";
+ 				$result_create_user = array('id' => $user['id'], 'user_name' => $user_name);
+
+ 				return $result_create_user; //return id and username if account correct
+ 			} 
  		}
- 		$user_name = $result['first_name']." ". $result['last_name'];
- 		return $user_name;*/
  	}
 
  	
@@ -50,20 +53,22 @@ use Illuminate\Database\Eloquent\Model;
 
  	public function createUser($user)
  	{
- 		$check_user = User::where('email' , '=' , $user['email']);
-
- 		if ($check_user != null ) {
- 			return null;
- 		}
+ 		if(! empty($user) ){
+ 			$check_user = User::where('email' , '=' , $user['email']);
  		
- 		$result_create = User::insertGetId([
-							'last_name'=>$user['last_name'],
-							'first_name'=>$user['first_name'],
-							'email'=>$user['email'],
-							'password'=>bcrypt($user['password']),
-						]);
- 		return $result_create;
- 	}
+ 		 		if ($check_user != null ) {
+ 		 			return null;
+ 		 		}
+ 		 		
+ 		 		$result_create = User::insertGetId([
+ 									'last_name'=>$user['last_name'],
+ 									'first_name'=>$user['first_name'],
+ 									'email'=>$user['email'],
+ 									'password'=>bcrypt($user['password']),
+ 								]);
+ 		 		return $result_create;
+ 		 	}
+ 		 }
 
 }
 

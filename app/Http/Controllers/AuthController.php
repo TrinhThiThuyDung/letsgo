@@ -66,17 +66,15 @@ class AuthController extends Controller
 
             $result = UserServiceFacade::authenticate($user);
             
-            /*if ($result=="0") {
-                return redirect('/auth/signin')->withErrors("This email incorect!")->withInput();
+            if ( $result == null ) {
+                return response()->json(['error' => 'Email or Password is wrong!']);
                 
             }
-           if($result=="-1"){
-            return redirect('/auth/signin')->withErrors("Password is wrong!")->withInput();
-           }
-*/
-             $request->session()->push('user.id',$result);
-             //$request->session()->push('user.name',$result);
-            return redirect('/');
+        
+            $request->session()->push('user.id', $result['id']);
+            $request->session()->push('user.name', $result['user_name']);
+
+            return response()->json(['id' => $result['id'] , 'name' => $result['user_name']])->withCookie('id', $result['id']);
            
     
     }
@@ -117,7 +115,7 @@ class AuthController extends Controller
         $request->session()->push('user.name', $result['user_name']);
      
         /*return redirect('/photo');*/
-        return response()->json(['id' => $result['id'] , 'name' => $result['user_name']])->->withCookie('id', $result['id']);;
+        return response()->json(['id' => $result['id'] , 'name' => $result['user_name']])->withCookie('id', $result['id']);
            
     }
 
@@ -129,6 +127,6 @@ class AuthController extends Controller
     {
 
         $request->session()->flush();
-        return redirect('/auth/signin');
+        return null;
     }
 }

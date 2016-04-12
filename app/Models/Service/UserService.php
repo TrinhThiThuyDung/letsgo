@@ -1,4 +1,6 @@
-<?php namespace App\Models\Service;
+<?php 
+
+namespace App\Models\Service;
 
 use App\Models\Repository\UserFacade;
 use App\Models\Entities\User;
