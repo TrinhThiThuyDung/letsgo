@@ -7,12 +7,10 @@ namespace App\Models\Entities;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
  class Album extends Model
  {
- 	 use SoftDeletes;
- 	
+
  	protected $label = "Album";
 
  	protected $fillable = [

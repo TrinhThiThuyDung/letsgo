@@ -66,11 +66,14 @@ class AuthController extends Controller
 
             $result = UserServiceFacade::authenticate($user);
             
-            if ( $result == null ) {
-                return response()->json(['error' => 'Email or Password is wrong!']);
+            if ( $result == 0 ) {
+                return response()->json(['error' => 'Wrong Email!']);
                 
             }
-        
+            else if( $result == -1 ){
+                return response()->json(['error' => 'Wrong Password!']);
+            }
+            
             $request->session()->push('user.id', $result['id']);
             $request->session()->push('user.name', $result['user_name']);
 

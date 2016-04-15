@@ -36,9 +36,9 @@ Route::post('/auth/register','AuthController@postRegister');
  * sign in 
  *
  */
-/*Route::get('/auth/signin', ['as' => 'login' ,'uses' =>  'AuthController@getLogin']);*/
-/*Route::post('/auth/signin',['uses' => 'AuthController@postLogin' , 'as' => 'login']);*/
-Route::get('/auth/signin',  'AuthController@getLogin')->name('profile');
+Route::get('/auth/signin', ['as' => 'login' ,'uses' =>  'AuthController@getLogin']);
+Route::post('/auth/signin',['uses' => 'AuthController@postLogin' , 'as' => 'login']);
+/*Route::get('/auth/signin',  'AuthController@getLogin')->name('profile');*/
 Route::get('/', function () {
     return view('index');
 });

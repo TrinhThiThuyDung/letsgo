@@ -17,15 +17,15 @@ class UserService implements UserServiceInterface
 	 **/
 	function createNewUser($user){
 
- 		$user = UserFacade::createUser($user);
+ 		$user_id_created = UserFacade::createUser($user);
 
- 		if ($user == null) {
+ 		if ($user_id_created == null) {
  			return null;
  		}
 
  		$user_name = $user['last_name']." ".$user['first_name'];               //tao user name cho user de luu vao session
 
- 		$result_create_user = array('id' => $user['id'], 'user_name' => $user_name);
+ 		$result_create_user = array('id' => $user_id_created, 'user_name' => $user_name);
 
  		return $result_create_user;
 		

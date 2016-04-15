@@ -28,16 +28,21 @@ use Illuminate\Database\Eloquent\Model;
  		if (! empty($user)) {
  			$where = array(
  				'email' 	=> $user['email'],
- 				'password' 	=> md5($user['password']);
- 				);
+ 		);
  			$check_user = User::where( $where )->first();
  			if ( $check_user == null ) {
- 				return null;
+ 				return 0;
  			}
  			else {
- 				$user_name = $user['last_name']." ".$user['first_name'];   //tao user name cho user de luu vao session
 
- 				$result_create_user = array('id' => $user['id'], 'user_name' => $user_name);
+ 				if( (password_verify( $user["password"] , $check_user->password )) == false) {
+ 					return -1;
+ 				}
+
+ 				$user_name = $check_user->last_name." ".$check_user->first_name;   //tao user name cho user de luu vao session
+
+ 				var_dump($check_user->id);die;
+ 				$result_create_user = array('id' => $check_user->id , 'user_name' => $user_name);
 
  				return $result_create_user; //return id and username if account correct
  			} 
@@ -54,7 +59,7 @@ use Illuminate\Database\Eloquent\Model;
  	public function createUser($user)
  	{
  		if(! empty($user) ){
- 			$check_user = User::where('email' , '=' , $user['email']);
+ 			$check_user = User::where('email' , '=' , $user['email'])->first();
  		
  		 		if ($check_user != null ) {
  		 			return null;
@@ -64,7 +69,7 @@ use Illuminate\Database\Eloquent\Model;
  									'last_name'=>$user['last_name'],
  									'first_name'=>$user['first_name'],
  									'email'=>$user['email'],
- 									'password'=>bcrypt($user['password']),
+ 									'password'=>password_hash( $user['password'] , PASSWORD_BCRYPT),
  								]);
  		 		return $result_create;
  		 	}
