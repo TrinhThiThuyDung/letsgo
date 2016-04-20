@@ -12,7 +12,7 @@
 */
 
 Route::group(['prefix' => 'web'], function(){
-	Route::get('/', array( 'as'=>'homeIndex' , 'uses'=> 'MainController@getIndex' ));
+	Route::get('/', array( 'as'=>'webIndex' , 'uses'=> 'MainController@getIndex' ));
 
 
 	Route::group(['middleware' => ['auth']], function ($routes) {
@@ -27,7 +27,7 @@ Route::group(['prefix' => 'web'], function(){
 
 Route::group(['prefix' => 'mobile'] , function(){
 	Route::get('/', array( 'as' => 'homeIndex' , 'uses' => 'MainController@getMobileIndex'));
-})
+});
 /*
 	 * Sign out
 	 *
@@ -48,6 +48,9 @@ Route::group(['prefix' => 'mobile'] , function(){
 	Route::get('/auth/signin', ['as' => 'login' ,'uses' =>  'AuthController@getLogin']);
 	Route::post('/auth/signin',['uses' => 'AuthController@postLogin' , 'as' => 'login']);
 
+Route::get('/', function(){
+	return redirect()->route('webIndex');
+});
 
 
 

@@ -32,10 +32,10 @@ class MainController extends Controller
               	return view("index");
             }else{
                 $request->session()->push('id', $request->cookie("id"));
-                return redirect()->route("/photo");
+                return redirect()->route("web/photo");
             }
         }
-        return redirect()->route("/photo");
+        return redirect()->route("web/photo");
 		
 	}
 
