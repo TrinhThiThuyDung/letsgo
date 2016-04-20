@@ -11,17 +11,23 @@
 |
 */
 
-Route::get('/', array( 'as'=>'homeIndex' , 'uses'=> 'MainController@getIndex' ));
+Route::group(['prefix' => 'web'], function(){
+	Route::get('/', array( 'as'=>'homeIndex' , 'uses'=> 'MainController@getIndex' ));
 
 
-Route::group(['middleware' => ['auth']], function ($routes) {
-	/*
-	 * Show photo after login
-	 */
-	Route::get('/photo','PhotoController@getPhotoPage');
-	
+	Route::group(['middleware' => ['auth']], function ($routes) {
+		/*
+		 * Show photo after login
+		 */
+		Route::get('/photo','PhotoController@getPhotoPage');
+		
 
+	});
 });
+
+Route::group(['prefix' => 'mobile'] , function(){
+	Route::get('/', array( 'as' => 'homeIndex' , 'uses' => 'MainController@getMobileIndex'));
+})
 /*
 	 * Sign out
 	 *

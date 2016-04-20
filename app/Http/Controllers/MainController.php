@@ -20,7 +20,9 @@ class MainController extends Controller
     |
     */
 
-    
+    /*
+     *GET HOME PAGE IN WEB
+     */
 
 	public function getIndex(Request $request)
 	{
@@ -35,6 +37,18 @@ class MainController extends Controller
         }
         return redirect()->route("/photo");
 		
+	}
+
+	public function getMobileIndex(Request $request){
+		 if (!$request->session()->has("id")) {
+            if($request->cookie("id") == null ){
+              	return Response()->json(['status' => 'notLogin']);
+            }else{
+                $request->session()->push('id', $request->cookie("id"));
+                return redirect()->route("mobile/photo");
+            }
+        }
+        return redirect()->route("mobile/photo");
 	}
 }
 ?>
