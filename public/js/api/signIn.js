@@ -62,7 +62,7 @@ $(document).ready(function(){
                                 window.sessionStorage.setItem("id" , results.id );
                                 window.sessionStorage.setItem( "username" , results.name);
                         
-                            document.location.href  = "/photo";
+                            document.location.href  = "web/photo";
                         }
                     },
                     error: function( xhr,status, error ){

@@ -35,15 +35,15 @@ use Illuminate\Database\Eloquent\Model;
  			}
  			else {
 
- 				if( (password_verify( $user["password"] , $check_user->password )) == false) {
+ 				if( !(password_verify( $user["password"] , $check_user->password ))) {
  					return -1;
  				}
 
  				$user_name = $check_user->last_name." ".$check_user->first_name;   //tao user name cho user de luu vao session
 
- 				$result_create_user = array('id' => $check_user->id , 'user_name' => $user_name);
+ 				$result_check_user = array('id' => $check_user->id , 'user_name' => $user_name);
 
- 				return $result_create_user; //return id and username if account correct
+ 				return $result_check_user; //return id and username if account correct
  			} 
  		}
  	}
