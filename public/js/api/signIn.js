@@ -43,7 +43,6 @@ $(document).ready(function(){
         submitHandler: function(form){
                 $(form).ajaxSubmit({
                     success: function(results){
-
                         if(results.status == 'error'){
                             swal({  title: "Error!",   
                                     text: results.error+".",   
@@ -54,7 +53,7 @@ $(document).ready(function(){
 
                         }
                         else if(results.status == 'success'){
-                         console.log("khsdjsdhf");
+                         
                                 if($('#remember-me').is(':checked')){
                                 // Lưu trữ
                                     window.localStorage.setItem("id" , results.id );
@@ -63,12 +62,12 @@ $(document).ready(function(){
                                 window.sessionStorage.setItem("id" , results.id );
                                 window.sessionStorage.setItem( "username" , results.name);
                         
-                            document.location.href  = "web/photo";
+                            document.location.href  = "/photo";
                         }
                     },
-                    error: function(errors ){
+                    error: function( xhr,status, error ){
 
-                        swal.showInputError("Status: Error"+"\n Error: "+errors);
+                        swal.showInputError("Status: "+status+"\n Error: "+error);
                     }
                 });
             return false;

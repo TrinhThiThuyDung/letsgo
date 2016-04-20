@@ -68,7 +68,7 @@ use Illuminate\Database\Eloquent\Model;
  									'last_name'=>$user['last_name'],
  									'first_name'=>$user['first_name'],
  									'email'=>$user['email'],
- 									'password'=>password_hash( $user['password'] , PASSWORD_BCRYPT),
+ 									'password'=>password_hash( $user['pass'] , PASSWORD_BCRYPT),
  								]);
  		 		return $result_create;
  		 	}

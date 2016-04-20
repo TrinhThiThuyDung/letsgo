@@ -19,7 +19,7 @@ Route::group(['prefix' => 'web'], function(){
 		/*
 		 * Show photo after login
 		 */
-		Route::get('/photo','PhotoController@getPhotoPage');
+		Route::get('/photo',[ 'as'=>'web/photo', 'uses'=>'PhotoController@getPhotoPage']);
 		
 
 	});

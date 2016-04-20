@@ -22,15 +22,13 @@ class Authenticate
             if($request->cookie("id") == null ){
                 /*Status is not login*/
                 $response = ['status' => 'notLogin'];
-
-                return redirect()->route("homeIndex")->with(json_encode($response));
+                return redirect()->route("webIndex");
             }else{
 
                 $request->session()->push('id', $request->cookie("id"));
                 return $next($request);
             }
         }
-        var_dump($request->session()->get("id"));die;
         return $next($request);
     }
 }
