@@ -26,7 +26,7 @@ Route::group(['prefix' => 'web'], function(){
 });
 
 Route::group(['prefix' => 'mobile'] , function(){
-	Route::get('/', array( 'as' => 'homeIndex' , 'uses' => 'MainController@getMobileIndex'));
+	Route::get('/', array( 'as' => 'mobileIndex' , 'uses' => 'MainController@getMobileIndex'));
 });
 /*
 	 * Sign out
