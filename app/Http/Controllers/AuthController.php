@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('guest', ['except' => 'getLogout']);
+        /*$this->middleware('guest', ['except' => 'getLogout']);*/
     }
 
     /**
@@ -48,8 +48,8 @@ class AuthController extends Controller
 
     public function getLogin(Request $request)
     {
-        if (($request->session()->has('id'))==true) {
-            return redirect('/');
+        if (($request->session()->has('id'))) {
+            return redirect('/photo');
         }
         return view('users.login');
     }
@@ -62,22 +62,24 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        $user = $request->all();
+            $user = $request->all();
 
             $result = UserServiceFacade::authenticate($user);
             
             if ( $result == 0 ) {
-                return response()->json(['error' => 'Wrong Email!']);
+                return response()->json([ 'status'=>'error' , 'error' => 'Wrong Email!']);
                 
             }
             else if( $result == -1 ){
-                return response()->json(['error' => 'Wrong Password!']);
+                return response()->json([ 'status'=>'error' , 'error' => 'Wrong Password!']);
             }
-            
-            $request->session()->push('user.id', $result['id']);
-            $request->session()->push('user.name', $result['user_name']);
+            if ($user->remember_me) {
+                
+            }
+            $request->session()->push('id', $result['id']);
+            $request->session()->push('name', $result['user_name']);
 
-            return response()->json(['id' => $result['id'] , 'name' => $result['user_name']])->withCookie('id', $result['id']);
+            return response()->json(['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']])->withCookie('id', $result['id']);
            
     
     }
@@ -89,15 +91,12 @@ class AuthController extends Controller
      */
     public function getRegister(Request $request)
     {
-        if (($request->session()->has('id'))==true) {
+        if (($request->session()->has('id'))) {
             return redirect('/');
         }
         return view('users.register');
     }
-/* public function getTest(Request $request)
-    {
-      Album::insertGetId(['id_user' => 1, 'id_kind' => 1]);
-    }*/
+
     /**
      * post sign up for user.
      * @param $request from form chua data thong tin user dang ki moi
@@ -111,14 +110,17 @@ class AuthController extends Controller
         $result = UserServiceFacade::createNewUser($user);
         
         if ( $result == null ) {
-            /*return redirect('register')->withErrors(array("already_email" => "This email alrealy use!"))->withInput();*/
-            return response()->json(['error' => 'already_email']);
+            return response()->json(['status'=>'error' , 'error' => 'Email này đã có người đăng ký, hãy chọn cho mình email khác :)']);
         }
-        $request->session()->push('user.id', $result['id']);
-        $request->session()->push('user.name', $result['user_name']);
-     
-        /*return redirect('/photo');*/
-        return response()->json(['id' => $result['id'] , 'name' => $result['user_name']])->withCookie('id', $result['id']);
+        $request->session()->push('id', $result['id']);
+        $request->session()->push('name', $result['user_name']);
+        
+        $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']];
+
+        if (!$user->remember_me) {
+            return response()->json($messageResponse)->withCookie('id' , $result['id']);
+        }
+        return response()->json($messageResponse);
            
     }
 
@@ -130,6 +132,8 @@ class AuthController extends Controller
     {
 
         $request->session()->flush();
-        return null;
+        if($request->hasCookie("id"))
+           $request->cookie("id" , null, 0);
+        return response()->json([ 'status'=>'success' , 'content'=> 'logout susscess']);
     }
 }

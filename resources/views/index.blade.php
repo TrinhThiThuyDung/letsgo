@@ -9,9 +9,18 @@
     <link rel="stylesheet" href="{{url('css/login.css')}}">
     <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
    
-    <script src="{{url('js/sForm.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{url('css/sweetalert.css')}}">
+
+    <script src="{{url('js/api/signUp.js')}}"></script>
+     <script src="{{url('js/api/signIn.js')}}"></script>
+
     <script src="{{url('js/jquery.rd-parallax.js')}}"></script>
-    <!-- <script src="{{url('js/api/login.js')}}"></script> -->
+
+    <script src="{{url('js/jquery.validate.min.js')}}"></script>   
+    <script src="{{url('js/additional-methods.min.js')}}"></script>
+    <script src="{{url('js/ajaxsubmit.js')}}"></script>
+
+    <script type="text/javascript" src="{{url('js/sweetalert.min.js')}}"></script>
 
 @endsection
 
@@ -555,4 +564,10 @@
       </div>
     </div>
   </footer>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  
+</script>
 @endsection

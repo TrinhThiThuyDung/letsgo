@@ -15,16 +15,22 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->guest()) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('login');
+
+        if (!$request->session()->has("id")) {
+            if($request->cookie("id") == null ){
+                /*Status is not login*/
+                $response = ['status' => 'notLogin'];
+
+                return redirect()->route("homeIndex")->with(json_encode($response));
+            }else{
+
+                $request->session()->push('id', $request->cookie("id"));
+                return $next($request);
             }
         }
-
+        var_dump($request->session()->get("id"));die;
         return $next($request);
     }
 }

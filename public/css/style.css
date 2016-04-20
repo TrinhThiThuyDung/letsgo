@@ -356,4 +356,16 @@ footer * + .copyright {
 }
 /*===============FOOTER======================*/
 
-/*================== FOOTER - LOGIN FORM ==================
+/*================== FOOTER - LOGIN FORM ==================*/
+
+.error-sign {
+  display: block;
+    background: #F1D992;
+    height: 50px;
+    text-align: center;
+    padding: 14px;
+    margin: auto;
+    color: #F50909;
+    font-size: 12px;
+    border-radius: 4px;
+}

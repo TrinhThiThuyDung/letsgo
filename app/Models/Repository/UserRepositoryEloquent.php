@@ -41,7 +41,6 @@ use Illuminate\Database\Eloquent\Model;
 
  				$user_name = $check_user->last_name." ".$check_user->first_name;   //tao user name cho user de luu vao session
 
- 				var_dump($check_user->id);die;
  				$result_create_user = array('id' => $check_user->id , 'user_name' => $user_name);
 
  				return $result_create_user; //return id and username if account correct

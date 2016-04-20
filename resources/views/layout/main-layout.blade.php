@@ -17,11 +17,14 @@
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 
    <!-- ========================= JS ======================== -->
-    <script src="{{url('js/jquery-1.12.0.min.js')}}"></script>
+   <!--  <script src="{{url('js/jquery-1.12.0.min.js')}}"></script> -->
     <script src="{{url('js/jquery-2.2.0.min.js')}}"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
 
-     <script src="{{url('js/main.js')}}"></script>
+    <script src="{{url('js/main.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/jquery.cookie.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/jquerysession.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
 
 
  @yield('link')
@@ -33,5 +36,4 @@
 
 </body>
 </html>
-
 @yield('script')

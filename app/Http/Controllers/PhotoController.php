@@ -22,16 +22,9 @@ class PhotoController extends Controller
 
     
 
-	public function getIndex(Request $request)
+	public function getPhotoPage(Request $request)
 	{
 
-		if (($request->session()->has('user.id'))==false){
-			return redirect('/auth/signin');
-		}
-		/*$my_name = session()->get('user.name');*/
-		
-		/*return view('home')->with('my_name',$my_name);*/
-		return view('photo');
 		
 	}
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 * 
 */
 use Illuminate\Http\Request;
-//use App\Http\Requests;
+
 
 class MainController extends Controller
 {
@@ -22,16 +22,18 @@ class MainController extends Controller
 
     
 
-	public function index(Request $request)
+	public function getIndex(Request $request)
 	{
 
-		/*if ((session()->has('user.id'))==false){
-			return redirect('/auth/signin');
-		}
-		$my_name = $request->session()->get('user.name');
-		
-		return view('home')->with('my_name',$my_name);*/
-		return view('/index');
+        if (!$request->session()->has("id")) {
+            if($request->cookie("id") == null ){
+              	return view("index");
+            }else{
+                $request->session()->push('id', $request->cookie("id"));
+                return redirect()->route("/photo");
+            }
+        }
+        return redirect()->route("/photo");
 		
 	}
 }

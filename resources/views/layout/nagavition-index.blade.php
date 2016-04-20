@@ -45,20 +45,23 @@
                         <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/>
                         <a href="#"><img class="id" src="http://techulus.com/buttons/gplus.png" /></a>
                       </div>
-                    <div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
-                      <form class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
+                    <div class="col-md-7" style="border-left:1px solid #ccc;">
+                      <form id="form-signin" class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
                         <fieldset>
 
-                          <input id="textinput" name="email" type="text" placeholder="Nhập Email" class="form-control input-md">
+                         <div class="form-group">
+                            <input id="email" name="email" minlength="6" maxlength="100" type="text" placeholder="Nhập Email" class="form-control input-md">
+                         </div>
                           <div class="spacing">
-                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1"><small>Nhớ Đăng Nhập</small>
+                            <input type="checkbox"  name="remember_me" id="remember-me" checked="checked"><small>Nhớ Đăng Nhập</small>
                           </div>
 
-
-                          <input id="textinput" name="password" type="password" placeholder="Enter Password" class="form-control input-md">
+                           <div class="form-group">
+                              <input id="password" minlength="6" maxlength="100" name="password" type="password" placeholder="Enter Password" class="form-control input-md">
+                          </div>
                           <div class="spacing"><a href="#"><small>Bạn quên mật khẩu? Đừng lo!</small></a><br/></div>
 
-                          <button style="width: 120px !important;" id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Đăng Nhập</button>
+                          <button style="width: 120px !important;" id="singlebutton" type="submit" name="singlebutton" class="btn btn-info btn-sm pull-right">Đăng Nhập</button>
                         </fieldset>
                       </form>
                   </div>
@@ -101,18 +104,18 @@
                 </div>
               </div>
             </div>
-            <form role="form" id="form-signup" method="post" action="{{url('/auth/register')}}">
+            <form role="form" id = "form-register" method="post" action="{{url('/auth/register')}}">
                 <div class="row setup-content" id="step-1">
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <h3> Bước 1</h3>
                             <div class="form-group">
                                 <label class="control-label">Họ của bạn</label>
-                                <input name="first_name"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Họ Của Bạn"  />
+                                <input name="first_name" minlength="1"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Họ Của Bạn"  />
                             </div>
                             <div class="form-group">
                                 <label class="control-label"> Tên của bạn </label>
-                                <input name="last_name" maxlength="100" type="text" required="required" class="form-control" placeholder=" Tên của bạn" />
+                                <input  name="last_name" minlength="1" maxlength="100" type="text" required="required" class="form-control" placeholder=" Tên của bạn" />
                             </div>
                             <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Tiếp Nào</button>
                         </div>
@@ -124,12 +127,8 @@
                             <h3> Bước 2</h3>
                             <div class="form-group">
                                 <label class="control-label">Email</label>
-                                <input name="email" maxlength="200" type="text" required="required" class="form-control" placeholder="Email" />
+                                <input id="email" name="email" maxlength="200" type="email" required="required" class="form-control email" placeholder="Email" />
                             </div>
-                            <!-- <div class="form-group">
-                                <label class="control-label">Address</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
-                            </div> -->
                             <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Go On</button>
                         </div>
                     </div>
@@ -140,11 +139,11 @@
                             <h3> Bước 3</h3>
                             <div class="form-group">
                                 <label class="control-label">Mật Khẩu</label>
-                                <input name="password" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Password" />
+                                <input id="pass" name="pass" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Password" />
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Xác Nhận Mật Khẩu</label>
-                                <input name="confirm_password" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Confirm Password" />
+                                <input  id ="confirm_pass" name="confirm_password" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter Confirm Password" />
                             </div>
                             <button class="btn btn-success btn-lg pull-right" type="submit">Đăng Ký!</button>
                         </div>
