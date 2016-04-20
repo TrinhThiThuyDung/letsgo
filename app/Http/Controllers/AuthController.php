@@ -73,14 +73,16 @@ class AuthController extends Controller
             else if( $result == -1 ){
                 return response()->json([ 'status'=>'error' , 'error' => 'Wrong Password!']);
             }
-            if ($user->remember_me) {
-                
-            }
+            
             $request->session()->push('id', $result['id']);
             $request->session()->push('name', $result['user_name']);
 
-            return response()->json(['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']])->withCookie('id', $result['id']);
-           
+            $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name'] ];
+
+            if (!$user['remember_me']) {
+                return response()->json($messageResponse);
+            }
+            return response()->json($messageResponse)->withCookie('id', $result['id']);
     
     }
 
@@ -117,7 +119,7 @@ class AuthController extends Controller
         
         $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']];
 
-        if (!$user->remember_me) {
+        if (!$user['remember_me']) {
             return response()->json($messageResponse)->withCookie('id' , $result['id']);
         }
         return response()->json($messageResponse);

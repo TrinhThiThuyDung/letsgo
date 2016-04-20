@@ -46,13 +46,15 @@ Route::group(['prefix' => 'mobile'] , function(){
 	 *
 	 */
 	Route::get('/auth/signin', ['as' => 'login' ,'uses' =>  'AuthController@getLogin']);
-	Route::post('/auth/signin',['uses' => 'AuthController@postLogin' , 'as' => 'login']);
+	Route::post('/auth/signin',[ 'as' => 'login' , 'uses' => 'AuthController@postLogin']);
 
 Route::get('/', function(){
 	return redirect()->route('webIndex');
 });
 
-
+Route::get('/error/500', function(){
+	return view("errors/500");
+});
 
 
 /*Route::get('/test','AuthController@getTest');*/

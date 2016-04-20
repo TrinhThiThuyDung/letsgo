@@ -25,6 +25,7 @@ class PhotoController extends Controller
 	public function getPhotoPage(Request $request)
 	{
 
+        return view("photo");
 		
 	}
 }

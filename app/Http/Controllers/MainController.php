@@ -27,7 +27,7 @@ class MainController extends Controller
 	public function getIndex(Request $request)
 	{
 
-        if (!$request->session()->has("id")) {
+       /* if (!$request->session()->has("id")) {
             if($request->cookie("id") == null ){
               	return view("index");
             }else{
@@ -35,7 +35,8 @@ class MainController extends Controller
                 return redirect()->route("web/photo");
             }
         }
-        return redirect()->route("web/photo");
+        return redirect()->route("web/photo");*/
+        return view("index");
 		
 	}
 

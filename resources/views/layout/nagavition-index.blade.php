@@ -50,7 +50,7 @@
                         <fieldset>
 
                          <div class="form-group">
-                            <input id="email" name="email" minlength="6" maxlength="100" type="text" placeholder="Nhập Email" class="form-control input-md">
+                            <input id="email" name="email" minlength="6" maxlength="100" type="email" placeholder="Nhập Email" class="form-control input-md">
                          </div>
                           <div class="spacing">
                             <input type="checkbox"  name="remember_me" id="remember-me" checked="checked"><small>Nhớ Đăng Nhập</small>
