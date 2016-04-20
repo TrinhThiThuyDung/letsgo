@@ -104,10 +104,6 @@
                                   </div>
                                 </div>
                              
-                                <div class="profile-userbuttons">
-                                  <button type="button" class="btn btn-success btn-sm">Thông tin</button>
-                                  <button type="button" class="btn btn-danger btn-sm">Đăng xuất</button>
-                                </div>
                                 <!-- END SIDEBAR BUTTONS -->
                                 <!-- SIDEBAR MENU -->
                                 <div class="profile-usermenu">
@@ -128,9 +124,9 @@
                                       Thay đổi mật khẩu </a>
                                     </li>
                                     <li>
-                                      <a href="#">
+                                      <a href="#" id="signout">
                                       <i class="glyphicon glyphicon-flag"></i>
-                                      Giúp đỡ </a>
+                                      Đăng xuất </a>
                                     </li>
                                   </ul>
                                 </div>

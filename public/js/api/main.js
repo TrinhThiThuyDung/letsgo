@@ -1,12 +1,13 @@
 $(document).ready(function(){
-        // var signOut = $('#logout');
-        // if (signOut) {
-        //     signOut.click(function(){
-        //         window.localStoges.clear();
-        //         window.sessionStorage.clear();
-        //         window.location.href = '/'
-        //     });
+        var signOut = $('#signout');
+        if (signOut) {
+            signOut.click(function(){
+                window.localStorage.clear();
+                window.sessionStorage.clear();
+                window.location.href = '/';
+                return false;
+            });
 
-        // }
+        }
 
 });
