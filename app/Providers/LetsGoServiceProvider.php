@@ -30,5 +30,21 @@ class LetsGoServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Models\Service\UserServiceInterface',
             'App\Models\Service\UserService');
+
+        $this->app->bind(
+            'App\Models\Repository\AlbumRepository',
+            'App\Models\Repository\AlbumRepositoryEloquent');
+
+        $this->app->bind(
+            'App\Models\Service\AlbumServiceInterface',
+            'App\Models\Service\AlbumService');
+        $this->app->bind(
+            'App\Models\Repository\ImageRepository',
+            'App\Models\Repository\ImageRepositoryEloquent');
+
+        $this->app->bind(
+            'App\Models\Service\ImageServiceInterface',
+            'App\Models\Service\ImageService');
+        
     }
 }

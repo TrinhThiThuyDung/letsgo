@@ -953,3 +953,16 @@ margin-bottom: 10px;
 .column-about dt,.contentActive  dt{
   color: rgb(150,150,150);
 }
+
+/*==================================================
+                  UPLOAD IMAGES
+====================================================*/
+
+.upload-box{
+ /* width: 500px;
+  height: 500px;*/
+}
+.inputfile {
+ /*filter: alpha(opacity=0);
+   opacity: 0;*/
+}

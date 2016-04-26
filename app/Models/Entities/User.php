@@ -24,14 +24,16 @@ use Illuminate\Database\Eloquent\Model;
  	    'address',
  	    'birthday',
  	    'avatar',
- 	    'position'
+ 	    'position',
+ 	    'created_at',
+ 	    'updated_at'
  	    ];
 
    //Cac quan he se co voi cac model khac
- 	   /* public function posts()
+ 	public function albums()
     {
-        return $this->hasMany('Post', 'POSTED');
-    }*/
+        return $this->hasMany('Album');
+    }
 }
 
 ?>

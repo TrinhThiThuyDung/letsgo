@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Http\Response;
 
-
 class AuthController extends Controller
 {
     /*
@@ -74,15 +73,15 @@ class AuthController extends Controller
                 return response()->json([ 'status'=>'error' , 'error' => 'Wrong Password!']);
             }
             
-            $request->session()->push('id', $result['id']);
-            $request->session()->push('name', $result['user_name']);
+            $request->session()->put('id', $result['id']);
+            $request->session()->put('username', $result['user_name']);
 
             $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name'] ];
 
             if (!empty($user['remember_me'])) {
-                return response()->json($messageResponse);
+                 return response()->json($messageResponse)->withCookie(cookie( 'id' , $result['id'] ));
             }
-            return response()->json($messageResponse)->withCookie('id', $result['id']);
+            return response()->json($messageResponse);
     
     }
 
@@ -114,8 +113,8 @@ class AuthController extends Controller
         if ( $result == null ) {
             return response()->json(['status'=>'error' , 'error' => 'Email này đã có người đăng ký, hãy chọn cho mình email khác :)']);
         }
-        $request->session()->push('id', $result['id']);
-        $request->session()->push('name', $result['user_name']);
+        $request->session()->put('id', $result['id']);
+        $request->session()->put('name', $result['user_name']); 
         
         $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']];
 
@@ -131,8 +130,16 @@ class AuthController extends Controller
     {
 
         $request->session()->flush();
-        if($request->hasCookie("id"))
-           $request->cookie("id" , null, 0);
-        return response()->json([ 'status'=>'success' , 'content'=> 'logout susscess']);
+
+        return response()->json([ 'status'=>'success' , 'content'=> 'logout susscess'])->withCookie(cookie('id' , null ));
     }
+
+    public function getLogoutWeb(Request $request)
+    {
+
+        $request->session()->flush();
+    
+        return redirect()->route("webIndex")->withCookie(cookie('id' , null ));
+    }
+
 }

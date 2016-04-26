@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthController;
 
 class Authenticate
 {
@@ -19,14 +20,14 @@ class Authenticate
     {
 
         if (!$request->session()->has("id")) {
-            if($request->cookie("id") == null ){
-                /*Status is not login*/
+            /*if user not a session but have a cookie*/
+             if($request->cookie("id") ){
+                $request->session()->put('id', $request->cookie("id"));
+                return $next($request);
+            }
+            else{
                 $response = ['status' => 'notLogin'];
                 return redirect()->route("webIndex");
-            }else{
-
-                $request->session()->push('id', $request->cookie("id"));
-                return $next($request);
             }
         }
         return $next($request);

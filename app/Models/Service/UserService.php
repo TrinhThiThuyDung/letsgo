@@ -42,5 +42,25 @@ class UserService implements UserServiceInterface
  		return $result = UserFacade::checkLogin($user);
  	}
 
+ 	/**
+ 	 *
+ 	 *
+ 	 */
+ 	function getInforUser( $id_user )
+ 	{
+ 		$infor = UserFacade::getInfor( $id_user );	
+ 		if ($infor) {
+ 			return $infor;
+ 		}
+ 		return null;
+ 	}
+ 	/**
+ 	 *
+ 	 *
+ 	 */
+ 	function getAllInforUser( $id_user )
+ 	{
+ 		
+ 	}
 }
 ?>

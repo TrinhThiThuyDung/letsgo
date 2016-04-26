@@ -15,18 +15,25 @@ use Illuminate\Database\Eloquent\Model;
 
  	protected $fillable = [
  		'id',
- 	    'id_user',
- 	    'id_kind',
- 	    'time_post',
- 	    'title'
+ 	    'user_id',
+ 	    'kind_id',
+ 	    'name',
+ 	    'describe',
+ 	    'created_at',
+ 	    'updated_at'
  	  
  	    ];
 
    //Cac quan he se co voi cac model khac
- 	   /* public function posts()
+ 	public function images()
     {
-        return $this->hasMany('Post', 'POSTED');
-    }*/
+        return $this->hasMany('Image');
+    }
+
+    public function users()
+    {
+    	return $this->belongsTo("User");
+    }
 }
 
 ?>

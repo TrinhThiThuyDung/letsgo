@@ -369,3 +369,54 @@ footer * + .copyright {
     font-size: 12px;
     border-radius: 4px;
 }
+
+/*================================================================
+                          UPLOAD CSS
+=================================================================*/
+.close-upload{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+.fileupload-buttonbar input[type='checkbox'] {
+
+    /* Hide the input, but have it still be clickable */
+    width: 18px;
+}
+ .fileupload-buttonbar input[type='checkbox']:checked{  
+  margin: 0;
+    clear: none;
+
+    /* Left padding makes room for image */
+    padding: 5px 0 4px 24px;
+
+    /* Make look clickable because they are */
+    cursor: pointer;
+
+    background: url(/images/icon/delete.png) left center no-repeat;
+  }
+
+  .fileupload-buttonbar input[type='checkbox']:checked{  
+    background-image: url(/images/icon/delete.png);
+}
+.modal-header > input[type='text']{
+
+    border: none;
+    border-bottom: 1px solid #90B5B4;
+width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.right-upload{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24%;
+    height: 335px;
+    background: rgb(237, 240, 247);
+    border-top: 1px solid rgb(216, 206, 206);
+    margin: 15px 10px;
+    padding: 11px;
+    border-radius: 2px;
+}

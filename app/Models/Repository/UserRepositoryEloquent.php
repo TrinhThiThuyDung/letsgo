@@ -6,7 +6,7 @@ namespace App\Models\Repository;
 
 use App\Models\Entities\User;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 
  class UserRepositoryEloquent extends BaseRepository implements UserRepository
  {
@@ -69,10 +69,28 @@ use Illuminate\Database\Eloquent\Model;
  									'first_name'=>$user['first_name'],
  									'email'=>$user['email'],
  									'password'=>password_hash( $user['pass'] , PASSWORD_BCRYPT),
+ 									'created_at' => date("Y/m/d"),
  								]);
  		 		return $result_create;
  		 	}
- 		 }
+ 	}
+
+ 	/**
+ 	 *Get infor user view on nav bar
+ 	 *@param id of user
+ 	 *@return user infor contain data: avatar, name, postion 
+ 	 */
+ 	public function getInfor( $id_user )
+ 	{
+ 		if (!empty($id_user)) {
+ 			$infor = DB::table('users')->select('avatar' , 'position')->where('id' , '=' , $id_user)->first();
+ 			
+ 			if ($infor) {
+ 				return $infor;
+ 			}
+ 			return null;
+ 		}
+ 	}
 
 }
 

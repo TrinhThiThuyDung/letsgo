@@ -20,32 +20,32 @@ class MainController extends Controller
     |
     */
 
-    /*
-     *GET HOME PAGE IN WEB
+    /**
+     *GET HOME PAGE IN WEB, check user login?
+     *@param Request from client
+     *@return 
      */
 
 	public function getIndex(Request $request)
 	{
-/*
-        if (!$request->session()->has("id")) {
-            if($request->cookie("id") == null ){
-              	return view("index");
-            }else{
-                $request->session()->push('id', $request->cookie("id"));
-                return redirect()->route("web/photo");
-            }
-        }
-        return redirect()->route("web/photo");*/
-        return view("index");
-		
+		if (!$request->session()->has("id")) {
+			if (!$request->cookie("id")) {
+				return response()->view("index");
+			}
+			else{
+				$request->session()->put( "id" , $request->cookie("id"));
+				return redirect()->route("web/photo");
+			}
+		}
+       return redirect()->route("web/photo");
 	}
 
 	public function getMobileIndex(Request $request){
 		 if (!$request->session()->has("id")) {
-            if($request->cookie("id") == null ){
-              	return Response()->json(['status' => 'notLogin']);
+            if(!$request->cookie("id") ){
+              	return response()->json(['status' => 'notLogin']);
             }else{
-                $request->session()->push('id', $request->cookie("id"));
+                $request->session()->put('id', $request->cookie("id"));
                 return redirect()->route("mobile/photo");
             }
         }

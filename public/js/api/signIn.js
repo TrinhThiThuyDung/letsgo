@@ -42,6 +42,7 @@ $(document).ready(function(){
         },
         submitHandler: function(form){
                 $(form).ajaxSubmit({
+                    dataType: 'json',
                     success: function(results){
                         if(results.status == 'error'){
                             swal({  title: "Error!",   
@@ -65,11 +66,17 @@ $(document).ready(function(){
                             document.location.href  = "web/photo";
                         }
                     },
-                    error: function( xhr,status, error ){
-
-                        swal.showInputError("Status: "+status+"\n Error: "+error);
+                    error : function(  xhr, status, errors ){
+                       swal({  
+                                    title: "Error!",   
+                                    text: errors+".",   
+                                       
+                                    showConfirmButton: true,
+                                    animation: "slide-from-top",
+                            });
                     }
                 });
+               
             return false;
         }
     });

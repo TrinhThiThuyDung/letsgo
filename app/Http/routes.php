@@ -14,19 +14,28 @@
 Route::group(['prefix' => 'web'], function(){
 	Route::get('/', array( 'as'=>'webIndex' , 'uses'=> 'MainController@getIndex' ));
 
-
 	Route::group(['middleware' => ['auth']], function ($routes) {
 		/*
 		 * Show photo after login
 		 */
 		Route::get('/photo',[ 'as'=>'web/photo', 'uses'=>'PhotoController@getPhotoPage']);
 		
-
+		/*
+		 * Show photo after login
+		 */
+		Route::post('/photo/upload',[ 'as'=>'web/photo/upload', 'uses'=>'PhotoController@uploadPhoto']);
+		/*
+		 * Sign out
+		 *
+		 */
+		Route::get('/auth/logout','AuthController@getLogoutWeb' );
 	});
 });
 
 Route::group(['prefix' => 'mobile'] , function(){
-	Route::get('/', array( 'as' => 'mobileIndex' , 'uses' => 'MainController@getMobileIndex'));
+	Route::group( ['middleware' => ['auth.mobile']], function($routes){
+		Route::get('/', array( 'as' => 'mobileIndex' , 'uses' => 'MainController@getMobileIndex'));
+	});
 });
 /*
 	 * Sign out
