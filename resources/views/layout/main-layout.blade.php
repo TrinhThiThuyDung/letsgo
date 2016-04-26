@@ -53,7 +53,7 @@
    <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-ui.js')}}"></script>
  
    
-    <script src="{{url('js/main.js')}}"></script>
+    <script src="{{url('js/jsUpload/main.js')}}"></script>
     
     <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
 @yield('script')

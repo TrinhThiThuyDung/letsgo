@@ -30,10 +30,7 @@ class ImageService implements ImageServiceInterface
 
 			$result_create = ImageFacade::addImage($id_user , $images_name , $album_id);
 
-			if ($result_create) {
-				return true;
-			}
-			return false;
+			return $result_create;
 		}
 		
 	}

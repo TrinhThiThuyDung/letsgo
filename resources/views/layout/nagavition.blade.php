@@ -168,8 +168,6 @@
                 <form action="{{url('/web/photo/upload')}}" method="post" name="formUpload" id="fileupload" enctype="multipart/form-data">
                   <div class="modal-header" style="border-bottom: 0px;">
                     <button type="button" class="close" data-dismiss="modal" style="text-align: right;">&times;</button>
-                                              <!-- Redirect browsers with JavaScript disabled to the origin page -->
-                <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                 <div class="fileupload-buttonbar" style="text-align: center; height: 60px; border-bottom: 1px solid #869794;">
                 <span class="btn btn-success fileinput-button" style="background-color: rgb(92, 184, 92) !important; width: 191px;">
@@ -209,7 +207,9 @@
                
                    <div class="table-addfile">
                       <!-- The table listing the files available for upload/download -->
-                    <table role="presentation" class="table table-striped" style="width: 75%;  background-color: #DFEBF5;"><tbody class="files"></tbody></table>
+                    <table role="presentation" class="table table-striped" style="width: 75%;  background-color: #DFEBF5;">
+                          <tbody class="files"></tbody>
+                    </table>
                    </div>
                      <div class="right-upload" style="float: right;">
                        <div class="form-group">
@@ -228,7 +228,16 @@
                      </div>          
                   </div>
                  </form>
-             
+             <!-- The blueimp Gallery widget -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
               <div class="modal-footer close-upload" style="background: rgb(247, 248, 250);">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>

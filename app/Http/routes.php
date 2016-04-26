@@ -20,10 +20,15 @@ Route::group(['prefix' => 'web'], function(){
 		 */
 		Route::get('/photo',[ 'as'=>'web/photo', 'uses'=>'PhotoController@getPhotoPage']);
 		
+		Route::get('/photo/upload',[ 'as'=>'web/photo/upload', 'uses'=>'PhotoController@getPhotoUpload']);
 		/*
-		 * Show photo after login
+		 * Upload image
 		 */
 		Route::post('/photo/upload',[ 'as'=>'web/photo/upload', 'uses'=>'PhotoController@uploadPhoto']);
+		/*
+		 * Delete image
+		 */
+		Route::post('/photo/delete',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);
 		/*
 		 * Sign out
 		 *

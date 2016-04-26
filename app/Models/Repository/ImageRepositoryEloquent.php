@@ -15,7 +15,7 @@ class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
 {
 	function addImage($id_user , $images_name , $album_id)
 	{
-		$path = 'images/file-upload/'.$id_user;
+		$path = 'upload/'.$id_user;
 		$filesystem = new Filesystem();
 
 		if (!$filesystem->exists($path)){
@@ -27,13 +27,10 @@ class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
 		$result_create = Image::create([
 			'album_id' 	=> $album_id,
 			'name'		=> $images_name,
-			'url'		=> $path
+			'url'		=> $path."/".$images_name
 			]);
 
-		if ($result_create) {
-			return true;
-		}
-		return false;
+		return $result_create;
 	}
 }
 

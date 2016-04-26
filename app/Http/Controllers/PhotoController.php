@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 * 
 */
 use Illuminate\Http\Request;
-//use App\Http\Requests;
+use Storage;
 use App\Models\Service\ImageServiceFacade;
 use App\Models\Service\UserServiceFacade;
 
@@ -61,6 +61,10 @@ class PhotoController extends Controller
     }
 
 
+    public function getPhotoUpload(Request $request)
+    {
+        
+    }
     public function uploadPhoto(Request $request)
     {   
 
@@ -71,16 +75,26 @@ class PhotoController extends Controller
 
             if($images->isValid()){
 
-                $images_name = $request->file('images')[0]->getClientOriginalName();
+                $images_name = $images->getClientOriginalName();
 
-                $result = $this->addPhotoToDB( $images_name ,$album );
-                
+                $image_inserted = $this->addPhotoToDB( $images_name ,$album );
 
-                if ($result) {
+                if ($image_inserted) {
                    $this->moveImagesToUploadFolder( $images , $images_name );
-                   return response()->json(['status' => 'OK']);
+                    
+                   $files = [
+                               [
+                                "name"      => $images_name,
+                                "size"      => $images->getClientSize(),
+                                "url"       => url('/')."/".$image_inserted['url'],
+                                "deleteUrl" => 'photo/delete',
+                                "deleteType"=> "DELETE"
+                                
+                               ]
+                            ];
+                   return response()->json( ['files' => $files ]);
                 }
-                return response()->json(['status' => 'error']);
+                return response()->json($images);
                 
             }else{
                 return response()->json(['status' => 'error']);
@@ -98,11 +112,15 @@ class PhotoController extends Controller
 
     protected function moveImagesToUploadFolder( $images , $images_name)
     {
-        $path = '/public/images/file-upload/'.$this->user_id."/";
-        
+        $path = '/public/upload/'.$this->user_id;
+  
         $images->move(
-            base_path() .$path, $images_name
+            base_path().$path, $images_name
         );
+    }
+    public function deletePhoto(Request $request)
+    {
+        
     }
 }
 ?>
