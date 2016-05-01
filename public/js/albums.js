@@ -47,7 +47,7 @@ jQuery(function($) {
         imagepath = that.data('imagepath'),
         carouselGalleryUrl = that.data('url');
         postURL =  that.data('posturl');
-
+        comment = that.data('comment');
         maxHeight = $(window).height()-100;
 
         if ($('.carouselGallery-wrapper').length === 0) {
@@ -60,15 +60,25 @@ jQuery(function($) {
                 modalHtml += "<img src='"+imagepath+"' alt='carouselGallery image'>";
                 modalHtml += "</div>";
                 modalHtml += "<div class='carouselGallery-modal-text'>";
-                modalHtml += "<span class='carouselGallery-modal-username'><a href='"+postURL+"'>"+username+"</a> </span>"
-                modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span>";
-                modalHtml += "<span class='carouselGallery-item-modal-likes'>";
-                modalHtml += "<span class='icons icon-heart'></span>";
-                modalHtml += "<a href='"+postURL+"'>"+likes+"</a>";
-                modalHtml += "</span>";
+                modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '../images/avatar/default-avatar.jpg'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='"+postURL+"'>"+username+"</a> </span>"
+                modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><button class='follow'>Theo dõi</button><button class='unfollow'>Bỏ Theo dõi</button><button class='following'>Đang Theo dõi</button></div>";
+                modalHtml += "<div class = 'likeTextShare'> <div style = 'height: 52px;'> <span class='carouselGallery-item-modal-likes' style = 'width: 48%;float: left; display: inline-block;'>";
+                modalHtml += "<a href = '"+postURL+"' class='icons icon-heart'></a>";
+                modalHtml += "<span>"+likes+"</span>";
+                modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'><a href = '#' style = 'font-size: 14px;'><span class='fa fa-share' style = 'display: inline-block; margin-right: 3px;'></span>Chia sẻ</a></span></div>";
                 modalHtml += "<span class='carouselGallery-modal-imagetext'>";
                 modalHtml += "<p>"+imagetext+"</p>";
-                modalHtml += "</span></div></div></div></div></div>";
+                modalHtml += "</span></div>";
+                modalHtml += "<div class = 'comment form-group'><label class = 'comment' for = 'comment'>Thêm comment</label><input class='inputTextComment' type = 'text' id='comment'> ";
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>"; 
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>"; 
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>"; 
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
+                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>";
+                modalHtml += "</div></div></div></div></div></div></div>";
                 $('body').append(modalHtml).fadeIn(2500);
             }
         }

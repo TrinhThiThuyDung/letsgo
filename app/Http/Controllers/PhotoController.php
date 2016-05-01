@@ -26,19 +26,23 @@ class PhotoController extends Controller
     public function __construct(Request $request)
     {
         $this->user_id = $request->session()->get('id');
+        $this->user_name = $request->session()->get('username');
     }
 
+    /**
+     *get Photo page
+     *@param Request
+     *@return photo page with array param is user information and array photo show on photo page
+     */
 	public function getPhotoPage(Request $request)
 	{
-         $id_user = $request->session()->get('id');
-         $name_user = $request->session()->get('username');
 
         $array_photo = $this->getPhoto();
-        $user_data = $this->getInforUser();
+        $user_infor = $this->getInforUser();
 
-        $user_data->username = $name_user;
+        $user_infor->username = $this->user_name;
 
-        $array_data = ['user' => $user_data , 'photo' => $array_photo];
+        $array_data = ['user' => $user_infor , 'photo' => $array_photo];
         
         return view("photo")->with(['array_data' => $array_data]);
 		
@@ -46,8 +50,8 @@ class PhotoController extends Controller
 
     protected function getPhoto()
     {
-       /* $all_photo = ImageServiceFacade::getAllPhoto();*/
-        return null;
+        return ImageServiceFacade::getAllPhoto();
+       
     }
 
     /**
@@ -65,10 +69,19 @@ class PhotoController extends Controller
     {
         
     }
+    /**
+     *Process upload photo
+     *@param Request form 
+     *@return json: file uploaded if upload success or error if upload fails
+     */
     public function uploadPhoto(Request $request)
     {   
 
         $album = $request->all();
+
+        if ($album['album_name'] == '') {
+            $album['album_name'] = 'Unknown Album';
+        }
 
         if ($request->hasFile('images')) {
             $images = $request->file('images')[0];
@@ -80,29 +93,37 @@ class PhotoController extends Controller
                 $image_inserted = $this->addPhotoToDB( $images_name ,$album );
 
                 if ($image_inserted) {
-                   $this->moveImagesToUploadFolder( $images , $images_name );
+                    $this->moveImagesToUploadFolder( $images , $images_name, $album['album_name'] );
                     
-                   $files = [
+                    $deleteUrl      = 'photo/delete/'.$album['album_name'].'/'.$image_inserted['id'].'/'.$images_name;
+                    $images_url     = url('/')."/".$image_inserted['url'];
+                    $images_size    = $images->getClientSize();
+
+                    $files = [
                                [
-                                "name"      => $images_name,
-                                "size"      => $images->getClientSize(),
-                                "url"       => url('/')."/".$image_inserted['url'],
-                                "deleteUrl" => 'photo/delete',
-                                "deleteType"=> "DELETE"
-                                
+                                "name"          => $images_name,
+                                "size"          => $images_size,
+                                "url"           => $images_url,
+                                "thumbnailUrl"  => $images_url,
+                                "deleteUrl"     => $deleteUrl,
+                                "deleteType"    => "DELETE"
+                              
                                ]
                             ];
                    return response()->json( ['files' => $files ]);
                 }
-                return response()->json($images);
                 
-            }else{
-                return response()->json(['status' => 'error']);
             }
         }
-        else{
-            return response()->json(['status' => 'error' , 'error' => 'Khong tim thay anh']);
-        }
+        $files = [
+                    [
+                        "name"      => $images_name,
+                        "size"      => $images->getClientSize(),
+                        "error"     => "Lỗi tải ảnh"      
+                    ]
+                ];
+        return response()->json( $files );
+        
     }
 
     protected function addPhotoToDB(  $image_name , $album)
@@ -110,17 +131,47 @@ class PhotoController extends Controller
         return ImageServiceFacade::addPhoto( $this->user_id , $image_name , $album );
     }
 
-    protected function moveImagesToUploadFolder( $images , $images_name)
+    protected function moveImagesToUploadFolder( $images , $images_name , $album_name)
     {
-        $path = '/public/upload/'.$this->user_id;
-  
+
+        $path = '/public/upload/'.$this->user_id.'/'.$album_name;
+       
         $images->move(
             base_path().$path, $images_name
         );
     }
+    /**
+     * process delete photo
+     *@param Request from client
+     *@return json if delete success or null if fails
+     */
     public function deletePhoto(Request $request)
-    {
+    {   
+        $images_id = $request->id;
+        $images_name = $request->name;
+        $album_name = $request->album_name;
+
+        if( $this->deleteImageOnFolder($album_name, $images_name)){
+            $result = ImageServiceFacade::deletePhoto($images_id);
+            if ($result == 1) {
+                return response()->json(['status' => 'OK']);
+            }
+            return null;
+        }
+    
+        return null;
         
+    }
+    protected function deleteImageOnFolder($album_name , $image_name)
+    {
+        $file = $this->user_id."/".$album_name."/".$image_name;
+
+        $exists = Storage::disk( 'local' )->exists( $file );
+        if($exists){
+            Storage::delete( $file );
+            return true;
+        }
+        return false;
     }
 }
 ?>

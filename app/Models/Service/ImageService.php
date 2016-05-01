@@ -5,6 +5,7 @@ use App\Models\Repository\ImageFacade;
 use App\Models\Repository\AlbumFacade;
 
 use App\Models\Entities\Image;
+use DB;
 
 /**
 * 
@@ -23,16 +24,28 @@ class ImageService implements ImageServiceInterface
 
 		if (!empty( $album)) {
 			/*if not exits and name null auto create name for album is 'Unknown Album'*/
-			if ($album['album_name'] == '') {
-				$album['album_name'] = 'Unknown Album';
-			}
-			$album_id = AlbumFacade::checkExitsAlbumOrCreate( $id_user , $album );
 
-			$result_create = ImageFacade::addImage($id_user , $images_name , $album_id);
+			$album = AlbumFacade::checkExitsAlbumOrCreate( $id_user , $album );
+
+			$result_create = ImageFacade::addImage($id_user , $images_name , $album );
 
 			return $result_create;
 		}
 		
+	}
+	/**
+	 *Delete photo on database
+	 *@param images id
+	 *@return
+	 */
+	public function deletePhoto($images_id)
+	{
+		$result = DB::table('images')->where('id', '=', $images_id)->delete();
+		return $result;
+	}
+	public function getAllPhoto()
+	{
+		# code...
 	}
 }
 

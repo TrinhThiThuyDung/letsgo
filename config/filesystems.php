@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'cloud' => 's3',
+    'cloud' => 'local',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,14 +45,14 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root'   => storage_path('app'),
-        ],
+            'root'   => base_path().'/public/upload/',
+        ]/*,
 
         'ftp' => [
             'driver'   => 'ftp',
             'host'     => 'ftp.example.com',
             'username' => 'your-username',
-            'password' => 'your-password',
+            'password' => 'your-password',*/
 
             // Optional FTP Settings...
             // 'port'     => 21,
@@ -60,7 +60,7 @@ return [
             // 'passive'  => true,
             // 'ssl'      => true,
             // 'timeout'  => 30,
-        ],
+       /* ],
 
         's3' => [
             'driver' => 's3',
@@ -78,7 +78,7 @@ return [
             'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
             'region'    => 'IAD',
             'url_type'  => 'publicURL',
-        ],
+        ],*/
 
     ],
 

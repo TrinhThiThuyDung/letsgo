@@ -161,10 +161,10 @@
   </div>
   </nav>
    <!-- Modal -->
-      <div id="modelUpload" class="modal fade" role="dialog">
-          <div class="modal-dialog" style="width: 1330px; height: 600px;">
+      <div id="modelUpload" class="modal fade" role="dialog" style="    overflow-y: hidden;">
+          <div class="modal-dialog" style="width: 1330px; height: 624px;">
             <!-- Modal content-->
-              <div class="modal-content" style="">
+              <div class="modal-content" style="height: 100%;">
                 <form action="{{url('/web/photo/upload')}}" method="post" name="formUpload" id="fileupload" enctype="multipart/form-data">
                   <div class="modal-header" style="border-bottom: 0px;">
                     <button type="button" class="close" data-dismiss="modal" style="text-align: right;">&times;</button>
@@ -185,7 +185,7 @@
                 </button>
                 <button type="button" class="btn btn-danger delete">
                     <i class="glyphicon glyphicon-trash"></i>
-                    <span>Xóa Danh Sách</span>
+                    <span>Xóa Ảnh đã upload</span>
                 </button>
                 <input type="checkbox" class="toggle">
                 <!-- The global file processing state -->
@@ -200,18 +200,20 @@
                 </div>
               
             </div>
-               <label for = "album">Tên Album</label>
-                <input type="text" id="album" name="album_name" placeholder="Hãy nhập tên album này bạn muốn"></input>
                   </div>
                   <div class="modal-body" style=" overflow-y: scroll; height: 400px;  background: url(../images/icon/images.svg) no-repeat; background-position: 34% 23%; background-size: 18%;">
                
                    <div class="table-addfile">
                       <!-- The table listing the files available for upload/download -->
                     <table role="presentation" class="table table-striped" style="width: 75%;  background-color: #DFEBF5;">
-                          <tbody class="files"></tbody>
+                          <tbody class="files" style=""></tbody>
                     </table>
                    </div>
                      <div class="right-upload" style="float: right;">
+                     <div class="form-group">
+                        <label for = "album">Tên Album: </label>
+                        <input type="text" id="album" name="album_name" placeholder="Hãy nhập tên album này bạn muốn"></input>
+                     </div>
                        <div class="form-group">
                           <label for="kind-album">Chọn Loại Album:</label>
                           <select class="form-control" id="kind-album" name="album_kind">
@@ -227,19 +229,8 @@
                        </div>
                      </div>          
                   </div>
-                 </form>
-             <!-- The blueimp Gallery widget -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-</div>
               <div class="modal-footer close-upload" style="background: rgb(247, 248, 250);">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" style="background: #57ED4F;">Close</button>
               </div>
                </div>
           </div>

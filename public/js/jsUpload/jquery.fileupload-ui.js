@@ -73,6 +73,11 @@
             messages: {
                 unknownError: 'Unknown error'
             },
+            previewCanvas: false,
+           
+            disableImagePreview: false,
+            previewMaxWidth: 220,
+            previewMaxHeight: 220,
 
             // Function returning the current number of files,
             // used by the maxNumberOfFiles validation:
@@ -381,6 +386,7 @@
                 if (data.url) {
                     data.dataType = data.dataType || that.options.dataType;
                     $.ajax(data).done(removeNode).fail(function () {
+                       alert("Có lỗi khi xóa ảnh");
                         that._trigger('destroyfailed', e, data);
                     });
                 } else {

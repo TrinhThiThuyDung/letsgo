@@ -19,8 +19,6 @@ Route::group(['prefix' => 'web'], function(){
 		 * Show photo after login
 		 */
 		Route::get('/photo',[ 'as'=>'web/photo', 'uses'=>'PhotoController@getPhotoPage']);
-		
-		Route::get('/photo/upload',[ 'as'=>'web/photo/upload', 'uses'=>'PhotoController@getPhotoUpload']);
 		/*
 		 * Upload image
 		 */
@@ -28,7 +26,15 @@ Route::group(['prefix' => 'web'], function(){
 		/*
 		 * Delete image
 		 */
-		Route::post('/photo/delete',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);
+		/*Route::get('/photo/delete',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);*/
+		/*
+		 * Delete image
+		 */
+		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);
+		/*
+		 * Delete image
+		 */
+		/*Route::post('/photo/delete',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);*/
 		/*
 		 * Sign out
 		 *

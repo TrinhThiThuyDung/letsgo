@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  	    'kind_id',
  	    'name',
  	    'describe',
+ 	    'url',
  	    'created_at',
  	    'updated_at'
  	  

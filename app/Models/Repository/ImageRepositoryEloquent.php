@@ -7,27 +7,18 @@ namespace App\Models\Repository;
 use App\Models\Entities\Image;
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Filesystem\Filesystem;
 /**
 * 
 */
 class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
 {
-	function addImage($id_user , $images_name , $album_id)
+	function addImage($id_user , $images_name , $album )
 	{
-		$path = 'upload/'.$id_user;
-		$filesystem = new Filesystem();
-
-		if (!$filesystem->exists($path)){
-			if ( !$filesystem->makeDirectory($path) ){
-				return null;
-			}	
-		}
 		
 		$result_create = Image::create([
-			'album_id' 	=> $album_id,
+			'album_id' 	=> $album['id'],
 			'name'		=> $images_name,
-			'url'		=> $path."/".$images_name
+			'url'		=> $album['url']."/".$images_name
 			]);
 
 		return $result_create;
