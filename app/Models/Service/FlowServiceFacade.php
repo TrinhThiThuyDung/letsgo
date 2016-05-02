@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Models\Service;
+
+use Illuminate\Database\Eloquent\Model;
+
+class FlowServiceFacade extends Model
+{
+    //
+}

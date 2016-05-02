@@ -25,4 +25,8 @@ class Image extends Model
     {
     	return $this->belongsTo('Album');
     }
+    public function likes()
+    {
+        return $this->hasMany('Like');
+    }
 }

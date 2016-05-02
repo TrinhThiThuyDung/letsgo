@@ -6,7 +6,7 @@ namespace App\Models\Repository;
 
 use App\Models\Entities\Album;
 use Illuminate\Database\Eloquent\Model;
-
+use Storage;
 
 use Illuminate\Filesystem\Filesystem;
 /**
@@ -44,11 +44,10 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
 	  public function createAlbumForder( $path)
 	  {
 
-		$filesystem = new Filesystem();
-	
-		if (!$filesystem->exists($path)){
-			$filesystem->makeDirectory($path);
-		}
+		$exists = Storage::disk( 'local' )->exists( $path );
+        if(!$exists){
+            Storage::makeDirectory( $path );
+        }
 	  }
 }
 

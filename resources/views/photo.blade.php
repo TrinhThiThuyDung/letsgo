@@ -40,23 +40,20 @@
      
  <div id="gallerry-images">
   <div class="container gallerry-image" >
-  <!--   <div class="row" style=" margin-top: 15px; margin-bottom: 30px;"> -->
-      <!-- <div class="col-md-12"> -->
-           <div id="album " class="album-gal carouselGallery-col-60" title="Album title">
-              <div class=" wrap-images  item-1 ">
-                <div class="box-1">
-                  <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="0" data-username="Dung Trinh" data-imagetext="Photographer: @conny_lundstrom" data-location="Hà Nội" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-1.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                    <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-1.jpg')}}"></a>
-                    <div class="action">
-                        <div class="view">
-                          <a href="" class="like">
-                            <span class="icon icon-like"></span>
-                            <span class="icon icon-love"></span>
-                          </a>
-                          <a href="" class="add-to-gal">
-                            <span class="icon-add-gal"></span>
-                          </a>
-                        </div>
+      <div id="album " class="album-gal carouselGallery-col-60" title="Album title">
+        <div class=" wrap-images  item-1 ">
+          <div class="box-1">
+            <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="0" data-id = '247' data-username="Dung Trinh" data-imagetext="Photographer: @conny_lundstrom" data-location="Hà Nội" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-1.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-postLike="{{url('web/photo/action')}}" data-postComment = "" data-postFlow = "">
+                <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-1.jpg')}}"></a>
+                  <div class="action">
+                    <div class="view">
+                      <a href="{{url('web/photo/action')}}" class="like">
+                        <span class="icon icon-like love"></span>
+                      </a>
+                      <a href="" class="add-to-gal">
+                          <span class="icon-add-gal"></span>
+                      </a>
+                    </div>
                         <div class="info">
                           <div class="inside">
                             <div class="about-img">

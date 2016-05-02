@@ -222,9 +222,10 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
 .carouselGallery-item-modal-likes .icon-heart{
     top: 3px;
     font-size: 25px;
-    color: #EA2727;
+   
     float: left;
     margin-right: 5px;
+ 
 }
 .carouselGallery-modal-text{
     background-color: #fff;
@@ -1052,6 +1053,18 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
+/*=================================================
+                    ANIMATION
+===================================================*/
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+    0%   {-webkit-transform: translate(0px, 0px); }
+    25%  {-webkit-transform: translate(0px, 30px);}
+    50%  {-webkit-transform: translate(0px, 60px); }
+   
+}
 /*===================================================
                     Gallery Image
 =====================================================*/
@@ -1141,4 +1154,17 @@ label.comment {
     font-size: 13px;
     padding: 0 10px;
     width: 100%;
+}
+.loveHeart{
+     color: #969090;
+     
+    webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+.loved{
+    color: red;
+    webkit-animation: pulse 0.5s ease-in-out;
+    -moz-animation: pulse 0.5s ease-in-out;
+    animation: pulse 0.5s ease-in-out;
 }

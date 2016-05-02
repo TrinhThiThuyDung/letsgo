@@ -26,15 +26,17 @@ Route::group(['prefix' => 'web'], function(){
 		/*
 		 * Delete image
 		 */
-		/*Route::get('/photo/delete',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);*/
-		/*
-		 * Delete image
-		 */
 		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);
-		/*
-		 * Delete image
+		/**
+		 *Process action like images
 		 */
-		/*Route::post('/photo/delete',[ 'as'=>'web/photo/delete', 'uses'=>'PhotoController@deletePhoto']);*/
+		Route::post('/photo/action/like', [ 'as' => 'web/photo/action/like', 'uses' => 'LikeController@addLike']);
+		Route::post('/photo/action/dislike', [ 'as' => 'web/photo/action/dislike', 'uses' => 'LikeController@deleteLike']);
+
+		Route::post('/photo/action/checkLike', [ 
+							'as' => 'web/photo/action/checkLike', 
+							'uses' => 'LikeController@checkLike']
+		);
 		/*
 		 * Sign out
 		 *

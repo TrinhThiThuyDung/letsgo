@@ -2,7 +2,8 @@
 
 namespace App\Models\Service;
 
-interface AlbumServiceInterface{
+interface AlbumServiceInterface
+{
 	/*check login user*/
 	function getAllPhoto ();
 	

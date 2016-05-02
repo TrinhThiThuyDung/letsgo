@@ -34,6 +34,10 @@ use Illuminate\Database\Eloquent\Model;
     {
         return $this->hasMany('Album');
     }
+    public function likes()
+    {
+    	return $this->hasMany('Like');
+    }
 }
 
 ?>

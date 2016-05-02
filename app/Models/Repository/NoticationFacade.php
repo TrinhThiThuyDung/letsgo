@@ -1,17 +1,15 @@
-<?php 
+<?php
+
 namespace App\Models\Repository;
 
 use Illuminate\Support\Facades\Facade;
-/**
-* 
-*/
-class UserFacade extends Facade
+
+class NoticationFacade extends Facade
 {
+    
 	protected static function getFacadeAccessor()
 	{
-		return 'App\Models\Repository\UserRepository';
+		return 'App\Models\Repository\NoticationRepository';
 	}
 	
 }
-
- ?> 
