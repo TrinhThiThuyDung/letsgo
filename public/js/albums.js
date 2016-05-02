@@ -145,24 +145,25 @@ jQuery(function($) {
 
     $('body').on('click','.love', function (e){
 
+        var data = {};
+        var numLove = $(e.target).siblings('span.numLove').text();
+            
+        data['image_id'] = $('input.image_id').val();
+
+        var urlPost = $(e.target).parent().attr('href');
+
         if ($(e.target).hasClass('loveHeart')) {
-            loveAction(e);
+            loveAction(e, numLove, urlPost, data);
         }
         else if($(e.target).hasClass('loved')){
-            unLoveAction(e);
+            unLoveAction(e, numLove, urlPost, data);
         }
         return false;
     });
-    var loveAction = function (e){
-       if ($(e.target).hasClass('loveHeart')) {
+    var loveAction = function (e,  numLove, urlPost, data){
+       if ($(e.target).hasClass( 'loveHeart')) {
 
-            var data = {};
-            var numLove = $(e.target).siblings('span.numLove').text();
-            
-            data['image_id'] = $('input.image_id').val();
-
-            var urlPost = $(e.target).parent().attr('href')+"/like";
-
+        urlPost = urlPost+"/like";
         $.ajax({
             url: urlPost,
             data: { "data": data},
@@ -172,19 +173,14 @@ jQuery(function($) {
         .done(function(  data ){
             $(e.target).removeClass("loveHeart").addClass("loved");
             numLove = Number(numLove) + 1;
-             $(e.target).siblings('span.numLove').text(numLove);
+            $(e.target).siblings('span.numLove').text(numLove);
         });
        }
     }
-    var unLoveAction = function (e){
+    var unLoveAction = function (e , numLove, urlPost, data){
         if ($(e.target).hasClass('loved')) {
 
-            var data = {};
-            var numLove = $(e.target).siblings('span.numLove').text();
-            
-            data['image_id'] = $('input.image_id').val();
-
-            var urlPost = $(e.target).parent().attr('href')+"/dislike";
+        urlPost = urlPost+"/dislike";
 
         $.ajax({
             url: urlPost,

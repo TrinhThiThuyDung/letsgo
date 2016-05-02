@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="{{url('css/albums.css')}}">
 
   <script src="{{url('js/albums.js')}}"></script>
+  <script type="text/javascript" src="{{url('js/api/action.js')}}"></script>
    
 @endsection
 
@@ -48,7 +49,7 @@
                   <div class="action">
                     <div class="view">
                       <a href="{{url('web/photo/action')}}" class="like">
-                        <span class="icon icon-like love"></span>
+                        <span class="icon icon-like"></span>
                       </a>
                       <a href="" class="add-to-gal">
                           <span class="icon-add-gal"></span>
