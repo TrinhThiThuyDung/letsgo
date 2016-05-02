@@ -48,6 +48,24 @@ Route::group(['prefix' => 'web'], function(){
 Route::group(['prefix' => 'mobile'] , function(){
 	Route::group( ['middleware' => ['auth.mobile']], function($routes){
 		Route::get('/', array( 'as' => 'mobileIndex' , 'uses' => 'MainController@getMobileIndex'));
+			/*
+		 * Upload image
+		 */
+		Route::post('/photo/upload',[ 'as'=>'mobile/photo/upload', 'uses'=>'PhotoController@uploadPhoto']);
+		/*
+		 * Delete image
+		 */
+		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 'as'=>'mobile/photo/delete', 'uses'=>'PhotoController@deletePhoto']);
+		/**
+		 *Process action like images
+		 */
+		Route::post('/photo/action/like', [ 'as' => 'mobile/photo/action/like', 'uses' => 'LikeController@addLike']);
+		Route::post('/photo/action/dislike', [ 'as' => 'mobile/photo/action/dislike', 'uses' => 'LikeController@deleteLike']);
+
+		Route::post('/photo/action/checkLike', [ 
+							'as' => 'mobile/photo/action/checkLike', 
+							'uses' => 'LikeController@checkLike']
+		);
 	});
 });
 /*
