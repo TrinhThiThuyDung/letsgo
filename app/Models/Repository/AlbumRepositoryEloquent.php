@@ -31,24 +31,10 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
 				];
 
 	  	$album_model = Album::firstOrCreate( $data );
-	  	
-	  	$this->createAlbumForder( $path);
 
 	  	return $album_model;
 	  }
-	  /**
-	   *Create folder album
-	   *@param id of user, album name
-	   *@return true if create success and false if folder exists
-	   */
-	  public function createAlbumForder( $path)
-	  {
-
-		$exists = Storage::disk( 'local' )->exists( $path );
-        if(!$exists){
-            Storage::makeDirectory( $path );
-        }
-	  }
+	
 }
 
 

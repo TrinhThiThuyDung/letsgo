@@ -67,12 +67,12 @@ class LetsGoServiceProvider extends ServiceProvider
             'App\Models\Service\NoticationServiceInterface',
             'App\Models\Service\NoticationService');
         $this->app->bind(
-            'App\Models\Repository\FlowRepository',
-            'App\Models\Repository\FlowRepositoryEloquent');
+            'App\Models\Repository\FollowRepository',
+            'App\Models\Repository\FollowRepositoryEloquent');
 
         $this->app->bind(
-            'App\Models\Service\FlowServiceInterface',
-            'App\Models\Service\FlowService');
+            'App\Models\Service\FollowServiceInterface',
+            'App\Models\Service\FollowService');
         $this->app->bind(
             'App\Models\Repository\KindRepository',
             'App\Models\Repository\KindRepositoryEloquent');

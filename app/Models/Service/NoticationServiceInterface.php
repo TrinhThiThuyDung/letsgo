@@ -2,9 +2,9 @@
 
 namespace App\Models\Service;
 
-use Illuminate\Database\Eloquent\Model;
 
-class NoticationServiceInterface extends Model
+interface NoticationServiceInterface
 {
-    //
+   function getNoticationOfUser ($user_id);
 }
+?>

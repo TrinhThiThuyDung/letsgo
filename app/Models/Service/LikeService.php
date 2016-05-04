@@ -42,4 +42,9 @@ class LikeService implements LikeServiceInterface
     {
       return LikeFacade::deleteLike( $data );
     }
+
+    public function getTotalLike($data)
+    {
+      return LikeFacade::getTotalLike( $data );
+    }
 }

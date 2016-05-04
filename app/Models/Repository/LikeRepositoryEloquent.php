@@ -39,4 +39,12 @@ class LikeRepositoryEloquent extends BaseRepository implements LikeRepository
                             ])->delete();
         return $result;
     }
+    public function getTotalLike( $data )
+    {
+        $total = Like::where('image_id' , $data['image_id'])
+                     ->count();
+        
+
+        return $total;
+    }
 }

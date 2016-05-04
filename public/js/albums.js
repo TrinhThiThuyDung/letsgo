@@ -62,24 +62,17 @@ jQuery(function($) {
                 modalHtml += "</div>";
                 modalHtml += "<div class='carouselGallery-modal-text'><input  type = 'hidden' class = 'image_id' value ='"+image_id+"' >";
                 modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '../images/avatar/default-avatar.jpg'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='#'>"+username+"</a> </span>"
-                modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><button class='follow'>Theo dõi</button><button class='unfollow'>Bỏ Theo dõi</button><button class='following'>Đang Theo dõi</button></div>";
+                modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><a class = 'flow' href = '/web/photo/action/'>"+getFlow(image_id)+"</a></div>";
                 modalHtml += "<div class = 'likeTextShare'> <div style = 'height: 52px;'> <span class='carouselGallery-item-modal-likes' style = 'width: 48%;float: left; display: inline-block;'>";
                 modalHtml += "<a href = '"+postLike+"' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
-                modalHtml += "<span class = 'numLove'>"+likes+"</span></a>";
+                modalHtml += "<span class = 'numLove'>"+getTotalLike(image_id)+"</span></a>";
                 modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'><a href = '#' style = 'font-size: 14px;'><span class='fa fa-share' style = 'display: inline-block; margin-right: 3px;'></span>Chia sẻ</a></span></div>";
                 modalHtml += "<span class='carouselGallery-modal-imagetext'>";
                 modalHtml += "<p>"+imagetext+"</p>";
                 modalHtml += "</span></div>";
-                modalHtml += "<div class = 'comment form-group'><label class = 'comment' for = 'comment'>Thêm comment</label><input class='inputTextComment' type = 'text' id='comment'> ";
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>"; 
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>"; 
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>"; 
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Thùy Dung</span></a><span class = 'contentComment'>Đẹp đấy</span></div>";
-                modalHtml += "<div class = 'otherComment'><a href = '#'><span class= 'usernameComment'>Tiểu Long Hoàng</span></a><span class = 'contentComment'>Like! that beatiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></div>";
-                modalHtml += "</div></div></div></div></div></div></div>";
+                modalHtml += "<form id = 'formComment' method = 'post' action = '/web/photo/action/comment'><div class = 'comment form-group'><label class = 'comment' for = 'comment'>Thêm comment</label><input class='inputTextComment' type = 'text' id='comment' style = 'font-size:15px;'></div></form> ";
+                modalHtml += getCommentImage( image_id );
+                modalHtml += "</div></div></div></div></div></div>";
                 $('body').append(modalHtml).fadeIn(2500);
             }
         }
@@ -122,7 +115,27 @@ jQuery(function($) {
                             Event Like, Comment and Flow
     ===============================================================*/
 
+/*===========================================================================
+                            LIKE 
+=============================================================================*/
+    var getTotalLike = function ( image_id ){
+        var url = "http://"+window.location.hostname+":8000/web/photo/action/getTotalLike";
 
+        var data = {};
+        data['image_id'] = image_id;
+
+        request= $.ajax({
+            url: url,
+            data: {'data': data},
+            type: 'post',
+            dataType: 'json',
+            async: false,
+        });
+        if (request.responseJSON.total) {
+            return request.responseJSON.total;
+        }
+        return 0;
+    }
     var getClassForLoveAction = function(image_id){
 
         var url = "http://"+window.location.hostname+":8000/web/photo/action/checkLike";
@@ -158,7 +171,7 @@ jQuery(function($) {
         else if($(e.target).hasClass('loved')){
             unLoveAction(e, numLove, urlPost, data);
         }
-        return false;
+        e.stopPropagation();
     });
     var loveAction = function (e,  numLove, urlPost, data){
        if ($(e.target).hasClass( 'loveHeart')) {
@@ -180,12 +193,11 @@ jQuery(function($) {
     var unLoveAction = function (e , numLove, urlPost, data){
         if ($(e.target).hasClass('loved')) {
 
-        urlPost = urlPost+"/dislike";
+        urlPost = urlPost+"/dislike/"+data['image_id'];
 
         $.ajax({
             url: urlPost,
-            data: { "data": data},
-            type: 'post',
+            type: 'delete',
             dataType: 'json',
         })
         .done(function(  data ){
@@ -195,7 +207,176 @@ jQuery(function($) {
         });
        }
     }
+/*===========================================================================
+                            FOLLOW 
+=============================================================================*/
+    var getFlow = function (image_id) 
+    {
+        var url = "http://"+window.location.hostname+":8000/web/photo/action/checkFollow";
+        var data = {};
+
+        data['image_id'] = image_id;
+
+        request= $.ajax({
+            url: url,
+            data: {'data': data},
+            type: 'post',
+            dataType: 'json',
+            async: false,
+        });
+        if (!request.responseJSON.follow) {
+            return "<button class = 'follow'> Theo dõi </button>";
+        }
+        return "<button class = 'following'>Đang theo dõi</button>";
+
+    }
+    $('body').on('mouseenter','.following' , function (e){
+        $(this).removeClass("following").addClass("unfollow");
+        $(this).text("Bỏ theo dõi");
+    });
+    $('body').on('mouseleave','.unfollow' , function (e){
+        $(this).removeClass("unfollow").addClass("following");
+        $(this).text("Đang theo dõi");
+    });
+
+        $('body').on('click','.follow', function (e){
+
+            var data = {};
+                
+            data['image_id'] = $('input.image_id').val();
+
+            var urlPost = $(e.target).parent().attr('href');
+
+            followAction(e, urlPost, data);
+
+            e.preventDefault();
+        });
+
+        $('body').on('click','.unfollow', function (e){
+
+            var data = {};
+                
+            data['image_id'] = $('input.image_id').val();
+
+            var urlPost = $(e.target).parent().attr('href');
+
+          
+            unfollowAction(e, urlPost, data);
+            
+            e.preventDefault();
+        });
+      var followAction = function (e, urlPost, data) {
+          
+        urlPost = urlPost+"follow";
+        $.ajax({
+            url: urlPost,
+            data: { "data": data},
+            type: 'post',
+            dataType: 'json',
+        })
+        .done(function(  data ){
+            $(e.target).removeClass("follow").addClass("following");
+            $(e.target).text("Đang theo dõi");
+        });
+       }
+
+       var unfollowAction = function (e, urlPost, data) {
+
+        urlPost = urlPost+"unfollow/"+data['image_id'];
+        $.ajax({
+            url: urlPost,
+            type: 'delete',
+            dataType: 'json',
+        })
+        .done(function(  data ){
+            $(e.target).removeClass("unfollow").addClass("follow");
+            $(e.target).text("Theo dõi");
+        });
+       }
+/*===========================================================================
+                            COMMENT
+=============================================================================*/
+
+var getCommentImage = function ( image_id ) {
+
+    var url = "http://"+window.location.hostname+":8000/web/photo/action/getComment";
+    var data = {};
+
+    data['image_id'] = image_id;
+
+    request = $.ajax({
+            url: url,
+            data: {'data': data},
+            type: 'post',
+            dataType: 'json',
+            async: false,
+    });
+    if (request.responseJSON.comment) {
+        var all_comment = request.responseJSON.comment;
+        var comment = '';
+
+        for (var i = 0; i < all_comment.length; i++) {
+            comment += "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
+            comment += "<a href = '#'><span class= 'usernameComment'>"+all_comment[i]['last_name']+" "+all_comment[i]['first_name']+"</span></a>";
+            comment += "<span class = 'contentComment'>"+all_comment[i]['content']+"</span>";
+            if (all_comment[i]['user_id'] == window.sessionStorage.getItem('id')) {
+                comment += "<a href = '/web/photo/action/deleteComment/"+all_comment[i]['id']+"' class = 'remove-comment'> <span class = 'delete-comment'> </span></a>";
+            }
+            comment += "</div>";
+        }
+        return comment;
+    }
+}
 
 
+$('body').on('submit', '#formComment', function(e){
 
+    var data = {};
+    data['content'] = $('input#comment').val();
+    data['image_id'] = $('input.image_id').val();
+    
+    var urlPost = $(this).attr("action");
+    var url = "http://"+window.location.hostname+":8000"+urlPost;
+
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: {"data": data},
+        dataType: 'json',
+    })
+    .done(function( data ){
+        addComment( data );
+    });
+    
+   e.stopPropagation();
+});
+
+var addComment = function (data) {
+    var username = window.sessionStorage.getItem( "username" );
+
+    var comment = "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
+            comment += "<a href = '#'><span class= 'usernameComment'>"+username+"</span></a>";
+            comment += "<span class = 'contentComment'>"+data['content']+"</span>";
+            comment += "<a href = '/web/photo/action/deleteComment/"+data['id']+"'> <span class = 'delete-comment'> </span></a>";
+            comment += "</div>";
+    $('#formComment').append(comment);
+    $('input#comment').val("");
+}
+
+    $('body').on('click', '.remove-comment', function (e){
+
+        var url = $(this).attr("href");
+
+        var result = $.ajax({
+            url: url,
+            type: 'delete',
+            dataType: 'json',
+            async: false,
+        });
+        if (result.responseJSON.delete) {
+            $(this).parents(".otherComment").remove();   
+        }
+    
+        e.stopPropagation();
+    });
 });

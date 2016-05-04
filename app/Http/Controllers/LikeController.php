@@ -29,7 +29,7 @@ class LikeController extends Controller
 
     public function deleteLike(Request $request)
     {
-    	$data = $request->data;
+    	$data['image_id'] = $request->image_id;
 
     	$data['user_id'] = $this->user_id;
     	$like = LikeServiceFacade::deleteLike($data);
@@ -51,5 +51,19 @@ class LikeController extends Controller
     	}
     	return response()->json(['love' => false ]);
 
+    }
+    public function getTotalLike(Request $request)
+    {
+        $data = $request->data;
+
+        $result = LikeServiceFacade::getTotalLike( $data );
+
+        if ($result) {
+            return response()->json([
+                'result'    => 'OK',
+                'total'     => $result
+            ]);
+        }
+        return response()->json(['result'   => 'error']);
     }
 }

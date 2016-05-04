@@ -38,6 +38,14 @@ use Illuminate\Database\Eloquent\Model;
     {
     	return $this->hasMany('Like');
     }
+    public function follows()
+    {
+    	return $this->hasMany('Follow');
+    }
+    public function comments()
+    {
+        return $this->hasMany('comment');
+    }
 }
 
 ?>

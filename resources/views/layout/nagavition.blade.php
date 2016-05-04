@@ -85,10 +85,10 @@
                   </ul>
                 </li>
                 <li class="dropdown detail-hover">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="padding: 5px;">
                     <strong>
                       <img class="ava-img" src="<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>">
-                      <span style="font-family: Architects Daughter,cursive; color: white;"><?php if(isset($array_data)){ echo $array_data['user']->username; } ?></span>
+                      <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->username; } ?></span>
                     </strong>
                   </a>
                    <ul class="dropdown-menu" role = "menu">
@@ -150,7 +150,7 @@
                   <form action="" class="search-form">
                 <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
                 <label for="search" class="sr-only">Search</label>
-                <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                <input type="text" class="form-control" name="search" id="search" placeholder="Tìm kiếm">
                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
             </form> 
@@ -201,7 +201,7 @@
               
             </div>
                   </div>
-                  <div class="modal-body" style=" overflow-y: scroll; height: 400px;  background: url(../images/icon/images.svg) no-repeat; background-position: 34% 23%; background-size: 18%;">
+                  <div class="modal-body" style=" overflow-y: scroll; height: 472px;  background: url(../images/icon/images.svg) no-repeat; background-position: 34% 23%; background-size: 18%;">
                
                    <div class="table-addfile">
                       <!-- The table listing the files available for upload/download -->
@@ -230,7 +230,7 @@
                      </div>          
                   </div>
               <div class="modal-footer close-upload" style="background: rgb(247, 248, 250);">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" style="background: #57ED4F;">Close</button>
+                  <button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="background: #57ED4F;">Close</button>
               </div>
                </div>
           </div>

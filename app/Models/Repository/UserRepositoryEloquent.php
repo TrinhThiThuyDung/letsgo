@@ -64,12 +64,12 @@ use DB;
  		 			return null;
  		 		}
  		 		
- 		 		$result_create = User::insertGetId([
- 									'last_name'=>$user['last_name'],
- 									'first_name'=>$user['first_name'],
- 									'email'=>$user['email'],
- 									'password'=>password_hash( $user['pass'] , PASSWORD_BCRYPT),
- 									'created_at' => date("Y/m/d"),
+ 		 		$result_create = User::create([
+ 									'last_name'		=>$user['last_name'],
+ 									'first_name'	=>$user['first_name'],
+ 									'email'			=>$user['email'],
+ 									'password'		=>password_hash( $user['pass'] , PASSWORD_BCRYPT),
+ 									'avatar'		=> "images/avatar/default-avatar.jpg"
  								]);
  		 		return $result_create;
  		 	}
@@ -80,10 +80,10 @@ use DB;
  	 *@param id of user
  	 *@return user infor contain data: avatar, name, postion 
  	 */
- 	public function getInfor( $id_user )
+ 	public function getInforUser( $id_user )
  	{
  		if (!empty($id_user)) {
- 			$infor = DB::table('users')->select('avatar' , 'position')->where('id' , '=' , $id_user)->first();
+ 			$infor = DB::table('users')->select( 'avatar' , 'position')->where('id' , '=' , $id_user)->first();
  			
  			if ($infor) {
  				return $infor;

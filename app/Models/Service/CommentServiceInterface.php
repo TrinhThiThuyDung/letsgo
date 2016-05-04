@@ -2,9 +2,10 @@
 
 namespace App\Models\Service;
 
-use Illuminate\Database\Eloquent\Model;
-
-class CommentServiceInterface extends Model
+interface CommentServiceInterface
 {
-    //
+	function addComment ( $data );
+	function getAllCommentOfImage( $data );
+	function deleteComment( $comment_id );
 }
+?>

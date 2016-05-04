@@ -29,4 +29,8 @@ class Image extends Model
     {
         return $this->hasMany('Like');
     }
+    public function comments()
+    {
+        return $this->hasMany('comment');
+    }
 }

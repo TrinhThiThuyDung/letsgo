@@ -2,9 +2,12 @@
 
 namespace App\Models\Repository;
 
-use Illuminate\Database\Eloquent\Model;
 
-class CommentRepository extends Model
+interface CommentRepository 
 {
-    //
+	
+    function addComment( $data );
+    function getAllCommentOfImage( $data );
+    function deleteComment( $comment_id );
 }
+?>

@@ -39,10 +39,11 @@ class PhotoController extends Controller
 
         $array_photo = $this->getPhoto();
         $user_infor = $this->getInforUser();
+        $noti   = $this->getNoticationOfUser();
 
         $user_infor->username = $this->user_name;
 
-        $array_data = ['user' => $user_infor , 'photo' => $array_photo];
+        $array_data = ['user' => $user_infor , 'photo' => $array_photo, 'noti' => $noti ];
         
         return view("photo")->with(['array_data' => $array_data]);
 		
@@ -79,7 +80,8 @@ class PhotoController extends Controller
 
         $album = $request->all();
 
-        if ($album['album_name'] == '') {
+
+        if ($album['album_name'] === '') {
             $album['album_name'] = 'Unknown Album';
         }
 

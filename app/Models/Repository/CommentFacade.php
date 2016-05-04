@@ -1,10 +1,17 @@
 <?php
-
 namespace App\Models\Repository;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Facade;
 
-class CommentFacade extends Model
+/**
+* 
+*/
+class CommentFacade extends Facade
 {
-    //
+	
+	protected static function getFacadeAccessor()
+	{
+		return 'App\Models\Repository\CommentRepository';
+	}
 }
+?>

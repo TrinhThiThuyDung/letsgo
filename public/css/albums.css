@@ -1085,15 +1085,14 @@ button.follow, .unfollow, .following{
     border-radius: 4px;
     font-size: 14px;
     font-family: 'Cabin','Helvetica Neue',Arial,Helvetica,sans-serif;
-   
-    letter-spacing: -1px;
+
     line-height: 15px;
 
 }
 button.follow{
-     background: rgba(95, 230, 76, 0);
-    color: #0F800D;
-     border: 1px solid #308446;
+    background: rgba(95, 230, 76, 0);
+    color: #307484;
+    border: 1px solid #307484;
 }
 button.unfollow{
     color: white;
@@ -1105,7 +1104,7 @@ button.following{
 background: rgba(64, 144, 53, 0.56) !important;
  border: 1px solid rgba(64, 144, 53, 0.56);
 }
-button.flow:hover{
+button.follow:hover{
   color: white;
   background: rgba(64, 144, 53, 0.56) !important;
 }
@@ -1135,25 +1134,26 @@ label.comment {
 .otherComment{
     margin: 0px 0;
    /* border: 0.1px solid rgba(0, 0, 0, 0.25);*/
-    padding: 2px;
+   padding: 7px 4px;
     word-wrap: break-word;      /* IE 5.5-7 */
       white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
       white-space: pre-wrap;      /* current browsers */
       border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(221, 226, 226, 0.89);
 }
 .usernameComment{
     display: inline-block !important;
     color: #1C5F9A;
     font-size: 13px;
     font-weight: bold;
-    width: 100%;
+/*    width: 100%;*/
 }
 .contentComment{
     display: inline-block !important;
-    margin: 0 7px;
+   /* margin: 0 7px;*/
     font-size: 13px;
-    padding: 0 10px;
-    width: 100%;
+    padding: 0 4px;
+   /* width: 100%;*/
 }
 .loveHeart{
      color: #969090;
@@ -1167,4 +1167,28 @@ label.comment {
     webkit-animation: pulse 0.5s ease-in-out;
     -moz-animation: pulse 0.5s ease-in-out;
     animation: pulse 0.5s ease-in-out;
+}
+span.time {
+    font-size: 9px;
+    color: #6B6F73;
+    float: right;
+    margin-top: 9px;
+    margin-right: 3px;
+}
+span.delete-comment{
+    background-image: url(../images/icon/icon_remove_comment.svg);
+    background-repeat: no-repeat;
+    background-size: 7px;
+    background-position: center center;
+    float: right;
+    width: 10px;
+    height: 10px;
+    margin: 1% 1%;;
+}
+.otherComment img{
+    margin-right: 6px; 
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }

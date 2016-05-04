@@ -6,5 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    //
+    protected $label = "Comment";
+
+ 	protected $fillable = [
+ 		'id',
+ 	    'user_id',
+ 	    'image_id',
+ 	    'content',
+ 	    'created_at',
+ 	    'updated_at'
+ 	  
+ 	    ];
+
+   //Cac quan he se co voi cac model khac
+ 	public function images()
+    {
+        return $this->belongsTo('Image');
+    }
+
+    public function users()
+    {
+    	return $this->belongsTo("User");
+    }
 }

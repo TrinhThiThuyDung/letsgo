@@ -11,6 +11,7 @@
 
   <script src="{{url('js/albums.js')}}"></script>
   <script type="text/javascript" src="{{url('js/api/action.js')}}"></script>
+  <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
    
 @endsection
 
@@ -379,9 +380,7 @@
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade" style="padding: 10px; display: inline-block;  margin: 18px;  max-width: 276px;   min-width: 245px; max-height: 209px;
-    text-align: center;
-">
+    <tr class="template-upload fade">
         <td style="padding: 18px;">
             <span class="preview">
              
@@ -411,11 +410,12 @@
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade" style="display: inline-block; padding: 10px; margin: 10px;">
-        <td style="display: inline-block; max-width: 276px; max-height: 209px;">
+    <tr class="template-download fade">
+        <td style="display: inline-block;">
             <span class="preview">
                 {% if (file.thumbnailUrl) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}"  download="{%=file.name%}" data-gallery><img style="width: 100%;height: 100%; object-fit: contain; display: inline-block;" src="{%=file.thumbnailUrl%}"></a>
+                    <a href="{%=file.url%}" title="{%=file.name%}"  download="{%=file.name%}" data-gallery>
+                      <img src="{%=file.thumbnailUrl%}"></a>
                 {% } %}
             </span>
         </td>

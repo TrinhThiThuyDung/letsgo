@@ -2,9 +2,13 @@
 
 namespace App\Models\Service;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Facade;
 
-class NoticationServiceFacade extends Model
+class NoticationServiceFacade extends Facade
 {
-    //
+    
+	protected static function getFacadeAccessor() { 
+		return 'App\Models\Service\NoticationerviceInterface'; 
+	}
 }
+?>

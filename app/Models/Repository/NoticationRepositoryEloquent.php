@@ -19,4 +19,8 @@ class NoticationRepositoryEloquent extends BaseRepository implements NoticationR
 
     	return $noti_created;
     }
+    public function getNoticationOfUser($user_id)
+    {
+    	$result = Notication::where( 'user_to_id' ,$user_id )->get();
+    }
 }

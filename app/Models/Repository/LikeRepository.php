@@ -8,4 +8,5 @@ interface LikeRepository
     function addLike( $data );
     function deleteLike( $data );
     function checkLike( $data );
+    function getTotalLike( $data );
 }

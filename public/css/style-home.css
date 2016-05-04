@@ -154,7 +154,7 @@ body{
 .user-detail > li > a{
   float: right !important;
   min-height: 40px !important; 
- padding: 8px !important;
+ padding: 8px;
 }
 .user-detail a{
   width: 100%;
@@ -958,11 +958,29 @@ margin-bottom: 10px;
                   UPLOAD IMAGES
 ====================================================*/
 
-.upload-box{
- /* width: 500px;
-  height: 500px;*/
+tr.template-download{
+  display: inline-block; 
+  padding: 10px; 
+  margin: 10px; 
+  max-width: 276px;
 }
-.inputfile {
- /*filter: alpha(opacity=0);
-   opacity: 0;*/
+
+tr.template-upload{
+  padding: 10px; 
+  display: inline-block;  
+  margin: 18px;  
+  max-width: 276px;
+    
+  text-align: center;
+}
+.template-download img{
+  width: 100%;
+  height: 100%; 
+  object-fit: contain; 
+  display: inline-block;
+  height: 300px;
+}
+.template-download td{
+  display: inline-block;
+    height: 100%;
 }

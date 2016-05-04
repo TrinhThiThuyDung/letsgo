@@ -8,4 +8,6 @@ interface LikeServiceInterface
     function addLike( $data );
     function checkLike( $data );
     function deleteLike( $data );
+    function getTotalLike( $data );
 }
+?>
