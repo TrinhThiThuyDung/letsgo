@@ -43,10 +43,8 @@ jQuery(function($) {
         var username = that.data('username'),
         location = that.data('location'),
         imagetext = that.data('imagetext'),
-        likes =  that.data('likes'),
         imagepath = that.data('imagepath'),
         carouselGalleryUrl = that.data('url');
-        postLike =  that.data('postlike');
         comment = that.data('comment');
         maxHeight = $(window).height()-100;
         var image_id = that.data('id');
@@ -64,7 +62,7 @@ jQuery(function($) {
                 modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '../images/avatar/default-avatar.jpg'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='#'>"+username+"</a> </span>"
                 modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><a class = 'flow' href = '/web/photo/action/'>"+getFlow(image_id)+"</a></div>";
                 modalHtml += "<div class = 'likeTextShare'> <div style = 'height: 52px;'> <span class='carouselGallery-item-modal-likes' style = 'width: 48%;float: left; display: inline-block;'>";
-                modalHtml += "<a href = '"+postLike+"' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
+                modalHtml += "<a href = 'web/photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
                 modalHtml += "<span class = 'numLove'>"+getTotalLike(image_id)+"</span></a>";
                 modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'><a href = '#' style = 'font-size: 14px;'><span class='fa fa-share' style = 'display: inline-block; margin-right: 3px;'></span>Chia sẻ</a></span></div>";
                 modalHtml += "<span class='carouselGallery-modal-imagetext'>";

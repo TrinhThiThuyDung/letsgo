@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Storage;
 use App\Models\Service\ImageServiceFacade;
 use App\Models\Service\UserServiceFacade;
+use App\Models\Service\NoticationServiceFacade;
 
 use Illuminate\Http\UploadedFile;
 
@@ -26,7 +27,6 @@ class PhotoController extends Controller
     public function __construct(Request $request)
     {
         $this->user_id = $request->session()->get('id');
-        $this->user_name = $request->session()->get('username');
     }
 
     /**
@@ -37,32 +37,16 @@ class PhotoController extends Controller
 	public function getPhotoPage(Request $request)
 	{
 
-        $array_photo = $this->getPhoto();
-        $user_infor = $this->getInforUser();
-        $noti   = $this->getNoticationOfUser();
-
-        $user_infor->username = $this->user_name;
-
-        $array_data = ['user' => $user_infor , 'photo' => $array_photo, 'noti' => $noti ];
+        $photos = $this->getPhoto();
         
-        return view("photo")->with(['array_data' => $array_data]);
+        return view("photo")->with( 'photos' , $photos );
 		
 	}
 
-    protected function getPhoto()
+   protected function getPhoto()
     {
         return ImageServiceFacade::getAllPhoto();
        
-    }
-
-    /**
-     *Get infor of user
-     *@param Request: get id of user saved in session
-     *@return object contain information of user
-     */
-    protected function getInforUser()
-    {
-        return UserServiceFacade::getInforUser( $this->user_id );
     }
 
 
@@ -135,7 +119,6 @@ class PhotoController extends Controller
 
     protected function moveImagesToUploadFolder( $images , $images_name , $album_name)
     {
-
         $path = '/public/upload/'.$this->user_id.'/'.$album_name;
        
         $images->move(

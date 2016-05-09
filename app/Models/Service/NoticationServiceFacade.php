@@ -8,7 +8,7 @@ class NoticationServiceFacade extends Facade
 {
     
 	protected static function getFacadeAccessor() { 
-		return 'App\Models\Service\NoticationerviceInterface'; 
+		return 'App\Models\Service\NoticationServiceInterface'; 
 	}
 }
 ?>

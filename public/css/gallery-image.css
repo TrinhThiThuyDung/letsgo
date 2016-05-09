@@ -80,8 +80,10 @@ border: none !important;
 .box img{
 	height: 100%;
 	width: 100%;
-	object-fit:cover;
-	-o-object-fit:cover;
+	object-fit:contain;
+	-o-object-fit:contain;
+
+  max-height: 592px;
 }
 .gal-item a:focus{
 	outline: none;

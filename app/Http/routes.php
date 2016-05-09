@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::group(['prefix' => 'web'], function(){
 	Route::get('/', array( 'as'=>'webIndex' , 'uses'=> 'MainController@getIndex' ));
 
@@ -102,6 +101,11 @@ Route::group(['prefix' => 'web'], function(){
 							'as' => 'web/photo/action/deleteComment', 
 							'uses' => 'CommentController@deleteComment']
 		);
+		/*========================= PROFILE USER ============================*/
+		Route::get('/user/profile/{user_id}',[
+				'as'	=> 'web/user/profile',
+				'uses'	=> 'UserController@getProfileUser'
+			]);
 		/*
 		 * Sign out
 		 *

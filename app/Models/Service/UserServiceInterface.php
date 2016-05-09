@@ -26,6 +26,6 @@ interface UserServiceInterface{
 	 */
 	function getAllInforUser( $id_user );
 
-
+	function getInforActivityOfUser ($user_id);
 }
 ?>

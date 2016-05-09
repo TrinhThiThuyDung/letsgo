@@ -42,10 +42,10 @@
      
  <div id="gallerry-images">
   <div class="container gallerry-image" >
-      <div id="album " class="album-gal carouselGallery-col-60" title="Album title">
+      <div id="album " class="album-gal carouselGallery-col-60">
         <div class=" wrap-images  item-1 ">
           <div class="box-1">
-            <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="0" data-id = '247' data-username="Dung Trinh" data-imagetext="Photographer: @conny_lundstrom" data-location="Hà Nội" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-1.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-postLike="{{url('web/photo/action')}}" data-postComment = "" data-postFlow = "">
+            <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="0" data-id = '247' data-username="Dung Trinh" data-imagetext="Photographer: @conny_lundstrom" data-location="Hà Nội" data-imagepath="{{url('/images/home-images/photo-1.jpg')}}">
                 <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-1.jpg')}}"></a>
                   <div class="action">
                     <div class="view">

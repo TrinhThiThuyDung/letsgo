@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\LetsGoServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
     ],
 

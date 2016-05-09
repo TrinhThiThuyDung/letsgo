@@ -45,7 +45,12 @@ class ImageService implements ImageServiceInterface
 	}
 	public function getAllPhoto()
 	{
-		# code...
+		return ImageFacade::getAllPhoto ();
+	}
+
+	function getPhotoOfUser($user_id)
+	{
+		return ImageFacade::getPhotoOfUser ($user_id);
 	}
 }
 

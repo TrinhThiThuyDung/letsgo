@@ -4,7 +4,7 @@ namespace App\Models\Repository;
 
 use App\Models\Entities\Like;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 
 
 class LikeRepositoryEloquent extends BaseRepository implements LikeRepository
@@ -46,5 +46,16 @@ class LikeRepositoryEloquent extends BaseRepository implements LikeRepository
         
 
         return $total;
+    }
+    function getPhotoUserLike($user_id)
+    {
+        $result = DB::table("likes")
+                    ->join("users", "likes.user_id", '=', "users.id")
+                    ->join("images", "likes.image_id", '=', 'images.id')
+                    ->select("images.*", "users.id", "users.last_name", "users.first_name")
+                    ->where("likes.user_id", $user_id)
+                    ->orderBy ("likes.created_at", 'desc')
+                    ->get();
+        return $result;
     }
 }

@@ -361,7 +361,7 @@ body{
   color: #08F87F;
 }
 .name {
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 700;
 }
 /*************************************************************/
@@ -779,6 +779,7 @@ color: #DCFFF5
   width: 100%;
   position: relative;
     top: -23%;
+    height: 165px;
 }
 .cover-photo{
  
@@ -872,9 +873,17 @@ margin-bottom: 10px;
   max-height: 300px;
 }
 .albumize-pane{
-  height: 39% !important;
+  height: 32% !important;
 }
-
+#albumize-olay{
+  height: 100% !important;
+}
+.albumize-i-window img{
+  object-fit: contain;
+}
+.albumize-thumb{
+  object-fit: cover;
+}
 .nav-list > li >a >img {
       width: 158px;
     height: 152px;

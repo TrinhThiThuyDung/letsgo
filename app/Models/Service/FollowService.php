@@ -50,5 +50,10 @@ class FollowService implements FollowServiceInterface
     {
       return NoticationFacade::createNotication( $notiInfor );
     }
+
+    public function getUserFollow( $user_id )
+    {
+      return FollowFacade::getUserFollow( $user_id );
+    }
 }
 ?>

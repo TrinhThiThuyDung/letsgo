@@ -47,4 +47,8 @@ class LikeService implements LikeServiceInterface
     {
       return LikeFacade::getTotalLike( $data );
     }
+    public function getPhotoUserLike($user_id)
+    {
+      return LikeFacade::getPhotoUserLike($user_id);
+    }
 }

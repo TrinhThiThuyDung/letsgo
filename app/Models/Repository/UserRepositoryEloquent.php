@@ -7,6 +7,8 @@ namespace App\Models\Repository;
 use App\Models\Entities\User;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\Repository\LikeFacade;
+use App\Models\Repository\ImageFacade;
 
  class UserRepositoryEloquent extends BaseRepository implements UserRepository
  {
@@ -83,13 +85,55 @@ use DB;
  	public function getInforUser( $id_user )
  	{
  		if (!empty($id_user)) {
- 			$infor = DB::table('users')->select( 'avatar' , 'position')->where('id' , '=' , $id_user)->first();
+ 			$infor = DB::table('users')->select( 'avatar' , 'position', 'last_name', 'first_name')->where('id' , '=' , $id_user)->first();
  			
  			if ($infor) {
  				return $infor;
  			}
  			return null;
  		}
+ 	}
+
+ 	public function getAllInforUser( $user_id )
+ 	{
+ 		if (!empty($user_id)) {
+ 			$result = DB::table("users")
+ 						->select("id", "last_name", "first_name", "avatar", "position", "address", "gender", "birthday")
+ 						->where("id", $user_id)
+ 						->get();
+
+ 			return $result;
+ 		}
+ 	}
+
+ 	public function getInforActivityOfUser($user_id)
+ 	{
+ 		if (!empty($user_id)) {
+ 			
+ 			$count_like = $this->countLikeOfUser( $user_id );
+
+ 			$count_image_uploaded = $this->countImageUploaded ($user_id);
+
+ 			$result = [ 'like' => $count_like, 'images' => $count_image_uploaded];
+ 		
+ 			return $result;
+ 		}
+ 	}
+
+ 	protected function countLikeOfUser($user_id)
+ 	{
+ 		$result = DB::table("likes")
+ 					->where("user_id", $user_id)
+ 					->count();
+ 		return $result;
+ 	}
+ 	protected function countImageUploaded($user_id)
+ 	{
+ 		$result = DB::table("images")
+ 					->join("albums", "images.album_id", '=', "albums.id")
+ 					->where("albums.user_id", $user_id)
+ 					->count();
+ 		return $result;
  	}
 
 }

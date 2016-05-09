@@ -9,5 +9,6 @@ interface LikeServiceInterface
     function checkLike( $data );
     function deleteLike( $data );
     function getTotalLike( $data );
+    function getPhotoUserLike($user_id);
 }
 ?>

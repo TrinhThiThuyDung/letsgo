@@ -38,5 +38,16 @@ class FollowRepositoryEloquent implements FollowRepository
         ])->delete();
        return $result;
     }
+
+    public function getUserFollow($user_id)
+    {
+        $result = DB::table("follows")
+                   ->join("users", "users.id", '=', "user_followed_id")
+                   ->where("follows.user_follower_id", $user_id )
+                   ->select ("users.id", "users.last_name", "users.first_name", "users.avatar")
+                   ->get();
+        return $result;
+    }
+
 }
 ?>

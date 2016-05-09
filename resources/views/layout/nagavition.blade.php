@@ -49,33 +49,66 @@
                                 <ul class="list-group" id="contact-list">
                                 <li class="list-group-item">
                                        <div >
-                                         <span style="font-style: italic; border-radius: none"> Bạn không có thông báo mới nào...</span>
+                                       <?php 
+
+                                       if (isset($array_data['noti'])) { 
+
+                                          $total_noti_seen    = count($array_data['noti']['noti_seen']);
+                                          $total_noti_not_seen = count($array_data['noti']['noti_not_seen']);
+                                          $total_noti = ($total_noti_seen + $total_noti_seen);
+                                         
+                                        
+                                        if ( $total_noti_not_seen == 0 && $total_noti_seen == 0) { ?>
+                                  <span style="font-style: italic; border-radius: none"> Bạn không có thông báo nào..</span>
+                                        <?php 
+                                        }
+                                        else{
+                                          if ($total_noti_not_seen == 0) { ?>
+                                         <span style="font-style: italic; border-radius: none"> Bạn không có thông báo mới nào...</span>      
+                                         <?php }
+                                         else{ ?>
+                                         <span style="font-style: italic; border-radius: none"> Bạn có <?php echo $total_noti_not_seen; ?> thông báo mới chưa đọc.. </span>
+                                       <?php  }
+                                        }
+                                       }else { ?>
+                                        <span style="font-style: italic; border-radius: none"> Bạn không có thông báo nào..</span>
+                                         <?php } ?>
                                        </div>
                                         
                                         <div class="clearfix"></div>
                                     </li>
-                                    <li class="list-group-item">
+                                    <?php 
+                                    if ( isset( $array_data['noti']['noti_not_seen'] )) {
+                                      $noti_not_seen = $array_data['noti']['noti_not_seen'];
+                        
+                                  /*  $noti_seen = $array_data['noti_seen'];*/
+
+                                   foreach ($noti_not_seen as $key => $value) {
+                                        $user_name = $value["last_name"]." ".$value["first_name"];
+                                      ?>
+                                       <li class="list-group-item">
                                         <div class="col-xs-12 col-sm-3 col-md-4">
-                                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
+                                            <img src="/<?php echo $value["avatar"]; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
                                         </div>
                                         <div class="col-xs-12 col-sm-9 col-md-8">
                                         <a href="#">
-                                            <span class="name">Scott Stevens</span></a><br/>
-                                           <a href="#"><span class="">ABC đã like ảnh của bạn </span></a><br/>
+                                            <span class="name"><?php echo $user_name; ?></span></a><br/>
+                                           <a href="#"><span class=""> <?php 
+                                            if ($value["kind"] == "like") {
+                                              echo " đã thích ảnh của bạn!";
+                                            }
+                                            else if($value["kind"] == "comment"){
+                                              echo " đã bình luận về ảnh của bạn";
+                                            }
+                                            else if($value["kind"] == "follow"){
+                                              echo " đã bắt đầu theo dõi bạn";
+                                            }
+                                            ?> </span></a><br/>
                                         </div>
                                         <div class="clearfix"></div>
                                     </li>
-                                    
-                                                        <li class="list-group-item">
-                                        <div class="col-xs-12 col-sm-3 col-md-4">
-                                            <img src="http://api.randomuser.me/portraits/men/25.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
-                                        </div>
-                                        <div class="col-xs-12 col-sm-9 col-md-8">
-                                           <a href="#"> <span class="name">aze e</span></a><br/>
-                                           <a href=""> <span > XYZ đã chia sẻ ảnh của bạn </span> </a><br/>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
+                                   <?php } 
+                                   } ?>
                                     
                                 </ul>
                             </div>
@@ -87,8 +120,8 @@
                 <li class="dropdown detail-hover">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="padding: 5px;">
                     <strong>
-                      <img class="ava-img" src="<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>">
-                      <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->username; } ?></span>
+                      <img class="ava-img" src="/<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>">
+                      <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->first_name." ".$array_data['user']->last_name; } ?></span>
                     </strong>
                   </a>
                    <ul class="dropdown-menu" role = "menu">
@@ -98,12 +131,12 @@
                               <div class="profile-sidebar">
                                 <!-- SIDEBAR USERPIC -->
                                 <div class="profile-userpic">
-                                  <img src="<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>" class="img-responsive" alt="">
+                                  <img src="/<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>" class="img-responsive" alt="">
                                 </div>
                              
                                 <div class="profile-usertitle">
                                   <div class="profile-usertitle-name">
-                                    <?php if(isset($array_data)) echo $array_data['user']->username; ?>
+                                    <?php if(isset($array_data)) echo $array_data['user']->first_name." ".$array_data['user']->last_name; ?>
                                   </div>
                                   <div class="profile-usertitle-job">
                                     <?php if(isset($array_data)) echo $array_data['user']->position; ?>
@@ -115,17 +148,19 @@
                                 <div class="profile-usermenu">
                                   <ul class="nav">
                                     <li class="active">
-                                      <a href="#">
+                                      <a href="/web/user/profile/<?php if (isset($array_data)) echo $array_data['user']->user_id; ?>">
                                       <i class="glyphicon glyphicon-home"></i>
                                       Trang cá nhân </a>
                                     </li>
                                     <li>
-                                      <a href="#">
+                                      <a href="/web/user/setting-account/<?php if (isset($array_data)) echo $array_data['user']->user_id; ?>">
                                       <i class="glyphicon glyphicon-user"></i>
                               Cài đặt tài khoản </a>
                                     </li>
                                     <li>
-                                      <a href="#" target="_blank">
+                                      <a href="/web/user/change-pass/{{ <?php if (isset($array_data)): ?>
+                                        echo $array_data['user']->id
+                                      <?php endif ?> }}" target="_blank">
                                       <i class="glyphicon glyphicon-pencil"></i>
                                       Thay đổi mật khẩu </a>
                                     </li>

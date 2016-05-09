@@ -426,3 +426,23 @@ footer * + .copyright {
     height: 80px;
     border-bottom: 1px solid #46503F;
 }
+/*===================== CSS FOR PROFILE =========================*/
+.album-name{
+      height: 50px;
+    text-align: left;
+    padding: 8px;
+    font-size: 23px;
+    text-transform: capitalize;
+    font-family: 'Jockey One';
+    background: rgba(31, 164, 169, 0.69);
+    width: 22%;
+    border-radius: 3px;
+    margin: 8px 0;
+}
+.empty-images{
+  text-align: center;
+    font-family: 'Fredericka the Great','Helvetica-W01-Roman','Braggadocio-W01','Vast Shadow','Signika';
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(50, 108, 158, 0.84);
+}

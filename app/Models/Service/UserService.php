@@ -54,9 +54,14 @@ class UserService implements UserServiceInterface
  	 *
  	 *
  	 */
- 	function getAllInforUser( $id_user )
+ 	function getAllInforUser( $user_id )
  	{
- 		
+ 		return UserFacade::getAllInforUser($user_id);
+ 	}
+
+ 	function getInforActivityOfUser($user_id)
+ 	{
+ 		return UserFacade::getInforActivityOfUser( $user_id );
  	}
 }
 ?>
