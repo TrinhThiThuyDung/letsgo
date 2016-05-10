@@ -71,22 +71,7 @@ Route::group(['prefix' => 'web'], function(){
 							'uses' => 'FollowController@deleteFollow']
 		);
 
-		/*====================== FOLLOW ACTION =========================*/
-		Route::post('/photo/action/checkFollow', [ 
-							'as' => 'web/photo/action/checkFollow', 
-							'uses' => 'FollowController@checkFollow']
-		);
-
-		Route::post('/photo/action/follow', [ 
-							'as' => 'web/photo/action/follow', 
-							'uses' => 'FollowController@addFollow']
-		);
-
-		Route::delete('/photo/action/unfollow/{image_id}', [ 
-							'as' => 'web/photo/action/unfollow', 
-							'uses' => 'FollowController@deleteFollow']
-		);
-		/*====================== FOLLOW ACTION =========================*/
+		/*====================== COMMENT ACTION =========================*/
 		Route::post('/photo/action/getComment', [ 
 							'as' => 'web/photo/action/getComment', 
 							'uses' => 'CommentController@getComment']
@@ -117,25 +102,85 @@ Route::group(['prefix' => 'web'], function(){
 Route::group(['prefix' => 'mobile'] , function(){
 	Route::group( ['middleware' => ['auth.mobile']], function($routes){
 		Route::get('/', array( 'as' => 'mobileIndex' , 'uses' => 'MainController@getMobileIndex'));
-			/*
+		
+		/*================================= PHOTO ==================================*/
+		
+		/*
+		 * Show photo after login
+		 */
+		Route::get('/photo',[ 
+							'as'=>'mobile/photo', 
+							'uses'=>'PhotoController@getPhotoPage']
+		);
+		/*
 		 * Upload image
 		 */
-		Route::post('/photo/upload',[ 'as'=>'mobile/photo/upload', 'uses'=>'PhotoController@uploadPhoto']);
+		Route::post('/photo/upload',[ 
+							'as'=>'mobile/photo/upload', 
+							'uses'=>'PhotoController@uploadPhoto']
+		);
 		/*
 		 * Delete image
 		 */
-		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 'as'=>'mobile/photo/delete', 'uses'=>'PhotoController@deletePhoto']);
-		/**
-		 *Process action like images
-		 */
-		Route::post('/photo/action/like', [ 'as' => 'mobile/photo/action/like', 'uses' => 'LikeController@addLike']);
-		Route::post('/photo/action/dislike', [ 'as' => 'mobile/photo/action/dislike', 'uses' => 'LikeController@deleteLike']);
+		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 
+							'as'=>'mobile/photo/delete', 
+							'uses'=>'PhotoController@deletePhoto']
+		);
 
+		/*====================== LIKE ACTION =========================*/
 		Route::post('/photo/action/checkLike', [ 
 							'as' => 'mobile/photo/action/checkLike', 
 							'uses' => 'LikeController@checkLike']
 		);
+		Route::post('/photo/action/getTotalLike', [ 
+							'as' => 'mobile/photo/action/getTotalLike', 
+							'uses' => 'LikeController@getTotalLike']
+		);
+		Route::post('/photo/action/like', [ 
+							'as' => 'mobile/photo/action/like', 
+							'uses' => 'LikeController@addLike']
+		);
+		Route::delete('/photo/action/dislike/{image_id}', [ 
+							'as' => 'mobile/photo/action/dislike', 
+							'uses' => 'LikeController@deleteLike']
+		);
 
+		/*====================== FOLLOW ACTION =========================*/
+		Route::post('/photo/action/checkFollow', [ 
+							'as' => 'mobile/photo/action/checkFollow', 
+							'uses' => 'FollowController@checkFollow']
+		);
+
+		Route::post('/photo/action/follow', [ 
+							'as' => 'mobile/photo/action/follow', 
+							'uses' => 'FollowController@addFollow']
+		);
+
+		Route::delete('/photo/action/unfollow/{image_id}', [ 
+							'as' => 'mobile/photo/action/unfollow', 
+							'uses' => 'FollowController@deleteFollow']
+		);
+
+		/*====================== COMMENT ACTION =========================*/
+		Route::post('/photo/action/getComment', [ 
+							'as' => 'mobile/photo/action/getComment', 
+							'uses' => 'CommentController@getComment']
+		);
+
+		Route::post('/photo/action/comment', [ 
+							'as' => 'mobile/photo/action/comment', 
+							'uses' => 'CommentController@addComment']
+		);
+
+		Route::delete('/photo/action/deleteComment/{comment_id}', [ 
+							'as' => 'mobile/photo/action/deleteComment', 
+							'uses' => 'CommentController@deleteComment']
+		);
+		/*========================= PROFILE USER ============================*/
+		Route::get('/user/profile/{user_id}',[
+				'as'	=> 'mobile/user/profile',
+				'uses'	=> 'UserController@getProfileUser'
+			]);
 
 	});
 });
