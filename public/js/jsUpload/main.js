@@ -49,9 +49,10 @@ $(function () {
 /*======================== FILE UPLOAD DOWNLOAD TEMPLATE ============================*/
 $('#fileupload').fileupload({
     filesContainer: $('table.files'),
-    uploadTemplateId: 'my-template-upload',
-    downloadTemplateId: null,
+    uploadTemplateId: 'my-upload-template',
+    downloadTemplateId: 'my-download-template',
     uploadTemplate: function (o) {
+        $('.upload-area').attr("display", "none");
         var rows = $();
         $.each(o.files, function (index, file) {
             var row = $('<tr class="template-upload fade">' +

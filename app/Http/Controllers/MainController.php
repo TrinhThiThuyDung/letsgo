@@ -46,10 +46,10 @@ class MainController extends Controller
               	return response()->json(['status' => 'notLogin']);
             }else{
                 $request->session()->put('id', $request->cookie("id"));
-                return redirect()->route("mobile/photo");
+                return response()->json(['status' => 'success']);
             }
         }
-        return redirect()->route("mobile/photo");
+        return response()->json(['status' => 'success']);
 	}
 }
 ?>

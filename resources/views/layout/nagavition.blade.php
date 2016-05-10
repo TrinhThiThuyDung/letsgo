@@ -200,7 +200,7 @@
           <div class="modal-dialog" style="width: 1330px; height: 580px;">
             <!-- Modal content-->
               <div class="modal-content" style="height: 100%; background-color: #f7f8fa;">
-                <form action="{{url('/web/photo/upload')}}" method="post" name="formUpload" id="fileupload" enctype="multipart/form-data">
+                <form action="{{url('/web/photo/upload')}}" method="post" name="formUpload" id="fileupload" data-upload-template-id="my-upload-template" data-download-template-id="my-download-template" enctype="multipart/form-data">
                 <!--   <div class="modal-header" style="border-bottom: 0px;"> -->
           
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -215,26 +215,19 @@
             </div> -->
                <!--    </div> -->
                   <div class="modal-body">
-
-               <!--  <span class="btn btn-success fileinput-button" style="background-color: rgb(92, 184, 92) !important; width: 191px;">
-                              <i class="glyphicon glyphicon-plus"></i>
+                          <div class="upload-area" style="height: 100%;" >
+                              <span class="fileinput-button">
+                               <img src="/images/icon/upload.svg" style="width: 110px;">
                               <span>Chọn Ảnh</span>
-                              <input type="file" name="images[]" multiple>
-                          </span>  -->
-                          <div class="upload-area">
-                            <span>
-                              <img src="/images/icon/upload.svg">
+                              <input type="file" name="images[]" style="    font-size: 119px;" multiple>
                             </span>
-                            <span class="fileinput-button">
-                            <span>Chọn Ảnh</span> <span> hoặc kéo ảnh của bạn vào đây</span>
-                            <input type="file" name="images[]" multiple>
-                          </span>
+                           <p> Bạn chỉ cần upload ảnh! Những việc khác cứ để chúng tôi lo.</p>
                           </div>
-                          
+                          </form>  
                    <div class="table-addfile">
                       <!-- The table listing the files available for upload/download -->
                     <table role="presentation" class="table table-striped" style="width: 75%;  background-color: #DFEBF5;">
-                          <tbody class="files" style=""></tbody>
+                          <tbody class="files"></tbody>
                     </table>
                    </div>
                      <!-- <div class="right-upload" style="float: right;"> -->
@@ -282,6 +275,7 @@
               <!-- <div class="modal-footer close-upload" style="background: rgb(247, 248, 250);">
                   <button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="background: #57ED4F;">Close</button>
               </div> -->
+
                </div>
           </div>
       </div>
