@@ -384,7 +384,7 @@
         <td style="padding: 18px; border-top: 1px solid #ddd; ">
             <span class="preview">
              <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin: 0px; height: 3px;"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-             <img >
+             <?php var_dump($file); ?>
             </span>
         </td>
         <td style="text-align: center; display: inline;">

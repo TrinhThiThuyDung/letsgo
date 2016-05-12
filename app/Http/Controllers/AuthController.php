@@ -114,7 +114,6 @@ class AuthController extends Controller
             return response()->json(['status'=>'error' , 'error' => 'Email này đã có người đăng ký, hãy chọn cho mình email khác :)']);
         }
         $request->session()->put('id', $result['id']);
-        $request->session()->put('name', $result['user_name']); 
         
         $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']];
 

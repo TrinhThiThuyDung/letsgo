@@ -110,7 +110,7 @@ Route::group(['prefix' => 'mobile'] , function(){
 		 */
 		Route::get('/photo',[ 
 							'as'=>'mobile/photo', 
-							'uses'=>'PhotoController@getPhotoPage']
+							'uses'=>'PhotoController@getMobilePhotoPage']
 		);
 		/*
 		 * Upload image

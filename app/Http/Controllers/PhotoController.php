@@ -43,12 +43,42 @@ class PhotoController extends Controller
 		
 	}
 
+    public function getMobilePhotoPage(Request $request)
+    {
+        $photos = $this->getPhoto();
+        $user = $this->getInforUser();
+        $noti = $this->getNoticationOfUser();
+
+        $data = [
+            'photo' => $photo,
+            'user'  => $user,
+            'noti'  => $noti
+        ];
+        return response()->json(['data'    => $data ]);
+    }
    protected function getPhoto()
     {
         return ImageServiceFacade::getAllPhoto();
        
     }
-
+     protected function getNoticationOfUser()
+    {
+        if ($this->user_id) {
+            return NoticationServiceFacade::getNoticationOfUser( $this->user_id );
+        }
+    }
+    /**
+     *Get infor of user
+     *@param Request: get id of user saved in session
+     *@return object contain information of user
+     */
+    protected function getInforUser()
+    {
+        if($this->user_id) { 
+            return UserServiceFacade::getInforUser( $this->user_id ); 
+        }
+    }
+   
 
     public function getPhotoUpload(Request $request)
     {
@@ -63,7 +93,6 @@ class PhotoController extends Controller
     {   
 
         $images = $request->all();
-var_dump($images);die;
 
         if ($album['album_name'] === '') {
             $album['album_name'] = 'Unknown Album';
