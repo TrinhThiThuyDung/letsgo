@@ -31,6 +31,7 @@ class NoticationRepositoryEloquent extends BaseRepository implements NoticationR
 
     protected function getNoticationNotSeen ( $user_id )
     {
+        if(!empty( $user_id)){
         $result = Notication::join( 'users', 'notications.user_from_id','=', 'users.id' )
                             ->where ([
                                 ['notications.user_to_id'   , (int)$user_id ],
@@ -40,6 +41,7 @@ class NoticationRepositoryEloquent extends BaseRepository implements NoticationR
                             ->orderBy('notications.created_at', 'desc')
                             ->get();
         return $result;
+    }
     }
     protected function getNoticationSeen( $user_id )
     {

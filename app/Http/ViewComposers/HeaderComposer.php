@@ -32,7 +32,9 @@ class HeaderComposer
     }
      protected function getNoticationOfUser()
     {
-        return NoticationServiceFacade::getNoticationOfUser( $this->user_id );
+        if ($this->user_id) {
+            return NoticationServiceFacade::getNoticationOfUser( $this->user_id );
+        }
     }
     /**
      *Get infor of user
@@ -41,7 +43,9 @@ class HeaderComposer
      */
     protected function getInforUser()
     {
-        return UserServiceFacade::getInforUser( $this->user_id );
+        if($this->user_id) { 
+            return UserServiceFacade::getInforUser( $this->user_id ); 
+        }
     }
     /**
      * Bind data to the view.
@@ -51,12 +55,15 @@ class HeaderComposer
      */
     public function compose(View $view)
     {
-        $this->user = $this->getInforUser();
-        $this->noti   = $this->getNoticationOfUser();
-        $this->user->user_id = $this->user_id;
+        if($this->user_id){
 
-        $array_data = ['user'   => $this->user, 'noti' => $this->noti ];
+            $this->user = $this->getInforUser();
+            $this->noti   = $this->getNoticationOfUser();
+            $this->user->user_id = $this->user_id;
 
-        $view->with( 'array_data', $array_data );
+            $array_data = ['user'   => $this->user, 'noti' => $this->noti ];
+
+            $view->with( 'array_data', $array_data );
+    }
     }
 }

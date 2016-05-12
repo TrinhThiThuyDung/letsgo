@@ -62,8 +62,8 @@ class PhotoController extends Controller
     public function uploadPhoto(Request $request)
     {   
 
-        $album = $request->all();
-
+        $images = $request->all();
+var_dump($images);die;
 
         if ($album['album_name'] === '') {
             $album['album_name'] = 'Unknown Album';
@@ -103,8 +103,6 @@ class PhotoController extends Controller
         }
         $files = [
                     [
-                        "name"      => $images_name,
-                        "size"      => $images->getClientSize(),
                         "error"     => "Lỗi tải ảnh"      
                     ]
                 ];

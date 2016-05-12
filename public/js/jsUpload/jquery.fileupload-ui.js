@@ -73,11 +73,12 @@
             messages: {
                 unknownError: 'Unknown error'
             },
-            previewCanvas: false,
-           
+           /* previewCanvas: false,
+*/           
             disableImagePreview: false,
             previewMaxWidth: 220,
             previewMaxHeight: 220,
+            previewMinHeight: 220,
 
             // Function returning the current number of files,
             // used by the maxNumberOfFiles validation:
@@ -499,8 +500,12 @@
         },
 
         _renderPreviews: function (data) {
+             $('.upload-area').css("display", "none");
+             $('.right-upload').css("display", "block");
+
             data.context.find('.preview').each(function (index, elm) {
                 $(elm).append(data.files[index].preview);
+                $('.add-more').css("display", "inline-block");
             });
         },
 
@@ -519,6 +524,7 @@
         },
 
         _startHandler: function (e) {
+            
             e.preventDefault();
             var button = $(e.currentTarget),
                 template = button.closest('.template-upload'),

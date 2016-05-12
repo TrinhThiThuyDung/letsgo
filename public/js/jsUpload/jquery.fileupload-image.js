@@ -134,9 +134,9 @@
             // Disable the resize image functionality by default:
             disableImageResize: true,
             // The maximum width of the preview images:
-            previewMaxWidth: 80,
+            previewMaxWidth: 220,
             // The maximum height of the preview images:
-            previewMaxHeight: 80,
+            previewMaxHeight: 220,
             // Defines the preview orientation (1-8) or takes the orientation
             // value from Exif data if set to true:
             previewOrientation: true,
@@ -145,7 +145,7 @@
             // Define if preview images should be cropped or only scaled:
             previewCrop: false,
             // Define if preview images should be resized as canvas elements:
-            previewCanvas: true
+            previewCanvas: false
         },
 
         processActions: {

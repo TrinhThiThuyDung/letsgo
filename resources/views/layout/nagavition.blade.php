@@ -196,70 +196,44 @@
   </div>
   </nav>
    <!-- Modal -->
-      <div id="modelUpload" class="modal fade" role="dialog" style="    overflow-y: hidden;">
+      <div id="modelUpload" class="modal fade" role="dialog" style="overflow-y: hidden;">
           <div class="modal-dialog" style="width: 1330px; height: 580px;">
             <!-- Modal content-->
               <div class="modal-content" style="height: 100%; background-color: #f7f8fa;">
-                <form action="{{url('/web/photo/upload')}}" method="post" name="formUpload" id="fileupload" data-upload-template-id="my-upload-template" data-download-template-id="my-download-template" enctype="multipart/form-data">
-                <!--   <div class="modal-header" style="border-bottom: 0px;"> -->
-          
-                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-               
-         <!-- The global progress state -->
-           <!--  <div class="fileupload-progress fade" style="height: 30px;"> -->
-                <!-- The global progress bar -->
-               <!--  <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-                </div>
-              
-            </div> -->
-               <!--    </div> -->
                   <div class="modal-body">
-                          <div class="upload-area" style="height: 100%;" >
-                              <span class="fileinput-button">
-                               <img src="/images/icon/upload.svg" style="width: 110px;">
+                  <form action="{{url('/web/photo/upload')}}" method="post" name="formUpload" id="fileupload" enctype="multipart/form-data">
+                      <div class="upload-area" style="height: 100%;" >
+                          <span class="fileinput-button">
+                              <img src="/images/icon/upload.svg" style="width: 110px;">
                               <span>Chọn Ảnh</span>
-                              <input type="file" name="images[]" style="    font-size: 119px;" multiple>
+                              <input type="file" name="images[]" style="font-size: 119px;" multiple>
                             </span>
                            <p> Bạn chỉ cần upload ảnh! Những việc khác cứ để chúng tôi lo.</p>
                           </div>
-                          </form>  
-                   <div class="table-addfile">
+
+                  <div class="table-addfile" style="overflow-y: auto;">
                       <!-- The table listing the files available for upload/download -->
-                    <table role="presentation" class="table table-striped" style="width: 75%;  background-color: #DFEBF5;">
-                          <tbody class="files"></tbody>
+                    <table role="presentation" class="table table-striped" style="width: 75%;">
+                          <tbody class="files" style="float: left; ">
+                            <tr class = 'add-more' style='width: 288px; height: 300px; display: none; background: rgba(228, 229, 231, 0.67);'> <td style="border: none;"> <span class = 'fileinput-button' ><img src = '/images/icon/add-icon.svg' style = 'width:84%;margin: 20px; position: initial;'><input type='file' name='images[]' multiple></span> </td></tr>
+                          </tbody>
+                            
                     </table>
+
                    </div>
-                     <!-- <div class="right-upload" style="float: right;"> -->
-                    <!--   <div class="fileupload-buttonbar" style="text-align: center; height: 60px; border-bottom: 1px solid #869794;"> -->
-                          <!-- <span class="btn btn-success fileinput-button" style="background-color: rgb(92, 184, 92) !important; width: 191px;">
-                              <i class="glyphicon glyphicon-plus"></i>
-                              <span>Chọn Ảnh</span>
-                              <input type="file" name="images[]" multiple>
-                          </span> -->
-                         <!--  <button type="submit" class="btn btn-primary start">
-                              <i class="glyphicon glyphicon-upload"></i>
-                              <span>Bắt Đầu Upload</span>
-                          </button> -->
-                          <!-- <button type="reset" class="btn btn-warning cancel">
-                              <i class="glyphicon glyphicon-ban-circle"></i>
-                              <span>Hủy Bỏ upload</span>
-                          </button>
-                          <button type="button" class="btn btn-danger delete">
-                              <i class="glyphicon glyphicon-trash"></i>
-                              <span>Xóa Ảnh đã upload</span>
-                          </button> -->
-                          <!-- The global file processing state -->
-                          <!-- <span class="fileupload-process"></span> -->
-                     
-                  <!-- </div> -->
-                    <!--  <div class="form-group">
-                        <label for = "album">Tên Album: </label>
-                        <input type="text" id="album" name="album_name" placeholder="Hãy nhập tên album này bạn muốn"></input>
+                       <div class="right-upload" style="float: right; display: none; margin-right: 32px;">
+                          <div class="fileupload-buttonbar" style="text-align: center; height: 60px; border-bottom: 1px solid #869794;">
+                              <button type="submit" class="btn btn-primary start publish">
+                                  <span>Bắt Đầu Upload</span>
+                              </button>
+                      </div>
+                     <div class="form-group">
+                        <label for = "album">Tên Ảnh: </label>
+                        <input type="text" id="album" name="album_name" placeholder="Hãy nhập tên ảnh bạn muốn hoặc để mặc định!"></input>
                      </div>
                        <div class="form-group">
-                          <label for="kind-album">Chọn Loại Album:</label>
-                          <select class="form-control" id="kind-album" name="album_kind">
+                          <label for="kind-images">Chọn Loại Ảnh:</label>
+                          <select class="form-control" id="kind-images" name="image_kind">
                             <option value="1">All</option>
                             <option value="2">CUộc sống</option>
                             <option value="3">Động vật</option>
@@ -267,15 +241,19 @@
                           </select>
                         </div>
                        <div class="form-group">
-                          <label for = "description">Viết vài lời mô tả về album: </label>
-                          <textarea id="description"  class="form-control" name="album_describe" form="fileupload"></textarea>
-                       </div> -->
-                    <!--  </div>    -->       
-                  </div>
-              <!-- <div class="modal-footer close-upload" style="background: rgb(247, 248, 250);">
-                  <button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="background: #57ED4F;">Close</button>
-              </div> -->
+                          <label for = "description">Viết vài lời mô tả về những bức ảnh: </label>
+                          <textarea id="description"  class="form-control" name="image_describe" form="fileupload"></textarea>
+                       </div>
+                       <div class="form-group">
+                          <label for = "localtion">Nơi chụp: </label>
+                          <input type="text" id="location" name="image_location" placeholder="Cho chúng tôi biết bạn chụp ở đâu!" form="fileupload"></input>
+                       </div>
 
+                     </div>       
+                </div>
+                   </div>
+                    </form>  
                </div>
           </div>
-      </div>
+     </div>
+   <!--   </div> -->

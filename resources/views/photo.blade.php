@@ -381,62 +381,70 @@
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
-        <td style="padding: 18px;">
+        <td style="padding: 18px; border-top: 1px solid #ddd; ">
             <span class="preview">
-             
+             <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin: 0px; height: 3px;"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+             <img >
             </span>
-        </td>
-        <td style="display: block;">
-            <p class="size">Processing...</p>
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
         </td>
         <td style="text-align: center; display: inline;">
             {% if (!i && !o.options.autoUpload) { %}
-                <button class="btn btn-primary start" style="padding: 7px; width: 47%;" disabled>
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Bắt đầu</span>
+                <button class="start more" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);" disabled>
+                    <span class="span-start" style=""></span>
                 </button>
             {% } %}
             {% if (!i) { %}
-                <button class="btn btn-warning cancel" style="padding: 7px; width: 47%;">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Xóa</span>
+                <button class="cancel" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
+                    <span class="span-cancel"></span>
                 </button>
             {% } %}
         </td>
     </tr>
+     
 {% } %}
+
 </script>
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
+  {% if (file.thumbnailUrl) { %}
     <tr class="template-download fade">
         <td style="display: inline-block;">
             <span class="preview">
                 {% if (file.thumbnailUrl) { %}
                     <a href="{%=file.url%}" title="{%=file.name%}"  download="{%=file.name%}" data-gallery>
                       <img src="{%=file.thumbnailUrl%}"></a>
-                {% } %}
+                  {% } %}
             </span>
         </td>
-        <td>
-            <span class="size">{%=o.formatFileSize(file.size)%}</span>
-        </td>
-        <td>
+        <td style="width: 100%;">
             {% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Xóa Ảnh</span>
+                <button class="delete" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <span class="span-delete"></span>
                 </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
+                 <button class="cancel" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
+                    <span class="span-cancel"></span>
+                </button>
             {% } else { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Xóa</span>
+                <button class="cancel" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
+                    <span class="span-cancel"></span>
                 </button>
             {% } %}
         </td>
     </tr>
+      {% }else{ %}
+         <tr class="template-download fade" style="width: 250px; height: 300px">
+            <td style="display: inline-block; width: 100%; height: 100%; background: #A6AFB7;">
+               <span class="error-upload" style="background: url(/images/icon/error.svg); background-position: center center; display: inline-block; width: 100%; height: 100%; background-size: 142px; background-repeat: no-repeat;">
+               </span>
+            </td>
+            <td style="width: 100%; height: 50px;">
+               <button class="cancel" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
+                    <span class="span-cancel"></span>
+                </button>
+            </td>
+        </tr>
+        {% } %}
 {% } %}
 </script>
 @endsection
