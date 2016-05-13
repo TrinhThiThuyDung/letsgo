@@ -124,6 +124,7 @@ class PhotoController extends Controller
                                 'resize_1'  => $image_resize_1->basename,
                                 'resize_2'  => $image_resize_2->basename,
                                 'url'       => $url,
+                                'describe'  => $images['image_describe'],
                                 'location'  => $images['image_location']
                             ];
                         $image_inserted = $this->addPhotoToDB( $image_add );
