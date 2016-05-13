@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 
 
-class LikeRepositoryEloquent extends BaseRepository implements LikeRepository
+class LikeRepositoryEloquent implements LikeRepository
 {
     public function addLike( $data )
     {
@@ -52,7 +52,7 @@ class LikeRepositoryEloquent extends BaseRepository implements LikeRepository
         $result = DB::table("likes")
                     ->join("users", "likes.user_id", '=', "users.id")
                     ->join("images", "likes.image_id", '=', 'images.id')
-                    ->select("images.*", "users.id", "users.last_name", "users.first_name")
+                    ->select("images.*", "users.id as user_id", "users.last_name as user_lastname", "users.first_name as user_firstname")
                     ->where("likes.user_id", $user_id)
                     ->orderBy ("likes.created_at", 'desc')
                     ->get();

@@ -30,9 +30,9 @@ use Illuminate\Database\Eloquent\Model;
  	    ];
 
    //Cac quan he se co voi cac model khac
- 	public function albums()
+ 	public function images()
     {
-        return $this->hasMany('Album');
+        return $this->hasMany('Image');
     }
     public function likes()
     {
@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Model;
     }
     public function comments()
     {
-        return $this->hasMany('comment');
+        return $this->hasMany('Comment');
     }
 }
 

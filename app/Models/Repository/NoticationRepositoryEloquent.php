@@ -6,7 +6,7 @@ use App\Models\Entities\Notication;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class NoticationRepositoryEloquent extends BaseRepository implements NoticationRepository
+class NoticationRepositoryEloquent implements NoticationRepository
 {
      public function model()
     {
@@ -37,7 +37,7 @@ class NoticationRepositoryEloquent extends BaseRepository implements NoticationR
                                 ['notications.user_to_id'   , (int)$user_id ],
                                 ['notications.seen'         , '0'           ]
                             ])
-                            ->select( 'users.id', 'users.last_name', 'users.first_name', 'users.avatar', 'notications.*')
+                            ->select( 'users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as user_avatar', 'notications.*')
                             ->orderBy('notications.created_at', 'desc')
                             ->get();
         return $result;
@@ -46,7 +46,7 @@ class NoticationRepositoryEloquent extends BaseRepository implements NoticationR
     protected function getNoticationSeen( $user_id )
     {
         $result = Notication::join( 'users', 'notications.user_from_id' ,'=', 'users.id')
-                            ->select( 'users.id', 'users.last_name', 'users.first_name', 'users.avatar', 'notications.*')
+                            ->select( 'users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as user_avatar', 'notications.*')
                             ->where ([
                                 ['notications.user_to_id'   , (int) $user_id ],
                                 ['notications.seen'         , '1'          ]

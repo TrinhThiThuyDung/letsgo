@@ -11,6 +11,7 @@ use App\Models\Service\UserServiceFacade;
 use App\Models\Service\NoticationServiceFacade;
 
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image; 
 
 class PhotoController extends Controller
 {
@@ -38,7 +39,7 @@ class PhotoController extends Controller
 	{
 
         $photos = $this->getPhoto();
-        
+       
         return view("photo")->with( 'photos' , $photos );
 		
 	}
@@ -94,40 +95,58 @@ class PhotoController extends Controller
 
         $images = $request->all();
 
-        if ($album['album_name'] === '') {
-            $album['album_name'] = 'Unknown Album';
-        }
-
         if ($request->hasFile('images')) {
-            $images = $request->file('images')[0];
+            $image = $request->file('images')[0];
 
-            if($images->isValid()){
+            if($image->isValid()){
+            
+                $image_name = $image->getClientOriginalName();
 
-                $images_name = $images->getClientOriginalName();
+                $image_path = $this->moveImagesToUploadFolder( $image , $image_name );
+                if ($image_path) {
+                     //Resize image
+                    $image_size = getimagesize($image_path."/".$image_name);
 
-                $image_inserted = $this->addPhotoToDB( $images_name ,$album );
+                    $width = $image_size[0];
+                    $height = $image_size[1];
 
-                if ($image_inserted) {
-                    $this->moveImagesToUploadFolder( $images , $images_name, $album['album_name'] );
-                    
-                    $deleteUrl      = 'photo/delete/'.$album['album_name'].'/'.$image_inserted['id'].'/'.$images_name;
-                    $images_url     = url('/')."/".$image_inserted['url'];
-                    $images_size    = $images->getClientSize();
+                    $image_resize_1 = $this->resizeImage( ($width/2) , ($height/2), $image_path , $image_name );
+                    $image_resize_2 = $this->resizeImage( ($width/3) , ($height/3), $image_path , $image_name );
 
-                    $files = [
-                               [
-                                "name"          => $images_name,
-                                "size"          => $images_size,
-                                "url"           => $images_url,
-                                "thumbnailUrl"  => $images_url,
-                                "deleteUrl"     => $deleteUrl,
-                                "deleteType"    => "DELETE"
-                              
-                               ]
+                    if ($image_resize_1 && $image_resize_2) {
+
+                        $url = 'upload/'.$this->user_id;
+                        $image_add = [
+                                'user_id'   => (int)$this->user_id,
+                                'kind_id'   => (int)$images['image_kind'],
+                                'name'      => $image_name,
+                                'size'      => $width."x".$height,
+                                'resize_1'  => $image_resize_1->basename,
+                                'resize_2'  => $image_resize_2->basename,
+                                'url'       => $url,
+                                'location'  => $images['image_location']
                             ];
-                   return response()->json( ['files' => $files ]);
-                }
-                
+                        $image_inserted = $this->addPhotoToDB( $image_add );
+
+                        if ($image_inserted) {
+                            
+                            $deleteUrl      = 'photo/delete/'.$image_inserted['id']; //link rpute delete image
+                            $image_url     = url('/')."/".$image_inserted['url']."/".$image_resize_2->basename; //link to image 
+                            //response data
+                            $files = [
+                                       [
+                                        "name"          => $image_name,
+                                        "url"           => $image_url,
+                                        "thumbnailUrl"  => $image_url,
+                                        "deleteUrl"     => $deleteUrl,
+                                        "deleteType"    => "DELETE"
+                                      
+                                       ]
+                                    ];
+                           return response()->json( ['files' => $files ]);
+                        }
+                    }
+                }  
             }
         }
         $files = [
@@ -139,18 +158,48 @@ class PhotoController extends Controller
         
     }
 
-    protected function addPhotoToDB(  $image_name , $album)
+    protected function addPhotoToDB(  $image )
     {
-        return ImageServiceFacade::addPhoto( $this->user_id , $image_name , $album );
+        return ImageServiceFacade::addPhoto( $image );
     }
 
-    protected function moveImagesToUploadFolder( $images , $images_name , $album_name)
+    protected function moveImagesToUploadFolder( $images , $images_name )
     {
-        $path = '/public/upload/'.$this->user_id.'/'.$album_name;
+        try {
+            $path = base_path().'/public/upload/'.$this->user_id;
        
-        $images->move(
-            base_path().$path, $images_name
-        );
+            $images->move( $path, $images_name);
+            return $path;
+
+        } catch (Exception $e) {
+            return false;
+        }
+        
+    }
+    /**
+     *Resize Image to other size
+     *@param image
+     *@param image with other size
+     */
+    protected function resizeImage( $width, $height, $path, $name)
+    {
+        try {
+            
+            $width = intval($width);
+            $height = intval($height);
+
+            $image_name = $width."x".$height."_".$name;
+
+            $img = Image::make($path."/".$name);
+            $img->resize($width , $height , function($constraint){
+                $constraint->aspectRatio();
+            });
+            
+            return $img->save($path."/".$image_name);
+
+        } catch (Exception $e) {
+            return false;
+        }
     }
     /**
      * process delete photo
@@ -159,31 +208,42 @@ class PhotoController extends Controller
      */
     public function deletePhoto(Request $request)
     {   
-        $images_id = $request->id;
-        $images_name = $request->name;
-        $album_name = $request->album_name;
+        $image_id = $request->image_id;
 
-        if( $this->deleteImageOnFolder($album_name, $images_name)){
-            $result = ImageServiceFacade::deletePhoto($images_id);
-            if ($result == 1) {
-                return response()->json(['status' => 'OK']);
-            }
-            return null;
-        }
+        $image = ImageServiceFacade::getPhotoById( $image_id );  //get image in data get name 
     
-        return null;
-        
-    }
-    protected function deleteImageOnFolder($album_name , $image_name)
-    {
-        $file = $this->user_id."/".$album_name."/".$image_name;
+        if($image){
+            $result = ImageServiceFacade::deletePhoto( $image_id );
+            if ($result) {
+                $image = $image[0];
 
-        $exists = Storage::disk( 'local' )->exists( $file );
-        if($exists){
-            Storage::delete( $file );
-            return true;
+               
+                $image_1 = $this->user_id."/".$image->name;
+                $image_2 = $this->user_id."/".$image->resize_1;
+                $image_3 = $this->user_id."/".$image->resize_2;
+
+                $image_delete = [ $image_1 , $image_2, $image_3 ];
+
+                $result = $this->deleteImageOnFolder( $image_delete );
+                
+                if ($result) {
+                      return response()->json(['status' => 'delete sucess']);
+                }
+            }
         }
-        return false;
+        return null;
+    }
+    protected function deleteImageOnFolder(  $image_delete )
+    {
+
+        foreach ($image_delete as $key => $value) {
+            $exists = Storage::disk( 'local' )->exists( $value );
+            if(!$exists){
+                return false;
+            }
+        }
+        Storage::delete( $image_delete );
+        return true;
     }
 }
 ?>

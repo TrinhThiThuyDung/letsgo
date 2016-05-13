@@ -2,7 +2,6 @@
 namespace App\Models\Service;
 
 use App\Models\Repository\ImageFacade;
-use App\Models\Repository\AlbumFacade;
 
 use App\Models\Entities\Image;
 use DB;
@@ -14,33 +13,24 @@ class ImageService implements ImageServiceInterface
 {
 	// Process data before add to database
 	/**
-	 *Add photo to album
-	 *@param id of user, name of image and infor of album
-	 *@return true if add success and false for lost
+	 *Add photo to database
+	 *@param image  infor 
+	 *@return images created
 	 **/
-	function addPhoto( $id_user , $images_name , $album )
+	function addPhoto( $image )
 	{
-		/*check exits of album*/
-
-		if (!empty( $album)) {
-			/*if not exits and name null auto create name for album is 'Unknown Album'*/
-
-			$album = AlbumFacade::checkExitsAlbumOrCreate( $id_user , $album );
-
-			$result_create = ImageFacade::addImage($id_user , $images_name , $album );
-
-			return $result_create;
+		if (!empty( $image)) {	
+			return $image_inserted = ImageFacade::addImage( $image );
 		}
-		
 	}
 	/**
 	 *Delete photo on database
 	 *@param images id
 	 *@return
 	 */
-	public function deletePhoto($images_id)
+	public function deletePhoto($image_id)
 	{
-		$result = DB::table('images')->where('id', '=', $images_id)->delete();
+		$result = DB::table('images')->where('id', '=', $image_id)->delete();
 		return $result;
 	}
 	public function getAllPhoto()
@@ -48,9 +38,17 @@ class ImageService implements ImageServiceInterface
 		return ImageFacade::getAllPhoto ();
 	}
 
-	function getPhotoOfUser($user_id)
+	public function getPhotoOfUser($user_id)
 	{
 		return ImageFacade::getPhotoOfUser ($user_id);
+	}
+	public function getPhotoById($image_id)
+	{
+		if(!empty($image_id)){
+			$image = DB::table('images')->where('id', '=', $image_id)->get();
+
+			return $image;
+		}
 	}
 }
 

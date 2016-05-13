@@ -4,11 +4,12 @@ namespace App\Models\Service;
 
 interface ImageServiceInterface{
 	/*Add Photo*/
-	function addPhoto( $id_user , $images_name , $album );
+	function addPhoto( $images  );
 	/*Delete Photo*/
-	function deletePhoto( $images_id );
+	function deletePhoto( $image_id );
 	/*get All photo*/
 	function getAllPhoto();
 	function getPhotoOfUser($user_id);
+	function getPhotoById( $image_id );
 }
 ?>

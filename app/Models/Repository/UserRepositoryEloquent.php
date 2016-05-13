@@ -10,7 +10,7 @@ use DB;
 use App\Models\Repository\LikeFacade;
 use App\Models\Repository\ImageFacade;
 
- class UserRepositoryEloquent extends BaseRepository implements UserRepository
+ class UserRepositoryEloquent implements UserRepository
  {
 
  	 public function model()
@@ -130,8 +130,7 @@ use App\Models\Repository\ImageFacade;
  	protected function countImageUploaded($user_id)
  	{
  		$result = DB::table("images")
- 					->join("albums", "images.album_id", '=', "albums.id")
- 					->where("albums.user_id", $user_id)
+ 					->where("user_id", $user_id)
  					->count();
  		return $result;
  	}

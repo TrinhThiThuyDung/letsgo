@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
 * 
 */
-class CommentRepositoryEloquent extends BaseRepository implements CommentRepository
+class CommentRepositoryEloquent implements CommentRepository
 {
 
    public function addComment( $data )

@@ -504,6 +504,13 @@
              $('.right-upload').css("display", "block");
 
             data.context.find('.preview').each(function (index, elm) {
+                var canvas = data.files[index].preview;
+             
+                var image = new Image();
+                image.src = canvas.toDataURL("image/png/jpeg");
+
+                data.files[index].preview = image;
+                
                 $(elm).append(data.files[index].preview);
                 $('.add-more').css("display", "inline-block");
             });

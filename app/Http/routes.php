@@ -32,7 +32,7 @@ Route::group(['prefix' => 'web'], function(){
 		/*
 		 * Delete image
 		 */
-		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 
+		Route::delete('/photo/delete/{image_id}',[ 
 							'as'=>'web/photo/delete', 
 							'uses'=>'PhotoController@deletePhoto']
 		);

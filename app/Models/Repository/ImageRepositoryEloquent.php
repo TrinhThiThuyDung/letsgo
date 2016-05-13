@@ -10,21 +10,17 @@ use DB;
 /**
 * 
 */
-class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
+class ImageRepositoryEloquent implements ImageRepository
 {
 	/**
 	 *add Photo to Images table
-	 *@param id of user, image name and album information
+	 *@param image
 	 *@return recored created
 	 */
-	function addImage($id_user , $images_name , $album )
+	function addImage( $image )
 	{
 		
-		$result_create = Image::create([
-			'album_id' 	=> $album['id'],
-			'name'		=> $images_name,
-			'url'		=> $album['url']."/".$images_name
-			]);
+		$result_create = Image::create( $image );
 
 		return $result_create;
 	}
@@ -37,9 +33,8 @@ class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
 	{
 		
 		$user_id_image = DB::table('images')
-								->join('albums', 'images.album_id', '=', 'albums.id')
-								->where('images.id' , '=' , $image_id)
-								->select('albums.user_id')
+								->where('id' , '=' , $image_id)
+								->select('user_id')
 								->get();
 
 		return $user_id_image[0]->user_id;
@@ -48,9 +43,8 @@ class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
 	public function getAllPhoto()
 	{
 		$images = DB::table("images")
-					->join( 'albums', 'images.album_id', '=', 'albums.id' )
-					->join( 'users', 'albums.user_id', '=', 'users.id')
-					->select('users.id', 'users.last_name', 'users.first_name','albums.name', 'albums.describe', 'images.*')
+					->join( 'users', 'images.user_id', '=', 'users.id')
+					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'images.*')
 					->orderBy('images.created_at', 'desc')
 					->get();
 		return $images;
@@ -58,25 +52,12 @@ class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
 
 	public function getPhotoOfUser($user_id)
 	{
-		$result = DB::table("albums")
-					->select("id", "name")
-					->where("albums.user_id", $user_id)
+		$result = DB::table("images")
+					->where("user_id", $user_id)
 					->orderBy("created_at", "desc")
 					->get();
-		$array_photo = [];
-		foreach ($result as $key => $value) {
-			array_push($array_photo, [ 'album_name' => $value->name , $this->getPhotoByAlbumID($value->id) ]);
-		}
-		return $array_photo;
-	}
-
-	protected function getPhotoByAlbumID($album_id)
-	{
-		return $result = DB::table("albums")
-							->join("images", 'images.album_id', '=', 'albums.id')
-							->select("images.*", "albums.describe","albums.name as album_name", "albums.user_id")
-							->where("albums.id", $album_id)
-							->get();
+	
+		return $result;
 	}
 }
 

@@ -10,9 +10,14 @@ class Image extends Model
 
     protected $fillable = [
     	'id',
-    	'album_id',
+    	'user_id',
+        'kind_id',
     	'name',
+        'size',
+        'resize_1',
+        'resize_2',
     	'url',
+        'location',
     	'created_at',
     	'updated_at'
     	
@@ -21,9 +26,13 @@ class Image extends Model
  *Define relationship inverse  with User model
  */
    
-    public function albums()
+    public function users()
     {
-    	return $this->belongsTo('Album');
+    	return $this->belongsTo('User');
+    }
+    public function kinds()
+    {
+        return $this->belongsTo("Kind");
     }
     public function likes()
     {

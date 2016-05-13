@@ -227,13 +227,10 @@
                                   <span>Bắt Đầu Upload</span>
                               </button>
                       </div>
-                     <div class="form-group">
-                        <label for = "album">Tên Ảnh: </label>
-                        <input type="text" id="album" name="album_name" placeholder="Hãy nhập tên ảnh bạn muốn hoặc để mặc định!"></input>
-                     </div>
+                    
                        <div class="form-group">
-                          <label for="kind-images">Chọn Loại Ảnh:</label>
-                          <select class="form-control" id="kind-images" name="image_kind">
+                          <label for="image_kind">Chọn Loại Ảnh:</label>
+                          <select class="form-control" id="image_kind" name="image_kind" form="fileupload">
                             <option value="1">All</option>
                             <option value="2">CUộc sống</option>
                             <option value="3">Động vật</option>

@@ -19,8 +19,8 @@ class Kinds extends Model
  *Define relationship inverse  with User model
  */
    
-    public function albums()
+    public function images()
     {
-    	return $this->hasMany('Album');
+    	return $this->hasMany('Image');
     }
 }
