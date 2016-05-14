@@ -33,9 +33,9 @@ class ImageService implements ImageServiceInterface
 		$result = DB::table('images')->where('id', '=', $image_id)->delete();
 		return $result;
 	}
-	public function getAllPhoto()
+	public function getAllPhoto( $user_id )
 	{
-		return ImageFacade::getAllPhoto ();
+		return ImageFacade::getAllPhoto ( $user_id );
 	}
 
 	public function getPhotoOfUser($user_id)
@@ -49,6 +49,10 @@ class ImageService implements ImageServiceInterface
 
 			return $image;
 		}
+	}
+	public function findIdUserOfImage($image)
+	{
+		return ImageFacade::findIdUserOfImage($image);
 	}
 }
 

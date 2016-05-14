@@ -59,7 +59,7 @@ class PhotoController extends Controller
     }
    protected function getPhoto()
     {
-        return ImageServiceFacade::getAllPhoto();
+        return ImageServiceFacade::getAllPhoto( $this->user_id );
        
     }
      protected function getNoticationOfUser()

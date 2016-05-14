@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Service\FollowServiceFacade;
+use App\Models\Service\ImageServiceFacade;
 
 class FollowController extends Controller
 {
@@ -20,12 +21,18 @@ class FollowController extends Controller
 
     	$data['user_id'] = $this->user_id;
 
+        $image_user_id = ImageServiceFacade::findIdUserOfImage( $data['image_id']);
+
+        if ((int)$image_user_id == (int)$this->user_id) {
+            return response()->json(['follow' => "duplicate id"]);
+        }
+
     	$result = FollowServiceFacade::checkFollow( $data );
 
     	if ($result) {
-    		return response()->json([ 'follow' => true ]);
+    		return response()->json([ 'follow' => "following" ]);
     	}
-    	return response()->json( ['follow' => false ] );
+    	return response()->json( ['follow' => "follow" ] );
     }
     /*====================== user follow user ==========================*/
     public function addFollow(Request $request)

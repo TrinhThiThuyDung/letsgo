@@ -33,12 +33,11 @@ $(document).ready(function(){
     var unLoveAction = function (e, data, urlPost ){
         if ($(e.target).hasClass('icon-love')) {
 
-        urlPost = urlPost+"/dislike";
+        urlPost = urlPost+"/dislike/"+data['image_id'];
 
         $.ajax({
             url: urlPost,
-            data: { "data": data},
-            type: 'post',
+            type: 'delete',
             dataType: 'json',
         })
         .done(function(  data ){

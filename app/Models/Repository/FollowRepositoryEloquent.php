@@ -11,7 +11,7 @@ class FollowRepositoryEloquent implements FollowRepository
     public function checkFollow( $data )
     {
     	$result = Follow::where([
-    		['user_flower_id',(int) $data['user_id']],
+    		['user_follower_id',(int) $data['user_id']],
     		['user_followed_id',(int) $data['user_id_image']]
     		])->get();
     	if (count($result) == 0) {
@@ -23,7 +23,7 @@ class FollowRepositoryEloquent implements FollowRepository
     public function addFollow( $data )
     {
         $result = Follow::create([
-            'user_flower_id'      => (int)$data['user_id'],
+            'user_follower_id'      => (int)$data['user_id'],
             'user_followed_id'      => (int)$data['user_id_image']
         ]);
         
@@ -33,7 +33,7 @@ class FollowRepositoryEloquent implements FollowRepository
     public function deleteFollow( $data )
     {
        $result = Follow::where([
-             ['user_flower_id' , (int)$data['user_id']],
+             ['user_follower_id' , (int)$data['user_id']],
              ['user_followed_id' , (int)$data['user_id_image']]
         ])->delete();
        return $result;

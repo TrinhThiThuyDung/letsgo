@@ -40,52 +40,92 @@
     @include('layout/nagavition')
      <div class="pageContent">
      
- <div id="gallerry-images">
-  <div class="container gallerry-image" >
-      <div id="album " class="album-gal carouselGallery-col-60">
-        <div class=" wrap-images  item-1 ">
-          <div class="box-1">
-            <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="0" data-id = '247' data-username="Dung Trinh" data-imagetext="Photographer: @conny_lundstrom" data-location="Hà Nội" data-imagepath="{{url('/images/home-images/photo-1.jpg')}}">
-                <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-1.jpg')}}"></a>
-                  <div class="action">
-                    <div class="view">
-                      <a href="{{url('web/photo/action')}}" class="like">
-                        <span class="icon icon-like"></span>
-                      </a>
-                      <a href="" class="add-to-gal">
-                          <span class="icon-add-gal"></span>
-                      </a>
-                    </div>
-                        <div class="info">
-                          <div class="inside">
-                            <div class="about-img">
-                              <span class="about-img">
-                                <a href="" class="title-img"> Anh dep</a>
-                                by
-                                <a href="" class="by">Tieu Long Hoang</a>
-                              </span>
-                            </div>
-                            <time>
-                              <span class="hour" data-bind = "hour">1h ago</span>
-                              <span class="t-detail" data-bind = "t-detail">20/03</span>
-                            </time>
-                          </div>
+       <div id="gallerry-images">
+          <div class="container gallerry-image" >
+            <div id="album " class="album-gal carouselGallery-col-60">
+             
+             <?php 
+
+              if (!empty($photos)) {
+                $photos_total = count($photos);
+                for ($i = 0; $i < $photos_total; $i++) { 
+                  $remain = $photos_total - $i;
+                  if ($remain >= 3) {
+                    $item = rand(1, 3);
+                    if ($item == 1) {
+                      $image = $photos[$i];
+                      $image_url = $image->url."/".$image->name;
+                      $image_user_by = $image->user_firstname." ".$image->user_lastname; ?>
+                       <div class=" wrap-images  item-1 ">
+                      <div class="box-1">
+                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="/<?php echo $image_url; ?>" >
+                            <a class="photo-link" href="#"><img src="/<?php echo $image_url; ?>"></a>
+                              <div class="action">
+                                <div class="view">
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                    <span class="icon <?php if ($image->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
+                                  </a>
+                                  <a href="" class="add-to-gal">
+                                      <span class="icon-add-gal"></span>
+                                  </a>
+                                </div>
+                                    <div class="info">
+                                      <div class="inside">
+                                        <div class="about-img">
+                                          <span class="about-img">
+                                            <a href="" class="title-img"> Photo </a>
+                                            by
+                                            <a href="" class="by"><?php echo $image_user_by; ?></a>
+                                          </span>
+                                        </div>
+                                        <time>
+                                          <span class="hour" data-bind = "hour"><?php echo $image->created_at; ?></span>
+                                          <span class="t-detail" data-bind = "t-detail">tại <?php echo $image->location; ?></span>
+                                        </time>
+                                      </div>
+                                    </div>
+                           </div>
                         </div>
-                    </div>
-                  </div>
 
                 </div>
               </div>
-          <div class="wrap-images item-3">
-             <div class="item-big">
+                    <?php  }elseif ($item == 2) { 
+                      $image_1 = $photos[$i];
+                      $image_1_url = $image_1->url."/".$image_1->name;
+                      $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                      $image_1_width = (int)explode("x", $image_1->size)[0];
+
+                      $image_2 = $photos[++$i];
+                      $image_2_url = $image_2->url."/".$image_2->name;
+                      $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                      $image_2_width = (int)explode("x", $image_2->size)[1];
+
+                       if ( ($image_1_width < 500 && $image_2_width < 500) || ($image_1_width > 650 && $image_2_width > 650 )) {
+                        $image_1_size = $image_2_size = "item-same";
+                      }elseif($image_1_width > 500 && $image_2_width < 500 ){
+                        $image_1_size = "item-big";
+                        $image_2_size = "item-small";
+                      }elseif($image_1_width < 500 && $image_2_width > 500 ){
+                        $image_1_size = "item-small";
+                        $image_2_size = "item-big";
+                      }else{
+                        $image_1_size = $image_2_size = "item-same";
+                      }
+                       ?>
+                      <div class=" wrap-images item-2">
+                   <div class="<?php  echo $image_1_size; ?>">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="1" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-9.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test');?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                             <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-9.jpg')}}"></a>
-                         <div class="action">
+                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="/<?php echo $image_1_url; ?>" >
+                    <a class="photo-link"  href="#"><img src="/<?php echo $image_1_url; ?>">
+                    </a>
+                    <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                     <span class="icon <?php if ($image_1->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -95,8 +135,43 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Photo </a> by
+                                    <a href="" class="by"><?php echo $image_1_user_by; ?></a>
+                                  </span>
+                                  </div>
+                                  <time>
+                                      <span class="hour" data-bind = "hour"></span>
+                                      <span class="t-detail" data-bind = "t-detail">tại <?php echo $image_1->location; ?></span>
+                                  </time>
+                                </div>
+                              </div>
+                          </div>
+                  </div>
+                    </div>
+                   </div>
+                    <div class="<?php  echo $image_2_size; ?>">
+                    <div class="box-1">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="/<?php echo $image_2_url; ?>">
+                        <a class="photo-link" href="#"><img src="/<?php echo $image_2_url; ?>">
+                        </a>
+                        <div class="action">
+                              <div class="view">
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                   <span class="icon <?php if ($image_2->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
+                                  </a>
+                                  <a href="" class="add-to-gal">
+                                    <span class="icon-add-gal"></span>
+                                  </a>
+                                 
+                                </div>
+                                <div class="info">
+                                  <div class="inside">
+                                  <div class="about-img">
+                                  <span class="about-img">
+                                      <a href="" class="title-img"> Photo </a> by
+                                    <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
@@ -107,19 +182,38 @@
                               </div>
                           </div>
                       </div>
-                  </div>
-              </div>
-                 <div class="item-small">
-                    <div class="small-1">
-                      <div class="box-1">
-                        <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="2" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-2.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                             <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-2.jpg')}}">
-                             </a>
-                              <div class="action">
+                    </div>
+                 </div>
+                </div>
+                     <?php }else{ 
+                      $image_1 = $photos[$i];
+                      $image_1_index = $i;
+                      $image_1_url = $image_1->url."/".$image_1->name;
+                      $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+
+                      $image_2 = $photos[++$i];
+                      $image_2_index = $i;
+                      $image_2_url = $image_2->url."/".$image_2->name;
+                      $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+
+                      $image_3 = $photos[++$i];
+                      $image_3_index = $i;
+                      $image_3_url = $image_3->url."/".$image_3->name;
+                      $image_3_user_by = $image_3->user_firstname." ".$image_3->user_lastname;
+
+                      $rand = rand(0,1);
+                      if ($rand == 0) { ?>
+                         <div class="wrap-images item-3">
+                  <div class="item-big">
+                    <div class="box-1">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
+                        <a class="photo-link" href="#"><img src="/<?php echo $image_1_url; ?>"></a>
+                         <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                     <span class="icon <?php if ($image_1->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -129,8 +223,43 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Photo </a> by
+                                    <a href="" class="by">by <?php echo $image_1_user_by; ?></a>
+                                  </span>
+                                  </div>
+                                  <time>
+                                      <span class="hour" data-bind = "hour">1h ago</span>
+                                      <span class="t-detail" data-bind = "t-detail">tại <?php echo $image_1->location; ?></span>
+                                  </time>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                 <div class="item-small">
+                    <div class="small-1">
+                      <div class="box-1">
+                        <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
+                             <a class="photo-link" href="#"><img src="/<?php echo $image_2_url; ?>">
+                             </a>
+                              <div class="action">
+                              <div class="view">
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                    <span class="icon <?php if ($image_2->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
+                                  </a>
+                                  <a href="" class="add-to-gal">
+                                    <span class="icon-add-gal"></span>
+                                  </a>
+                                </div>
+                                <div class="info">
+                                  <div class="inside">
+                                  <div class="about-img">
+                                  <span class="about-img">
+                                      <a href="" class="title-img">Photo </a> by
+                                    <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
@@ -145,14 +274,15 @@
                   </div>
                   <div class="small-2">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="3" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-3.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                          <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-3.jpg')}}">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
+                          <a class="photo-link" href="#"><img src="/<?php echo $image_3_url; ?>">
                           </a>
                           <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                    <span class="icon <?php if ($image_3->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -162,13 +292,13 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Photo </a> by
+                                    <a href="" class="by">by <?php echo $image_3_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
                                       <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_3->location; ?> </span>
                                   </time>
                                 </div>
                               </div>
@@ -179,19 +309,21 @@
                   </div>
                  </div>
               </div>
+                      <?php }else{ ?>
               <div class="wrap-images item-3" style="height: 300px;">
 
                 <div class="medium m1">
                   <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="4" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-4.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                    <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-4.jpg')}}">
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
+                    <a class="photo-link" href="#"><img src="/<?php echo $image_1_url; ?>">
 
                     </a>
                     <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                      <span class="icon <?php if ($image_1->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -201,13 +333,13 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                    <a href="" class="by"> <?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
                                       <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_1->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -217,14 +349,15 @@
                 </div>
                  <div class="medium m2">
                   <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="5" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="Hà Nội" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-5.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test');?>" data-posturl="" >
-                    <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-5.jpg')}}">
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
+                    <a class="photo-link" href="#"><img src="/<?php echo $image_2_url; ?>">
                     </a>
                     <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                     <span class="icon <?php if ($image_2->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -234,13 +367,13 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                    <a href="" class="by"><?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
                                       <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_2->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -250,14 +383,15 @@
                 </div>
                  <div class="medium m3">
                   <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="6" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-6.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test');  ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                    <a class="photo-link"  href=""><img src="{{url('/images/home-images/photo-6.jpg')}}">
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
+                    <a class="photo-link"  href=""><img src="/<?php echo $image_3_url; ?>">
                     </a>
                     <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                    <span class="icon <?php if ($image_3->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -267,13 +401,13 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                    <a href="" class="by"><?php echo $image_3_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
                                       <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_3->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -282,17 +416,87 @@
                   </div>
                 </div>
               </div>
-                <div class=" wrap-images item-2">
-                   <div class="item-big">
+                     <?php }
+                      } 
+                  }
+                  else{
+                    if ($remain == 1 ) { 
+                      $image = $photos[$i];
+                      $image_url = $image->url."/".$image->name;
+                      $image_user_by = $image->user_firstname." ".$image->user_lastname;
+                     ?>
+                      <div class=" wrap-images  item-1 ">
+                      <div class="box-1">
+                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="/<?php echo $image_url; ?>" >
+                            <a class="photo-link" href="#"><img src="/<?php echo $image_url; ?>"></a>
+                              <div class="action">
+                                <div class="view">
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                    <span class="icon <?php if ($image->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
+                                  </a>
+                                  <a href="" class="add-to-gal">
+                                      <span class="icon-add-gal"></span>
+                                  </a>
+                                </div>
+                                    <div class="info">
+                                      <div class="inside">
+                                        <div class="about-img">
+                                          <span class="about-img">
+                                            <a href="" class="title-img"> Photo </a>
+                                            by
+                                            <a href="" class="by"><?php echo $image_user_by; ?></a>
+                                          </span>
+                                        </div>
+                                        <time>
+                                          <span class="hour" data-bind = "hour"><?php echo $image->created_at; ?></span>
+                                          <span class="t-detail" data-bind = "t-detail">tại <?php echo $image->location; ?></span>
+                                        </time>
+                                      </div>
+                                    </div>
+                           </div>
+                        </div>
+
+                </div>
+              </div>
+                    <?php }elseif ($remain == 2) { 
+                   
+                      $image_1 = $photos[$i];
+                      $image_1_url = $image_1->url."/".$image_1->name;
+                      $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                      $image_1_width = (int)explode("x", $image_1->size)[0];
+
+                      $image_2 = $photos[++$i];
+                      $image_2_url = $image_2->url."/".$image_2->name;
+                      $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                      $image_2_width = (int)explode("x", $image_2->size)[1];
+
+                      if ( ($image_1_width < 500 && $image_2_width < 500) || ($image_1_width > 650 && $image_2_width > 650 )) {
+                        $image_1_size = $image_2_size = "item-same";
+                      }elseif($image_1_width > 500 && $image_2_width < 500 ){
+                        $image_1_size = "item-big";
+                        $image_2_size = "item-small";
+                      }elseif($image_1_width < 500 && $image_2_width > 500 ){
+                        $image_1_size = "item-small";
+                        $image_2_size = "item-big";
+                      }else{
+                        $image_1_size = $image_2_size = "item-same";
+                      }
+                      ?>
+
+                    <div class=" wrap-images item-2">
+                   <div class="<?php echo $image_1_size; ?>">
                     <div class="box-1">
-                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="7" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-7.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test'); ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                    <a class="photo-link"  href="#"><img src="{{url('/images/home-images/photo-7.jpg')}}">
+                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="/<?php echo $image_1_url; ?>" >
+                    <a class="photo-link"  href="#"><img src="/<?php echo $image_1_url; ?>">
                     </a>
                     <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                     <span class="icon <?php if ($image_1->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
@@ -302,13 +506,13 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Photo </a> by
+                                    <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                      <span class="hour" data-bind = "hour"></span>
+                                      <span class="t-detail" data-bind = "t-detail">tại <?php echo $image_1->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -316,27 +520,29 @@
                   </div>
                     </div>
                    </div>
-                 <div class="item-small">
+                    <div class="<?php echo $image_2_size; ?>">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="8" data-username="visitsweden" data-imagetext="Photographer: @conny_lundstrom" data-location="" data-likes="3144" data-imagepath="{{url('/images/home-images/photo-8.jpg')}}" data-comment = "<?php $comment = array('name' => 'Thuy Dung', 'content' => 'test test test');  ?>" data-posturl="https://instagram.com/p/9_dViYwVWJ/">
-                        <a class="photo-link" href="#"><img src="{{url('/images/home-images/photo-4.jpg')}}">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="/<?php echo $image_2_url; ?>">
+                        <a class="photo-link" href="#"><img src="/<?php echo $image_2_url; ?>">
                         </a>
                         <div class="action">
                               <div class="view">
-                                  <a href="" class="like">
-                                    <span class="icon icon-like"></span>
-                                    <span class="icon icon-love"></span>
+                                  <a href="{{url('web/photo/action')}}" class="like">
+                                   <span class="icon <?php if ($image_2->like_id) {
+                                      echo "icon-love";
+                                    }else{ echo "icon-like"; } ?>"></span>
                                   </a>
                                   <a href="" class="add-to-gal">
                                     <span class="icon-add-gal"></span>
                                   </a>
+                                 
                                 </div>
                                 <div class="info">
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Anh dep</a> by
-                                    <a href="" class="by">Tieu Long Hoang</a>
+                                      <a href="" class="title-img"> Photo </a> by
+                                    <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
@@ -350,7 +556,11 @@
                     </div>
                  </div>
                 </div>
-                <div class="wrap-images "></div>
+                    <?php }
+                  }
+                }
+              }
+              ?>   
             </div>
           </div>
         </div>  
@@ -377,74 +587,5 @@
   })();
 
 </script>
-<!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade">
-        <td style="padding: 18px; border-top: 1px solid #ddd; ">
-            <span class="preview">
-             <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin: 0px; height: 3px;"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
 
-            </span>
-        </td>
-        <td style="text-align: center; display: inline;">
-            {% if (!i && !o.options.autoUpload) { %}
-                <button class="start more" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);" disabled>
-                    <span class="span-start" style=""></span>
-                </button>
-            {% } %}
-            {% if (!i) { %}
-                <button class="cancel" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
-                    <span class="span-cancel"></span>
-                </button>
-            {% } %}
-        </td>
-    </tr>
-     
-{% } %}
-
-</script>
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-  {% if (file.thumbnailUrl) { %}
-    <tr class="template-download fade">
-        <td style="display: inline-block;">
-            <span class="preview">
-                {% if (file.thumbnailUrl) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}"  download="{%=file.name%}" data-gallery>
-                      <img src="{%=file.thumbnailUrl%}"></a>
-                  {% } %}
-            </span>
-        </td>
-        <td style="width: 100%;">
-            {% if (file.deleteUrl) { %}
-                <button class="delete" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                    <span class="span-delete"></span>
-                </button>
-                 <button class="cancel" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
-                    <span class="span-cancel"></span>
-                </button>
-            {% } else { %}
-                <button class="cancel" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
-                    <span class="span-cancel"></span>
-                </button>
-            {% } %}
-        </td>
-    </tr>
-      {% }else{ %}
-         <tr class="template-download fade" style="width: 250px; height: 300px">
-            <td style="display: inline-block; width: 100%; height: 100%; background: #A6AFB7;">
-               <span class="error-upload" style="background: url(/images/icon/error.svg); background-position: center center; display: inline-block; width: 100%; height: 100%; background-size: 142px; background-repeat: no-repeat;">
-               </span>
-            </td>
-            <td style="width: 100%; height: 50px;">
-               <button class="cancel" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
-                    <span class="span-cancel"></span>
-                </button>
-            </td>
-        </tr>
-        {% } %}
-{% } %}
-</script>
 @endsection

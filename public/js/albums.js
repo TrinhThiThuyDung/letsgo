@@ -62,7 +62,7 @@ jQuery(function($) {
                 modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '../images/avatar/default-avatar.jpg'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='#'>"+username+"</a> </span>"
                 modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><a class = 'flow' href = '/web/photo/action/'>"+getFlow(image_id)+"</a></div>";
                 modalHtml += "<div class = 'likeTextShare'> <div style = 'height: 52px;'> <span class='carouselGallery-item-modal-likes' style = 'width: 48%;float: left; display: inline-block;'>";
-                modalHtml += "<a href = 'web/photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
+                modalHtml += "<a href = 'photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
                 modalHtml += "<span class = 'numLove'>"+getTotalLike(image_id)+"</span></a>";
                 modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'><a href = '#' style = 'font-size: 14px;'><span class='fa fa-share' style = 'display: inline-block; margin-right: 3px;'></span>Chia sẻ</a></span></div>";
                 modalHtml += "<span class='carouselGallery-modal-imagetext'>";
@@ -169,7 +169,8 @@ jQuery(function($) {
         else if($(e.target).hasClass('loved')){
             unLoveAction(e, numLove, urlPost, data);
         }
-        e.stopPropagation();
+        /*e.stopPropagation();*/
+        e.preventDefault();
     });
     var loveAction = function (e,  numLove, urlPost, data){
        if ($(e.target).hasClass( 'loveHeart')) {
@@ -222,10 +223,15 @@ jQuery(function($) {
             dataType: 'json',
             async: false,
         });
-        if (!request.responseJSON.follow) {
+        if ( request.responseJSON.follow === "follow") {
             return "<button class = 'follow'> Theo dõi </button>";
         }
-        return "<button class = 'following'>Đang theo dõi</button>";
+        else if( request.responseJSON.follow  === "following" ){ 
+            return "<button class = 'following'>Đang theo dõi</button>";
+        }
+        else if( request.responseJSON.follow === "duplicate id"){
+            return "";
+        }
 
     }
     $('body').on('mouseenter','.following' , function (e){
@@ -346,7 +352,7 @@ $('body').on('submit', '#formComment', function(e){
         addComment( data );
     });
     
-   e.stopPropagation();
+  e.preventDefault();
 });
 
 var addComment = function (data) {
@@ -375,6 +381,6 @@ var addComment = function (data) {
             $(this).parents(".otherComment").remove();   
         }
     
-        e.stopPropagation();
+       e.preventDefault();
     });
 });

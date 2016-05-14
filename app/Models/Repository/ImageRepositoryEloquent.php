@@ -40,11 +40,16 @@ class ImageRepositoryEloquent implements ImageRepository
 		return $user_id_image[0]->user_id;
 	}
 
-	public function getAllPhoto()
+	public function getAllPhoto( $user_id )
 	{
+
 		$images = DB::table("images")
 					->join( 'users', 'images.user_id', '=', 'users.id')
-					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'images.*')
+					->leftJoin('likes' , function ($join)  use ($user_id){
+            			$join->on( 'images.id', '=' ,'likes.image_id')
+                 			 ->where('likes.user_id','=', $user_id );
+        			})
+					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname','likes.id as like_id', 'images.*')
 					->orderBy('images.created_at', 'desc')
 					->get();
 		return $images;

@@ -8,8 +8,10 @@ interface ImageServiceInterface{
 	/*Delete Photo*/
 	function deletePhoto( $image_id );
 	/*get All photo*/
-	function getAllPhoto();
+	function getAllPhoto( $user_id );
 	function getPhotoOfUser($user_id);
 	function getPhotoById( $image_id );
+	function findIdUserOfImage($image_id);
+	
 }
 ?>

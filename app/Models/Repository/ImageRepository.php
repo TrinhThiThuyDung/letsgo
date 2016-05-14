@@ -7,7 +7,7 @@ interface ImageRepository
 {
 	function addImage( $image );	
 	function findIdUserOfImage( $image_id );
-	function getAllPhoto( );
+	function getAllPhoto( $user_id );
 	function getPhotoOfUser($user_id);
 	
 }
