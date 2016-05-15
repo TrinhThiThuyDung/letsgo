@@ -115,7 +115,7 @@ class PhotoController extends Controller
 
                     if ($image_resize_1 && $image_resize_2) {
 
-                        $url = 'upload/'.$this->user_id;
+                        $url = '/upload/'.$this->user_id;
                         $image_add = [
                                 'user_id'   => (int)$this->user_id,
                                 'kind_id'   => (int)$images['image_kind'],

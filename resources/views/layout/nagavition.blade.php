@@ -46,7 +46,7 @@
                           </h3>
                         </div>
                             <div class="panel panel-default">
-                                <ul class="list-group" id="contact-list">
+                                <ul class="list-group" id="contact-list" style="    overflow-y: scroll; height: 290px;">
                                 <li class="list-group-item">
                                        <div >
                                        <?php 
@@ -84,11 +84,11 @@
                                   /*  $noti_seen = $array_data['noti_seen'];*/
 
                                    foreach ($noti_not_seen as $key => $value) {
-                                        $user_name = $value["last_name"]." ".$value["first_name"];
+                                        $user_name = $value["user_lastname"]." ".$value["user_firstname"];
                                       ?>
                                        <li class="list-group-item">
                                         <div class="col-xs-12 col-sm-3 col-md-4">
-                                            <img src="/<?php echo $value["avatar"]; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
+                                            <img src="<?php echo $value["user_avatar"]; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
                                         </div>
                                         <div class="col-xs-12 col-sm-9 col-md-8">
                                         <a href="#">
@@ -120,7 +120,7 @@
                 <li class="dropdown detail-hover">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="padding: 5px;">
                     <strong>
-                      <img class="ava-img" src="/<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>">
+                      <img class="ava-img" src="<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>">
                       <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->first_name." ".$array_data['user']->last_name; } ?></span>
                     </strong>
                   </a>
@@ -131,7 +131,7 @@
                               <div class="profile-sidebar">
                                 <!-- SIDEBAR USERPIC -->
                                 <div class="profile-userpic">
-                                  <img src="/<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>" class="img-responsive" alt="">
+                                  <img src="<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>" class="img-responsive" alt="">
                                 </div>
                              
                                 <div class="profile-usertitle">

@@ -71,7 +71,7 @@ use App\Models\Repository\ImageFacade;
  									'first_name'	=>$user['first_name'],
  									'email'			=>$user['email'],
  									'password'		=>password_hash( $user['pass'] , PASSWORD_BCRYPT),
- 									'avatar'		=> "images/avatar/default-avatar.jpg"
+ 									'avatar'		=> "/images/avatar/default-avatar.jpg"
  								]);
  		 		return $result_create;
  		 	}
