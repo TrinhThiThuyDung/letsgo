@@ -82,10 +82,10 @@
                                       $noti_not_seen = $array_data['noti']['noti_not_seen'];
                         
                                       $noti_seen = $array_data['noti']['noti_seen'];
-                                      var_dump($noti_seen);
-                                    if (is_array( $noti_not_seen) && is_array( $noti_seen)) {
+                                     
+                                    if (count( $noti_not_seen) > 0 && is_array( $noti_seen) > 0) {
                                        $noti = array_merge($noti_not_seen, $noti_seen);
-                                    }elseif ( is_array( $noti_not_seen) && !is_array($noti_seen)) {
+                                    }elseif ( count( $noti_not_seen) > 0 && count($noti_seen) == 0) {
                                        $noti = $noti_not_seen;
                                     }else{
                                        $noti = $noti_seen;
