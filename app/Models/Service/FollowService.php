@@ -25,8 +25,7 @@ class FollowService implements FollowServiceInterface
     	$notiInfor = [
   			'user_from_id' 		=> $data['user_id'],
   			'user_to_id'		=> $data['user_id_image'],
-  			'kind_noti_id'		=> $follow['id'],
-  			'kind'				=> "follow",
+  			'follow_id'		=> $follow['id'],
   			'seen'				=> 0
   		];
 

@@ -20,8 +20,8 @@ class CommentService implements CommentServiceInterface
 			$notiCreate = [
 				'user_from_id' 	=> $data['user_id'],
 				'user_to_id'	=> $user_image_id,
-				'kind_noti_id'	=> $comment['id'],
-				'kind'			=> 'comment',
+				'comment_id'	=> $comment['id'],
+				'image_id'		=> $data['image_id'],
 				'seen'			=> 0
 			];
 			NoticationFacade::createNotication ($notiCreate);

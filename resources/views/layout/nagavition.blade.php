@@ -30,6 +30,14 @@
               </li>
                
                 <li class="dropdown detail-hover">
+                <?php   if (isset($array_data['noti'])) { 
+
+                                          $total_noti_seen    = count($array_data['noti']['noti_seen']);
+                                          $total_noti_not_seen = count($array_data['noti']['noti_not_seen']);
+                                          $total_noti = ($total_noti_seen + $total_noti_seen);
+                                         
+                                         ?>
+                  <span class = "totalNotSeen"><?php echo $total_noti_not_seen; ?></span>
                   <a href="#"  class="dropdown-toggle" data-toggle="dropdown">
                    <strong>
                    <img src="{{url('/images/user_alerts.png')}}">
@@ -46,18 +54,10 @@
                           </h3>
                         </div>
                             <div class="panel panel-default">
-                                <ul class="list-group" id="contact-list" style="    overflow-y: scroll; height: 290px;">
+                                <ul class="list-group" id="contact-list" style="    overflow-y: auto; max-height: 290px;">
                                 <li class="list-group-item">
                                        <div >
                                        <?php 
-
-                                       if (isset($array_data['noti'])) { 
-
-                                          $total_noti_seen    = count($array_data['noti']['noti_seen']);
-                                          $total_noti_not_seen = count($array_data['noti']['noti_not_seen']);
-                                          $total_noti = ($total_noti_seen + $total_noti_seen);
-                                         
-                                        
                                         if ( $total_noti_not_seen == 0 && $total_noti_seen == 0) { ?>
                                   <span style="font-style: italic; border-radius: none"> Bạn không có thông báo nào..</span>
                                         <?php 
@@ -78,32 +78,51 @@
                                         <div class="clearfix"></div>
                                     </li>
                                     <?php 
-                                    if ( isset( $array_data['noti']['noti_not_seen'] )) {
+                                    if ( isset( $array_data['noti'] )) {
                                       $noti_not_seen = $array_data['noti']['noti_not_seen'];
                         
-                                  /*  $noti_seen = $array_data['noti_seen'];*/
+                                      $noti_seen = $array_data['noti']['noti_seen'];
+                                      var_dump($noti_seen);
+                                    if (is_array( $noti_not_seen) && is_array( $noti_seen)) {
+                                       $noti = array_merge($noti_not_seen, $noti_seen);
+                                    }elseif ( is_array( $noti_not_seen) && !is_array($noti_seen)) {
+                                       $noti = $noti_not_seen;
+                                    }else{
+                                       $noti = $noti_seen;
+                                    }
+                                 
 
-                                   foreach ($noti_not_seen as $key => $value) {
+                                   foreach ($noti as $key => $value) {
                                         $user_name = $value["user_lastname"]." ".$value["user_firstname"];
                                       ?>
-                                       <li class="list-group-item">
-                                        <div class="col-xs-12 col-sm-3 col-md-4">
-                                            <img src="<?php echo $value["user_avatar"]; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
+                                       <li class="list-group-item" style = "<?php if ($value['seen'] == 0) {
+                                         echo "background: rgb(235, 245, 245);";
+                                       } ?>">
+                                        <div class="col-xs-12 col-sm-3 col-md-4" style = "margin: 15px 0px; padding: 0px; width: 20%;">
+                                            <img  src="<?php echo $value["user_avatar"]; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
                                         </div>
-                                        <div class="col-xs-12 col-sm-9 col-md-8">
-                                        <a href="#">
-                                            <span class="name"><?php echo $user_name; ?></span></a><br/>
-                                           <a href="#"><span class=""> <?php 
-                                            if ($value["kind"] == "like") {
+                                        <div class="col-xs-12 col-sm-9 col-md-8" style = 'width: 79%;'>
+                                        <a href="#" class="name"><?php echo $user_name; ?></a>
+                                        <span style = 'display: inline-block;'> <?php 
+                                            if ($value["like_id"]) {
                                               echo " đã thích ảnh của bạn!";
                                             }
-                                            else if($value["kind"] == "comment"){
+                                            else if($value["comment_id"]){
                                               echo " đã bình luận về ảnh của bạn";
                                             }
-                                            else if($value["kind"] == "follow"){
+                                            else if($value["follow_id"] ){
                                               echo " đã bắt đầu theo dõi bạn";
                                             }
-                                            ?> </span></a><br/>
+                                            ?> </span>
+                                           <a href="#">
+                                            <?php if ($value['like_id'] || $value['comment_id']) { ?>
+
+                                            <img style = 'width: 45px; float: right; position: absolute; top: 0px; right: 0; height: 50px; border-radius:3px; ' src = "<?php if ($value['image_url'] && $value['image_name']) {
+                                              echo $value['image_url']."/".$value['image_name'];
+                                            } 
+                                          ?> ">
+                                          <?php }?>
+                                            </a><br/>
                                         </div>
                                         <div class="clearfix"></div>
                                     </li>

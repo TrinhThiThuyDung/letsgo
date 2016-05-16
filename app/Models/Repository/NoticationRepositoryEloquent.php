@@ -26,6 +26,7 @@ class NoticationRepositoryEloquent implements NoticationRepository
 
         $noti = [   'noti_seen'        =>  $noti_seen,
                     'noti_not_seen'    => $noti_not_seen  ];
+                    
         return $noti;
     }
 
@@ -33,11 +34,15 @@ class NoticationRepositoryEloquent implements NoticationRepository
     {
         if(!empty( $user_id)){
         $result = Notication::join( 'users', 'notications.user_from_id','=', 'users.id' )
+                            ->leftJoin("likes", "notications.like_id", "=", 'likes.id')
+                            ->leftJoin("comments", 'notications.comment_id', '=', 'comments.id')
+                            ->leftJoin('follows', 'notications.follow_id','=', 'follows.id')
+                            ->leftJoin("images", 'notications.image_id', '=' ,'images.id')
                             ->where ([
                                 ['notications.user_to_id'   , (int)$user_id ],
                                 ['notications.seen'         , '0'           ]
                             ])
-                            ->select( 'users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as user_avatar', 'notications.*')
+                            ->select( 'users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as user_avatar', 'images.url as image_url', 'images.resize_2 as image_name', 'notications.*')
                             ->orderBy('notications.created_at', 'desc')
                             ->get();
         return $result;
@@ -46,7 +51,11 @@ class NoticationRepositoryEloquent implements NoticationRepository
     protected function getNoticationSeen( $user_id )
     {
         $result = Notication::join( 'users', 'notications.user_from_id' ,'=', 'users.id')
-                            ->select( 'users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as user_avatar', 'notications.*')
+                            ->leftJoin("likes", "notications.like_id", "=", 'likes.id')
+                            ->leftJoin("comments", 'notications.comment_id', '=', 'comments.id')
+                            ->leftJoin('follows', 'notications.follow_id','=', 'follows.id')
+                            ->leftJoin("images", 'notications.image_id', '=' ,'images.id')
+                            ->select( 'users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as user_avatar','images.url as image_url', 'images.resize_2 as image_name', 'notications.*')
                             ->where ([
                                 ['notications.user_to_id'   , (int) $user_id ],
                                 ['notications.seen'         , '1'          ]

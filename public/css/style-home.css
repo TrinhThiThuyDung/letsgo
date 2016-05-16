@@ -184,7 +184,19 @@ body{
 .detail-hover:hover > ul.dropdown-menu {
     display: block;    
 }
-
+.totalNotSeen{
+    position: absolute;
+    width: 22px;
+    height: 20px;
+    z-index: 10;
+    right: 0;
+    background: #F33737;
+    font-size: 14px;
+    font-family: cursive;
+    font-weight: 600;
+    color: white;
+    border-radius: 5px;
+}
 .open > a:focus{
       color: #fff !important;
      /* background-color:  rgb(37, 100, 38) !important;*/
@@ -196,7 +208,7 @@ body{
     border-radius:4px;
     box-shadow:none;
     margin-top:20px !important;
-    width:340px;
+    width:440px;
     border-radius:4px;
    background-color: rgba(65, 201, 205, 0.32);
    position: absolute;

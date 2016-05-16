@@ -21,11 +21,11 @@ class LikeService implements LikeServiceInterface
     	$user_id_image = ImageFacade::findIdUserOfImage( $data['image_id' ]);
   		
   		$notiInfor = [
-  			'user_from_id' 		=> $data['user_id'],
+  			'user_from_id' 	=> $data['user_id'],
   			'user_to_id'		=> $user_id_image,
-  			'kind_noti_id'		=> $like['id'],
-  			'kind'				=> "like",
-  			'seen'				=> 0
+  			'like_id'	      => $like['id'],
+        'image_id'      => $data['image_id'],
+  			'seen'				  => 0
   		];
 
   		NoticationFacade::createNotication( $notiInfor );
