@@ -37,14 +37,14 @@
                                           $total_noti = ($total_noti_seen + $total_noti_seen);
                                          
                                          ?>
-                  <span class = "totalNotSeen"><?php echo $total_noti_not_seen; ?></span>
+                  <?php if( $total_noti_not_seen > 0) { ?><span class = "totalNotSeen"><?php echo $total_noti_not_seen; ?></span> <?php } ?>
                   <a href="#"  class="dropdown-toggle" data-toggle="dropdown">
                    <strong>
                    <img src="{{url('/images/user_alerts.png')}}">
                       <span style="font-family: Architects Daughter,cursive; color: white;">Thông Báo</span>
                    </strong>
                   </a>
-                  <ul class="dropdown-menu" role = "menu">
+                  <ul class="dropdown-menu" role = "menu" style = "width: 440px;">
                    <div class="container">
                      <div class="row">
                         <div class="col-md-12">
@@ -82,43 +82,35 @@
                                       $noti_not_seen = $array_data['noti']['noti_not_seen'];
                         
                                       $noti_seen = $array_data['noti']['noti_seen'];
-                                     
-                                    if (count( $noti_not_seen) > 0 && is_array( $noti_seen) > 0) {
-                                       $noti = array_merge($noti_not_seen, $noti_seen);
-                                    }elseif ( count( $noti_not_seen) > 0 && count($noti_seen) == 0) {
-                                       $noti = $noti_not_seen;
-                                    }else{
-                                       $noti = $noti_seen;
-                                    }
-                                 
 
+                                      $noti = array_merge($noti_not_seen, $noti_seen);
                                    foreach ($noti as $key => $value) {
-                                        $user_name = $value["user_lastname"]." ".$value["user_firstname"];
+                                        $user_name = $value->user_lastname." ".$value->user_firstname;
                                       ?>
-                                       <li class="list-group-item" style = "<?php if ($value['seen'] == 0) {
+                                       <li class="list-group-item <?php if ($value->seen == 0) { echo "noti"; } ?>" data-noti_id = "<?php echo $value->id; ?>" data-url = "{{url('/web/notication/setSeen')}}" style = "<?php if ($value->seen == 0) {
                                          echo "background: rgb(235, 245, 245);";
                                        } ?>">
                                         <div class="col-xs-12 col-sm-3 col-md-4" style = "margin: 15px 0px; padding: 0px; width: 20%;">
-                                            <img  src="<?php echo $value["user_avatar"]; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
+                                            <img  src="<?php echo $value->user_avatar; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
                                         </div>
                                         <div class="col-xs-12 col-sm-9 col-md-8" style = 'width: 79%;'>
-                                        <a href="#" class="name"><?php echo $user_name; ?></a>
+                                        <a href="{{url('/web/user/profile/')}}/<?php echo $value->user_id; ?>" class="name"><?php echo $user_name; ?></a>
                                         <span style = 'display: inline-block;'> <?php 
-                                            if ($value["like_id"]) {
+                                            if ($value->like_id) {
                                               echo " đã thích ảnh của bạn!";
                                             }
-                                            else if($value["comment_id"]){
+                                            else if($value->comment_id){
                                               echo " đã bình luận về ảnh của bạn";
                                             }
-                                            else if($value["follow_id"] ){
+                                            else if($value->follow_id ){
                                               echo " đã bắt đầu theo dõi bạn";
                                             }
                                             ?> </span>
                                            <a href="#">
-                                            <?php if ($value['like_id'] || $value['comment_id']) { ?>
+                                            <?php if ($value->like_id || $value->comment_id) { ?>
 
-                                            <img style = 'width: 45px; float: right; position: absolute; top: 0px; right: 0; height: 50px; border-radius:3px; ' src = "<?php if ($value['image_url'] && $value['image_name']) {
-                                              echo $value['image_url']."/".$value['image_name'];
+                                            <img style = 'width: 45px; float: right; position: absolute; top: 0px; right: 0; height: 50px; border-radius:3px; ' src = "<?php if ($value->image_url && $value->image_name) {
+                                              echo $value->image_url."/".$value->image_name;
                                             } 
                                           ?> ">
                                           <?php }?>
@@ -143,7 +135,7 @@
                       <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->first_name." ".$array_data['user']->last_name; } ?></span>
                     </strong>
                   </a>
-                   <ul class="dropdown-menu" role = "menu">
+                   <ul class="dropdown-menu" role = "menu" style="width: 340px;">
                         <div class="container">
                             <div class="row profile-row">
                             <div class="col-md-12">
@@ -201,13 +193,13 @@
                   </ul>
                 </li>
                 <li>
-                  <form action="" class="search-form">
+                  <!-- <form action="" class="search-form">
                 <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
                 <label for="search" class="sr-only">Search</label>
                 <input type="text" class="form-control" name="search" id="search" placeholder="Tìm kiếm">
                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
-            </form> 
+            </form>  -->
                 </li>
              </ul>
         </div>

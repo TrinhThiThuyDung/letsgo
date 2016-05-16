@@ -80,7 +80,13 @@ class PhotoController extends Controller
         }
     }
    
+    public function showPhoto(Request $request)
+    {
+        $image_id = $request->image_id;
+        $image = ImageServiceFacade::getPhotoById( $image_id );
 
+        return view("image")->with('image', $image);
+    }
     public function getPhotoUpload(Request $request)
     {
         

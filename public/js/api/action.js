@@ -45,5 +45,22 @@ $(document).ready(function(){
         });
        }
     }
+    $('.noti').mouseenter(function(){
+        var noti_id = $(this).data("noti_id");
+        var urlPost = $(this).data("url");
+        var noti = $(this);
 
+        $.ajax({
+            url: urlPost,
+            type: 'post',
+            data: {'noti_id': noti_id},
+            dataType: 'json',
+        })
+        .done(function( data ){
+            if (data.result === 'OK') {
+                noti.removeClass("noti");
+                noti.removeAttr("style");
+            }
+        });
+    });
 });

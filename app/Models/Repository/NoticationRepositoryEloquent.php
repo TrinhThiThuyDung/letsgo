@@ -33,7 +33,7 @@ class NoticationRepositoryEloquent implements NoticationRepository
     protected function getNoticationNotSeen ( $user_id )
     {
         if(!empty( $user_id)){
-        $result = Notication::join( 'users', 'notications.user_from_id','=', 'users.id' )
+        $result = DB::table("notications")->join( 'users', 'notications.user_from_id','=', 'users.id' )
                             ->leftJoin("likes", "notications.like_id", "=", 'likes.id')
                             ->leftJoin("comments", 'notications.comment_id', '=', 'comments.id')
                             ->leftJoin('follows', 'notications.follow_id','=', 'follows.id')
@@ -50,7 +50,7 @@ class NoticationRepositoryEloquent implements NoticationRepository
     }
     protected function getNoticationSeen( $user_id )
     {
-        $result = Notication::join( 'users', 'notications.user_from_id' ,'=', 'users.id')
+        $result = DB::table("notications")->join( 'users', 'notications.user_from_id' ,'=', 'users.id')
                             ->leftJoin("likes", "notications.like_id", "=", 'likes.id')
                             ->leftJoin("comments", 'notications.comment_id', '=', 'comments.id')
                             ->leftJoin('follows', 'notications.follow_id','=', 'follows.id')
@@ -60,7 +60,7 @@ class NoticationRepositoryEloquent implements NoticationRepository
                                 ['notications.user_to_id'   , (int) $user_id ],
                                 ['notications.seen'         , '1'          ]
                             ])
-                             ->orderBy('notications.created_at', 'desc')
+                            ->orderBy('notications.created_at', 'desc')
                             ->get();
         return $result;
     }

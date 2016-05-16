@@ -36,7 +36,10 @@ Route::group(['prefix' => 'web'], function(){
 							'as'=>'web/photo/delete', 
 							'uses'=>'PhotoController@deletePhoto']
 		);
-
+		Route::get('/photo/show/{image_id}',[
+							'as'	=> 'web/photo/show/',
+							'uses'	=> 'PhotoController@showPhoto']
+		);
 		/*====================== LIKE ACTION =========================*/
 		Route::post('/photo/action/checkLike', [ 
 							'as' => 'web/photo/action/checkLike', 
@@ -85,6 +88,11 @@ Route::group(['prefix' => 'web'], function(){
 		Route::delete('/photo/action/deleteComment/{comment_id}', [ 
 							'as' => 'web/photo/action/deleteComment', 
 							'uses' => 'CommentController@deleteComment']
+		);
+		/*====================== NOTIFICATION ===============================*/
+		Route::post('/notication/setSeen', [
+							'as'	=> 'web/notication/setSeen',
+							'uses'	=> 'NoticationController@setSeen']
 		);
 		/*========================= PROFILE USER ============================*/
 		Route::get('/user/profile/{user_id}',[

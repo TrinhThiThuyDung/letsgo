@@ -47,9 +47,9 @@ body{
   .navbar-inverse {
     /*background-color: rgb(54, 132, 134) !important;
     border-color: rgb(54, 132, 134) !important;*/
-    background-color: #FBFFFF !important;
+    background-color: rgba(23, 25, 24, 0.7) !important;
     border-color: #FBFFFF !important;
-    background: url(../images/background-nav.png) repeat-x;
+   /* background: url(../images/background-nav.png) repeat-x;*/
     background-size: 100% 100%;
   }
   .navbar-index{
@@ -208,7 +208,7 @@ body{
     border-radius:4px;
     box-shadow:none;
     margin-top:20px !important;
-    width:440px;
+   
     border-radius:4px;
    background-color: rgba(65, 201, 205, 0.32);
    position: absolute;
