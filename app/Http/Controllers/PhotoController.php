@@ -51,7 +51,7 @@ class PhotoController extends Controller
         $noti = $this->getNoticationOfUser();
 
         $data = [
-            'photo' => $photo,
+            'photo' => $photos,
             'user'  => $user,
             'noti'  => $noti
         ];
