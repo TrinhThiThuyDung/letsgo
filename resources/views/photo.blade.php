@@ -119,7 +119,7 @@
                       $image_user_by = $image->user_firstname." ".$image->user_lastname; ?>
                        <div class=" wrap-images  item-1 ">
                       <div class="box-1">
-                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
+                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
                             <a class="photo-link" href="#"><img src="<?php echo $image_url; ?>"></a>
                               <div class="action">
                                 <div class="view">
@@ -157,7 +157,7 @@
                       <div class=" wrap-images item-2">
                    <div class="<?php  echo $image_1_size; ?>">
                     <div class="box-1">
-                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" >
+                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" >
                     <a class="photo-link"  href="#"><img src="<?php echo $image_1_url; ?>">
                     </a>
                     <div class="action">
@@ -191,7 +191,7 @@
                    </div>
                     <div class="<?php  echo $image_2_size; ?>">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="<?php echo $image_2_url; ?>">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="<?php echo $image_2_url; ?>">
                         <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
                         </a>
                         <div class="action">
@@ -245,7 +245,7 @@
                          <div class="wrap-images item-3">
                   <div class="item-big">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
                         <a class="photo-link" href="#"><img src="<?php echo $image_1_url; ?>"></a>
                          <div class="action">
                               <div class="view">
@@ -279,7 +279,7 @@
                  <div class="item-small">
                     <div class="small-1">
                       <div class="box-1">
-                        <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
+                        <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
                              <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
                              </a>
                               <div class="action">
@@ -313,7 +313,7 @@
                   </div>
                   <div class="small-2">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_3->avatar; ?>" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
                           <a class="photo-link" href="#"><img src="<?php echo $image_3_url; ?>">
                           </a>
                           <div class="action">
@@ -353,7 +353,7 @@
 
                 <div class="medium m1">
                   <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
                     <a class="photo-link" href="#"><img src="<?php echo $image_1_url; ?>">
 
                     </a>
@@ -388,7 +388,7 @@
                 </div>
                  <div class="medium m2">
                   <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
                     <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
                     </a>
                     <div class="action">
@@ -422,7 +422,7 @@
                 </div>
                  <div class="medium m3">
                   <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
+                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_3->avatar; ?>" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
                     <a class="photo-link"  href=""><img src="<?php echo $image_3_url; ?>">
                     </a>
                     <div class="action">
@@ -466,7 +466,7 @@
                      ?>
                       <div class=" wrap-images  item-1 ">
                       <div class="box-1">
-                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
+                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
                             <a class="photo-link" href="#"><img src="<?php echo $image_url; ?>"></a>
                               <div class="action">
                                 <div class="view">
@@ -548,7 +548,7 @@
                     <div class=" wrap-images item-2">
                    <div class="<?php echo $image_1_size; ?>">
                     <div class="box-1">
-                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" >
+                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" >
                     <a class="photo-link"  href="#"><img src="<?php echo $image_1_url; ?>">
                     </a>
                     <div class="action">
@@ -582,7 +582,7 @@
                    </div>
                     <div class="<?php echo $image_2_size; ?>">
                     <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="<?php echo $image_2_url; ?>">
+                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="<?php echo $image_2_url; ?>">
                         <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
                         </a>
                         <div class="action">

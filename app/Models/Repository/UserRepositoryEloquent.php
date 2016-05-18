@@ -98,7 +98,7 @@ use App\Models\Repository\ImageFacade;
  	{
  		if (!empty($user_id)) {
  			$result = DB::table("users")
- 						->select("id", "last_name", "first_name", "avatar", "position", "address", "gender", "birthday")
+ 						->select("id", "last_name", "first_name", "avatar", "position", "address", "gender", "birthday", "created_at")
  						->where("id", $user_id)
  						->get();
 
@@ -135,6 +135,10 @@ use App\Models\Repository\ImageFacade;
  		return $result;
  	}
 
+ 	public function updateProfile($user_id, $data)
+ 	{
+ 		return $result = User::where('id', $user_id)->update( $data );
+ 	}
 }
 
 ?>

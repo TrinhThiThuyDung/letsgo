@@ -49,7 +49,7 @@ class ImageRepositoryEloquent implements ImageRepository
             			$join->on( 'images.id', '=' ,'likes.image_id')
                  			 ->where('likes.user_id','=', $user_id );
         			})
-					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname','likes.id as like_id', 'images.*')
+					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as avatar', 'likes.id as like_id', 'images.*')
 					->orderBy('images.created_at', 'desc')
 					->get();
 		return $images;

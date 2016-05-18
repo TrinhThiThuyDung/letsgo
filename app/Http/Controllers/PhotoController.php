@@ -87,6 +87,12 @@ class PhotoController extends Controller
 
         return view("image")->with('image', $image);
     }
+    public function showPhotosByCategory( Request $request)
+    {
+        $category_id = $request->category_id;
+
+        return view("photo-category");
+    }
     public function getPhotoUpload(Request $request)
     {
         
@@ -108,7 +114,7 @@ class PhotoController extends Controller
             
                 $image_name = $image->getClientOriginalName();
 
-                $image_path = $this->moveImagesToUploadFolder( $image , $image_name );
+                $image_path = $this->moveImagesToUploadFolder( $image , $image_name , $this->user_id);
                 if ($image_path) {
                      //Resize image
                     $image_size = getimagesize($image_path."/".$image_name);
@@ -116,9 +122,28 @@ class PhotoController extends Controller
                     $width = $image_size[0];
                     $height = $image_size[1];
 
-                    $image_resize_1 = $this->resizeImage( ($width/2) , ($height/2), $image_path , $image_name );
-                    $image_resize_2 = $this->resizeImage( ($width/3) , ($height/3), $image_path , $image_name );
+                    if ($width > 1500 || $height > 1500) {
+                    
+                        $image_resize_1 = $this->resizeImage(  800 , 700, $image_path , $image_name );
+                   
 
+                        $image_resize_2  = $image_resize_1 = $image_resize_1->basename;
+                       
+                    }
+                   elseif ($width >=400 && $width <=1500) {
+                        $image_resize_1 = $this->resizeImage( ($width/2) , ($height/2), $image_path , $image_name );
+
+                         $image_resize_2 = $this->resizeImage( ($width/3) , ($height/3), $image_path , $image_name );
+
+                          $image_resize_1 = $image_resize_1->basename;
+                        $image_resize_2 = $image_resize_2->basename;
+                   }
+                   else{
+                         $image_resize_1 = $image_name;
+                         $image_resize_2 = $image_name;
+                   }
+
+ 
                     if ($image_resize_1 && $image_resize_2) {
 
                         $url = '/upload/'.$this->user_id;
@@ -127,8 +152,8 @@ class PhotoController extends Controller
                                 'kind_id'   => (int)$images['image_kind'],
                                 'name'      => $image_name,
                                 'size'      => $width."x".$height,
-                                'resize_1'  => $image_resize_1->basename,
-                                'resize_2'  => $image_resize_2->basename,
+                                'resize_1'  => $image_resize_1,
+                                'resize_2'  => $image_resize_2,
                                 'url'       => $url,
                                 'describe'  => $images['image_describe'],
                                 'location'  => $images['image_location']
@@ -138,7 +163,7 @@ class PhotoController extends Controller
                         if ($image_inserted) {
                             
                             $deleteUrl      = 'photo/delete/'.$image_inserted['id']; //link rpute delete image
-                            $image_url     = url('/')."/".$image_inserted['url']."/".$image_resize_2->basename; //link to image 
+                            $image_url     = url('/').$image_inserted['url']."/".$image_resize_2; //link to image 
                             //response data
                             $files = [
                                        [
@@ -170,10 +195,10 @@ class PhotoController extends Controller
         return ImageServiceFacade::addPhoto( $image );
     }
 
-    protected function moveImagesToUploadFolder( $images , $images_name )
+    public function moveImagesToUploadFolder( $images , $images_name, $user_id )
     {
         try {
-            $path = base_path().'/public/upload/'.$this->user_id;
+            $path = base_path().'/public/upload/'.$user_id;
        
             $images->move( $path, $images_name);
             return $path;
@@ -191,13 +216,15 @@ class PhotoController extends Controller
     protected function resizeImage( $width, $height, $path, $name)
     {
         try {
-            
+             
             $width = intval($width);
+
             $height = intval($height);
 
             $image_name = $width."x".$height."_".$name;
-
+ 
             $img = Image::make($path."/".$name);
+
             $img->resize($width , $height , function($constraint){
                 $constraint->aspectRatio();
             });

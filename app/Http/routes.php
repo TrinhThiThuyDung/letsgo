@@ -40,6 +40,10 @@ Route::group(['prefix' => 'web'], function(){
 							'as'	=> 'web/photo/show/',
 							'uses'	=> 'PhotoController@showPhoto']
 		);
+		Route::get('/photo/show/images/{category_id}',[
+							'as'	=> 'web/photo/show/images/',
+							'uses'	=> 'PhotoController@showPhotosByCategory']
+		);
 		/*====================== LIKE ACTION =========================*/
 		Route::post('/photo/action/checkLike', [ 
 							'as' => 'web/photo/action/checkLike', 
@@ -97,8 +101,12 @@ Route::group(['prefix' => 'web'], function(){
 		/*========================= PROFILE USER ============================*/
 		Route::get('/user/profile/{user_id}',[
 				'as'	=> 'web/user/profile',
-				'uses'	=> 'UserController@getProfileUser'
-			]);
+				'uses'	=> 'UserController@getProfileUser']
+		);
+		Route::post('/user/profile/update',[
+				'as'	=> 'web/user/profile/update',
+				'uses'	=> 'UserController@updateProfile']
+		);
 		/*
 		 * Sign out
 		 *

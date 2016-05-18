@@ -33,6 +33,7 @@
 
 </head>
 <body id="imagePage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
 @yield('content')
 
 

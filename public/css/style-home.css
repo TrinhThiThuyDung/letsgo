@@ -923,7 +923,7 @@ margin-bottom: 10px;
 
 .info-user{
  
-    margin-left: 7%;
+   /* margin-left: 7%;*/
     float: left;
     text-align: left;
     background-color: rgb(255, 255, 255);
@@ -948,7 +948,7 @@ margin-bottom: 10px;
     text-align: left;
     float: right;
      margin-right: 1%; 
-    margin-top: 3%;
+   /* margin-top: 3%;*/
     /* width: 100%; */
     padding: 0 30px;
     background-color: rgb(249, 249, 249);
@@ -977,10 +977,20 @@ margin-bottom: 10px;
 .contentActive  dd{
   width: 100% !important;
 }
-.column-about dt,.contentActive  dt{
+.column-about dt,.contentActive  dt, form#formUpdateProfile dt{
   color: rgb(150,150,150);
 }
-
+form#formUpdateProfile dl{
+  display: inline-block;
+  margin: 7px 43px;
+}
+form#formUpdateProfile input[type="text"], input[type="tel"], input[type="date"]{
+  padding: 4px;
+  width: 327px;
+  display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+}
 /*==================================================
                   UPLOAD IMAGES
 ====================================================*/

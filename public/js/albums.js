@@ -45,7 +45,7 @@ jQuery(function($) {
         imagetext = that.data('imagetext'),
         imagepath = that.data('imagepath'),
         carouselGalleryUrl = that.data('url');
-        comment = that.data('comment');
+        avatar = that.data("avatar");
         maxHeight = $(window).height()-100;
         var image_id = that.data('id');
 
@@ -59,7 +59,7 @@ jQuery(function($) {
                 modalHtml += "<img src='"+imagepath+"' alt='carouselGallery image'>";
                 modalHtml += "</div>";
                 modalHtml += "<div class='carouselGallery-modal-text'><input  type = 'hidden' class = 'image_id' value ='"+image_id+"' >";
-                modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '../images/avatar/default-avatar.jpg'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='#'>"+username+"</a> </span>"
+                modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '"+avatar+"'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='#'>"+username+"</a> </span>"
                 modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><a class = 'flow' href = '/web/photo/action/'>"+getFlow(image_id)+"</a></div>";
                 modalHtml += "<div class = 'likeTextShare'> <div style = 'height: 52px;'> <span class='carouselGallery-item-modal-likes' style = 'width: 48%;float: left; display: inline-block;'>";
                 modalHtml += "<a href = 'photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
@@ -320,7 +320,7 @@ var getCommentImage = function ( image_id ) {
         var comment = '';
 
         for (var i = 0; i < all_comment.length; i++) {
-            comment += "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
+            comment += "<div class = 'otherComment'><img src = '"+all_comment[i]['avatar']+"'>";
             comment += "<a href = '#'><span class= 'usernameComment'>"+all_comment[i]['last_name']+" "+all_comment[i]['first_name']+"</span></a>";
             comment += "<span class = 'contentComment'>"+all_comment[i]['content']+"</span>";
             if (all_comment[i]['user_id'] == window.sessionStorage.getItem('id')) {
@@ -356,10 +356,9 @@ $('body').on('submit', '#formComment', function(e){
 });
 
 var addComment = function (data) {
-    var username = window.sessionStorage.getItem( "username" );
-
+  
     var comment = "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
-            comment += "<a href = '#'><span class= 'usernameComment'>"+username+"</span></a>";
+            comment += "<a href = '#'><span class= 'usernameComment'>"+data['username']+"</span></a>";
             comment += "<span class = 'contentComment'>"+data['content']+"</span>";
             comment += "<a href = '/web/photo/action/deleteComment/"+data['id']+"'> <span class = 'delete-comment'> </span></a>";
             comment += "</div>";

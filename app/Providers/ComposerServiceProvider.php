@@ -14,7 +14,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-                ['profile', 'photo'],
+                ['profile', 'photo', 'image', 'photo-category'],
                 'App\Http\ViewComposers\HeaderComposer'
             );
     }

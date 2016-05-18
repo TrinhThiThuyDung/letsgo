@@ -11,6 +11,7 @@ use App\Models\Service\LikeServiceFacade;
 use App\Models\Service\UserServiceFacade;
 use App\Models\Service\FollowServiceFacade;
 
+use App\Http\Controllers\PhotoController;
 
 class UserController extends Controller
 {
@@ -39,10 +40,30 @@ class UserController extends Controller
             'user_like'     => $photo_user_like,
             'user_activity' => $user_infor_activity,
             'user_all_infor'=> $user_all_infor,
-            'user_follow'   => $user_follow  
+            'user_follow'   => $user_follow
         ];
 
     	return view("profile")->with( 'data', $data );
+    }
+    public function updateProfile(Request $request)
+    {
+        $user_update = $request->all();
+
+        $result = $user_updated = UserServiceFacade::updateProfile( $user_update );
+
+
+        if ($request->hasFile('avatar')) {
+
+            $avatar = $request->file('avatar');
+            $avatar_name = $avatar->getClientOriginalName();
+
+           /* PhotoController::moveImagesToUploadFolder($avatar, $avatar_name , $user_update['user_id']);*/
+        }
+
+        if ($result) {
+            return response()->json(['status'   => 'update thanh cong']);
+        }
+        return response()->json(['status'   => 'update loi']);
     }
     protected function getPhotoOfUser ($user_id )
     {

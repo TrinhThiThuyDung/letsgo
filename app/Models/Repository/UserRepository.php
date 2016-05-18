@@ -14,5 +14,7 @@ interface UserRepository
     function getAllInforUser( $user_id );
 
     function getInforActivityOfUser( $user_id );
+
+    function updateProfile($user_id, $data );
 }
 ?>

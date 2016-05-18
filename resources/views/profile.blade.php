@@ -12,20 +12,17 @@
 @section('link')
 
     <link rel="stylesheet" href="{{url('css/style-home.css')}}">
-      <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
-
-
-    <link rel="stylesheet" href="{{url('/css/albumize.css')}}">
-     <link rel="stylesheet" href="{{url('/css/transitions.css')}}">
+    <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
+    <link rel="stylesheet" href="{{url('/css/albums.css')}}">
+  <!--    <link rel="stylesheet" href="{{url('/css/transitions.css')}}"> -->
+      
   
     <!-- ========================= JS ======================== -->
   
 
-    <script type="text/javascript" src="{{url('/js/albumize.js')}}"></script>
-  
-    <script type="text/javascript" src="{{url('/js/jquery.collagePlus.min.js')}}"></script>
- 
-     <script type="text/javascript" src="{{url('/js/jquery.removeWhitespace.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('/js/albums.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/api/action.js')}}"></script>
+     <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
 
 <style type="text/css">
   body{
@@ -40,7 +37,7 @@
     <div class="cover-photo" style="background: url(/images/cover/coverphoto01.jpg) no-repeat; background-size: cover;"></div>
     <div class="profile-info">
     	<div class="profile-photo">
-    		<img src="/<?php if(isset($array_data)) echo $array_data['user']->avatar; ?>">
+    		<img src="<?php if(isset($array_data)) $avatar = $array_data['user']->avatar; echo $avatar; ?>">
     </div>
     <div class="profile-name">
     	<span class="name"><?php if(isset($username)) echo  $username; ?></span>
@@ -59,87 +56,62 @@
     				    <!-- Tab panes -->
                         <div class="tab-content">
                           <div class="tab-pane active" id="men" style="background: rgb(255, 255, 255);">
-                          <div class="upload">
-                          <div class="empty">
-                          	<button type="button" class="btn btn-primary btn-upload">Đăng ảnh</button>
-                          </div>
-                          	
-                          </div>
-                          <?php if ($data['user_photo']) { 
-                            foreach ($data['user_photo'] as $key => $value) {
-                             
-                            ?>
-                            <div class="album-name">Album: <?php echo $value['album_name']; ?></div>
-                            <div class="albumize Collage" title="<?php echo $value['album_name']; ?>" style=" margin-top: 22px; border-radius: 2px; "> 
+                            <div class="upload">
+                              <div class="empty">
+                              	<button type="button" class="btn btn-primary btn-upload">Đăng ảnh</button>
+                              </div>
+                            	
+                            </div>
+                          <div class="carouselGallery-col-60" style=" margin-top: 22px; border-radius: 2px;     float: none; text-align: left;"> 
               								<?php
-                                
-                                foreach ($value[0] as $key => $photo) {
+                              if ($data['user_photo']) {
+                                $i = 0;
+                                 foreach ($data['user_photo'] as $key => $photo) {
                                   ?>
-                                  <a href = "/<?php echo $photo->url; ?>" title="<?php echo $photo->name; ?>"> 
-                                <img src="/<?php echo $photo->url; ?>"  style="height: 254px;"> </img>
-                              </a>
-
+                                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;"class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $username; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" >
+                                  <a href = "#" class = "photo-link"> 
+                                    <img style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
+                                  </a>
+                              </div>
                                <?php } ?>
-                                </div>
-                             <?php } 
-                            }else{ ?>
+                              
+                             <?php }else{ ?>
               								<div class="empty-images">
-                        <span>Bạn chưa upload bức ảnh nào! Hãy cùng upload ảnh ngay nào :)</span>        
+                                  <span>Bạn chưa upload bức ảnh nào! Hãy cùng upload ảnh ngay nào :)</span>        
                               </div>
               						<?php } ?>
                           </div>
-                          <div class="tab-pane" id="women" style="background: rgb(255, 255, 255);">
+                        </div>
+              <div class="tab-pane" id="women" style="background: rgb(255, 255, 255);">
                                <!--  <div class="container gal-container"> -->
                <div class="container">
               <div class="row" >
-              	 	<div class="gal-container">
+              	 	<div class="carouselGallery-col-60" style="text-align: left;">
                   <?php if (!$data['user_like']) { ?>
                   <div class="empty-images">
                         <span>Bạn chưa có ảnh nào thích!</span>        
                               </div>
                <?php   }else{ 
                 $i = 1;
-                foreach ($data['user_like'] as $key => $value) { ?>
-                  <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-                    <div class="box">
-                      <a href="#" data-toggle="modal" data-target="#<?php echo $i; ?>">
-                        <img src="/<?php echo $value->url; ?>">
-                      </a>
-                      <div class="modal fade" id="<?php echo $i; $i++; ?>" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <div class="modal-body">
-                            <div class="image-detail">
-                              <div class="img-name">
-                                Ảnh đẹp nè!
-                              </div>
-                              <div></div>
-                            </div>
-                            <div class="img">  
-                              <img src="/<?php echo $value->url; ?>"> 
-                              <div class="col-md-12 description">
-                                <h4><?php echo $value->name; ?></h4>
-                              </div>
-                            </div>
-                            </div>
-                              
-                          </div>
-                        </div>
+                foreach ($data['user_like'] as $key => $photo) { ?>
+                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;"class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $photo->user_lastname." ".$photo->user_firstname; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" >
+                          <a href = "#" class = "photo-link"> 
+                            <img style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
+                        </a>
                       </div>
+                       <?php  }
+                       } ?>
                     </div>
                   </div> 
-              <?php  } 
-              }
-                ?>
                  
                   </div>
               </div>
-               </div>
-                          </div>
+              <!--  </div>
+                          </div> -->
                           <div class="tab-pane" id="kids" style="width: 100%; height: 100%; background: rgb(255, 255, 255);">
                            <div class="container">
                              <div class="row">
+                             <div class="user" style="height:292px; margin-bottom: 100px;">
                                 <div class="info-user">
                               <div class="about">
                                 <h3 class="textHeading">Tự Bạch</h3>
@@ -184,7 +156,11 @@
                                 <div class="contentActive">
                                   <dl>
                                     <dt>Tham gia: </dt>
-                                    <dd>22 tháng 10 nă, 2014</dd>
+                                    <dd><?php if (isset($data['user_all_infor'])) {
+
+                                       $timer = explode("-", $data['user_all_infor'][0]->created_at);
+                                       echo "Ngày ".explode(" ", $timer[2])[0]." Tháng ".$timer[1]." Năm ".$timer[0];
+                                    } ?></dd>
                                   </dl>
                                   <dl>
                                     <dt>Đã đóng góp ảnh: </dt>
@@ -196,6 +172,77 @@
                                   </dl>
                                 </div>
                               </div>
+                              </div>
+                              <div class="update-profile">
+                               <h3 class="textHeading">Cập nhật thông tin cá nhân</h3>
+                               <div class="content-info" style="text-align: left;">
+                                <form  id="formUpdateProfile" action="{{url('web/user/profile/update')}}" method="post" style="margin-left: 10px;" target="_blank" enctype="multipart/form-data">
+                                <input type="hidden" name="user_id" value="<?php echo $array_data['user']->user_id; ?>">
+                                <dl>
+                                  <dt>Họ: </dt>
+                                  <dd>
+                                     <input type="text" name="last_name">
+                                  </dd>
+                                </dl>
+                                <dl>
+                                  <dt>Tên: </dt>
+                                  <dd>
+                                      <input type="text" name="first_name">
+                                  </dd>
+                                </dl>
+                                 <dl>
+                                  <dt>Số điện thoại: </dt>
+                                  <dd>
+                                       <input type="tel" name="phone">
+                                  </dd>
+                                </dl>
+                                
+                                <dl>
+                                  <dt>Bạn sống ở: </dt>
+                                  <dd>
+                                      <input type="text" name="address">
+                                  </dd>
+                                </dl>
+                                <dl>
+                                  <dt>Ngày sinh: </dt>
+                                  <dd>
+                                      <input type="date" name="birthday">
+                                  </dd>
+                                </dl>
+                               
+                                   <dl>
+                                  <dt>Hiện bạng đang là: </dt>
+                                  <dd>
+                                      <input type="text" name="position">
+                                  </dd>
+                                </dl>
+                                 <dl style="width: 327px;">
+                                  <dt>Bạn là: </dt>
+                                  <dd style="width: 100% !important; margin: 0px 3px; padding: 3px;">
+                                  <div class="checkbox checkbox-primary">
+                                      <input type="radio" name="gender" value="male" checked> Nam<br>
+                                      <input type="radio" name="gender" value="female"> Nữ<br>
+                                      </div>
+                                  </dd>
+                                </dl>
+                                <dl style="width: 370px;">
+                                  <dt>Cập nhật lại avatar của bạn: </dt>
+                                  <dd style="width: 100% !important; margin: 7px 7px;">
+                                  <div class="upload-area" style="height: 100%;" >
+                                    <span class="fileinput-button" style="    text-align: left;">
+                                        <img id = "ava" src="<?php echo $avatar; ?>" style="width: 148px; left: 0px; text-align: left;display: inline-block;">
+                                        <span style="display: inline-block;">Chọn avatar mới</span>
+                                        <span id="avaNewName" style="margin:1px; font-size: 13px;"></span>
+                                        <input id="avatar" type="file" name="avatar" style="font-size: 303px; width: 193px; height: 112px;">
+                                      </span>
+                                   </div>  
+                                  </dd>
+                                </dl> 
+                               <button class="btn btn-info" type="submit" for="formUpdateProfile">Cập Nhật</button>
+                                  
+                                </form>
+                                </div>
+                              </div>
                              </div>
                            </div>
                           </div>
@@ -204,7 +251,7 @@
                             <?php if(isset($data['user_follow'])){
                                 foreach ($data['user_follow'] as $key => $value) { ?>
                                   <li><a href="/web/user/profile/<?php echo $value->id; ?>">
-                                      <img src="/<?php echo $value->avatar; ?>">
+                                      <img src="<?php echo $value->avatar; ?>">
                                       <span><?php echo $value->first_name." ".$value->last_name; ?></span>
                                     </a>
                                 </li>
@@ -221,11 +268,5 @@
 @endsection
 
 @section('script')
-<script type="text/javascript">
-	
-        $(document).ready(function(){
-            $('.Collage').collagePlus();
-        });
-    
-</script>
+
 @endsection

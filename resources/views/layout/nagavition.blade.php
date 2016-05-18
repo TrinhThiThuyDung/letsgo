@@ -1,11 +1,9 @@
  <nav id="myNav" class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="row">
-        <div class="collapse navbar-collapse" id="navigation">
-           <div class="navbar-header" style="/*margin-left: 3%;*/">
+  <div class="container-fluid">
+   <!--  <div class="row"> -->
+    <div class="navbar-header" style="/*margin-left: 3%;*/">
              <a class="navbar-brand text-uppercase logo" style="margin: auto !important; color: #04DAF1;" href="{{url('/')}}">LET'S GO</a>
-           </div>
-           <ul class=" nav navbar-nav navbar-left menu">
+              <ul class=" nav navbar-nav navbar-left menu">
             <li>
               <a href="{{url('/')}}" > TRANG CHỦ</a>
             </li>
@@ -14,6 +12,10 @@
               <a href="#">THEO DÕI </a>
             </li>
           </ul>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+          
+          
 <!--           <form action="" class="search-form">
                 <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
                 <label for="search" class="sr-only">Search</label>
@@ -48,7 +50,7 @@
                    <div class="container">
                      <div class="row">
                         <div class="col-md-12">
-                        <div class="menuHeader">
+                          <div class="menuHeader">
                           <h3>
                             Thông Báo
                           </h3>
@@ -127,7 +129,8 @@
                     </div>
                   </div>
                   </ul>
-                </li>
+                  </li>
+              
                 <li class="dropdown detail-hover">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="padding: 5px;">
                     <strong>
@@ -187,12 +190,12 @@
                             </div>
                           </div>
                         </div>
-
+                        </ul>
                       </li>
       
                   </ul>
-                </li>
-                <li>
+               <!--  </li> -->
+              <!--   <li> -->
                   <!-- <form action="" class="search-form">
                 <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
                 <label for="search" class="sr-only">Search</label>
@@ -200,10 +203,10 @@
                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
             </form>  -->
-                </li>
-             </ul>
+               <!--  </li> -->
+             <!-- </ul> -->
         </div>
-    </div>
+   <!--  </div> -->
   </div>
   </nav>
    <!-- Modal -->

@@ -7,7 +7,7 @@ namespace App\Models\Repository;
 
 use App\Models\Entities\Comment;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 /**
 * 
 */
@@ -21,7 +21,10 @@ class CommentRepositoryEloquent implements CommentRepository
    	 			'image_id'	=> $data['image_id'],
    	 			'content'	=> $data['content']
    	 	]);
-
+         $user_name = DB::table("users")->select("last_name", "first_name")->where("id", $data['user_id'])->get();
+         $username = $user_name[0]->last_name." ".$user_name[0]->first_name;
+        
+         $created['username'] = $username;
    	 	return $created;
    }
    public function getAllCommentOfImage($data)

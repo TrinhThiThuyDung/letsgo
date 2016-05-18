@@ -49,10 +49,10 @@ class LikeRepositoryEloquent implements LikeRepository
     }
     function getPhotoUserLike($user_id)
     {
-        $result = DB::table("likes")
-                    ->join("users", "likes.user_id", '=', "users.id")
-                    ->join("images", "likes.image_id", '=', 'images.id')
-                    ->select("images.*", "users.id as user_id", "users.last_name as user_lastname", "users.first_name as user_firstname")
+        $result = DB::table("images")
+                    ->join("likes", "likes.image_id", '=', 'images.id')
+                    ->join("users", "images.user_id", '=', "users.id")
+                    ->select("images.*", "users.id as user_id", "users.last_name as user_lastname", "users.first_name as user_firstname", "users.avatar as avatar")
                     ->where("likes.user_id", $user_id)
                     ->orderBy ("likes.created_at", 'desc')
                     ->get();

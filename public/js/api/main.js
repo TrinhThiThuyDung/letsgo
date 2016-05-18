@@ -10,11 +10,11 @@ $(document).ready(function(){
 
         }
 	}
-	$('body').on('click', 'button.close' , function(e){
-		$('tbody.files').remove();
-	});
-	$('body').on('click', 'button.close-modal' , function(e){
-		$('tbody.files').remove();
+	$('input#avatar:file').change(function(e){
+		
+		var image_name = e.target.files[0].name;
+		
+		$('span#avaNewName').html(image_name);
 	});
    
 });
