@@ -17,14 +17,8 @@ class AuthenticateMobile
     {
         if (!$request->session()->has("id")) {
             /*if user not a session but have a cookie*/
-             if($request->cookie("id") ){
-                $request->session()->put('id', $request->cookie("id"));
-                return $next($request);
-            }
-            else{
-                $response = ['status' => 'notLogin'];
-                return response()->json($response);
-            }
+            $response = ['status' => 'notLogin'];
+            return response()->json($response);
         }
         return $next($request);
     }

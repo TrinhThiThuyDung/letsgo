@@ -30,7 +30,14 @@
   }
 </style>
 @endsection
+<?php 
 
+if ( isset($errors['status']) ){
+   /*var_dump($input->all());*/
+   echo "string";die;
+}
+
+ ?>
 @section('content')
   @include('layout/nagavition')
  <div id="header" class="profile-header" >
@@ -58,7 +65,7 @@
                           <div class="tab-pane active" id="men" style="background: rgb(255, 255, 255);">
                             <div class="upload">
                               <div class="empty">
-                              	<button type="button" class="btn btn-primary btn-upload">Đăng ảnh</button>
+                              	<!-- <button type="button" class="btn btn-primary btn-upload">Đăng ảnh</button> -->
                               </div>
                             	
                             </div>
@@ -176,7 +183,7 @@
                               <div class="update-profile">
                                <h3 class="textHeading">Cập nhật thông tin cá nhân</h3>
                                <div class="content-info" style="text-align: left;">
-                                <form  id="formUpdateProfile" action="{{url('web/user/profile/update')}}" method="post" style="margin-left: 10px;" target="_blank" enctype="multipart/form-data">
+                                <form  id="formUpdateProfile" action="{{url('web/user/profile/update')}}" method="post" style="margin-left: 10px;"enctype="multipart/form-data">
                                 <input type="hidden" name="user_id" value="<?php echo $array_data['user']->user_id; ?>">
                                 <dl>
                                   <dt>Họ: </dt>
@@ -220,12 +227,12 @@
                                   <dt>Bạn là: </dt>
                                   <dd style="width: 100% !important; margin: 0px 3px; padding: 3px;">
                                   <div class="checkbox checkbox-primary">
-                                      <input type="radio" name="gender" value="male" checked> Nam<br>
+                                      <input type="radio" name="gender" value="male"> Nam<br>
                                       <input type="radio" name="gender" value="female"> Nữ<br>
                                       </div>
                                   </dd>
                                 </dl>
-                                <dl style="width: 370px;">
+                              <!--   <dl style="width: 370px;">
                                   <dt>Cập nhật lại avatar của bạn: </dt>
                                   <dd style="width: 100% !important; margin: 7px 7px;">
                                   <div class="upload-area" style="height: 100%;" >
@@ -237,8 +244,8 @@
                                       </span>
                                    </div>  
                                   </dd>
-                                </dl> 
-                               <button class="btn btn-info" type="submit" for="formUpdateProfile">Cập Nhật</button>
+                                </dl>  -->
+                               <button class="btn btn-info" type="submit" for="formUpdateProfile" style="margin: 0 43px;">Cập Nhật</button>
                                   
                                 </form>
                                 </div>

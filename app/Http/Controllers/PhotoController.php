@@ -114,7 +114,7 @@ class PhotoController extends Controller
             
                 $image_name = $image->getClientOriginalName();
 
-                $image_path = $this->moveImagesToUploadFolder( $image , $image_name , $this->user_id);
+                $image_path = $this->moveImagesToUploadFolder( $image , $image_name );
                 if ($image_path) {
                      //Resize image
                     $image_size = getimagesize($image_path."/".$image_name);
@@ -148,7 +148,7 @@ class PhotoController extends Controller
 
                         $url = '/upload/'.$this->user_id;
                         $image_add = [
-                                'user_id'   => (int)$this->user_id,
+                                'user_id'   => $this->user_id,
                                 'kind_id'   => (int)$images['image_kind'],
                                 'name'      => $image_name,
                                 'size'      => $width."x".$height,
@@ -195,10 +195,10 @@ class PhotoController extends Controller
         return ImageServiceFacade::addPhoto( $image );
     }
 
-    public function moveImagesToUploadFolder( $images , $images_name, $user_id )
+    public function moveImagesToUploadFolder( $images , $images_name )
     {
         try {
-            $path = base_path().'/public/upload/'.$user_id;
+            $path = base_path().'/public/upload/'.$this->user_id;
        
             $images->move( $path, $images_name);
             return $path;

@@ -48,22 +48,46 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $user_update = $request->all();
+        $data_update = [];
 
-        $result = $user_updated = UserServiceFacade::updateProfile( $user_update );
-
-
-        if ($request->hasFile('avatar')) {
+        if ($user_update['last_name'] !== '') {
+            $data_update['last_name'] = $user_update['last_name'];
+        }
+        if ($user_update['first_name'] !== '') {
+            $data_update['first_name'] = $user_update['first_name'];
+        } 
+        if ($user_update['phone'] !== '') {
+            $data_update['phone'] = $user_update['phone'];
+        }
+        if ($user_update['address'] !== '') {
+            $data_update['address'] = $user_update['address'];
+        }
+        if ($user_update['birthday'] !== '') {
+            $data_update['birthday'] = $user_update['birthday'];
+        }
+        if ($user_update['position'] !== '') {
+            $data_update['position'] = $user_update['position'];
+        }
+        if (isset($user_update['gender'])) {
+            $data_update['gender'] = $user_update['gender'];
+        }
+        if (!empty($data_update)) {
+           $result = $user_updated = UserServiceFacade::updateProfile( $user_update );
+           if ($result) {
+                return response()->json( ['status'   => 'update thanh cong']);
+        }
+            return response()->json(['status'   => 'update loi']);
+        }
+        /*return response()->json(['status' => 'nothing to update']);*/
+       /* var_dump( back()->with( 'status' , 'nothing to update') );die;*/
+        return back()->withErors( 'status' , 'nothing to update' );
+       /* if ($request->hasFile('avatar')) {
 
             $avatar = $request->file('avatar');
             $avatar_name = $avatar->getClientOriginalName();
 
-           /* PhotoController::moveImagesToUploadFolder($avatar, $avatar_name , $user_update['user_id']);*/
-        }
-
-        if ($result) {
-            return response()->json(['status'   => 'update thanh cong']);
-        }
-        return response()->json(['status'   => 'update loi']);
+            PhotoController::moveImagesToUploadFolder($avatar, $avatar_name , $user_update['user_id']);
+        }*/
     }
     protected function getPhotoOfUser ($user_id )
     {
