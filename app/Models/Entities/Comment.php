@@ -12,6 +12,7 @@ class Comment extends Model
  		'id',
  	    'user_id',
  	    'image_id',
+ 	    'notication_id',
  	    'content',
  	    'created_at',
  	    'updated_at'
@@ -27,5 +28,9 @@ class Comment extends Model
     public function users()
     {
     	return $this->belongsTo("User");
+    }
+    public function notications()
+    {
+    	return $this->hasOne("Notication");
     }
 }

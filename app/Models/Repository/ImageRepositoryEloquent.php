@@ -64,6 +64,12 @@ class ImageRepositoryEloquent implements ImageRepository
 	
 		return $result;
 	}
+	public function getPhotoById($image_id)
+	{
+		$image = DB::table('images')->where('id', '=', $image_id)->get();
+
+		return $image;
+	}
 }
 
 

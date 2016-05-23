@@ -13,7 +13,8 @@ class LikeRepositoryEloquent implements LikeRepository
     {
     	$like = Like::create([
     		'user_id' => (int)$data['user_id'],
-    		'image_id' => (int)$data['image_id']
+    		'image_id' => (int)$data['image_id'],
+            'notication_id' => $data['noti_id']
     		]);
 
     	return $like;

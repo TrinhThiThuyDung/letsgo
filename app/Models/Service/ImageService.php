@@ -45,9 +45,7 @@ class ImageService implements ImageServiceInterface
 	public function getPhotoById($image_id)
 	{
 		if(!empty($image_id)){
-			$image = DB::table('images')->where('id', '=', $image_id)->get();
-
-			return $image;
+			return $image = ImageFacade::getPhotoById($image_id);
 		}
 	}
 	public function findIdUserOfImage($image)

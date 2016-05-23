@@ -5,14 +5,14 @@
         <div class="container" style="height: 100%;">
             <div class="footerlinks"><!-- FOOTER LINKS START -->            
                 <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#hero">Trang chủ</a></li>
+                    <li><a href="#about">Theo dõi</a></li>
+                    <li><a href="#services">Ảnh theo loại</a></li>
+                    <li><a href="#portfolio">Trang cá nhân</a></li>
+                    <li><a href="#testimonials">Về chúng tôi</a></li>
 
                     <!--replace the email address below with your email address-->
-                    <li><a href="mailto:m@creatrix.us">Contact</a></li>                   
+                    <li><a href="mailto:m@creatrix.us">Liên hệ</a></li>                   
                 </ul>
             </div><!-- FOOTER LINKS END -->
              

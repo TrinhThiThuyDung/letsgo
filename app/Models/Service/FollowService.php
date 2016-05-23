@@ -18,19 +18,27 @@ class FollowService implements FollowServiceInterface
 
     public function addFollow( $data )
     {
-    	$data['user_id_image'] = $this->getUserIdOfImage( $data['image_id']);
+      if ($data) {
+          $data['user_id_image'] = $this->getUserIdOfImage( $data['image_id']); //get id of user of image
+          $notiInfor = [
+          'user_from_id'    => $data['user_id'],
+          'user_to_id'      => $data['user_id_image'],
+          'kind'            => 'follow',
+          'seen'            => 0
+        ];
 
-      $follow = FollowFacade::addFollow( $data );
+        $noti = $this->createNotication ($notiInfor); //create new notication
+        if ($noti) {
+          $data['noti_id']   = $noti['id'];
 
-    	$notiInfor = [
-  			'user_from_id' 		=> $data['user_id'],
-  			'user_to_id'		=> $data['user_id_image'],
-  			'follow_id'		=> $follow['id'],
-  			'seen'				=> 0
-  		];
-
-  		$this->createNotication ($notiInfor);
-    	return $follow;
+          $follow = FollowFacade::addFollow( $data );
+          if (!$follow) {
+            DB::table("notications")->where("id", $noti['id'])->delete();
+            return false;
+          }
+           return $follow;
+        }
+      }
     }
 
     public function deleteFollow( $data )

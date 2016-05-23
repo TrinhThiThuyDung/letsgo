@@ -57,7 +57,10 @@
                     $height_1 = (int)$size_1[1];
 
                     if ($width_1 >= 900) {
-                      $item = 1;
+                      $item = rand( 1 , 3 );
+                      if($item == 3){
+                        $rand = rand( 0, 1 );
+                      }
                     }elseif ($width_1 >= 600 && $width_1 < 900 ) {
                       $item_temp = rand( 2 , 3 );
 
@@ -71,29 +74,7 @@
                         if ($width_2 <= 600 ) {
                           $item = 2;
 
-                          $item_temp_1 = rand( 0, 1 );
-                          if ($item_temp_1 = 0) {
-                            $image_1 = $photos[$i];
-                            $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
-                            $image_1_size = "item-big";
-
-                            $image_2 = $photos[++$i];
-                            $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
-                            $image_2_size = "item-small";
-                          }
-                         else{
-                            $image_2 = $photos[$i];
-                            $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
-                            $image_2_size = "item-big";
-
-                            $image_1 = $photos[++$i];
-                            $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
-                            $image_1_size = "item-small";
-                         }
+                         
                         }else{
                             $image_1 = $photos[$i];
                             $image_1_url = $image_1->url."/".$image_1->name;
@@ -153,6 +134,29 @@
                 </div>
               </div>
                     <?php  }elseif ($item == 2) { 
+                       $item_temp_1 = rand( 0, 1 );
+                          if ($item_temp_1 = 0) {
+                            $image_1 = $photos[$i];
+                            $image_1_url = $image_1->url."/".$image_1->name;
+                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                            $image_1_size = "item-big";
+
+                            $image_2 = $photos[++$i];
+                            $image_2_url = $image_2->url."/".$image_2->name;
+                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                            $image_2_size = "item-small";
+                          }
+                         else{
+                            $image_2 = $photos[$i];
+                            $image_2_url = $image_2->url."/".$image_2->name;
+                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                            $image_2_size = "item-big";
+
+                            $image_1 = $photos[++$i];
+                            $image_1_url = $image_1->url."/".$image_1->name;
+                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                            $image_1_size = "item-small";
+                         }
                        ?>
                       <div class=" wrap-images item-2">
                    <div class="<?php  echo $image_1_size; ?>">

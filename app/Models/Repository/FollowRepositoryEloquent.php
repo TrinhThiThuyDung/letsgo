@@ -24,7 +24,8 @@ class FollowRepositoryEloquent implements FollowRepository
     {
         $result = Follow::create([
             'user_follower_id'      => (int)$data['user_id'],
-            'user_followed_id'      => (int)$data['user_id_image']
+            'user_followed_id'      => (int)$data['user_id_image'],
+            'notication_id'         => (int)$data['noti_id']
         ]);
         
         return $result;

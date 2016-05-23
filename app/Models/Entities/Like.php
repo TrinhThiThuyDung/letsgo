@@ -12,6 +12,7 @@ class Like extends Model
     	'id',
     	'user_id',
     	'image_id',
+        'notication_id',
     	'created_at',
     	'updated_at',
     ];
@@ -26,5 +27,9 @@ class Like extends Model
     public function images()
     {
     	return $this->belongs('Image');
+    }
+    public function notications()
+    {
+        return $this->hasOne("Notications");
     }
 }

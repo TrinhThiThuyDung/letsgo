@@ -12,6 +12,7 @@ class Follow extends Model
  		'id',
  	    'user_follower_id',
  	    'user_followed_id',
+ 	    'notication_id',
  	    'created_at',
  	    'updated_at'
  	  
@@ -22,5 +23,9 @@ class Follow extends Model
     public function users()
     {
     	return $this->belongsTo("User");
+    }
+    public function notications()
+    {
+    	return $this->hasOne("Notication");
     }
 }

@@ -13,19 +13,25 @@ class CommentService implements CommentServiceInterface
 	
 	public function addComment( $data )
 	{
-		$comment = CommentFacade::addComment ($data );
-		if ($comment) {
-			$user_image_id = ImageFacade::findIdUserOfImage($data['image_id']);
 
-			$notiCreate = [
+		if ($data) {
+			$user_image_id = (int)ImageFacade::findIdUserOfImage($data['image_id']);
+			if ($user_image_id !== (int)$data['user_id']) {
+				$notiCreate = [
 				'user_from_id' 	=> $data['user_id'],
 				'user_to_id'	=> $user_image_id,
-				'comment_id'	=> $comment['id'],
-				'image_id'		=> $data['image_id'],
+				'kind'			=> 'comment',
 				'seen'			=> 0
 			];
-			NoticationFacade::createNotication ($notiCreate);
-
+			
+			$noti = NoticationFacade::createNotication ($notiCreate);
+			}
+			if ($noti) {
+				$data['noti_id'] = $noti['id'];
+			}else{
+				$data['noti_id'] = null;
+			}
+			$comment = CommentFacade::addComment ($data );
 			return $comment;
 		}
 	}

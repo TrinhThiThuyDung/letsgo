@@ -14,6 +14,7 @@ a {
   text-decoration: initial !important;
     outline: none;
 }
+
 @media (max-width: 1200px){
  body {
     min-width: 1200px;

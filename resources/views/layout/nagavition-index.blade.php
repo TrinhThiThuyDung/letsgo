@@ -31,19 +31,19 @@
       <div class="modal-content">
         <div class="middlePage" style="left: 10%;">
           <div class="page-header">
-            <h1 class="logo">LET"S GO <small>Welcome to our Let's go world!</small></h1>
+            <h1 class="logo">LET'S GO <small>Welcome to our Let's go world!</small></h1>
           </div>
 
-                <div class="panel panel-info">
+                <div class="panel panel-info" >
                   <div class="panel-heading">
                     <h3 class="panel-title"> Come with me !</h3>
                   </div>
                   <div class="panel-body">
                     <div class="row">
                       <div class="col-md-5" >
-                        <a href="#"><img class="id" src="http://techulus.com/buttons/fb.png" /></a><br/>
-                        <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/>
-                        <a href="#"><img class="id" src="http://techulus.com/buttons/gplus.png" /></a>
+                        <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 100%; margin: 19px 0;" /></a><br/>
+                      <!--   <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/> -->
+                        <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 100%; margin: 19px 0;" /></a>
                       </div>
                     <div class="col-md-7" style="border-left:1px solid #ccc;">
                       <form id="form-signin" class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
@@ -82,7 +82,7 @@
           <div class="page-header">
             <h1 class="logo">LET'S GO <small>Chào mừng tới thế giới của Let's Go!</small></h1>
           </div>
-          <div class="panel panel-info">
+          <div class="panel panel-info" style="width: 945px;">
             
               <div class="panel-heading">
                 <h3 class="panel-title">Đăng Ký Một Tài Khoản Mới</h3>
@@ -155,9 +155,9 @@
             </div>
             <div class="rom">
             <div class="col-md-12" >
-                  <a href="#" class="social"><img class="id" src="http://techulus.com/buttons/fb.png" /></a>
-                  <a href="#" class="social"><img class="id" src="http://techulus.com/buttons/tw.png" /></a>
-                  <a href="#" class="social"><img class="id" src="http://techulus.com/buttons/gplus.png" /></a>
+                   <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 48%; float: left;" /></a>
+                      <!--   <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/> -->
+                        <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 48%; float: right;" /></a>
             </div>
             </div>
           </div>

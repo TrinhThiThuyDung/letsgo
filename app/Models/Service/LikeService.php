@@ -6,6 +6,7 @@ use App\Models\Repository\LikeFacade;
 use App\Models\Entities\Like;
 use App\Models\Repository\NoticationFacade;
 use App\Models\Repository\ImageFacade;
+use DB;
 
 class LikeService implements LikeServiceInterface
 {
@@ -15,23 +16,27 @@ class LikeService implements LikeServiceInterface
 	 */
     public function addLike( $data )
     {
-
-    	$like =  LikeFacade::addLike( $data );
-
-    	$user_id_image = ImageFacade::findIdUserOfImage( $data['image_id' ]);
-  		
-  		$notiInfor = [
-  			'user_from_id' 	=> $data['user_id'],
-  			'user_to_id'		=> $user_id_image,
-  			'like_id'	      => $like['id'],
-        'image_id'      => $data['image_id'],
-  			'seen'				  => 0
-  		];
-
-  		NoticationFacade::createNotication( $notiInfor );
-  		
-  		return $like;
+      if ($data) {
+        $user_id_image = (int)ImageFacade::findIdUserOfImage( $data['image_id' ]);
+        if ( $user_id_image !== (int)$data['user_id'] ) {
+          $notiInfor = [
+            'user_from_id'  => $data['user_id'],
+            'user_to_id'    => $user_id_image,
+            'kind'          => "like",
+            'seen'          => 0
+        ];
+        $noti = NoticationFacade::createNotication( $notiInfor );
+      }
+      if (isset( $noti)) {
+          $data['noti_id']  = $noti['id'];
+      }else{
+        $data['noti_id']  = null;
+      }
+      $like =  LikeFacade::addLike( $data );  
+      return $like;  
     }
+    return false;
+  }
 
     public function checkLike( $data )
     {

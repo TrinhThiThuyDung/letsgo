@@ -96,24 +96,23 @@
                                             <img  src="<?php echo $value->user_avatar; ?>" alt="<?php echo $user_name; ?>" class="img-responsive img-circle" />
                                         </div>
                                         <div class="col-xs-12 col-sm-9 col-md-8" style = 'width: 79%;'>
-                                        <a href="{{url('/web/user/profile/')}}/<?php echo $value->user_id; ?>" class="name"><?php echo $user_name; ?></a>
+                                        <a href="{{url('/web/user/profile/')}}/<?php echo $value->user_from_id; ?>" class="name"><?php echo $user_name; ?></a><br>
                                         <span style = 'display: inline-block;'> <?php 
-                                            if ($value->like_id) {
+                                            if ($value->kind === "like") {
                                               echo " đã thích ảnh của bạn!";
                                             }
-                                            else if($value->comment_id){
+                                            else if($value->kind === "comment"){
                                               echo " đã bình luận về ảnh của bạn";
                                             }
-                                            else if($value->follow_id ){
+                                            else if($value->kind === "follow" ){
                                               echo " đã bắt đầu theo dõi bạn";
                                             }
                                             ?> </span>
                                            <a href="#">
-                                            <?php if ($value->like_id || $value->comment_id) { ?>
+                                            <?php if ($value->kind === "like" || $value->kind === "comment") { ?>
 
-                                            <img style = 'width: 45px; float: right; position: absolute; top: 0px; right: 0; height: 50px; border-radius:3px; ' src = "<?php if ($value->image_url && $value->image_name) {
-                                              echo $value->image_url."/".$value->image_name;
-                                            } 
+                                            <img style = 'width: 45px; float: right; position: absolute; top: 0px; right: 0; height: 50px; border-radius:3px; ' src = "<?php 
+                                              echo $value->image_url;
                                           ?> ">
                                           <?php }?>
                                             </a><br/>
