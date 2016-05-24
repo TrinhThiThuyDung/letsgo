@@ -40,9 +40,17 @@ Route::group(['prefix' => 'web'], function(){
 							'as'	=> 'web/photo/show/',
 							'uses'	=> 'PhotoController@showPhoto']
 		);
-		Route::get('/photo/show/images/{category_id}',[
+		Route::get('/photo/show/images/{category_name}',[
 							'as'	=> 'web/photo/show/images/',
-							'uses'	=> 'PhotoController@showPhotosByCategory']
+							'uses'	=> 'PhotoController@getShowPhotosByCategory']
+		);
+		Route::post('/photo/show/images/{category_name}',[
+							'as'	=> 'web/photo/show/images/',
+							'uses'	=> 'PhotoController@postShowPhotosByCategory']
+		);
+		Route::get('/photo/show/user/follow/',[
+							'as'	=> 'web/photo/show/user/follow/',
+							'uses'	=> 'PhotoController@showPhotoUserFollow']
 		);
 		/*====================== LIKE ACTION =========================*/
 		Route::post('/photo/action/checkLike', [ 
@@ -195,7 +203,7 @@ Route::group(['prefix' => 'mobile'] , function(){
 		/*========================= PROFILE USER ============================*/
 		Route::get('/user/profile/{user_id}',[
 				'as'	=> 'mobile/user/profile',
-				'uses'	=> 'UserController@getProfileUser'
+				'uses'	=> 'UserController@getProfileUserMobile'
 			]);
 
 	});

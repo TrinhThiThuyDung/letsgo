@@ -65,19 +65,9 @@ class UserService implements UserServiceInterface
  		return UserFacade::getInforActivityOfUser( $user_id );
  	}
 
- 	public function updateProfile($user_update)
+ 	public function updateProfile($user_id , $data_update)
  	{
- 		$data_update = [
- 			'last_name'		=> $user_update['last_name'],
- 			'first_name'	=> $user_update['first_name'],
- 			'phone'			=> $user_update['phone'],
- 			'gender'		=> $user_update['gender'],
- 			'address'		=> $user_update['address'],
- 			'birthday'		=> $user_update['birthday'],
- 			'avatar'		=> '/upload/'.$user_update['user_id']."/".$user_update['avatar'],
- 			'position'		=> $user_update['position']
- 		];
- 		return $result = UserFacade::updateProfile($user_update['user_id'], $data_update);
+ 		return $result = UserFacade::updateProfile( $user_id, $data_update);
 
  	}
 }

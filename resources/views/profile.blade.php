@@ -30,14 +30,8 @@
   }
 </style>
 @endsection
-<?php 
 
-if ( isset($errors['status']) ){
-   /*var_dump($input->all());*/
-   echo "string";die;
-}
 
- ?>
 @section('content')
   @include('layout/nagavition')
  <div id="header" class="profile-header" >
@@ -45,7 +39,45 @@ if ( isset($errors['status']) ){
     <div class="profile-info">
     	<div class="profile-photo">
     		<img src="<?php if(isset($array_data)) $avatar = $array_data['user']->avatar; echo $avatar; ?>">
+         <img src="/images/icon/photo-camera.svg" style="width: 55px; height: 101px;    position: absolute; left: 48%; top: 81px;" data-toggle="modal" data-target="#changeAvatar">
+       <!--  <span>
+          <form action="{{}}" method="post" enctype="multipart/form-data">
+            <div class="upload-area" style="height: 100%; position: absolute; top: 39px; width: 155px; left: 43.5%;" >
+                <span class="fileinput-button">
+                  <img src="/images/icon/photo-camera.svg" style="width: 55px; height: 101px;">
+                      <input type="file" name="avatar">
+                </span>
+                         
+            </div>
+          </form>
+        </span> -->
     </div>
+    <!-- Modal -->
+<div id="changeAvatar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="height: 554px; width: 662px;">
+     
+      <div class="modal-body">
+        <form action="" method="post" id="formChangeAvatar" enctype="multipart/form-data">
+            <div class="upload-area" style="height: 100%;" id="areaUpload">
+                <span class="fileinput-button">
+                  <img src="/images/icon/upload.svg" style="left: 41%;">
+                      <input type="file" name="avatar" style="    width: 631px; height: 187px;">
+                </span>
+                         
+            </div>
+            <button id="btnChange" type="submit" for = "formChangeAvatar" class="btn btn-infor" style="display:none;">Thay đổi</button>
+          </form>
+      </div>
+     <!--  <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Thay đổi</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>
     <div class="profile-name">
     	<span class="name"><?php if(isset($username)) echo  $username; ?></span>
     </div> 
@@ -180,10 +212,17 @@ if ( isset($errors['status']) ){
                                 </div>
                               </div>
                               </div>
+                              <?php 
+                            
+                                $url = explode("/", $_SERVER['REQUEST_URI']);
+                                $id = (int)$url[count($url) - 1];
+                                $user_id = Session::get('id');
+                                if ($id == $user_id) {
+                              ?>
                               <div class="update-profile">
                                <h3 class="textHeading">Cập nhật thông tin cá nhân</h3>
                                <div class="content-info" style="text-align: left;">
-                                <form  id="formUpdateProfile" action="{{url('web/user/profile/update')}}" method="post" style="margin-left: 10px;"enctype="multipart/form-data">
+                                <form  id="formUpdateProfile" action="{{url('web/user/profile/update')}}" method="post" style="margin-left: 10px;" >
                                 <input type="hidden" name="user_id" value="<?php echo $array_data['user']->user_id; ?>">
                                 <dl>
                                   <dt>Họ: </dt>
@@ -232,24 +271,16 @@ if ( isset($errors['status']) ){
                                       </div>
                                   </dd>
                                 </dl>
-                              <!--   <dl style="width: 370px;">
-                                  <dt>Cập nhật lại avatar của bạn: </dt>
-                                  <dd style="width: 100% !important; margin: 7px 7px;">
-                                  <div class="upload-area" style="height: 100%;" >
-                                    <span class="fileinput-button" style="    text-align: left;">
-                                        <img id = "ava" src="<?php echo $avatar; ?>" style="width: 148px; left: 0px; text-align: left;display: inline-block;">
-                                        <span style="display: inline-block;">Chọn avatar mới</span>
-                                        <span id="avaNewName" style="margin:1px; font-size: 13px;"></span>
-                                        <input id="avatar" type="file" name="avatar" style="font-size: 303px; width: 193px; height: 112px;">
-                                      </span>
-                                   </div>  
-                                  </dd>
-                                </dl>  -->
-                               <button class="btn btn-info" type="submit" for="formUpdateProfile" style="margin: 0 43px;">Cập Nhật</button>
-                                  
+                            
+                               <input id="buttonUpdate" class="btn btn-info" type="submit" style="margin: 0 43px;" value = "Cập Nhật"/>
+                                   <dl>
+                                  <dt id ="result" style = "color: rgba(228, 45, 45, 0.78);"> </dt>
+                                </dl>
                                 </form>
+                                
                                 </div>
                               </div>
+                              <?php } ?>
                              </div>
                            </div>
                           </div>

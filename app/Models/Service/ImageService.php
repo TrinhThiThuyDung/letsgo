@@ -52,6 +52,29 @@ class ImageService implements ImageServiceInterface
 	{
 		return ImageFacade::findIdUserOfImage($image);
 	}
+	public function getAllUserFollow($user_id)
+	{
+		$result = DB::table("follows")->join("users", "users.id", "=", "follows.user_followed_id")
+								      ->select("user_followed_id", "users.last_name as user_lastname", "users.first_name as user_firstname", "users.avatar as user_avatar")->where("user_follower_id", $user_id)->get();
+
+
+		foreach ($result as $key => $value) {
+			$value->image =  $this->getImagesByUserId( $value->user_followed_id );
+		}
+		return $result;
+	}
+	public function getImagesByUserId( $user_id )
+	{
+		$result = DB::table("images")->select( "images.*")
+									 ->where("user_id", $user_id)
+									 ->get();
+
+		return $result;
+	}
+	public function getImagesByCategory($category_id)
+	{
+		return $result = DB::table("images")->where("kind_id", $category_id)->get();
+	}
 }
 
 ?>

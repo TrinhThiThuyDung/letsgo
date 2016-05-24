@@ -9,7 +9,10 @@
             </li>
             <li class="" style="height: 66%; text-align: center;width: 1px;background-color: #1B6E69 !important;margin: 3% 0;"></li>
             <li>
-              <a href="#">THEO DÕI </a>
+              <a href="{{url('web/photo/show/user/follow')}}">THEO DÕI </a>
+            </li>
+            <li>
+              <a href="{{url('web/photo/show/images/all')}}">CHÒI ẢNH </a>
             </li>
           </ul>
       </div>

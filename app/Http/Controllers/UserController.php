@@ -45,12 +45,53 @@ class UserController extends Controller
 
     	return view("profile")->with( 'data', $data );
     }
+    public function getProfileUserMobile(Request $request)
+    {
+        $user_id = $request->user_id;
+        $photo_of_user = $this->getPhotoOfUser ($user_id );
+        $photo_user_like = $this->getPhotoUserLike($user_id );
+        $user_infor_activity = $this->getInforActivityOfUser($user_id );
+        $user_all_infor = $this->getAllInforUser($user_id );
+        $user_follow = $this->getUserFollow($user_id );
+
+        $data = [
+            'user_photo'    => $photo_of_user,
+            'user_like'     => $photo_user_like,
+            'user_activity' => $user_infor_activity,
+            'user_all_infor'=> $user_all_infor,
+            'user_follow'   => $user_follow
+        ];
+        return reponse()->json ([ 'data'=> $data ]);
+    }
     public function updateProfile(Request $request)
     {
-        $user_update = $request->all();
-        $data_update = [];
+        $user_update = $request->user;
 
-        if ($user_update['last_name'] !== '') {
+        $data_update = [];
+        $data_update = $this->updateDataProfile($user_update);
+
+        if (!empty($data_update)) {
+            $result = $user_updated = UserServiceFacade::updateProfile($this->user_id, $data_update );
+            if ($result) {
+                return response()->json( ['status'   => 'sucess']);
+            }
+            return response()->json(['status'   => 'error']);
+        }
+        /*return response()->json(['status' => 'nothing to update']);*/
+       /* var_dump( back()->with( 'status' , 'nothing to update') );die;*/
+        return response()->json( ['status' => 'nothing' ]);
+       /* if ($request->hasFile('avatar')) {
+
+            $avatar = $request->file('avatar');
+            $avatar_name = $avatar->getClientOriginalName();
+
+            PhotoController::moveImagesToUploadFolder($avatar, $avatar_name , $user_update['user_id']);
+        }*/
+    }
+    protected function updateDataProfile($user_update)
+    {
+        $data_update = [];
+         if ($user_update['last_name'] !== '') {
             $data_update['last_name'] = $user_update['last_name'];
         }
         if ($user_update['first_name'] !== '') {
@@ -71,23 +112,7 @@ class UserController extends Controller
         if (isset($user_update['gender'])) {
             $data_update['gender'] = $user_update['gender'];
         }
-        if (!empty($data_update)) {
-           $result = $user_updated = UserServiceFacade::updateProfile( $user_update );
-           if ($result) {
-                return response()->json( ['status'   => 'update thanh cong']);
-        }
-            return response()->json(['status'   => 'update loi']);
-        }
-        /*return response()->json(['status' => 'nothing to update']);*/
-       /* var_dump( back()->with( 'status' , 'nothing to update') );die;*/
-        return back()->withErors( 'status' , 'nothing to update' );
-       /* if ($request->hasFile('avatar')) {
-
-            $avatar = $request->file('avatar');
-            $avatar_name = $avatar->getClientOriginalName();
-
-            PhotoController::moveImagesToUploadFolder($avatar, $avatar_name , $user_update['user_id']);
-        }*/
+        return $data_update;
     }
     protected function getPhotoOfUser ($user_id )
     {

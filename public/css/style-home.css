@@ -354,6 +354,12 @@ body{
   border-left: 2px solid #5b9bd1;
   margin-left: -2px;
 }
+
+img#profile-avatar:hover{
+  background: url(/images/icon/photo-camera.svg);
+  background-repeat: no-repeat;
+ /* background-size: 300px;*/
+}
 /*========= NOTIFICATION ==========*/
 .panel {
   background-color: black !important;
@@ -1098,4 +1104,31 @@ span.span-start, span.span-cancel , span.span-delete{
     left: 33%;
     font-size: 16px;
     color: #1C636B;
+}
+
+/*==========================================================
+                        FOLLOW PAGE CSS
+============================================================*/
+
+div.follow{
+  margin-top: 96px;
+}
+.userFollow{
+    height: 167px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid rgba(164, 103, 224, 0.69);
+}
+.userFollow > a > img{
+  height: 131px;
+    border-radius: 81%;
+    width: 186px;
+}
+.userFollow > a >span.name{
+  color: white;
+    margin: 10px;
+    width: 100%;
+    display: block;
 }

@@ -87,12 +87,78 @@ class PhotoController extends Controller
 
         return view("image")->with('image', $image);
     }
-    public function showPhotosByCategory( Request $request)
+    public function getShowPhotosByCategory( Request $request)
     {
-        $category_id = $request->category_id;
+        $category_name = $request->category_name;
+        switch ($category_name) {
+        case 'all':
+            $category_id = 1;
+            break;
+         case 'moment':
+            $category_id = 2;
+            break;
+         case 'nature':
+            $category_id = 3;
+            break;
+         case 'people':
+            $category_id = 4;
+            break;
+         case 'animals':
+            $category_id = 5;
+            break;
+         case 'discovery':
+            $category_id = 6;
+            break;
+        
+        default:
+            $category_id = 1;
+            break;
+        }
 
-        return view("photo-category");
+        $image  = ImageServiceFacade::getImagesByCategory( $category_id );
+ 
+        return view("photo-category")->with([ 'image'  => $image , 'category_name' => $category_name ]);
     }
+
+    public function postShowPhotosByCategory(Request $request)
+    {
+        $category_name = $request->category_name;
+         switch ($category_name) {
+        case 'all':
+            $category_id = 1;
+            break;
+         case 'moment':
+            $category_id = 2;
+            break;
+         case 'nature':
+            $category_id = 3;
+            break;
+         case 'people':
+            $category_id = 4;
+            break;
+         case 'animals':
+            $category_id = 5;
+            break;
+         case 'discovery':
+            $category_id = 6;
+            break;
+        
+        default:
+            $category_id = 1;
+            break;
+        }
+         $image  = ImageServiceFacade::getImagesByCategory( $category_id );
+         return response()->json([ 'image'  => $image , 'category_name' => $category_name ] );
+    }
+     /**
+     *Show list images user follow
+     */
+    public function showPhotoUserFollow(Request $request)
+    {
+        $all_image = ImageServiceFacade::getAllUserFollow( $this->user_id );
+        return view("follow-page")->with(['data'    => $all_image]);
+    }
+
     public function getPhotoUpload(Request $request)
     {
         
@@ -279,5 +345,7 @@ class PhotoController extends Controller
         Storage::delete( $image_delete );
         return true;
     }
+
+
 }
 ?>

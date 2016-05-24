@@ -131,7 +131,7 @@
         <div class="card">
         
             <ul class="nav nav-tabs" role="tablist">
-                <li style="margin-left: 8%;" role="presentation" class="active"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Tất cả</a></li>
+                <li style="margin-left: 8%;" role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">Tất cả</a></li>
                   <li role="presentation"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Cuộc sống</a></li>
                 <li role="presentation"><a href="#nature" aria-controls="nature" role="tab" data-toggle="tab">Thiên nhiên </a></li>
                                         
@@ -145,7 +145,6 @@
             <!-- Tab panes -->
           <div class=" row tab-content">
               <div role="tabpanel" class="tab-pane active" id="moment">
-              
                   <div class="row">
                       <div class="col-md-4">
                           <div class="well">
@@ -200,215 +199,16 @@
             </div>
               <div role="tabpanel" class="tab-pane" id="nature">
              
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
-                          </div>
-                      </div>
-                  </div>
+               
                 <!-- </div> -->
               </div>
               <div role="tabpanel" class="tab-pane" id="people">
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
-                          </div>
-                      </div>
-                  </div></div>
+              </div>
               <div role="tabpanel" class="tab-pane" id="animals">
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
-                          </div>
-                      </div>
-                  </div></div>
+              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
+              </div>
               <div role="tabpanel" class="tab-pane" id="discovery">
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
-                          </div>
-                      </div>
-                  </div></div>
+                </div>
              <!--  <div role="tabpanel" class="tab-pane" id="more"></div> -->
              <div class="see-more" style="    float: right; margin: 10px 0;
     width: 122px;
