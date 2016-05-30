@@ -26,7 +26,7 @@ class CommentService implements CommentServiceInterface
 			
 			$noti = NoticationFacade::createNotication ($notiCreate);
 			}
-			if ($noti) {
+			if (isset( $noti )) {
 				$data['noti_id'] = $noti['id'];
 			}else{
 				$data['noti_id'] = null;

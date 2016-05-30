@@ -148,7 +148,7 @@ class PhotoController extends Controller
             break;
         }
          $image  = ImageServiceFacade::getImagesByCategory( $category_id );
-         return response()->json([ 'image'  => $image , 'category_name' => $category_name ] );
+         return response()->json( ['image'  => $image ]);
     }
      /**
      *Show list images user follow
@@ -346,6 +346,16 @@ class PhotoController extends Controller
         return true;
     }
 
+    public function downloadPhoto(Request $request)
+    {
+        $image_id = $request->image_id;
+        $image = ImageServiceFacade::getPhotoById( $image_id )[0];
+        $image_url = $image->url."/".$image->name;
 
+        $headers = array(
+              'Content-Type: application/gif',
+            );
+        return response()->download( public_path( $image_url), $image->name, $headers );
+    }
 }
 ?>

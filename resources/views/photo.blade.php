@@ -109,7 +109,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image->id; ?>" class="download">
                                       <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -171,7 +171,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_1->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -205,7 +205,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                  
@@ -258,7 +258,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}<?php echo $image_1->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -293,7 +293,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -327,7 +327,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_3->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -368,7 +368,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_1->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -402,7 +402,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -436,7 +436,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_3->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -479,7 +479,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image->id; ?>" class="download">
                                       <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -562,7 +562,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_1->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                 </div>
@@ -596,7 +596,7 @@
                                       echo "icon-love";
                                     }else{ echo "icon-like"; } ?>"></span>
                                   </a>
-                                  <a href="" class="add-to-gal">
+                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
                                     <span class="icon-add-gal"></span>
                                   </a>
                                  

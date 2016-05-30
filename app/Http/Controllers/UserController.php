@@ -77,16 +77,7 @@ class UserController extends Controller
             }
             return response()->json(['status'   => 'error']);
         }
-        /*return response()->json(['status' => 'nothing to update']);*/
-       /* var_dump( back()->with( 'status' , 'nothing to update') );die;*/
         return response()->json( ['status' => 'nothing' ]);
-       /* if ($request->hasFile('avatar')) {
-
-            $avatar = $request->file('avatar');
-            $avatar_name = $avatar->getClientOriginalName();
-
-            PhotoController::moveImagesToUploadFolder($avatar, $avatar_name , $user_update['user_id']);
-        }*/
     }
     protected function updateDataProfile($user_update)
     {

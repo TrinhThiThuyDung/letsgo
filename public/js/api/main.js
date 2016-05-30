@@ -99,7 +99,8 @@ $(document).ready(function(){
                   html+="</div>";
                }
              $('#'+category_name).html(html);
-            history.pushState({}, null, url);
+             window.location = url;
+           /* history.pushState({}, null, newUrl);*/
             }
          }
        });

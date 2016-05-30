@@ -106,6 +106,11 @@ Route::group(['prefix' => 'web'], function(){
 							'as'	=> 'web/notication/setSeen',
 							'uses'	=> 'NoticationController@setSeen']
 		);
+		/*====================== DOWNLOAD ===============================*/
+		Route::get('/photo/action/download/{image_id}', [
+							'as'	=> 'web/photo/action/download',
+							'uses'	=> 'PhotoController@downloadPhoto']
+		);
 		/*========================= PROFILE USER ============================*/
 		Route::get('/user/profile/{user_id}',[
 				'as'	=> 'web/user/profile',
@@ -203,8 +208,12 @@ Route::group(['prefix' => 'mobile'] , function(){
 		/*========================= PROFILE USER ============================*/
 		Route::get('/user/profile/{user_id}',[
 				'as'	=> 'mobile/user/profile',
-				'uses'	=> 'UserController@getProfileUserMobile'
-			]);
+				'uses'	=> 'UserController@getProfileUserMobile']
+		);
+		Route::post('/user/profile/update',[
+				'as'	=> 'web/user/profile/update',
+				'uses'	=> 'UserController@updateProfile']
+		);
 
 	});
 });
