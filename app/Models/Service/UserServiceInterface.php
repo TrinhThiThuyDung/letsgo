@@ -29,5 +29,7 @@ interface UserServiceInterface{
 	function getInforActivityOfUser ($user_id);
 
 	function updateProfile ( $user_id ,$user_update);
+
+	function updateAvatar( $user_id , $new_url );
 }
 ?>

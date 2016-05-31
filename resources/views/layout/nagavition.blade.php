@@ -161,24 +161,28 @@
                              
                                 <!-- END SIDEBAR BUTTONS -->
                                 <!-- SIDEBAR MENU -->
+                                <?php $href = "/web/user/profile/".$array_data['user']->user_id; ?>
                                 <div class="profile-usermenu">
                                   <ul class="nav">
                                     <li class="active">
-                                      <a href="/web/user/profile/<?php if (isset($array_data)) echo $array_data['user']->user_id; ?>">
-                                      <i class="glyphicon glyphicon-home"></i>
+                                      <a href="<?php  echo $href; ?>">
+                                      <i class="glyphicon glyphicon-user"></i>
                                       Trang cá nhân </a>
                                     </li>
-                                    <li>
-                                      <a href="/web/user/setting-account/<?php if (isset($array_data)) echo $array_data['user']->user_id; ?>">
-                                      <i class="glyphicon glyphicon-user"></i>
-                              Cài đặt tài khoản </a>
+                                    <li >
+                                      <a href="<?php  echo $href; ?>" id="like-user">
+                                      <i class="glyphicon glyphicon-heart"></i>
+                                    Ảnh yêu thích</a>
                                     </li>
-                                    <li>
-                                      <a href="/web/user/change-pass/{{ <?php if (isset($array_data)): ?>
-                                        echo $array_data['user']->id
-                                      <?php endif ?> }}" target="_blank">
+                                    <li >
+                                      <a href="<?php  echo $href; ?>" id="update-user">
                                       <i class="glyphicon glyphicon-pencil"></i>
-                                      Thay đổi mật khẩu </a>
+                                       Cập nhật thông tin </a>
+                                    </li>
+                                    <li >
+                                      <a href="<?php  echo $href; ?>" id="follow-user">
+                                      <i class="glyphicon glyphicon-book"></i>
+                                       Danh sách theo dõi </a>
                                     </li>
                                     <li>
                                       <a href="{{url('web/auth/logout')}}" id="signout">
@@ -196,17 +200,6 @@
                       </li>
       
                   </ul>
-               <!--  </li> -->
-              <!--   <li> -->
-                  <!-- <form action="" class="search-form">
-                <div class="form-group has-feedback" style="margin-top: 1%; margin-right: 4%;">
-                <label for="search" class="sr-only">Search</label>
-                <input type="text" class="form-control" name="search" id="search" placeholder="Tìm kiếm">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-              </div>
-            </form>  -->
-               <!--  </li> -->
-             <!-- </ul> -->
         </div>
    <!--  </div> -->
   </div>

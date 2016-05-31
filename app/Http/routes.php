@@ -120,6 +120,10 @@ Route::group(['prefix' => 'web'], function(){
 				'as'	=> 'web/user/profile/update',
 				'uses'	=> 'UserController@updateProfile']
 		);
+		Route::post('/user/profile/update/avatar',[
+				'as'	=> 'web/user/profile/update/avatar',
+				'uses'	=> 'UserController@updateAvatar']
+		);
 		/*
 		 * Sign out
 		 *

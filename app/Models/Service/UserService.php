@@ -70,5 +70,9 @@ class UserService implements UserServiceInterface
  		return $result = UserFacade::updateProfile( $user_id, $data_update);
 
  	}
+ 	public function updateAvatar( $user_id , $new_url )
+ 	{
+ 		return $result = DB::table("users")->where("id", $user_id)->update( ['avatar'	=> $new_url] );
+ 	}
 }
 ?>

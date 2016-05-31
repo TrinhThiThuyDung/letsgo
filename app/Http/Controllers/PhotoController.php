@@ -327,11 +327,11 @@ class PhotoController extends Controller
                 $result = $this->deleteImageOnFolder( $image_delete );
                 
                 if ($result) {
-                      return response()->json(['status' => 'delete sucess']);
+                      return response()->json(['status' => 'success']);
                 }
             }
         }
-        return null;
+        return response()->json(['status' => 'error']);
     }
     protected function deleteImageOnFolder(  $image_delete )
     {

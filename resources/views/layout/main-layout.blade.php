@@ -74,7 +74,7 @@
                 </button>
             {% } %}
             {% if (!i) { %}
-                <button class="cancel" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
+                <button class="cancel cancel-1" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
                     <span class="span-cancel"></span>
                 </button>
             {% } %}
@@ -102,11 +102,11 @@
                 <button class="delete" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                     <span class="span-delete"></span>
                 </button>
-                 <button class="cancel" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
+                 <button class="cancel cancel-1" style="padding: 7px; width: 47%; border: none; background: rgba(240, 248, 255, 0);">
                     <span class="span-cancel"></span>
                 </button>
             {% } else { %}
-                <button class="cancel" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
+                <button class="cancel cancel-1" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
                     <span class="span-cancel"></span>
                 </button>
             {% } %}
@@ -119,7 +119,7 @@
                </span>
             </td>
             <td style="width: 100%; height: 50px;">
-               <button class="cancel" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
+               <button class="cancel cancel-1" style="padding: 7px; width: 100%; border: none; background: rgba(240, 248, 255, 0);">
                     <span class="span-cancel"></span>
                 </button>
             </td>

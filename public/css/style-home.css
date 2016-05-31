@@ -354,11 +354,22 @@ body{
   border-left: 2px solid #5b9bd1;
   margin-left: -2px;
 }
+.formUpdateAvatar{
+   opacity: 0;
+   display: block;
+   position: absolute; 
+   left: 44%; 
+   top: 74px; 
+   width: 12%; 
+   height: 53%;
+   transition:all 0.5s ease-in-out; 
+   background: rgba(244, 245, 247, 0.51);
+    border-bottom-right-radius: 82px;
+    border-bottom-left-radius: 82px;
 
-img#profile-avatar:hover{
-  background: url(/images/icon/photo-camera.svg);
-  background-repeat: no-repeat;
- /* background-size: 300px;*/
+}
+.profile-photo:hover .formUpdateAvatar{
+  opacity: 1;
 }
 /*========= NOTIFICATION ==========*/
 .panel {
@@ -410,7 +421,7 @@ FOOTER SECTION
 
 footer{
     text-align: center;
-    padding: 50px 0;
+    padding: 15px 0;
     background: #363942;
 }
 
@@ -649,7 +660,7 @@ footer * + .copyright {
   margin-left: 4px;
 color: #DCFFF5
 }
-.box-1:hover .action {
+.box-1:hover, .photo:hover .action {
   opacity: 1;
 }
 .title-img, .by {
@@ -1001,6 +1012,27 @@ form#formUpdateProfile input[type="text"], input[type="tel"], input[type="date"]
       border: 1px solid #ccc;
       border-radius: 3px;
 }
+.delete > span{
+      display: inline-block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-right: 1px;
+    background: url(/images/icon/garbage.svg);
+    background-size: 80% 75%;
+    background-repeat: no-repeat;
+}
+.sweet-alert{
+  width: 600px !important;
+}
+.sa-button-container{
+  margin: 25px 0 !important;
+}
+.sa-error-container > div.icon{
+  display: none !important;
+}
 /*==================================================
                   UPLOAD IMAGES
 ====================================================*/
@@ -1046,7 +1078,7 @@ button.publish:hover{
   background-color: rgba(44, 148, 158, 0.85);
   border-color: rgba(44, 148, 158, 0.85);
 }
-button.more:hover, button.cancel:hover, button.delete:hover{
+button.more:hover, button.cancel-1:hover, button.delete:hover{
   background-color: rgba(48, 178, 189, 0.17) !important;
   border-radius: 3px;
 }

@@ -1,5 +1,28 @@
 $(document).ready(function(){
 
+   $('#like-user').click(function(event){
+      window.localStorage.setItem("click", "like-user");
+   }); 
+   $('#update-user').click(function(event){
+      window.localStorage.setItem("click", "update-user"); 
+   });
+    $('#follow-user').click(function(event){
+      window.localStorage.setItem("click", "follow-user");
+   });
+
+   if(window.localStorage.getItem("click") === 'like-user') {
+      $('#like-user-tab').trigger('click'); 
+      window.localStorage.removeItem("click");
+   } 
+   if(window.localStorage.getItem("click") === 'update-user') {
+      $('#update-user-tab').trigger('click'); 
+      window.localStorage.removeItem("click");
+   } 
+   if(window.localStorage.getItem("click") === 'follow-user') {
+      $('#follow-user-tab').trigger('click'); 
+      window.localStorage.removeItem("click");
+   }
+ /*==================== SIGNOUT =====================*/
 	function signOut() {
 		var signOut = $('#signout');
         if (signOut) {
@@ -10,21 +33,58 @@ $(document).ready(function(){
 
         }
 	}
-	
-	$('#changeAvatar').click(function(){
 
-	})
-	$('input#avatar:file').change(function(e){
-		
-		var image_name = e.target.files[0].name;
-		
-		$('span#avaNewName').html(image_name);
+ /*==================== AVATAR =====================*/
+  
+	$('input#avatar:file').change(function(event){
+		 var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+       var url_current = window.location.href;
 
-		$('#areaUpload').css("display", "none");
-		$('#btnChange').css("display", "block");
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            swal("Có lỗi", "Định dạng ảnh của bạn bị sai, hãy chọn ảnh đúng định dạng  'jpeg', 'jpg', 'png', 'gif' hoặc 'bmp' :)", "error");
+        }else{
+          $('form#formUpdateAvatar').submit();
+        }
+});
+/*====================== DELETE IMAGE =====================*/
+$('.delete').click(function(event){
+   var url = $(this).attr("href");
+   var photo = $(this).parents(".photo");
+   swal({   
+      title: "Bạn có chắc muốn xóa nó đi?",   
+      text: "Bạn sẽ không còn bức ảnh này trên Let's Go nữa!",   
+      type: "warning",   
+      showCancelButton: true,   
+      confirmButtonColor: "#DD6B55",   
+      confirmButtonText: "Phải, Hãy xóa nó đi!",   
+      cancelButtonText: "Không, Tôi muốn giữ nó!",   
+      closeOnConfirm: false,   
+      closeOnCancel: false }, function(isConfirm){  
+          if (isConfirm) {
+            
+          $.ajax({
+            type: 'delete',
+            url: url,
+            success:function( result ){
+              if ( result['status'] === "success") {
+                  $(photo).fadeOut(700, function() {
+                     $(photo).remove();
+                  });
+                  swal("Đã xóa!", "Bạn có thể đăng lại ảnh bất cứ lúc nào!.", "success");  
+              }else if( result['status'] === 'error'){
+               swal("Có lỗi xãy ra khi xóa", "Bức ảnh vẫn còn :)", "error");
+              }
+            }
+         });     
+            
+      } else {    
+       swal("Đã dừng lại", "Bức ảnh vẫn còn :)", "error");   } 
+    });
 
-	});
-
+   event.preventDefault();
+   event.stopImmediatePropagation();
+})
+ /*==================== UPDATE PROFILE =====================*/
    $('form#formUpdateProfile').submit(function(event ){ 
    	 	var user = getAllDataOfForm();
    	 	var url = $(this).attr("action");
@@ -77,6 +137,8 @@ $(document).ready(function(){
    var ressetAllInput = function(){
    		$('form#formUpdateProfile')[0].reset();
     };
+
+ /*==================== CATEGORY IMAGE PAGE =====================*/
     $('.category').click(function(){
        var href = $(this).children().attr("href");
        var category_name = href.substring(1, href.length );
@@ -105,4 +167,14 @@ $(document).ready(function(){
          }
        });
     });
+
+ /*==================== DOWNLOAD =====================*/
+ $('.download').click(function(event){
+   var url = $(this).attr("href");
+    $.ajax({
+         type: 'get',
+         url: url,
+   });
+  event.stopImmediatePropagation();
+ });
 });

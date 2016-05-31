@@ -5,6 +5,8 @@ use App\Models\Repository\ImageFacade;
 
 use App\Models\Entities\Image;
 use DB;
+use App\Models\Repository\LikeFacade;
+use App\Models\Repository\CommentFacade;
 
 /**
 * 
@@ -28,10 +30,26 @@ class ImageService implements ImageServiceInterface
 	 *@param images id
 	 *@return
 	 */
-	public function deletePhoto($image_id)
+	public function deletePhoto( $image_id )
 	{
+
+		$del_like = $this->deleteAllLikeCommentNotifiOfImage( $image_id, "likes");
+		$del_comment = $this->deleteAllLikeCommentNotifiOfImage( $image_id, "comments");
+
 		$result = DB::table('images')->where('id', '=', $image_id)->delete();
 		return $result;
+	}
+
+	public function deleteAllLikeCommentNotifiOfImage($image_id, $table)
+	{
+		$noti = DB::table($table)->select("notication_id")->where("image_id", $image_id )->get();
+		$del = DB::table($table)->where("image_id", $image_id)->delete();
+		if ($noti) {
+			foreach ($noti as $key => $value) {
+				DB::table("notications")->where("id", (int) $value->notication_id )->delete();
+			}
+		}
+		
 	}
 	public function getAllPhoto( $user_id )
 	{

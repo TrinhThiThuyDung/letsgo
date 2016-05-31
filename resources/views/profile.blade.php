@@ -15,14 +15,16 @@
     <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
     <link rel="stylesheet" href="{{url('/css/albums.css')}}">
   <!--    <link rel="stylesheet" href="{{url('/css/transitions.css')}}"> -->
-      
+    <link rel="stylesheet" type="text/css" href="{{url('css/sweetalert.css')}}">
+ 
   
     <!-- ========================= JS ======================== -->
   
 
     <script type="text/javascript" src="{{url('/js/albums.js')}}"></script>
     <script type="text/javascript" src="{{url('js/api/action.js')}}"></script>
-     <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/sweetalert.min.js')}}"></script>
 
 <style type="text/css">
   body{
@@ -38,46 +40,17 @@
     <div class="cover-photo" style="background: url(/images/cover/coverphoto01.jpg) no-repeat; background-size: cover;"></div>
     <div class="profile-info">
     	<div class="profile-photo">
-    		<img src="<?php if(isset($array_data)) $avatar = $array_data['user']->avatar; echo $avatar; ?>">
-         <img src="/images/icon/photo-camera.svg" style="width: 55px; height: 101px;    position: absolute; left: 48%; top: 81px;" data-toggle="modal" data-target="#changeAvatar">
-       <!--  <span>
-          <form action="{{}}" method="post" enctype="multipart/form-data">
-            <div class="upload-area" style="height: 100%; position: absolute; top: 39px; width: 155px; left: 43.5%;" >
-                <span class="fileinput-button">
-                  <img src="/images/icon/photo-camera.svg" style="width: 55px; height: 101px;">
-                      <input type="file" name="avatar">
+    		<img id = "user_avatar" src="<?php if(isset($array_data)) $avatar = $array_data['user']->avatar; echo $avatar; ?>" class = "avatar-img">
+         <div class="formUpdateAvatar" >
+     <form id="formUpdateAvatar" action="{{url('web/user/profile/update/avatar')}}" method="post" style="height: 100%;" enctype="multipart/form-data">
+        <span class="fileinput-button" style="padding-top: 31px;">
+                 <img class = "choose-avatar" src="/images/icon/photo-camera.svg" style="width: 44px; height: 31px; left: 39%;">
+                      <input id="avatar" type="file" name="avatar" style="    width: 100%; height: 100%;">
                 </span>
-                         
-            </div>
-          </form>
-        </span> -->
+      </form>
+        </div>
     </div>
-    <!-- Modal -->
-<div id="changeAvatar" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content" style="height: 554px; width: 662px;">
-     
-      <div class="modal-body">
-        <form action="" method="post" id="formChangeAvatar" enctype="multipart/form-data">
-            <div class="upload-area" style="height: 100%;" id="areaUpload">
-                <span class="fileinput-button">
-                  <img src="/images/icon/upload.svg" style="left: 41%;">
-                      <input type="file" name="avatar" style="    width: 631px; height: 187px;">
-                </span>
-                         
-            </div>
-            <button id="btnChange" type="submit" for = "formChangeAvatar" class="btn btn-infor" style="display:none;">Thay đổi</button>
-          </form>
-      </div>
-     <!--  <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Thay đổi</button>
-      </div> -->
-    </div>
-
-  </div>
-</div>
+   
     <div class="profile-name">
     	<span class="name"><?php if(isset($username)) echo  $username; ?></span>
     </div> 
@@ -86,10 +59,10 @@
  <div class="tab-nav">
   	   <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist" style="width: 100%; background: #f0f7fc url(/images/form-button-white-25px.png) repeat-x top;">
-                       <li class="active" style="    margin-left: 23%;"><a href="#men" role="tab" data-toggle="tab">Ảnh</a></li>
-                       <li><a href="#women" role="tab" data-toggle="tab">Ảnh yêu thích</a></li>
-                       <li><a href="#kids" role="tab" data-toggle="tab">Thông tin cá nhân</a></li>
-                       <li><a href="#sports" role="tab" data-toggle="tab">Theo dõi</a></li>
+                       <li class="tab-user active" style="    margin-left: 23%;"><a href="#men" role="tab" data-toggle="tab">Ảnh</a></li>
+                       <li><a id="like-user-tab" href="#women" role="tab" data-toggle="tab">Ảnh yêu thích</a></li>
+                       <li><a id="update-user-tab" href="#kids" role="tab" data-toggle="tab">Thông tin cá nhân</a></li>
+                       <li><a id="follow-user-tab" href="#sports" role="tab" data-toggle="tab">Theo dõi</a></li>
                     </ul>  
     				 <div class="profile-content" style="background: url(/images/ironpatern.png); background-repeat: repeat; padding: 0;">
     				    <!-- Tab panes -->
@@ -107,11 +80,18 @@
                                 $i = 0;
                                  foreach ($data['user_photo'] as $key => $photo) {
                                   ?>
-                                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;"class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $username; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" >
+                                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;" class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $username; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" >
                                   <a href = "#" class = "photo-link"> 
                                     <img style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
                                    
                                   </a>
+                                  <div class = "action" style = "background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);  bottom: 0px; ">
+                                    
+                                      <a href = "{{url('web/photo/delete/')}}/<?php echo $photo->id; ?>" class = "delete">
+                                        <span></span>
+                                      </a>
+                                   
+                                  </div>
                               </div>
                                <?php } ?>
                               

@@ -105,6 +105,23 @@ class UserController extends Controller
         }
         return $data_update;
     }
+    public function updateAvatar(Request $request)
+    {
+      
+        if ($request->hasFile("avatar")) {
+            $image = $request->file("avatar");
+
+            $image_name = $image->getClientOriginalName();
+            $path = base_path().'/public/upload/'.$this->user_id;
+       
+            $image->move( $path, $image_name);
+            
+            $url = '/upload/'.$this->user_id."/".$image_name;
+            $result = UserServiceFacade::updateAvatar( $this->user_id , $url );
+
+            return redirect()->route('web/user/profile', [$this->user_id]);
+        }
+    }
     protected function getPhotoOfUser ($user_id )
     {
         return ImageServiceFacade::getPhotoOfUser ($user_id );

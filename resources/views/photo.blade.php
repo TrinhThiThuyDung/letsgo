@@ -124,7 +124,9 @@
                                         </div>
                                         <time>
                                           <span class="hour" data-bind = "hour"><?php echo $image->created_at; ?></span>
-                                          <span class="t-detail" data-bind = "t-detail">tại <?php echo $image->location; ?></span>
+                                          <span class="t-detail" data-bind = "t-detail"><?php if ($image->location !== '') {
+                                            echo "chụp tại ".$image->location;
+                                          }  ?></span>
                                         </time>
                                       </div>
                                     </div>
