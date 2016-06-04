@@ -158,7 +158,7 @@ Route::group(['prefix' => 'mobile'] , function(){
 		/*
 		 * Delete image
 		 */
-		Route::delete('/photo/delete/{album_name}/{id}/{name}',[ 
+		Route::delete('/photo/delete/{image_id}',[ 
 							'as'=>'mobile/photo/delete', 
 							'uses'=>'PhotoController@deletePhoto']
 		);
