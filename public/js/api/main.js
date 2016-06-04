@@ -158,6 +158,8 @@ $('.delete').click(function(event){
                   var src = result[i]['url']+"/"+result[i]['resize_1'];
                   html+="<div class='well' style = 'max-width: 386px; display: inline-block; min-width: 365px;'>";
                   html+="<img style = 'width: 100%; height: 100%;' class='thumbnail img-responsive' alt="+result[i]['name']+" src='"+src+"' />";
+                  html+="<div class='name' style='color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;'>";
+                  html+="<span>Bức ảnh của "+result[i]['user_lastname']+" "+result[i]['user_firstname']+"</span></div>";
                   html+="</div>";
                }
              $('#'+category_name).html(html);

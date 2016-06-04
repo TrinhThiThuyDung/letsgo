@@ -18,7 +18,7 @@ Chòi Ảnh
 <div id="gallerry-image" class="bg-1" style="margin-top: 76px;">
   <div class="container gallerry-image">
     <div class="row" style="background-color: #f7f8fa; margin-top: 15px; margin-bottom: 30px;">
-      <div class="col-md-12">
+      <div class="col-md-12" style="padding: 15px;">
         <!-- Nav tabs -->
         <div class="card" style="margin-bottom: 45px;">
         
@@ -41,10 +41,14 @@ Chòi Ảnh
             $i = 0;
             foreach ($image as $key => $value) {
             $url = $value->url."/".$value->resize_1;
+            $user_name = $value->user_lastname." ".$value->user_firstname;
            ?>
                
                           <div class="well" style = "max-width: 386px; display: inline-block; min-width: 365px; ">
                               <img style = "width: 100%; height: 100%;" class="thumbnail img-responsive" alt="Bootstrap template" src="<?php echo $url; ?>" />
+                              <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
                           </div>
                    
            <?php  

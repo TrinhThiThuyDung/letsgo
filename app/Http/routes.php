@@ -10,8 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/test', function(){
+	return view("test");
+});
 Route::group(['prefix' => 'web'], function(){
 	Route::get('/', array( 'as'=>'webIndex' , 'uses'=> 'MainController@getIndex' ));
+	Route::get('/photo/show/images/{category_name}',[
+						'as'	=> 'web/photo/show/images/',
+						'uses'	=> 'PhotoController@getShowPhotosByCategory']
+	);
+	Route::post('/photo/show/images/{category_name}',[
+						'as'	=> 'web/photo/show/images/',
+						'uses'	=> 'PhotoController@postShowPhotosByCategory']
+	);
 
 	Route::group(['middleware' => ['auth']], function ($routes) {
 		/*====================== PHOTO =========================*/
@@ -39,14 +50,6 @@ Route::group(['prefix' => 'web'], function(){
 		Route::get('/photo/show/{image_id}',[
 							'as'	=> 'web/photo/show/',
 							'uses'	=> 'PhotoController@showPhoto']
-		);
-		Route::get('/photo/show/images/{category_name}',[
-							'as'	=> 'web/photo/show/images/',
-							'uses'	=> 'PhotoController@getShowPhotosByCategory']
-		);
-		Route::post('/photo/show/images/{category_name}',[
-							'as'	=> 'web/photo/show/images/',
-							'uses'	=> 'PhotoController@postShowPhotosByCategory']
 		);
 		Route::get('/photo/show/user/follow/',[
 							'as'	=> 'web/photo/show/user/follow/',
@@ -217,6 +220,10 @@ Route::group(['prefix' => 'mobile'] , function(){
 		Route::post('/user/profile/update',[
 				'as'	=> 'web/user/profile/update',
 				'uses'	=> 'UserController@updateProfile']
+		);
+		Route::get('/photo/show/user/follow/',[
+							'as'	=> 'mobile/photo/show/user/follow/',
+							'uses'	=> 'PhotoController@showPhotoUserFollowMobile']
 		);
 
 	});

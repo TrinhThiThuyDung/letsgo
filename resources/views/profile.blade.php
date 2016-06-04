@@ -1,7 +1,12 @@
 @extends('layout/main-layout')
 
 <?php if (isset($array_data)) {
-  $username = $array_data['user']->first_name." ".$array_data['user']->last_name;
+   $url = explode("/", $_SERVER['REQUEST_URI']);
+   $id = (int)$url[count($url) - 1];
+   $user_id = Session::get('id');
+
+  $user_data = $data['user_all_infor'][0];
+  $username = $user_data->last_name." ".$user_data->first_name;
 } ?>
 
 @section('title')
@@ -40,7 +45,8 @@
     <div class="cover-photo" style="background: url(/images/cover/coverphoto01.jpg) no-repeat; background-size: cover;"></div>
     <div class="profile-info">
     	<div class="profile-photo">
-    		<img id = "user_avatar" src="<?php if(isset($array_data)) $avatar = $array_data['user']->avatar; echo $avatar; ?>" class = "avatar-img">
+    		<img id = "user_avatar" src="<?php if(isset($user_data)) $avatar = $user_data->avatar; echo $avatar; ?>" class = "avatar-img">
+        <?php  if ($id == $user_id) { ?>
          <div class="formUpdateAvatar" >
      <form id="formUpdateAvatar" action="{{url('web/user/profile/update/avatar')}}" method="post" style="height: 100%;" enctype="multipart/form-data">
         <span class="fileinput-button" style="padding-top: 31px;">
@@ -49,6 +55,7 @@
                 </span>
       </form>
         </div>
+        <?php } ?>
     </div>
    
     <div class="profile-name">
@@ -85,13 +92,15 @@
                                     <img style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
                                    
                                   </a>
+                                  <?php  if ($id == $user_id) { ?>
                                   <div class = "action" style = "background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);  bottom: 0px; ">
                                     
                                       <a href = "{{url('web/photo/delete/')}}/<?php echo $photo->id; ?>" class = "delete">
-                                        <span></span>
+                                        <span class = "del-span"></span>
                                       </a>
                                    
                                   </div>
+                                  <?php } ?>
                               </div>
                                <?php } ?>
                               
@@ -195,9 +204,7 @@
                               </div>
                               <?php 
                             
-                                $url = explode("/", $_SERVER['REQUEST_URI']);
-                                $id = (int)$url[count($url) - 1];
-                                $user_id = Session::get('id');
+                               
                                 if ($id == $user_id) {
                               ?>
                               <div class="update-profile">

@@ -5,6 +5,7 @@ use App\Models\Repository\CommentFacade;
 use App\Models\Entities\Comment;
 use App\Models\Repository\ImageFacade;
 use App\Models\Repository\NoticationFacade;
+use DB;
 /**
 * 
 */
@@ -43,7 +44,14 @@ class CommentService implements CommentServiceInterface
 	}
 	public function deleteComment($comment_id)
 	{
-		return $comment_deleted = CommentFacade::deleteComment( $comment_id );
+		$noti = DB::table("comments")->select("notication_id")->where("id", $comment_id)->get();
+
+		$comment_deleted = CommentFacade::deleteComment( $comment_id );
+
+		if ($noti) {
+			DB::table("notications")->where("id", $noti[0]->notication_id)->delete();
+		}
+		return $comment_deleted;
 	}
 }
 

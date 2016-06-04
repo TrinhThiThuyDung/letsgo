@@ -14,6 +14,7 @@ interface ImageServiceInterface{
 	function findIdUserOfImage($image_id);
 	function getAllUserFollow($user_id);
 	function getImagesByCategory($category_id);
+	function getPhotoByCategory();
 	
 }
 ?>

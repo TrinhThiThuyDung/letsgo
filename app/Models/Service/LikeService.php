@@ -45,7 +45,16 @@ class LikeService implements LikeServiceInterface
 
     public function deleteLike($data)
     {
-      return LikeFacade::deleteLike( $data );
+      $noti = DB::table("likes")->select("notication_id")->where([
+                                    ['image_id', (int)$data['image_id']],
+                                    [ 'user_id' , (int)$data['user_id']]
+                                            
+                              ])->get();
+      $result =  LikeFacade::deleteLike( $data );
+
+      DB::table("notications")->where("id", $noti[0]->notication_id)->delete();
+
+      return $result;
     }
 
     public function getTotalLike($data)

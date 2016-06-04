@@ -6,6 +6,7 @@ use App\Models\Repository\FollowFacade;
 use App\Models\Entities\Follow;
 use App\Models\Repository\ImageFacade;
 use App\Models\Repository\NoticationFacade;
+use DB;
 
 class FollowService implements FollowServiceInterface
 {
@@ -43,9 +44,19 @@ class FollowService implements FollowServiceInterface
 
     public function deleteFollow( $data )
     {
+
     	$data['user_id_image'] = $this->getUserIdOfImage( $data['image_id']);
 
-    	return $result = FollowFacade::deleteFollow( $data );
+      $noti = DB::table("follows")->select("notication_id")->where([
+                                                              ["user_follower_id", (int) $data['user_id']],
+                                                              ["user_followed_id", (int) $data['user_id_image']]
+                                                          ])->get();
+    	$result = FollowFacade::deleteFollow( $data );
+
+      if ($noti) {
+        DB::table("notications")->where("id", $noti[0]->notication_id)->delete();
+      }
+      return $result;
     	
     }
     protected function getUserIdOfImage( $image_id )

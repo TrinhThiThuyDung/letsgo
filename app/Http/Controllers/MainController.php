@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 * 
 */
 use Illuminate\Http\Request;
-
+use App\Models\Service\ImageServiceFacade;
 
 class MainController extends Controller
 {
@@ -30,7 +30,8 @@ class MainController extends Controller
 	{
 		if (!$request->session()->has("id")) {
 			if (!$request->cookie("id")) {
-				return response()->view("index");
+                $photo = ImageServiceFacade::getPhotoByCategory();
+				return response()->view("index", ['photo'  => $photo]);
 			}
 			else{
 				$request->session()->put( "id" , $request->cookie("id"));

@@ -144,76 +144,197 @@
         </div>
             <!-- Tab panes -->
           <div class=" row tab-content">
-              <div role="tabpanel" class="tab-pane active" id="moment">
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h7.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h3.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h6.jpg" />
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h1.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h2.jpg" />
-                          </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="well">
-                              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
-                          </div>
-                      </div>
-                  </div>
+           <div role="tabpanel" class="tab-pane active" id="all">
+           <?php  if ($photo['all']) {
+            $all = $photo['all'];
+             for ($i = 0; $i < count($all); $i+=3) { 
+              if (isset($all[$i])) {
+               
+              ?>
+           
+             <div class="row">
+             <?php for ($j = $i; $j < $i+3; $j++) { 
+               if (isset($all[$j])) {
+                $user_name = $all[$j]->user_lastname." ".$all[$j]->user_firstname;
+                $url = $all[$j]->url."/".$all[$j]->resize_1; 
+                $name = $all[$j]->name; ?>
+           
+             <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
+                    <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
+                </div>          
+              </div> 
+             <?php  }
+           } ?>
+             </div>
+              <?php
+              }
+               }
+           } ?>
+           </div>
+              <div role="tabpanel" class="tab-pane" id="moment">
+                  <?php  if ($photo['life']) {
+            $all = $photo['life'];
+             for ($i = 0; $i < count($all); $i+=3) { 
+              if (isset($all[$i])) {
+               
+              ?>
+           
+             <div class="row">
+             <?php for ($j = $i; $j < $i+3; $j++) { 
+               if (isset($all[$j])) {
+                $user_name = $all[$j]->user_lastname." ".$all[$j]->user_firstname;
+                $url = $all[$j]->url."/".$all[$j]->resize_1; 
+                $name = $all[$j]->name; ?>
+           
+             <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
+                    <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
+                </div>          
+              </div> 
+             <?php  }
+           } ?>
+             </div>
+              <?php
+              }
+               }
+           } ?>
             </div>
               <div role="tabpanel" class="tab-pane" id="nature">
-             
+               <?php  if ($photo['nature']) {
+            $all = $photo['nature'];
+             for ($i = 0; $i < count($all); $i+=3) { 
+              if (isset($all[$i])) {
                
-                <!-- </div> -->
+              ?>
+           
+             <div class="row">
+             <?php for ($j = $i; $j < $i+3; $j++) { 
+               if (isset($all[$j])) {
+                $user_name = $all[$j]->user_lastname." ".$all[$j]->user_firstname;
+                $url = $all[$j]->url."/".$all[$j]->resize_1; 
+                $name = $all[$j]->name; ?>
+           
+             <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
+                    <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
+                </div>          
+              </div> 
+             <?php  }
+           } ?>
+             </div>
+              <?php
+              }
+               }
+           } ?>
               </div>
               <div role="tabpanel" class="tab-pane" id="people">
+            <?php  if ($photo['people']) {
+            $all = $photo['people'];
+             for ($i = 0; $i < count($all); $i+=3) { 
+              if (isset($all[$i])) {
+               
+              ?>
+           
+             <div class="row">
+             <?php for ($j = $i; $j < $i+3; $j++) { 
+               if (isset($all[$j])) {
+                $user_name = $all[$j]->user_lastname." ".$all[$j]->user_firstname;
+                $url = $all[$j]->url."/".$all[$j]->resize_1; 
+                $name = $all[$j]->name; ?>
+           
+             <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
+                    <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
+                </div>          
+              </div> 
+             <?php  }
+           } ?>
+             </div>
+              <?php
+              }
+               }
+           } ?>
               </div>
               <div role="tabpanel" class="tab-pane" id="animals">
-              <img class="thumbnail img-responsive" alt="Bootstrap template" src="http://www.prepbootstrap.com/Content/images/shared/houses/h5.jpg" />
+                    <?php  if ($photo['animal']) {
+            $all = $photo['animal'];
+             for ($i = 0; $i < count($all); $i+=3) { 
+              if (isset($all[$i])) {
+               
+              ?>
+           
+             <div class="row">
+             <?php for ($j = $i; $j < $i+3; $j++) { 
+               if (isset($all[$j])) {
+                $user_name = $all[$j]->user_lastname." ".$all[$j]->user_firstname;
+                $url = $all[$j]->url."/".$all[$j]->resize_1; 
+                $name = $all[$j]->name; ?>
+           
+             <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
+                    <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
+                </div>          
+              </div> 
+             <?php  }
+           } ?>
+             </div>
+              <?php
+              }
+               }
+           } ?>
               </div>
               <div role="tabpanel" class="tab-pane" id="discovery">
+                <?php  if ($photo['discovery']) {
+            $all = $photo['discovery'];
+             for ($i = 0; $i < count($all); $i+=3) { 
+              if (isset($all[$i])) {
+               
+              ?>
+           
+             <div class="row">
+             <?php for ($j = $i; $j < $i+3; $j++) { 
+               if (isset($all[$j])) {
+                $user_name = $all[$j]->user_lastname." ".$all[$j]->user_firstname;
+                $url = $all[$j]->url."/".$all[$j]->resize_1; 
+                $name = $all[$j]->name; ?>
+           
+             <div class="col-md-4">
+                <div class="well">
+                    <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
+                    <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
+                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                    </div>
+                </div>          
+              </div> 
+             <?php  }
+           } ?>
+             </div>
+              <?php
+              }
+               }
+           } ?>
                 </div>
              <!--  <div role="tabpanel" class="tab-pane" id="more"></div> -->
              <div class="see-more" style="    float: right; margin: 10px 0;
     width: 122px;
     font-size: 18px;
-    font-style: italic;"><a href = "#"> Xem tiếp...</a></div>
+    font-style: italic;"><a href = "{{url('web/photo/show/images/')}}" id="see-more"> Xem tiếp...</a></div>
           </div>
         </div>
       </div>
@@ -231,7 +352,7 @@
           <h2>ĐĂNG KÝ LET'S GO</h2>
 
           <h3 style="text-transform: uppercase;">để cùng lưu giữ lại những giây phút đẹp của bạn qua những bức ảnh</h3>
-          <a class="btn" href='#' style="line-height: 24px; font-size: 18px;">ĐĂNG KÝ NGAY</a>
+          <a class="btn" href='#' style="line-height: 24px; font-size: 18px; color: white;">ĐĂNG KÝ NGAY</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> BACH KHOA HA NOI - HEDSPI
@@ -251,6 +372,15 @@
 
 @section('script')
 <script type="text/javascript">
-  
+  $(document).ready(function(){
+    $('#see-more').click(function(event){
+      var href = $(this).attr("href");
+     if( $('.tab-pane').hasClass("active") ){
+      var category = $('.tab-pane.active').attr("id");
+      href += "/"+category;
+      $(this).attr("href", href);
+     }
+    });
+  });
 </script>
 @endsection

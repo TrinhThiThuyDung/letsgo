@@ -293,7 +293,13 @@ jQuery(function($) {
             dataType: 'json',
         })
         .done(function(  data ){
-            $(e.target).removeClass("unfollow").addClass("follow");
+            if ($(e.target).hasClass("unfollow")) {
+                $(e.target).removeClass("unfollow").addClass("follow");
+            }
+            if ($(e.target).hasClass("following")) {
+                $(e.target).removeClass("following").addClass("follow");
+            }
+            
             $(e.target).text("Theo dõi");
         });
        }
@@ -360,7 +366,7 @@ var addComment = function (data) {
     var comment = "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
             comment += "<a href = '#'><span class= 'usernameComment'>"+data['username']+"</span></a>";
             comment += "<span class = 'contentComment'>"+data['content']+"</span>";
-            comment += "<a href = '/web/photo/action/deleteComment/"+data['id']+"'> <span class = 'delete-comment'> </span></a>";
+            comment += "<a class = 'remove-comment' href = '/web/photo/action/deleteComment/"+data['id']+"'> <span class = 'delete-comment'> </span></a>";
             comment += "</div>";
     $('#formComment').append(comment);
     $('input#comment').val("");

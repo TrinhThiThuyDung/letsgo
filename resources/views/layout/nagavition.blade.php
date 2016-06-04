@@ -1,3 +1,6 @@
+<?php if (isset($array_data)) { ?>
+
+
  <nav id="myNav" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
    <!--  <div class="row"> -->
@@ -137,7 +140,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="padding: 5px;">
                     <strong>
                       <img class="ava-img" src="<?php if(isset($array_data)){ echo $array_data['user']->avatar; } ?>">
-                      <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->first_name." ".$array_data['user']->last_name; } ?></span>
+                      <span style="font-family: Architects Daughter,cursive; color: white; "><?php if(isset($array_data)){ echo $array_data['user']->last_name." ".$array_data['user']->first_name; } ?></span>
                     </strong>
                   </a>
                    <ul class="dropdown-menu" role = "menu" style="width: 340px;">
@@ -263,3 +266,8 @@
           </div>
      </div>
    <!--   </div> -->
+   <?php }else{ ?>
+     <div class = "back" style = "    position: absolute; top: -35px; left: 25px;">
+       <a href = "{{url('/')}}" style = "color: #DAC4C4; font-style: italic;"> Quay lại...</a>
+     </div>
+    <?php } ?>

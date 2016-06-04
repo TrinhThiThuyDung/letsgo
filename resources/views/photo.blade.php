@@ -15,7 +15,7 @@
    
 @endsection
 
-
+<?php $end_time =  new DateTime(); ?>
 @section('content')
 
     <!-- ==================== HEADER LAYOUT ==================== -->
@@ -117,15 +117,31 @@
                                       <div class="inside">
                                         <div class="about-img">
                                           <span class="about-img">
-                                            <a href="" class="title-img"> Photo </a>
-                                            by
+                                            <a href="" class="title-img"> Bức ảnh của </a>
                                             <a href="" class="by"><?php echo $image_user_by; ?></a>
                                           </span>
                                         </div>
                                         <time>
-                                          <span class="hour" data-bind = "hour"><?php echo $image->created_at; ?></span>
+                                          <span class="hour" data-bind = "hour"><?php 
+                                          $end_time =  new DateTime();
+                                          $start_time = new DateTime($image->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          }  ?></span>
                                           <span class="t-detail" data-bind = "t-detail"><?php if ($image->location !== '') {
-                                            echo "chụp tại ".$image->location;
+                                            echo "được chụp ở ".$image->location;
                                           }  ?></span>
                                         </time>
                                       </div>
@@ -181,13 +197,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Photo </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
                                     <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour"></span>
-                                      <span class="t-detail" data-bind = "t-detail">tại <?php echo $image_1->location; ?></span>
+                                      <span class="hour" data-bind = "hour"><?php 
+                                          $start_time = new DateTime($image_1->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -216,13 +248,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Photo </a> by
-                                    <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                    <a href="" class="by"><?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                      <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_2->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -268,13 +316,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Photo </a> by
-                                    <a href="" class="by">by <?php echo $image_1_user_by; ?></a>
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                    <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">tại <?php echo $image_1->location; ?></span>
+                                      <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_1->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -303,13 +367,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img">Photo </a> by
-                                    <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
+                                      <a href="" class="title-img">Bức ảnh của </a> by
+                                    <a href="" class="by"><?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_2->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -337,13 +417,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Photo </a> by
-                                    <a href="" class="by">by <?php echo $image_3_user_by; ?></a>
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                    <a href="" class="by"> <?php echo $image_3_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_3->location; ?> </span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_3->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_3->location !== '') echo "được chụp ở ".$image_3->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -383,8 +479,24 @@
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_1->location; ?></span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_1->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -417,8 +529,24 @@
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_2->location; ?></span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_2->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -451,8 +579,24 @@
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">chụp ở <?php echo $image_3->location; ?></span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_3->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_3->location !== '') echo "được chụp ở ".$image_3->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -489,14 +633,30 @@
                                       <div class="inside">
                                         <div class="about-img">
                                           <span class="about-img">
-                                            <a href="" class="title-img"> Photo </a>
+                                            <a href="" class="title-img"> Bức ảnh của </a>
                                             by
                                             <a href="" class="by"><?php echo $image_user_by; ?></a>
                                           </span>
                                         </div>
                                         <time>
-                                          <span class="hour" data-bind = "hour"><?php echo $image->created_at; ?></span>
-                                          <span class="t-detail" data-bind = "t-detail">tại <?php echo $image->location; ?></span>
+                                           <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image->location !== '') echo "được chụp ở ".$image->location; ?></span>
                                         </time>
                                       </div>
                                     </div>
@@ -572,13 +732,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Photo </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
                                     <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour"></span>
-                                      <span class="t-detail" data-bind = "t-detail">tại <?php echo $image_1->location; ?></span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_1->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
                                   </time>
                                 </div>
                               </div>
@@ -607,13 +783,29 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Photo </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a> by
                                     <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>
-                                      <span class="hour" data-bind = "hour">1h ago</span>
-                                      <span class="t-detail" data-bind = "t-detail">20/03</span>
+                                       <span class="hour" data-bind = "hour"><?php
+                                          $start_time = new DateTime($image_2->created_at);
+                                          $since_start = $start_time->diff($end_time);
+                                          echo "Đăng ";
+                                          if ($since_start->y != 0) {
+                                            echo $since_start->y." năm trước";
+                                          }elseif ($since_start->m != 0) {
+                                            echo $since_start->m." tháng trước";
+                                          }elseif ($since_start->d != 0) {
+                                            echo $since_start->d." ngày trước";
+                                          }elseif ($since_start->h != 0) {
+                                            echo $since_start->h." giờ trước";
+                                          }elseif ($since_start->i != 0) {
+                                            echo $since_start->i." phút trước";
+                                          }else{
+                                            echo $since_start->s." giây trước";
+                                          } ?></span>
+                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
                                   </time>
                                 </div>
                               </div>

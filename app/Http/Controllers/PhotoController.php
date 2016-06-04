@@ -159,9 +159,10 @@ class PhotoController extends Controller
         return view("follow-page")->with(['data'    => $all_image]);
     }
 
-    public function getPhotoUpload(Request $request)
+    public function showPhotoUserFollowMobile(Request $request)
     {
-        
+        $all_image = ImageServiceFacade::getAllUserFollow( $this->user_id );
+        return response()->json( ['data'    => $all_image] );
     }
     /**
      *Process upload photo

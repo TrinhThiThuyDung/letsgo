@@ -55,7 +55,7 @@ class HeaderComposer
      */
     public function compose(View $view)
     {
-        if($this->user_id){
+        if( isset( $this->user_id)){
 
             $this->user = $this->getInforUser();
             $this->noti   = $this->getNoticationOfUser();
@@ -64,6 +64,6 @@ class HeaderComposer
             $array_data = ['user'   => $this->user, 'noti' => $this->noti ];
 
             $view->with( 'array_data', $array_data );
-    }
+     }
     }
 }

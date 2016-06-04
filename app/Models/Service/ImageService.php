@@ -91,7 +91,35 @@ class ImageService implements ImageServiceInterface
 	}
 	public function getImagesByCategory($category_id)
 	{
-		return $result = DB::table("images")->where("kind_id", $category_id)->get();
+		return $result = DB::table("images")->join("users", "images.user_id", "=", "users.id")
+											->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname')
+											->where("kind_id", $category_id)
+											->orderBy("created_at", "desc")
+											->get();
+	}
+	public function getPhotoByCategory()
+	{
+		$photo = [];
+		$photo['all'] = $this->getImagesByCategoryLimit(1);
+		$photo['animal'] = $this->getImagesByCategoryLimit(2);
+		$photo['people'] = $this->getImagesByCategoryLimit(3);
+		$photo['life'] 	= $this->getImagesByCategoryLimit(4);
+		$photo['nature'] = $this->getImagesByCategoryLimit(5);
+		$photo['discovery'] = $this->getImagesByCategoryLimit(6);
+
+		return $photo;
+
+	}
+	protected function getImagesByCategoryLimit($kind_id)
+	{
+		$images = DB::table("images")->join("users", "images.user_id", "=", "users.id")
+						   ->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname')
+							->where("images.kind_id", $kind_id)
+							->take(9)
+							->orderBy("created_at", "desc")
+							->get();
+
+		return $images;
 	}
 }
 
