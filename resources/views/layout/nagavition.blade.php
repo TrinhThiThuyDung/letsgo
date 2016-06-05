@@ -155,7 +155,7 @@
                              
                                 <div class="profile-usertitle">
                                   <div class="profile-usertitle-name">
-                                    <?php if(isset($array_data)) echo $array_data['user']->first_name." ".$array_data['user']->last_name; ?>
+                                    <?php if(isset($array_data)) echo $array_data['user']->last_name." ".$array_data['user']->first_name; ?>
                                   </div>
                                   <div class="profile-usertitle-job">
                                     <?php if(isset($array_data)) echo $array_data['user']->position; ?>
@@ -209,7 +209,7 @@
   </nav>
    <!-- Modal -->
       <div id="modelUpload" class="modal fade" role="dialog" style="overflow-y: hidden;">
-          <div class="modal-dialog" style="width: 1330px; height: 580px;">
+          <div class="modal-dialog" style="width: 1330px; height: 666px;">
             <!-- Modal content-->
               <div class="modal-content" style="height: 100%; background-color: #f7f8fa;">
                   <div class="modal-body">

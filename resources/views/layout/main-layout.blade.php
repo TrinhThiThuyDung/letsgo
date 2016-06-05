@@ -25,6 +25,7 @@
 
    
     <script src="{{url('js/jquery-2.2.0.min.js')}}"></script>
+    <script src="{{url('js/jquery-1.12.0.min.js')}}"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
 
 
@@ -40,22 +41,9 @@
 </body>
 </html>
 <!-- ========================= JS ======================== -->
-   <!--  <script src="{{url('js/jquery-1.12.0.min.js')}}"></script> -->
-    <script type="text/javascript" src="{{url('js/jsUpload/vendor/jquery.ui.widget.js')}}"></script>
-    <script type="text/javascript" src="{{url('js/jsUpload/tmpl.min.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/load-image.all.min.js')}}"></script> 
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.blueimp-gallery.min.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/canvas-to-blob.min.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.iframe-transport.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-process.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-image.js')}}"></script>
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-validate.js')}}"></script> 
-   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-ui.js')}}"></script>
- 
-   
-    <script src="{{url('js/jsUpload/main.js')}}"></script>
+    
     
     <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
+     <script type="text/javascript" src="{{url('js/main.js')}}"></script>
     <!-- The template to display files available for upload -->
 @yield('script')

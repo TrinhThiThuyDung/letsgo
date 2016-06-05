@@ -352,7 +352,7 @@
           <h2>ĐĂNG KÝ LET'S GO</h2>
 
           <h3 style="text-transform: uppercase;">để cùng lưu giữ lại những giây phút đẹp của bạn qua những bức ảnh</h3>
-          <a class="btn" href='#' style="line-height: 24px; font-size: 18px; color: white;">ĐĂNG KÝ NGAY</a>
+          <a class="btn" href='{{url("/auth/register")}}' style="line-height: 24px; font-size: 18px; color: white;">ĐĂNG KÝ NGAY</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> BACH KHOA HA NOI - HEDSPI

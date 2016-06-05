@@ -32,17 +32,6 @@ body{
     zoom: 1;
     
   }
- /*========================================================
-                    LOGO CSS
-}
-}
-=========================================================*/
-.logo{
-
-  font-family: reklamescriptw00-medium,cursive;
-  font-size: 30px !important;
-  letter-spacing: 7px !important;
-}
  /*==== NAV ===== */
   .navbar-inverse {
     /*background-color: rgb(54, 132, 134) !important;

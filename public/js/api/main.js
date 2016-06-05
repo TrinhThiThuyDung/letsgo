@@ -109,7 +109,7 @@ $('.delete').click(function(event){
    	 				$('#result').text("cập nhật lỗi");
    	 			}else{
    	 				$('#result').text("Cập nhật thành công");
-   	 				/*ressetAllInput();*/
+   	 				ressetAllInput();
    	 			}
    	 		},
    	 		error: function(xhr,status,error){

@@ -20,6 +20,15 @@ a {
     min-width: 1200px;
   }
 }
+.logo{
+
+  font-family: reklamescriptw00-medium,cursive;
+  font-size: 30px !important;
+  letter-spacing: 7px !important;
+}
+.navbar-nav > li > a.sign-up-in:hover{
+  color: black !important;
+}
 /*========================================================
                     CAROUSEL SLIDE IMAGE CSS
 =========================================================*/

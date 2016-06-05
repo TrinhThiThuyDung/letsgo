@@ -26,7 +26,7 @@ class UserService implements UserServiceInterface
 
  		$user_name = $user['last_name']." ".$user['first_name'];               //tao user name cho user de luu vao session
 
- 		$result_create_user = array('id' => $user_id_created, 'user_name' => $user_name);
+ 		$result_create_user = array('id' => $user_id_created->id, 'user_name' => $user_name);
 
  		return $result_create_user;
 		

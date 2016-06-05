@@ -16,7 +16,20 @@
     </div>
          </div>
      </footer><!-- FOOTER END -->
-
+ <script type="text/javascript" src="{{url('js/jsUpload/vendor/jquery.ui.widget.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/jsUpload/tmpl.min.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/load-image.all.min.js')}}"></script> 
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.blueimp-gallery.min.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/canvas-to-blob.min.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.iframe-transport.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-process.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-image.js')}}"></script>
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-validate.js')}}"></script> 
+   <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-ui.js')}}"></script>
+ 
+     <script src="{{url('js/jsUpload/main.js')}}"></script>
+  
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">

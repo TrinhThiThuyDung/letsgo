@@ -78,11 +78,11 @@
                         }else{
                             $image_1 = $photos[$i];
                             $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                            $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                             
                             $image_2 = $photos[++$i];
                             $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                            $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                             $image_1_size = $image_2_size = "item-same";
                         }
                       }else{
@@ -97,7 +97,7 @@
                     if ($item == 1) {
                       $image = $photos[$i];
                       $image_url = $image->url."/".$image->name;
-                      $image_user_by = $image->user_firstname." ".$image->user_lastname; ?>
+                      $image_user_by = $image->user_lastname." ".$image->user_firstname; ?>
                        <div class=" wrap-images  item-1 ">
                       <div class="box-1">
                         <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
@@ -156,23 +156,23 @@
                           if ($item_temp_1 = 0) {
                             $image_1 = $photos[$i];
                             $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                            $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                             $image_1_size = "item-big";
 
                             $image_2 = $photos[++$i];
                             $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                            $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                             $image_2_size = "item-small";
                           }
                          else{
                             $image_2 = $photos[$i];
                             $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                            $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                             $image_2_size = "item-big";
 
                             $image_1 = $photos[++$i];
                             $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                            $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                             $image_1_size = "item-small";
                          }
                        ?>
@@ -197,7 +197,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
@@ -248,7 +248,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
@@ -283,17 +283,17 @@
                       $image_1 = $photos[$i];
                       $image_1_index = $i;
                       $image_1_url = $image_1->url."/".$image_1->name;
-                      $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                      $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
 
                       $image_2 = $photos[++$i];
                       $image_2_index = $i;
                       $image_2_url = $image_2->url."/".$image_2->name;
-                      $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                      $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
 
                       $image_3 = $photos[++$i];
                       $image_3_index = $i;
                       $image_3_url = $image_3->url."/".$image_3->name;
-                      $image_3_user_by = $image_3->user_firstname." ".$image_3->user_lastname;
+                      $image_3_user_by = $image_3->user_lastname." ".$image_3->user_firstname;
 
                       if ($rand == 0) { ?>
                          <div class="wrap-images item-3">
@@ -316,7 +316,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
@@ -367,7 +367,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img">Bức ảnh của </a> by
+                                      <a href="" class="title-img">Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
@@ -417,7 +417,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"> <?php echo $image_3_user_by; ?></a>
                                   </span>
                                   </div>
@@ -474,7 +474,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"> <?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
@@ -524,7 +524,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
@@ -574,7 +574,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_3_user_by; ?></a>
                                   </span>
                                   </div>
@@ -612,7 +612,7 @@
                     if ($remain == 1 ) { 
                       $image = $photos[$i];
                       $image_url = $image->url."/".$image->name;
-                      $image_user_by = $image->user_firstname." ".$image->user_lastname;
+                      $image_user_by = $image->user_lastname." ".$image->user_firstname;
                      ?>
                       <div class=" wrap-images  item-1 ">
                       <div class="box-1">
@@ -634,7 +634,7 @@
                                         <div class="about-img">
                                           <span class="about-img">
                                             <a href="" class="title-img"> Bức ảnh của </a>
-                                            by
+                                            
                                             <a href="" class="by"><?php echo $image_user_by; ?></a>
                                           </span>
                                         </div>
@@ -672,41 +672,41 @@
                       if ($width_1 >= 700 && $width_2 >= 700) {
                         $image_1 = $photos[$i];
                         $image_1_url = $image_1->url."/".$image_1->name;
-                        $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                        $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                        
                         $image_2 = $photos[++$i];
                         $image_2_url = $image_2->url."/".$image_2->name;
-                        $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                        $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                         $image_1_size = $image_2_size = "item-same";
                       }
                       elseif ($width_1 >= 700 && $width_2 < 700) {
                           $image_1 = $photos[$i];
                           $image_1_url = $image_1->url."/".$image_1->name;
-                          $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                          $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                           $image_1_size = "item-big";
 
                           $image_2 = $photos[++$i];
                           $image_2_url = $image_2->url."/".$image_2->name;
-                          $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                          $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                           $image_2_size = "item-small";
                         }elseif ($width_1 < 700 && $width_2 >= 700) {
                           $image_2 = $photos[$i];
                           $image_2_url = $image_2->url."/".$image_2->name;
-                          $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                          $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                           $image_2_size = "item-big";
 
                           $image_1 = $photos[++$i];
                           $image_1_url = $image_1->url."/".$image_1->name;
-                          $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                          $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                           $image_1_size = "item-small";
                         }else{
                           $image_1 = $photos[$i];
                           $image_1_url = $image_1->url."/".$image_1->name;
-                          $image_1_user_by = $image_1->user_firstname." ".$image_1->user_lastname;
+                          $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
                          
                           $image_2 = $photos[++$i];
                           $image_2_url = $image_2->url."/".$image_2->name;
-                          $image_2_user_by = $image_2->user_firstname." ".$image_2->user_lastname;
+                          $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
                           $image_1_size = $image_2_size = "item-same";
                         }
                       ?>
@@ -732,7 +732,7 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
+                                      <a href="" class="title-img"> Bức ảnh của </a>
                                     <a href="" class="by"><?php echo $image_1_user_by; ?></a>
                                   </span>
                                   </div>
@@ -783,8 +783,8 @@
                                   <div class="inside">
                                   <div class="about-img">
                                   <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a> by
-                                    <a href="" class="by">by <?php echo $image_2_user_by; ?></a>
+                                      <a href="" class="title-img"> Bức ảnh của </a>
+                                    <a href="" class="by"> <?php echo $image_2_user_by; ?></a>
                                   </span>
                                   </div>
                                   <time>

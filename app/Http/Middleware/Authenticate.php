@@ -27,7 +27,7 @@ class Authenticate
             }
             else{
                 $response = ['status' => 'notLogin'];
-                return redirect()->route("webIndex");
+                return redirect()->route("login");
             }
         }
         return $next($request);

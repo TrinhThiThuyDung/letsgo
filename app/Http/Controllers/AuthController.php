@@ -48,7 +48,7 @@ class AuthController extends Controller
     public function getLogin(Request $request)
     {
         if (($request->session()->has('id'))) {
-            return redirect('/photo');
+            return redirect('web/photo');
         }
         return view('users.login');
     }
@@ -66,11 +66,11 @@ class AuthController extends Controller
             $result = UserServiceFacade::authenticate($user);
             
             if ( $result == 0 ) {
-                return response()->json([ 'status'=>'error' , 'error' => 'Wrong Email!']);
+                return response()->json([ 'status'=>'error' , 'error' => 'Sai email!']);
                 
             }
             else if( $result == -1 ){
-                return response()->json([ 'status'=>'error' , 'error' => 'Wrong Password!']);
+                return response()->json([ 'status'=>'error' , 'error' => 'Sai mật khẩu!']);
             }
             
             $request->session()->put('id', $result['id']);

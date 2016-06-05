@@ -20,15 +20,15 @@ $(document).ready(function(){
         },
         messages:{
             email: {
-                minlength: "At least 6 characters required!",
-                maxlength: "At maximum 50 characters required!",
-                required: "Please enter your email!",
-                email: "Your email address must be in the format of name@domain.com!"
+                minlength: "Email ít nhất có 6 ký tự!",
+                maxlength: "Email tối đa dài 50 ký tự!",
+                required: "Email bắt buộc phải điền!",
+                email: "Địa chỉ email phải có dạng name@domain.com!"
             },
             password: {
-                minlength: "At least 6 characters required!",
-                maxlength: "At maximum 20 characters required!",
-                required: "Please enter password!"
+                minlength: "Mật khẩu ít nhất có 6 ký tự!",
+                maxlength: "Mật khẩu tối đa dài 20 ký tự!",
+                required: "Bạn phải điền mật khẩu!"
             }
             
         },
@@ -63,12 +63,12 @@ $(document).ready(function(){
                                 window.sessionStorage.setItem("id" , results.id );
                                 window.sessionStorage.setItem( "username" , results.name);
                         
-                            document.location.href  = "web/photo";
+                            document.location.href  = "/web/photo";
                         }
                     },
                     error : function(  xhr, status, errors ){
                        swal({  
-                                    title: "Error!",   
+                                    title: "Lỗi!",   
                                     text: errors+".",   
                                        
                                     showConfirmButton: true,
@@ -158,7 +158,7 @@ $(document).ready(function(){
                 $(form).ajaxSubmit({
                     success: function(results){
                         if(results.status == 'error'){
-                            swal({  title: "Error!",   
+                            swal({  title: "Lỗi!",   
                                     text: results.error+".",   
                                     timer: 2000,   
                                     showConfirmButton: false,
@@ -169,11 +169,11 @@ $(document).ready(function(){
                         else if(results.status == 'success'){
                             window.sessionStorage.setItem("id" , results.id );
                             window.sessionStorage.setItem( "username" , results.name);
-                            document.location.href  = "web/photo";
+                            document.location.href  = "/web/photo";
                         }
                     },
                     error: function( xhr,status,error ){
-                        swal.showInputError("Status: "+status+"\n Error: "+error);
+                        swal.showInputError("Trạng thái: "+status+"\n Lỗi: "+error);
                     }
                 });
             return false;

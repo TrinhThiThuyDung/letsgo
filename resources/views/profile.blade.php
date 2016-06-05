@@ -152,12 +152,18 @@
                                     <dl>
                                       <dt>Tên: </dt>
                                       <dd> <?php if(isset($all_infor)) {
-                                                    echo $all_infor->first_name." ".$all_infor->last_name;
+                                                    echo $all_infor->last_name." ".$all_infor->first_name;
                                                   }   ?></dd>
                                     </dl>
                                     <dl>
                                       <dt>Giới tính: </dt>
-                                      <dd> @if(isset($all_infor->gender)) {{ $all_infor->gender }} @endif </dd>
+                                      <dd><?php if (isset($all_infor->gender)) {
+                                        if ($all_infor->gender === "female") {
+                                          echo "Nữ";
+                                        }else{
+                                          echo "Name";
+                                        }
+                                      } ?></dd>
                                     </dl>
                                     <dl>
                                       <dt>Ngày sinh: </dt>

@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">LET'S GO</a>
+      <a class="navbar-brand logo" style="color: #04DAF1 !important;" href="#myPage">LET'S GO</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right" style="padding-right: 15px;">
@@ -31,12 +31,12 @@
       <div class="modal-content">
         <div class="middlePage" style="left: 10%;">
           <div class="page-header">
-            <h1 class="logo">LET'S GO <small>Welcome to our Let's go world!</small></h1>
+            <h1 class="logo">LET'S GO <small>Chào mừng tới thế giới của Let's Go!</small></h1>
           </div>
 
                 <div class="panel panel-info" >
                   <div class="panel-heading">
-                    <h3 class="panel-title"> Come with me !</h3>
+                    <h3 class="panel-title"> Đăng nhập !</h3>
                   </div>
                   <div class="panel-body">
                     <div class="row">
@@ -111,11 +111,11 @@
                             <h3> Bước 1</h3>
                             <div class="form-group">
                                 <label class="control-label">Họ của bạn</label>
-                                <input name="first_name" minlength="1"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Họ Của Bạn"  />
+                                <input name="last_name" minlength="1"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Họ Của Bạn"  />
                             </div>
                             <div class="form-group">
                                 <label class="control-label"> Tên của bạn </label>
-                                <input  name="last_name" minlength="1" maxlength="100" type="text" required="required" class="form-control" placeholder=" Tên của bạn" />
+                                <input  name="first_name" minlength="1" maxlength="100" type="text" required="required" class="form-control" placeholder=" Tên của bạn" />
                             </div>
                             <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Tiếp Nào</button>
                         </div>
