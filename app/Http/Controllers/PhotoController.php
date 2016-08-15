@@ -9,6 +9,7 @@ use Storage;
 use App\Models\Service\ImageServiceFacade;
 use App\Models\Service\UserServiceFacade;
 use App\Models\Service\NoticationServiceFacade;
+use App\Models\Service\FollowServiceFacade;
 
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image; 
@@ -39,8 +40,9 @@ class PhotoController extends Controller
 	{
 
         $photos = $this->getPhoto();
-       
-        return view("photo")->with( 'photos' , $photos );
+        $data_active = $this->getInforActiveAndFollow();
+
+        return view("photo")->with( 'data' , [ 'photos' => $photos , 'data-active'   => $data_active] );
 		
 	}
 
@@ -61,6 +63,19 @@ class PhotoController extends Controller
     {
         return ImageServiceFacade::getAllPhoto( $this->user_id );
        
+    }
+    protected function getInforActiveAndFollow()
+    {
+        $data = [];
+
+        $data['active-img'] = ImageServiceFacade::countTotalPhoto( $this->user_id );
+       
+        $data['active-follow'] = FollowServiceFacade::countUserFollow( $this->user_id ); //mình theo dõi
+        $data['active-follower'] = FollowServiceFacade::countFollower( $this->user_id );  //theo dõi mình
+
+        $data['follow'] = FollowServiceFacade::getFollow($this->user_id);
+        
+        return $data;
     }
      protected function getNoticationOfUser()
     {
@@ -172,89 +187,79 @@ class PhotoController extends Controller
     public function uploadPhoto(Request $request)
     {   
 
-        $images = $request->all();
+        $data_image = $request->data;
+        
+        if ($data_image) {
 
-        if ($request->hasFile('images')) {
-            $image = $request->file('images')[0];
+            if (preg_match('/data:image\/(gif|jpeg|png);base64,(.*)/i', $data_image['img'], $matches)) {
 
-            if($image->isValid()){
-            
-                $image_name = $image->getClientOriginalName();
-
-                $image_path = $this->moveImagesToUploadFolder( $image , $image_name );
-                if ($image_path) {
-                     //Resize image
+                $imageType = $matches[1];
+                $imageData = base64_decode($matches[2]);
+                $image = imagecreatefromstring($imageData);
+                $image_name = md5($imageData) . '.png';
+                
+                if ($image_path = $this->moveImagesToUploadFolder( $image , $image_name )) {
+                 
                     $image_size = getimagesize($image_path."/".$image_name);
-
                     $width = $image_size[0];
                     $height = $image_size[1];
 
                     if ($width > 1500 || $height > 1500) {
                     
                         $image_resize_1 = $this->resizeImage(  800 , 700, $image_path , $image_name );
-                   
 
                         $image_resize_2  = $image_resize_1 = $image_resize_1->basename;
                        
                     }
                    elseif ($width >=400 && $width <=1500) {
+
                         $image_resize_1 = $this->resizeImage( ($width/2) , ($height/2), $image_path , $image_name );
 
-                         $image_resize_2 = $this->resizeImage( ($width/3) , ($height/3), $image_path , $image_name );
+                        $image_resize_2 = $this->resizeImage( ($width/3) , ($height/3), $image_path , $image_name );
 
-                          $image_resize_1 = $image_resize_1->basename;
+                        $image_resize_1 = $image_resize_1->basename;
                         $image_resize_2 = $image_resize_2->basename;
                    }
                    else{
                          $image_resize_1 = $image_name;
                          $image_resize_2 = $image_name;
                    }
-
- 
                     if ($image_resize_1 && $image_resize_2) {
 
                         $url = '/upload/'.$this->user_id;
                         $image_add = [
                                 'user_id'   => $this->user_id,
-                                'kind_id'   => (int)$images['image_kind'],
+                                'kind_id'   => (int)$data_image['kind'],
                                 'name'      => $image_name,
                                 'size'      => $width."x".$height,
                                 'resize_1'  => $image_resize_1,
                                 'resize_2'  => $image_resize_2,
                                 'url'       => $url,
-                                'describe'  => $images['image_describe'],
-                                'location'  => $images['image_location']
+                                'describe'  => $data_image['caption'],
+                                'location'  => $data_image['location']
                             ];
                         $image_inserted = $this->addPhotoToDB( $image_add );
 
                         if ($image_inserted) {
-                            
-                            $deleteUrl      = 'photo/delete/'.$image_inserted['id']; //link rpute delete image
-                            $image_url     = url('/').$image_inserted['url']."/".$image_resize_2; //link to image 
                             //response data
-                            $files = [
-                                       [
-                                        "name"          => $image_name,
-                                        "url"           => $image_url,
-                                        "thumbnailUrl"  => $image_url,
-                                        "deleteUrl"     => $deleteUrl,
-                                        "deleteType"    => "DELETE"
-                                      
-                                       ]
-                                    ];
-                           return response()->json( ['files' => $files ]);
+                           return response()->json( ['status'   => "success",
+                                                     'content'  => "Upload success! "]);
+                        }else{
+                            $image_1 = $this->user_id."/".$image_name;
+                            $image_2 = $this->user_id."/".$image_resize_1;
+                            $image_3 = $this->user_id."/".$image_resize_2;
+
+                            $image_delete = [ $image_1 , $image_2, $image_3 ];
+
+                            $this->deleteImageOnFolder( $image_delete );
                         }
                     }
-                }  
+
+                }
             }
         }
-        $files = [
-                    [
-                        "error"     => "Lỗi tải ảnh"      
-                    ]
-                ];
-        return response()->json( $files );
-        
+        return response()->json( [  "status"      => "error",
+                                    "content"     => "can't upload photo!"]);
     }
 
     protected function addPhotoToDB(  $image )
@@ -262,12 +267,13 @@ class PhotoController extends Controller
         return ImageServiceFacade::addPhoto( $image );
     }
 
-    public function moveImagesToUploadFolder( $images , $images_name )
+    public function moveImagesToUploadFolder( $image , $image_name )
     {
         try {
             $path = base_path().'/public/upload/'.$this->user_id;
        
-            $images->move( $path, $images_name);
+            imagepng($image, $path . '/' . $image_name);
+
             return $path;
 
         } catch (Exception $e) {

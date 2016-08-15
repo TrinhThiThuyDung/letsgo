@@ -2,7 +2,7 @@
 
 
 @section('title')
-Theo dõi
+Follow
 @endsection
  @section('link')
 

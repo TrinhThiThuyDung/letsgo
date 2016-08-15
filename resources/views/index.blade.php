@@ -1,6 +1,6 @@
 @extends('layout/main-layout')
 
-@section('title','Trang chủ')
+@section('title','Index')
 
 
 @section('link')

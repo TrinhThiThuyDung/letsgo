@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
    $('#like-user').click(function(event){
       window.localStorage.setItem("click", "like-user");
    }); 
@@ -179,4 +181,21 @@ $('.delete').click(function(event){
    });
   event.stopImmediatePropagation();
  });
+
+ /*==================== SCROLL ===========================*/
+
+ var offsetPixels = $('.right-photo').outerHeight() + 40;
+ $(window).scroll(function() {
+    if ($(window).scrollTop() > offsetPixels) {
+      $( ".scroll" ).css({
+        "position": "fixed",
+        "top": "68px"
+      });
+    } else {
+      $( ".scroll" ).css({
+        "position": "static"
+      });
+    }
+  });
+
 });

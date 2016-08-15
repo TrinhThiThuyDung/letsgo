@@ -6,6 +6,8 @@ namespace App\Models\Repository;
 
 use App\Models\Entities\Image;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Repository\LikeFacade;
+
 use DB;
 /**
 * 
@@ -42,6 +44,7 @@ class ImageRepositoryEloquent implements ImageRepository
 
 	public function getAllPhoto( $user_id )
 	{
+		$numTotalPost = $this->countNumPostTowWeek();
 
 		$images = DB::table("images")
 					->join( 'users', 'images.user_id', '=', 'users.id')
@@ -49,10 +52,40 @@ class ImageRepositoryEloquent implements ImageRepository
             			$join->on( 'images.id', '=' ,'likes.image_id')
                  			 ->where('likes.user_id','=', $user_id );
         			})
-					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as avatar', 'likes.id as like_id', 'images.*')
+					->select('users.id as user_id', 'users.last_name as user_lastname', 'users.first_name as user_firstname', 'users.avatar as avatar', 'likes.id as like_id','likes.user_id as userLikeId', 'images.*')
 					->orderBy('images.created_at', 'desc')
+					->take($numTotalPost)
 					->get();
+		$i = 0;
+
+		while ($i < $numTotalPost) {
+			$totalLike = LikeFacade::getLike( $images[$i]->id );
+
+			$totalComment = CommentFacade::getAllCommentOfImage($images[$i]->id);
+
+			if (!empty($totalLike)) {
+				$images[$i]->likeTotal = [];
+				$images[$i]->likeTotal = $totalLike;
+			}
+			if (count($totalComment) > 0) {
+				$images[$i]->commentTotal = $totalComment;
+			}
+			$i++;
+		}
+		
 		return $images;
+	}
+
+	private function countNumPostTowWeek(){
+
+		$today = strtotime("now");
+		$two_week_ago = strtotime("-2 weeks", $today);
+		$date = date('Y-m-d', $two_week_ago);
+
+		$numTotal = DB::table("images")
+				->where("created_at","<", $date)
+				->count();
+		return $numTotal;
 	}
 
 	public function getPhotoOfUser($user_id)

@@ -16,7 +16,9 @@
     </div>
          </div>
      </footer><!-- FOOTER END -->
- <script type="text/javascript" src="{{url('js/jsUpload/vendor/jquery.ui.widget.js')}}"></script>
+   
+    <!-- <script src="{{url('js/filer/script.js')}}"></script> -->
+ <!-- <script type="text/javascript" src="{{url('js/jsUpload/vendor/jquery.ui.widget.js')}}"></script>
     <script type="text/javascript" src="{{url('js/jsUpload/tmpl.min.js')}}"></script>
    <script type="text/javascript" src="{{url('js/jsUpload/load-image.all.min.js')}}"></script> 
    <script type="text/javascript" src="{{url('js/jsUpload/jquery.blueimp-gallery.min.js')}}"></script>
@@ -28,9 +30,9 @@
    <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-validate.js')}}"></script> 
    <script type="text/javascript" src="{{url('js/jsUpload/jquery.fileupload-ui.js')}}"></script>
  
-     <script src="{{url('js/jsUpload/main.js')}}"></script>
+     <script src="{{url('js/jsUpload/main.js')}}"></script> -->
   
-<script id="template-upload" type="text/x-tmpl">
+<!-- <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
         <td style="padding: 18px; border-top: 1px solid #ddd; ">
@@ -55,9 +57,9 @@
      
 {% } %}
 
-</script>
+</script> -->
 <!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
+<!-- <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
   {% if (file.thumbnailUrl) { %}
     <tr class="template-download fade">
@@ -98,4 +100,4 @@
         </tr>
         {% } %}
 {% } %}
-</script>
+</script> -->

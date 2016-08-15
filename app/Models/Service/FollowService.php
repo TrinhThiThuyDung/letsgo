@@ -20,7 +20,7 @@ class FollowService implements FollowServiceInterface
     public function addFollow( $data )
     {
       if ($data) {
-          $data['user_id_image'] = $this->getUserIdOfImage( $data['image_id']); //get id of user of image
+          $data['user_id_image'] = $data['follow_to_user_id']; //get id of user of image
           $notiInfor = [
           'user_from_id'    => $data['user_id'],
           'user_to_id'      => $data['user_id_image'],
@@ -45,11 +45,10 @@ class FollowService implements FollowServiceInterface
     public function deleteFollow( $data )
     {
 
-    	$data['user_id_image'] = $this->getUserIdOfImage( $data['image_id']);
 
       $noti = DB::table("follows")->select("notication_id")->where([
                                                               ["user_follower_id", (int) $data['user_id']],
-                                                              ["user_followed_id", (int) $data['user_id_image']]
+                                                              ["user_followed_id", (int) $data['user_image_id']]
                                                           ])->get();
     	$result = FollowFacade::deleteFollow( $data );
 
@@ -72,6 +71,20 @@ class FollowService implements FollowServiceInterface
     public function getUserFollow( $user_id )
     {
       return FollowFacade::getUserFollow( $user_id );
+    }
+    //mình theo dõi
+    public function countUserFollow( $user_id )
+    {
+        return DB::table("follows")->where("user_follower_id", $user_id)->count();
+
+    }
+    public function countFollower( $user_id )
+    {
+      return DB::table("follows")->where("user_followed_id", $user_id)->count();
+    }
+    public function getFollow( $user_id )
+    {
+      return $follow = FollowFacade::getFollow( $user_id );         
     }
 }
 ?>

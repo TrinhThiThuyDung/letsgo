@@ -52,7 +52,7 @@ class LikeController extends Controller
     	return response()->json(['love' => false ]);
 
     }
-    public function getTotalLike(Request $request)
+    public function getLike(Request $request)
     {
         $data = $request->data;
 

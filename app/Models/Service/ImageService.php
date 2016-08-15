@@ -91,6 +91,13 @@ class ImageService implements ImageServiceInterface
 	}
 	public function getImagesByCategory($category_id)
 	{
+		if ($category_id == 1) {
+			$result = DB::table("images")->join("users", "images.user_id", "=", "users.id")
+											->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname')
+											->orderBy("created_at", "desc")
+											->get();
+			return $result;
+		}
 		return $result = DB::table("images")->join("users", "images.user_id", "=", "users.id")
 											->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname')
 											->where("kind_id", $category_id)
@@ -120,6 +127,13 @@ class ImageService implements ImageServiceInterface
 							->get();
 
 		return $images;
+	}
+
+	public function countTotalPhoto( $user_id )
+	{
+		$count = DB::table("images")->where("user_id", $user_id)->count();
+		
+		return $count;
 	}
 }
 

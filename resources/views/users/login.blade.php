@@ -43,7 +43,7 @@
   </div>
 </nav>
 <!-- ================ MODEL REGISTER=============== -->
-    <div class="signup-page" style="margin-top: 44px; margin-bottom: 10px;">
+    <div class="signup-page" style="margin-top: 44px; margin-bottom: 10px; height: 569px;">
       <div class="signup-content">
         <div class="container">
           <div class="page-header" style="margin: 40px 20px;">
@@ -56,8 +56,6 @@
               </div>
               <div class="panel-body">
             <form id="form-signin" class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
-            
-
                          <div class="form-group" style="margin:0px;">
                             <input id="email" name="email" minlength="6" maxlength="100" type="email" placeholder="Email" class="form-control input-md">
                          </div>
@@ -73,16 +71,16 @@
                           <button style="width: 120px !important;" id="singlebutton" type="submit" name="singlebutton" class="btn btn-info btn-sm pull-right">Đăng Nhập</button>
                       
             </form>
-            <div class="or" style="width: 100%;">
+           <!--  <div class="or" style="width: 100%;">
               <span class="signup_only">or</span>
             </div>
             <div class="rom">
             <div class="col-md-12" >
                    <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 48%; float: left;" /></a>
-                      <!--   <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/> -->
+                 
                         <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 48%; float: right;" /></a>
             </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

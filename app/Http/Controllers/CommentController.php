@@ -26,9 +26,12 @@ class CommentController extends Controller
     	$result = CommentServiceFacade::addComment( $data );
     	if ($result) {
     		return response()->json([
-    			'result' => 'OK',
-    			'content'=> $result['content'],
-                'username' => $result['username']
+    			'result'     => 'OK',
+    			'content'    => $result['content'],
+                'username'   => $result['username'],
+                'avatar'     => $result['avatar'],
+                'image_id'   => $result['image_id'],
+                'user_id'    => $result['user_id']
     		]);
     	}
     	return response()->json(['result' => 'error']);

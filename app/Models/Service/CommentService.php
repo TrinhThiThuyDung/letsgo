@@ -39,7 +39,7 @@ class CommentService implements CommentServiceInterface
 
 	public function getAllCommentOfImage($data)
 	{
-		return $all_comment = CommentFacade::getAllCommentOfImage ($data);
+		return $all_comment = CommentFacade::getAllCommentOfImage ($data['image_id'] );
 
 	}
 	public function deleteComment($comment_id)

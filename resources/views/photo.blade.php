@@ -1,6 +1,6 @@
 @extends('layout/main-layout')
 
-@section('title','Nhà Ảnh')
+@section('title','Home Page')
 
 
 @section('link')
@@ -15,17 +15,53 @@
    
 @endsection
 
-<?php $end_time =  new DateTime(); ?>
+<?php 
+
+/**
+* 
+*/
+
+$user_id = $array_data['user']->user_id;
+$user_name = $array_data['user']->last_name." ".$array_data['user']->first_name;
+
+class TimeDate
+{
+  
+  public function time($created_at)
+{
+   $end_time =  new DateTime(); 
+    $start_time = new DateTime($created_at);
+    $since_start = $start_time->diff($end_time);
+    $end_time =  new DateTime();
+
+    if ($since_start->y != 0) {
+      return $since_start->y." year ago";
+    }elseif ($since_start->m != 0) {
+      return $since_start->m." months ago";
+    }elseif ($since_start->d != 0) {
+      return $since_start->d." day ago";
+    }elseif ($since_start->h != 0) {
+      return $since_start->h." hour ago";
+    }elseif ($since_start->i != 0) {
+      return $since_start->i." minute ago";
+    }else{
+      if( $since_start->s  == 0 ) 
+        return "Just now";
+      return $since_start->s." seconds ago";
+    } 
+ }
+}
+?>
 @section('content')
 
     <!-- ==================== HEADER LAYOUT ==================== -->
-   <div id="header" class="welcome" style="height: 300px;">
+   <div id="header" class="welcome" style="height: 48px;">
         <div class="container">
           <div class="row">
        
           <div class="welcome-content">
            <div class="wel-img">
-             <img src="{{url('/images/cat-logo1.png')}}">
+             <!-- <img src="{{url('/images/cat-logo1.png')}}"> -->
            </div>
            <div class="wel-content"></div>
             </div>
@@ -38,787 +74,188 @@
     <!-- ==================== CONTENT LAYOUT ==================== -->
   <div class="pageWidth">
     @include('layout/nagavition')
-     <div class="pageContent">
-     
+     <div class="pageContent" id="pageContent">
+     <div class="right-photo" id = "right-photo">
+     <div class="scroll">
+       <div class = "user-detai">
+         <a href="/web/user/profile/<?php echo $user_id; ?>"><span><?php echo $user_name; ?></span></a>
+         <div class = "active-user">
+           <div class = "active-post">
+             <span> PHOTOS </span><br>
+             <span> <?php if ($data['data-active']) {
+              echo $data['data-active']['active-img'];
+             } ?> </span>
+           </div>
+           <div class = "active-follow">
+             <span> FOLLOWERS </span><br>
+             <span>  <?php if ($data['data-active']) {
+              echo $data['data-active']['active-follower'];
+             } ?>  </span>
+           </div>
+           <div class = "active-follower">
+             <span> FOLLOWS </span><br>
+             <span id="numFollow"> <?php if ($data['data-active']) {
+              echo $data['data-active']['active-follow'];
+             } ?> </span>
+           </div>
+         </div>
+         </div>
+         <div class = "follow-user">
+         <div style=" padding: 10px; color: #5b646d;">
+          <span style="margin-left: 10px; font-weight: 700; font-size: 15px;"> Maybe you don't know :) </span>
+    
+         </div>
+           <?php if ($data['data-active']) {
+
+            $follow = $data['data-active']['follow'];
+            if (count($follow) < 3) {
+    $total = count($follow);
+} else { $total = 3; }
+             for ($i = 0; $i < $total; $i++) { 
+                ?>
+
+           <div class = "follow-detail">
+             <div class = "follow-infor">
+               <img src="<?php echo $follow[$i]->avatar; ?>" class = "ava-img">
+               <a href="/web/user/profile/<?php echo $follow[$i]->user_id; ?>"><span> <?php echo $follow[$i]->user_lastname." ".$follow[$i]->user_firstname; ?> </span></a>
+               <a href = "/web/photo/action/" data-user_id = "<?php echo $follow[$i]->user_id; ?>"><button style="float: right;" class="follow">Follow me</button></a>
+             </div>
+             <div class="follow-img">
+             <?php if(isset($follow[$i]->image[0])){ ?>
+               <img class = "img-show" src="<?php echo $follow[$i]->image[0]->url."/".$follow[$i]->image[0]->resize_2; ?>" style="margin-left: 11px;"> <?php } ?>
+              <?php if(isset($follow[$i]->image[1])){ ?> <img class = "img-show" src="<?php echo $follow[$i]->image[1]->url."/".$follow[$i]->image[1]->resize_2; ?>"> <?php } ?>
+              <?php if(isset($follow[$i]->image[2])){ ?> <img class = "img-show" src="<?php  echo $follow[$i]->image[2]->url."/".$follow[$i]->image[2]->resize_2; ?>">  <?php } ?>
+              <?php if(isset($follow[$i]->image[3])){ ?> <img class = "img-show" src="<?php  echo $follow[$i]->image[3]->url."/".$follow[$i]->image[3]->resize_2; ?>"> <?php } ?>
+              <?php if(isset($follow[$i]->image[4])){ ?> <img class = "img-show" src="<?php  echo $follow[$i]->image[4]->url."/".$follow[$i]->image[4]->resize_2; ?>"> <?php } ?>
+              
+             </div>
+           </div>
+            <?php
+             }
+           } ?>
+         
+         </div>
+       </div>
+     </div>
        <div id="gallerry-images">
-          <div class="container gallerry-image" >
+          <div class="container gallerry-image" style="padding-top: 10px !important;">
             <div id="album " class="album-gal carouselGallery-col-60">
-             
-             <?php 
-
-              if (!empty($photos)) {
-                $photos_total = count($photos);
+            <?php 
+               if (!empty($data['photos'])) {
+                $photos_total = count($data['photos']);
                 for ($i = 0; $i < $photos_total; $i++) { 
-                  $remain = $photos_total - $i;
-                  if ($remain >= 3) {
-                    //size of image 1
-                    $size_1 = explode("x", $photos[$i]->size);
-                    $width_1 = (int)$size_1[0];
-                    $height_1 = (int)$size_1[1];
+                  $image = $data['photos'][$i];
 
-                    if ($width_1 >= 900) {
-                      $item = rand( 1 , 3 );
-                      if($item == 3){
-                        $rand = rand( 0, 1 );
-                      }
-                    }elseif ($width_1 >= 600 && $width_1 < 900 ) {
-                      $item_temp = rand( 2 , 3 );
+                  $userNameImg = $image->user_lastname." ".$image->user_firstname;
+                  $urlImg = $image->url."/".$image->name;
+             ?>
+             <div class="wrap-images  item">
+              <div class="headerInfor" style="margin: 10px 10px; ">
+                <div class="user" style="display: inline-block;">
+                  <img class="ava-img" style="width: 40px; height: 40px; margin-top: -30px;" src="<?php echo $image->avatar; ?>" />
+                  <div class="name" style="display: inline-block;">
+                      <a href="/web/user/profile/{{{$image->user_id}}}" style="font-size: 17px; font-family: Architects Daughter,cursive;"> <?php echo $userNameImg; ?> </a><br><span>
+                      <time>
+                          <span class="hour" data-bind = "hour"><?php 
+                                          
+                            $date = new TimeDate();
 
-                      if ($item_temp == 2) {
-                        $item = 2;
-
-                        $size_2 = explode("x", $photos[$i+1]->size);
-                        $width_2 = (int)$size_2[0];
-                        $height_2 = (int)$size_2[1];
-
-                        if ($width_2 <= 600 ) {
-                          $item = 2;
-
-                         
-                        }else{
-                            $image_1 = $photos[$i];
-                            $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                            
-                            $image_2 = $photos[++$i];
-                            $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                            $image_1_size = $image_2_size = "item-same";
-                        }
-                      }else{
-                        $item = 3;
-                        $rand = 0;
-                      }
-                    }
-                    else{
-                      $item = 3;
-                      $rand = 1;
-                    }
-                    if ($item == 1) {
-                      $image = $photos[$i];
-                      $image_url = $image->url."/".$image->name;
-                      $image_user_by = $image->user_lastname." ".$image->user_firstname; ?>
-                       <div class=" wrap-images  item-1 ">
-                      <div class="box-1">
-                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
-                            <a class="photo-link" href="#"><img src="<?php echo $image_url; ?>"></a>
-                              <div class="action">
-                                <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                    <span class="icon <?php if ($image->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image->id; ?>" class="download">
-                                      <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                    <div class="info">
-                                      <div class="inside">
-                                        <div class="about-img">
-                                          <span class="about-img">
-                                            <a href="" class="title-img"> Bức ảnh của </a>
-                                            <a href="" class="by"><?php echo $image_user_by; ?></a>
-                                          </span>
-                                        </div>
-                                        <time>
-                                          <span class="hour" data-bind = "hour"><?php 
-                                          $end_time =  new DateTime();
-                                          $start_time = new DateTime($image->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          }  ?></span>
-                                          <span class="t-detail" data-bind = "t-detail"><?php if ($image->location !== '') {
-                                            echo "được chụp ở ".$image->location;
-                                          }  ?></span>
-                                        </time>
-                                      </div>
-                                    </div>
-                           </div>
-                        </div>
+                             echo $time = $date->time($image->created_at);
+                                        
+                            ?></span>
+                      </time>
+                    <?php if ($image->location) {
+                        echo "at ".$image->location;
+                      } ?></span></div>
 
                 </div>
+                <div class="infor-active">
+                  <span class = "icon icon-love"><?php if (isset( $image->likeTotal) ) {
+                    echo count($image->likeTotal);
+                  }else echo 0;  ?></span>
+                  <span class = "icon comment-icon"><?php if (isset( $image->commentTotal)) {
+                    echo count($image->commentTotal);
+                  }else echo 0; ?></span>
+                  <span class = "icon icon-share">5</span>
+                </div>
+                <div class = "caption" style = "margin: 4px;">
+                  <span> <?php if ($image->describe) {
+                    echo $image->describe;
+                  } ?></span>
+                </div>
               </div>
-                    <?php  }elseif ($item == 2) { 
-                       $item_temp_1 = rand( 0, 1 );
-                          if ($item_temp_1 = 0) {
-                            $image_1 = $photos[$i];
-                            $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                            $image_1_size = "item-big";
-
-                            $image_2 = $photos[++$i];
-                            $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                            $image_2_size = "item-small";
-                          }
-                         else{
-                            $image_2 = $photos[$i];
-                            $image_2_url = $image_2->url."/".$image_2->name;
-                            $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                            $image_2_size = "item-big";
-
-                            $image_1 = $photos[++$i];
-                            $image_1_url = $image_1->url."/".$image_1->name;
-                            $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                            $image_1_size = "item-small";
-                         }
-                       ?>
-                      <div class=" wrap-images item-2">
-                   <div class="<?php  echo $image_1_size; ?>">
-                    <div class="box-1">
-                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" >
-                    <a class="photo-link"  href="#"><img src="<?php echo $image_1_url; ?>">
-                    </a>
-                    <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                     <span class="icon <?php if ($image_1->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_1->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_1_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                      <span class="hour" data-bind = "hour"><?php 
-                                          $start_time = new DateTime($image_1->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                  </div>
+              <div class="box">
+                  <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $userNameImg; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $urlImg; ?>" data-idme = "<?php echo $user_id; ?>" data-time = "<?php echo $time; ?>" data-user_id = "<?php echo $image->user_id; ?>">
+                    <a class="photo-link" href="#"><img class = "lazy" width="787" height="565" data-original = '<?php  echo  $urlImg; ?>' src="<?php  echo  $urlImg; ?>"></a>
                     </div>
-                   </div>
-                    <div class="<?php  echo $image_2_size; ?>">
-                    <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="<?php echo $image_2_url; ?>">
-                        <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
-                        </a>
-                        <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                   <span class="icon <?php if ($image_2->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                 
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_2_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                      <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_2->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                 </div>
-                </div>
-                     <?php }elseif($item == 3){ 
-                      $image_1 = $photos[$i];
-                      $image_1_index = $i;
-                      $image_1_url = $image_1->url."/".$image_1->name;
-                      $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-
-                      $image_2 = $photos[++$i];
-                      $image_2_index = $i;
-                      $image_2_url = $image_2->url."/".$image_2->name;
-                      $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-
-                      $image_3 = $photos[++$i];
-                      $image_3_index = $i;
-                      $image_3_url = $image_3->url."/".$image_3->name;
-                      $image_3_user_by = $image_3->user_lastname." ".$image_3->user_firstname;
-
-                      if ($rand == 0) { ?>
-                         <div class="wrap-images item-3">
-                  <div class="item-big">
-                    <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
-                        <a class="photo-link" href="#"><img src="<?php echo $image_1_url; ?>"></a>
-                         <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                     <span class="icon <?php if ($image_1->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}<?php echo $image_1->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_1_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                      <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_1->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
               </div>
-                 <div class="item-small">
-                    <div class="small-1">
-                      <div class="box-1">
-                        <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
-                             <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
-                             </a>
-                              <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                    <span class="icon <?php if ($image_2->like_id) {
+              <div  class="active-photo">
+                <div class="like-photo" data-id = "<?php echo $image->id; ?>">
+                <div class = "action-love" style = "display: inline;">
+                  <a href = "{{url('web/photo/action')}}" class="like" style  = "display: inline;"><span class="<?php if ($image->like_id) {
                                       echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img">Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_2_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_2->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="small-2">
-                    <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_3->avatar; ?>" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
-                          <a class="photo-link" href="#"><img src="<?php echo $image_3_url; ?>">
-                          </a>
-                          <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                    <span class="icon <?php if ($image_3->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_3->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"> <?php echo $image_3_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_3->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_3->location !== '') echo "được chụp ở ".$image_3->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                    
-                    </div>
-                  </div>
-                 </div>
-              </div>
-                      <?php }else{ ?>
-              <div class="wrap-images item-3" style="height: 300px;">
-
-                <div class="medium m1">
-                  <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $image_1_index; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" data-id = "<?php echo $image_1->id; ?>">
-                    <a class="photo-link" href="#"><img src="<?php echo $image_1_url; ?>">
-
-                    </a>
-                    <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                      <span class="icon <?php if ($image_1->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_1->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"> <?php echo $image_1_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_1->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                  </div>
-                  </div>
+                                    }else{ echo "icon-like"; } ?>" style="display: inline-block; width: 23px; height: 23px; margin: 1px 6px -5px 3px;     background-size: 23px 23px;"></span></a>
                 </div>
-                 <div class="medium m2">
-                  <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $image_2_index; ?>" data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-imagepath="<?php echo $image_2_url; ?>" data-id = "<?php echo $image_2->id; ?>">
-                    <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
-                    </a>
-                    <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                     <span class="icon <?php if ($image_2->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_2_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_2->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                  </div>
-                  </div>
-                </div>
-                 <div class="medium m3">
-                  <div class="box-1">
-                     <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_3->avatar; ?>" data-index="<?php echo $image_3_index; ?>" data-username="<?php echo $image_3_user_by; ?>" data-imagetext="<?php echo $image_3->describe; ?>" data-location="<?php echo $image_3->location; ?>" data-imagepath="<?php echo $image_3_url; ?>" data-id = "<?php echo $image_3->id; ?>" >
-                    <a class="photo-link"  href=""><img src="<?php echo $image_3_url; ?>">
-                    </a>
-                    <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                    <span class="icon <?php if ($image_3->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_3->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_3_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_3->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_3->location !== '') echo "được chụp ở ".$image_3->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-                     <?php }
-                      } 
+               <div class = "listLike" style = "display: inline-block;">
+                  <?php if (isset($image->likeTotal)) {
+                  foreach ($image->likeTotal as $key => $value) {
+                    ?>
+                    <a href="<?php echo "/web/user/profile/".$value->user_id; ?>" id = "<?php echo $value->user_id; ?>"><?php echo " ".$value->last_name." ".$value->first_name." "; ?></a>
+                    <?php
                   }
-                  else{
-                    if ($remain == 1 ) { 
-                      $image = $photos[$i];
-                      $image_url = $image->url."/".$image->name;
-                      $image_user_by = $image->user_lastname." ".$image->user_firstname;
-                     ?>
-                      <div class=" wrap-images  item-1 ">
-                      <div class="box-1">
-                        <div class="photo full carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image->id; ?>" data-username="<?php echo $image_user_by; ?>" data-imagetext="<?php echo $image->describe; ?>" data-location="<?php echo $image->location; ?>" data-imagepath="<?php echo $image_url; ?>" >
-                            <a class="photo-link" href="#"><img src="<?php echo $image_url; ?>"></a>
-                              <div class="action">
-                                <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                    <span class="icon <?php if ($image->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image->id; ?>" class="download">
-                                      <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                    <div class="info">
-                                      <div class="inside">
-                                        <div class="about-img">
-                                          <span class="about-img">
-                                            <a href="" class="title-img"> Bức ảnh của </a>
-                                            
-                                            <a href="" class="by"><?php echo $image_user_by; ?></a>
-                                          </span>
-                                        </div>
-                                        <time>
-                                           <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image->location !== '') echo "được chụp ở ".$image->location; ?></span>
-                                        </time>
-                                      </div>
-                                    </div>
-                           </div>
-                        </div>
-
-                </div>
-              </div>
-                    <?php }elseif ($remain == 2) { 
-                      $width_1 = (int)explode("x", $photos[$i]->size)[0];
-                      $width_2 = (int)explode("x", $photos[$i + 1]->size)[0];
-
-                      if ($width_1 >= 700 && $width_2 >= 700) {
-                        $image_1 = $photos[$i];
-                        $image_1_url = $image_1->url."/".$image_1->name;
-                        $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                       
-                        $image_2 = $photos[++$i];
-                        $image_2_url = $image_2->url."/".$image_2->name;
-                        $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                        $image_1_size = $image_2_size = "item-same";
-                      }
-                      elseif ($width_1 >= 700 && $width_2 < 700) {
-                          $image_1 = $photos[$i];
-                          $image_1_url = $image_1->url."/".$image_1->name;
-                          $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                          $image_1_size = "item-big";
-
-                          $image_2 = $photos[++$i];
-                          $image_2_url = $image_2->url."/".$image_2->name;
-                          $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                          $image_2_size = "item-small";
-                        }elseif ($width_1 < 700 && $width_2 >= 700) {
-                          $image_2 = $photos[$i];
-                          $image_2_url = $image_2->url."/".$image_2->name;
-                          $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                          $image_2_size = "item-big";
-
-                          $image_1 = $photos[++$i];
-                          $image_1_url = $image_1->url."/".$image_1->name;
-                          $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                          $image_1_size = "item-small";
-                        }else{
-                          $image_1 = $photos[$i];
-                          $image_1_url = $image_1->url."/".$image_1->name;
-                          $image_1_user_by = $image_1->user_lastname." ".$image_1->user_firstname;
-                         
-                          $image_2 = $photos[++$i];
-                          $image_2_url = $image_2->url."/".$image_2->name;
-                          $image_2_user_by = $image_2->user_lastname." ".$image_2->user_firstname;
-                          $image_1_size = $image_2_size = "item-same";
-                        }
+                  echo " like this!!!";
+                }else echo "<span class = 'empty-like'>Maybe no one has seen this =)))</span>"; ?>
+               </div>
+                   
+                  </div>
+                  <div class="comment-photo">
+                  <span style = "font-style: oblique; font-weight: bold;">Do you want comment :3</span>
+                   <div class = "add-comment" data-id = "<?php echo $image->id; ?>">
+                    <form method="post" action="/web/photo/action/comment" id= "commentForm">
+                    <textarea name="comment" class = "commentPhoto" placeholder="Comment here!!!"></textarea>
+                      
+                    </form>
+                  </div>
+                  <?php if (isset($image->commentTotal)) {
+                    if (count($image->commentTotal) > 4) {
+                      echo "<a href= '#' class = 'view-more' style = 'margin: 9px; display: block;'><span style = 'color: #04656f; '>Hiện tất cả các bình luận</span></a>";
+                    }
+      ?>
+      <a href = "#" class = "view-less" style = "display: none;margin: 9px;"><span style = ' color: #04656f; margin: 9px;'> Ẩn comment </span></a>
+      <?php
+                    $y = 0;
+                    foreach ($image->commentTotal as $key => $value) {
                       ?>
 
-                    <div class=" wrap-images item-2">
-                   <div class="<?php echo $image_1_size; ?>">
-                    <div class="box-1">
-                       <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_1->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_1->id; ?>" data-username="<?php echo $image_1_user_by; ?>" data-imagetext="<?php echo $image_1->describe; ?>" data-location="<?php echo $image_1->location; ?>" data-imagepath="<?php echo $image_1_url; ?>" >
-                    <a class="photo-link"  href="#"><img src="<?php echo $image_1_url; ?>">
-                    </a>
-                    <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                     <span class="icon <?php if ($image_1->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_1->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"><?php echo $image_1_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_1->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_1->location !== '') echo "được chụp ở ".$image_1->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
+                       <div class="comment" style = "<?php if ($y >= 4) {
+                         echo "display: none;";
+                       } ?>">
+                      <img class ="ava-img" src = "<?php echo $value->avatar; ?>" >
+                      <a href="<?php echo "/web/user/profile/".$value->user_id; ?>"><span class = "usernameComment"><?php echo $value->last_name." ".$value->first_name; ?></span></a>
+                      <span><?php echo $value->content; ?></span>
+                      <br>
+                      <?php if($value->user_id == $user_id){ ?>
+                      <a  href="/web/photo/action/deleteComment/<?php echo $value->id;  ?>" class="remove-comment"> <span class="delete-comment" data-toggle="tooltip" title="delete comment!"> </span></a>
+                      <?php } ?>
+                       
+                      <time>
+                     <span style = "font-size: 11px; margin-left: 39px; color: #b2b7b4;"><?php 
+                        $date = new TimeDate();
+
+                          echo $date->time($value->created_at);
+                      ?></span>
+                      </time>
+                    </div>
+                      <?php
+                      $y++;
+                    }
+                  } ?>
+                 
                   </div>
-                    </div>
-                   </div>
-                    <div class="<?php echo $image_2_size; ?>">
-                    <div class="box-1">
-                      <div class="photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $image_2->avatar; ?>" data-index="<?php echo $i; ?>" data-id = "<?php echo $image_2->id; ?>"  data-username="<?php echo $image_2_user_by; ?>" data-imagetext="<?php echo $image_2->describe; ?>" data-location="<?php echo $image_2->location; ?>" data-like data-imagepath="<?php echo $image_2_url; ?>">
-                        <a class="photo-link" href="#"><img src="<?php echo $image_2_url; ?>">
-                        </a>
-                        <div class="action">
-                              <div class="view">
-                                  <a href="{{url('web/photo/action')}}" class="like">
-                                   <span class="icon <?php if ($image_2->like_id) {
-                                      echo "icon-love";
-                                    }else{ echo "icon-like"; } ?>"></span>
-                                  </a>
-                                  <a href="{{url('web/photo/action/download/')}}/<?php echo $image_2->id; ?>" class="download">
-                                    <span class="icon-add-gal"></span>
-                                  </a>
-                                 
-                                </div>
-                                <div class="info">
-                                  <div class="inside">
-                                  <div class="about-img">
-                                  <span class="about-img">
-                                      <a href="" class="title-img"> Bức ảnh của </a>
-                                    <a href="" class="by"> <?php echo $image_2_user_by; ?></a>
-                                  </span>
-                                  </div>
-                                  <time>
-                                       <span class="hour" data-bind = "hour"><?php
-                                          $start_time = new DateTime($image_2->created_at);
-                                          $since_start = $start_time->diff($end_time);
-                                          echo "Đăng ";
-                                          if ($since_start->y != 0) {
-                                            echo $since_start->y." năm trước";
-                                          }elseif ($since_start->m != 0) {
-                                            echo $since_start->m." tháng trước";
-                                          }elseif ($since_start->d != 0) {
-                                            echo $since_start->d." ngày trước";
-                                          }elseif ($since_start->h != 0) {
-                                            echo $since_start->h." giờ trước";
-                                          }elseif ($since_start->i != 0) {
-                                            echo $since_start->i." phút trước";
-                                          }else{
-                                            echo $since_start->s." giây trước";
-                                          } ?></span>
-                                      <span class="t-detail" data-bind = "t-detail"><?php if($image_2->location !== '') echo "được chụp ở ".$image_2->location; ?></span>
-                                  </time>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                 </div>
                 </div>
-                    <?php }
-                  }
-                }
-              }
-              ?>   
+              </div>
+              <?php }
+              } ?>
             </div>
           </div>
         </div>  
@@ -830,6 +267,9 @@
 
   @section('script')
   
+ <script type="text/javascript" src="{{url('js/api/rows.js')}}"></script>
+ <script type="text/javascript" src="{{url('js/jquery.lazyload.js')}}"></script>
+
 
 <script type="text/javascript">
 
@@ -843,7 +283,9 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
+$(function() {
+    $("img.lazy").lazyload();
+});
 </script>
 
 @endsection

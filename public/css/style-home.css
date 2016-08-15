@@ -13,24 +13,11 @@ body{
     position: relative;
 }
 .pageContent {
-  background-color: rgb(255, 255, 255);
-    padding: 0px 10px 10px;
-    position: relative;
-    border: 1px solid #ddd;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
-    -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
-    -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
-    -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
-    -khtml-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
-    box-shadow: 0px 0px 12px rgba(50,50,50,0.2);
-   
-    margin: 10px 60px;
-    zoom: 1;
-    
+ 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 65px;
+    margin-left: 142px;
   }
  /*==== NAV ===== */
   .navbar-inverse {
@@ -57,7 +44,7 @@ body{
 
 }
 .collapse{
-  width: 1070px !important;
+  width: 1254px  !important;
   margin: auto !important;
 }
 @media screen and max-width: 980{
@@ -163,6 +150,7 @@ body{
   position: relative;
   top: 4px; 
   width: 59%;
+ /* right: 31px;*/
 }
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
    background-color: rgba(26, 214, 223, 0.14) !important;
@@ -386,7 +374,7 @@ body{
 /*================= MENU ===============*/
 .menu > li  a{
   height: 100% !important;
-  max-width: 123px;
+  /*max-width: 123px;*/
 /*padding: 15px 0px !important;*/
   text-align: center;
 }
@@ -460,7 +448,8 @@ footer * + .copyright {
                       GALLERY IMAGE
 ==========================================================*/
 #gallerry-images{
-    width: 100%;
+    width: 65%;
+    margin-left: -2%;
   /*  position: relative;
     left: 4%;
     right: 4%;*/
@@ -470,17 +459,34 @@ footer * + .copyright {
 .wrap-images {
   margin: 4px 0px;
  display:  inline-block;
+  background-color: rgb(255, 255, 255);
+    padding: 0px 10px 10px;
+    position: relative;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    -khtml-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.2);
+    box-shadow: 0px 0px 12px rgba(50,50,50,0.2);
+   
+    margin:10px;
+    zoom: 1;
 }
-.wrap-images img{
+.wrap-images >.box img{
   -webkit-border-radius: 0.5%;
   max-height: 565px;
-  object-fit:cover;
+ /* object-fit:cover;*/
   -o-object-fit:cover;
   width: 100%;
   height: 100%;
 }
 
-.box-1 {
+.box {
   
    float: left;
   display: inline-block;
@@ -502,7 +508,7 @@ footer * + .copyright {
   position: relative;
     z-index: 1;
 }
-.item-1 {
+.item {
   width: 100%;
   height: 500px;
 }
@@ -511,8 +517,90 @@ footer * + .copyright {
   width: 100%;
 }
 
+/*==========================================================
+                        HEADER CSS
+============================================================*/
+.infor-active{
+    float: right;
+    display: inline-block;
+    height: 40px;
+    width: 20%;
+
+}
+.infor-active > span.icon{
+  position: relative !important;
+  width: 28%;
+  display: inline-block;
+}
+.comment-icon{
+  background: url('/images/icon/chat.svg');
+  background-position: 50% 50%;
+}
+
+.icon-share{
+  background: url('/images/icon/share.svg');
+  background-position: 50% 50%; 
+}
+.active-photo{
+      display: inline-block;
+    padding: 3px;
+    margin: 6px 2px;
+    font-size: 14.5px;
+     width: 100%;
+}
+.like-photo{
+  height: 37px;
+  width: 100%;
+      border-bottom: 1px solid;
+    border-bottom-color: #d8d5d1;
+}
+.comment-photo{
+  width: 100%;
+   
+    padding: 9px;
+}
+.comment-photo  textarea{
+  width: 94%;
+   /* height: 100%;*/
+     height: 20px;
+     padding-left: 10px;
+     margin-top: 5px;
+    border-bottom: 0.5px solid;
+    border-color: #d8d5d1;
+    border-radius: 3px;
+   
+    overflow: hidden;
+
+}
+.comment-photo > .comment{
+  /*padding: 8px;*/
+/*  border: 1px solid;
+    border-color: #d8d5d1;
+    border-top: none;*/
+    /*background: rgba(221, 226, 226, 0.3) !important;*/
+    background: #f0f7fc url(/images/form-button-white-25px.png) repeat-x top;
+}
+.add-comment{
+  margin-top: 6px;
+   background: url('/images/icon/chat.svg') no-repeat scroll;
+    background-position: 99% 50%;
+    background-size: 23px 23px;
+     border-radius: 3px;
+     background-color: #e0e0da;
+    padding-left: 8px;
+}
+.comment:hover span.delete-comment{
+  opacity: 1;
+   -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;
+}
+.autogrow-textarea-mirror{
+  display: none;
+}
 /*====================== CSS for view 3 images, 1 big, 2 small ====================*/
-.item-3{
+/*.item-3{
   height: 494px;
   width: 100%;
 }
@@ -543,16 +631,16 @@ footer * + .copyright {
 .small-2 {
   margin-top: 9px;
 }
-
+*/
 
 /*====================== CSS for view 2 images, 1 big, 1 small ====================*/
-.item-2{
+/*.item-2{
   width: 100%;
   height: 450px !important;
 }
-
+*/
 /*====================== CSS for view 3 images, medium size ====================*/
-.medium{
+/*.medium{
   width: 32%;
   height: 100%;
   display: inline-block;
@@ -566,7 +654,7 @@ footer * + .copyright {
 }
 .m3{
   float: right;
-}
+}*/
 /*====================== CSS for icon like, add ====================*/
 .icon{
 
@@ -579,12 +667,20 @@ footer * + .copyright {
     height: 100%;
 }
 .icon-like{
-  background-image: url("../images/icon/heart1.svg");
+  background-image: url("../images/icon/like.svg");
   background-position: 50% 50%;
+  -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;
 }
 .icon-love{
   background-image: url("../images/icon/heart2.svg");
   background-position: 50% 50%;
+    -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;
 }
 .view{
     width: 120px;
@@ -647,10 +743,10 @@ footer * + .copyright {
 }
 .hour, .t-detail{
   margin-left: 4px;
-color: #DCFFF5;
-font-size: 14px;
+color: #1d2120;
+font-size: 12px;
 }
-.box-1:hover, .photo:hover .action {
+.box:hover, .photo:hover .action {
   opacity: 1;
 }
 .title-img, .by {
@@ -1027,7 +1123,7 @@ form#formUpdateProfile input[type="text"], input[type="tel"], input[type="date"]
                   UPLOAD IMAGES
 ====================================================*/
 
-.table-addfile, .table-addfile table{
+/*.table-addfile, .table-addfile table{
   width: 100%;
   height: 100%;
 }
@@ -1058,16 +1154,7 @@ tr.template-upload{
     height: 100%;
 }
 
-button.publish {
-  width: 100%;
-    height: 42px;
-    background-color: rgba(48, 176, 189, 0.82);
-    border-color: rgba(48, 176, 189, 0.82);
-}
-button.publish:hover{
-  background-color: rgba(44, 148, 158, 0.85);
-  border-color: rgba(44, 148, 158, 0.85);
-}
+b
 button.more:hover, button.cancel-1:hover, button.delete:hover{
   background-color: rgba(48, 178, 189, 0.17) !important;
   border-radius: 3px;
@@ -1089,7 +1176,171 @@ span.span-start, span.span-cancel , span.span-delete{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 20px;
+}*/
+
+.change-img {
+    background: url('../images/icon/close-cross.svg');
+    background-size: 40px 40px;
+    background-position: 50% 50%;
+    height: 48px;
+    position: absolute;
+    top: 4.5%;
+    right: 30%;
+    width: 48px;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    display: none;
 }
+button.publish {
+  width: 100%;
+    height: 42px;
+    background-color: rgba(48, 176, 189, 0.82);
+    border-color: rgba(48, 176, 189, 0.82);
+}
+button.publish:hover{
+  background-color: rgba(44, 148, 158, 0.85);
+  border-color: rgba(44, 148, 158, 0.85);
+}
+
+#photo canvas{
+  text-align:center;
+  display:inline-block;
+  border-radius: 15px;
+  border:8px solid rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/*----------------------------
+  The Filters
+-----------------------------*/
+
+
+
+#filterContainer{
+  width: 91%;
+  margin: 2% 4%;
+  position: relative;
+  display:none;
+}
+
+#filterContainer:before{
+  content: '';
+  width: 20px;
+  box-shadow: 15px 0 10px #111;
+  position: absolute;
+  top: 0;
+  left: -22px;
+  bottom:-10px;
+  z-index:5;
+}
+
+#filterContainer:after{
+  content: '';
+  width: 20px;
+  box-shadow: -15px 0 10px #111;
+  position: absolute;
+  top: 0;
+  right: -22px;
+  bottom:-10px;
+  z-index:5;
+}
+
+#filters{
+  padding: 20px 20px 30px;
+  border-radius: 8px;
+  background-color: rgba(0,0,0,0.1);
+  overflow: hidden;
+  list-style: none;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+#filters li{
+  display:inline-block;
+  margin:0 15px 0 0;
+}
+
+#filters li:last-child{
+  margin-right:0;
+}
+
+#filters li a{
+  display: block;
+  width: 150px;
+  height: 130px;
+  display: inline-block;
+  position: relative;
+  background: center top no-repeat;
+  text-decoration: none !important;
+
+  font-weight: bold;
+  color: #ccc;
+  line-height: 294px;
+  text-align: center;
+  box-shadow: 0 0 1px rgba(255,255,255,0.4) inset;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+#filters li a.active{
+  cursor:default;
+}
+
+#filters li a.active:before{
+  content: '';
+  position: absolute;
+  width: 49px;
+  height: 45px;
+  top: 43px;
+  left: 51px;
+  background: url('../images/icon/checked.svg') no-repeat;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+/* The filters */
+
+#filters li #normal{    background-image:url('../img/filters/normal.jpg'); }
+#filters li #vintage{   background-image:url('../img/filters/vintage.jpg'); }
+#filters li #lomo{      background-image:url('../img/filters/lomo.jpg'); }
+#filters li #clarity{   background-image:url('../img/filters/clarity.jpg'); }
+#filters li #sinCity{   background-image:url('../img/filters/sinCity.jpg'); }
+#filters li #sunrise{   background-image:url('../img/filters/sunrise.jpg'); }
+#filters li #crossProcess{  background-image:url('../img/filters/crossProcess.jpg'); }
+#filters li #orangePeel{  background-image:url('../img/filters/orangePeel.jpg'); }
+#filters li #love{      background-image:url('../img/filters/love.jpg'); }
+#filters li #grungy{    background-image:url('../img/filters/grungy.jpg'); }
+#filters li #jarques{   background-image:url('../img/filters/jarques.jpg'); }
+#filters li #pinhole{   background-image:url('../img/filters/pinhole.jpg'); }
+#filters li #oldBoot{   background-image:url('../img/filters/oldBoot.jpg'); }
+#filters li #glowingSun{  background-image:url('../img/filters/glowingSun.jpg'); }
+#filters li #hazyDays{    background-image:url('../img/filters/hazyDays.jpg'); }
+#filters li #herMajesty{  background-image:url('../img/filters/herMajesty.jpg'); }
+#filters li #nostalgia{   background-image:url('../img/filters/nostalgia.jpg'); }
+#filters li #hemingway{   background-image:url('../img/filters/hemingway.jpg'); }
+#filters li #concentrate{ background-image:url('../img/filters/concentrate.jpg'); }
+
+
+/* Custom scrollbars for webkit */
+
+#filterContainer ::-webkit-scrollbar {
+    height: 4px;
+  background-color: rgba(100,100,100,0.2);
+  border-radius: 2px;
+}
+
+/* Handle */
+#filterContainer ::-webkit-scrollbar-thumb {
+    border-radius: 1px;
+    background: #fff;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+#filterContainer ::-webkit-scrollbar-thumb:window-inactive {
+  background: #aaa;
+}
+
+/*==============================================================================*/
 .modal-content form{
   height: 100%;
 }
@@ -1125,13 +1376,18 @@ span.span-start, span.span-cancel , span.span-delete{
   margin: 25px;
 }
 .upload-area > p{
-  position: absolute;
-    bottom: 15%;
-    left: 33%;
+ position: absolute;
+    bottom: 24%;
+    left: 38%;
     font-size: 16px;
     color: #1C636B;
+    right: 38%;
 }
-
+.upload-area{
+  background: url('../images/images.jfif');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 /*==========================================================
                         FOLLOW PAGE CSS
 ============================================================*/
@@ -1157,4 +1413,83 @@ div.follow{
     margin: 10px;
     width: 100%;
     display: block;
+}
+
+/*===============================================================
+                          RRIGHT CONTENT HOME PAGE
+=================================================================*/
+
+.right-photo{
+  
+    position: relative;
+    float: right; width: 28%; margin: 20px 0; margin-right: 6%;
+}
+.user-detai{
+  text-align: center;
+  background: white;
+  border-radius: 4px;
+  padding-bottom: 20px;
+}
+
+.user-detai > a {
+      margin: 8px;
+    display: inline-block;
+}
+
+.user-detai > a >span {
+  font-size: 32px;
+    font-family: Architects Daughter,cursive;
+    padding: 8px;
+}
+
+ .active-user {
+  text-transform: uppercase;
+  margin: 6px 0px;
+    border: 1px solid;
+    border-left: none;
+    border-right: none;
+    border-color: #b3afa9;
+    padding: 9px;
+    text-align: center;
+    /* height: 97px; */
+    color: #218898;
+    font-size: 13px;
+    /* height: 83px; */
+    font-family: "Helvetica Neue", HelveticaNeue, Helvetica, TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arial, sans-serif;
+}
+.active-post{
+  display: inline-block;
+    float: left;
+    width: 28%;
+    border-right: 1px solid;
+    border-color: #8e9895;
+}
+.active-follow{
+      display: inline-block;
+    width: 35%;
+}
+.active-follower{
+  display: inline-block;
+    float: right;
+    width: 28%;
+    border-left: 1px solid;
+    border-color: #8e9895;
+}
+.follow-user{
+  background: white;
+  border-radius: 4px;
+  margin-top: 20px;
+  padding-bottom: 8px;
+}
+.follow-infor{
+  padding: 15px;
+      font-size: 16px;
+}
+.img-show{
+  width: 61px;
+    height: 52px;
+    margin: 0 2px;
+}
+.follow-detail{
+  margin: 20px 0;
 }

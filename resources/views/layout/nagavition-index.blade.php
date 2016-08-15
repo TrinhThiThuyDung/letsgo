@@ -40,12 +40,12 @@
                   </div>
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-md-5" >
+                     <!--  <div class="col-md-5" >
                         <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 100%; margin: 19px 0;" /></a><br/>
-                      <!--   <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/> -->
+                  
                         <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 100%; margin: 19px 0;" /></a>
-                      </div>
-                    <div class="col-md-7" style="border-left:1px solid #ccc;">
+                      </div> -->
+                    <div class="col-md-12">
                       <form id="form-signin" class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
                         <fieldset>
 
@@ -150,16 +150,15 @@
                     </div>
                 </div>
             </form>
-            <div class="or">
+       <!--      <div class="or">
               <span class="signup_only">or</span>
             </div>
             <div class="rom">
             <div class="col-md-12" >
                    <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 48%; float: left;" /></a>
-                      <!--   <a href="#"><img class="id" src="http://techulus.com/buttons/tw.png" /></a><br/> -->
                         <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 48%; float: right;" /></a>
             </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

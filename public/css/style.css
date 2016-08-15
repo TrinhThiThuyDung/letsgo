@@ -420,8 +420,8 @@ footer * + .copyright {
 }
 .right-upload{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 2%;
+    right: 2.5%;
     width: 24%;
     height: 430px;
     background: rgb(237, 240, 247);

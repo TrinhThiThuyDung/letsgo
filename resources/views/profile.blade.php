@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{url('css/gallery-image.css')}}">
     <link rel="stylesheet" href="{{url('/css/albums.css')}}">
   <!--    <link rel="stylesheet" href="{{url('/css/transitions.css')}}"> -->
-    <link rel="stylesheet" type="text/css" href="{{url('css/sweetalert.css')}}">
+
  
   
     <!-- ========================= JS ======================== -->
@@ -29,7 +29,7 @@
     <script type="text/javascript" src="{{url('/js/albums.js')}}"></script>
     <script type="text/javascript" src="{{url('js/api/action.js')}}"></script>
     <script type="text/javascript" src="{{url('js/api/main.js')}}"></script>
-    <script type="text/javascript" src="{{url('js/sweetalert.min.js')}}"></script>
+    
 
 <style type="text/css">
   body{
@@ -75,12 +75,7 @@
     				    <!-- Tab panes -->
                         <div class="tab-content">
                           <div class="tab-pane active" id="men" style="background: rgb(255, 255, 255);">
-                            <div class="upload">
-                              <div class="empty">
-                              	<!-- <button type="button" class="btn btn-primary btn-upload">Đăng ảnh</button> -->
-                              </div>
-                            	
-                            </div>
+                    
                           <div class="carouselGallery-col-60" style=" margin-top: 22px; border-radius: 2px;     float: none; text-align: left;"> 
               								<?php
                               if ($data['user_photo']) {

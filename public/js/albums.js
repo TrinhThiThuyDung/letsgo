@@ -47,7 +47,10 @@ jQuery(function($) {
         carouselGalleryUrl = that.data('url');
         avatar = that.data("avatar");
         maxHeight = $(window).height()-100;
-        var image_id = that.data('id');
+        var image_id = that.data('id'),
+            idMe = that.data("idme"),
+            time = that.data("time"),
+            user_id = that.data("user_id");
 
         if ($('.carouselGallery-wrapper').length === 0) {
             if(typeof imagepath !== 'undefined') {
@@ -59,17 +62,17 @@ jQuery(function($) {
                 modalHtml += "<img src='"+imagepath+"' alt='carouselGallery image'>";
                 modalHtml += "</div>";
                 modalHtml += "<div class='carouselGallery-modal-text'><input  type = 'hidden' class = 'image_id' value ='"+image_id+"' >";
-                modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '"+avatar+"'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='#'>"+username+"</a> </span>"
-                modalHtml += "<span class='carouselGallery-modal-location'>"+location+"</span></div><a class = 'flow' href = '/web/photo/action/'>"+getFlow(image_id)+"</a></div>";
-                modalHtml += "<div class = 'likeTextShare'> <div style = 'height: 52px;'> <span class='carouselGallery-item-modal-likes' style = 'width: 48%;float: left; display: inline-block;'>";
+                modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '"+avatar+"'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='/web/user/profile/"+user_id+"'>"+username+"</a> </span>"
+                modalHtml += "<span class='carouselGallery-modal-location'>"+time+" "+location+"</span></div><a class = 'flow' href = '/web/photo/action/' data-user_id = '"+user_id+"'>"+getFlow(image_id)+"</a></div>";
+                modalHtml += "<div class = 'likeTextShare' style = 'display: inline-block;'> <div > <span class='carouselGallery-item-modal-likes' style = ' display: inline-block;'>";
                 modalHtml += "<a href = 'photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
-                modalHtml += "<span class = 'numLove'>"+getTotalLike(image_id)+"</span></a>";
-                modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'><a href = '#' style = 'font-size: 14px;'><span class='fa fa-share' style = 'display: inline-block; margin-right: 3px;'></span>Chia sẻ</a></span></div>";
+                modalHtml += ""+getTotalLike(image_id)+"</a>";
+                modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'></span></div>";
                 modalHtml += "<span class='carouselGallery-modal-imagetext'>";
                 modalHtml += "<p>"+imagetext+"</p>";
                 modalHtml += "</span></div>";
-                modalHtml += "<form id = 'formComment' method = 'post' action = '/web/photo/action/comment'><div class = 'comment form-group'><label class = 'comment' for = 'comment'>Thêm comment</label><input class='inputTextComment' type = 'text' id='comment' style = 'font-size:15px;'></div></form> ";
-                modalHtml += getCommentImage( image_id );
+                modalHtml += "<form id = 'formComment' method = 'post' action = '/web/photo/action/comment'><div class = 'comment form-group'><label class = 'comment' for = 'comment'>Add new comment</label><input class='inputTextComment' type = 'text' id='comment' placeholder='comment here!' style = 'font-size:15px;'></div></form> ";
+                modalHtml += getCommentImage( image_id , idMe);
                 modalHtml += "</div></div></div></div></div></div>";
                 $('body').append(modalHtml).fadeIn(2500);
             }
@@ -117,7 +120,7 @@ jQuery(function($) {
                             LIKE 
 =============================================================================*/
     var getTotalLike = function ( image_id ){
-        var url = "http://"+window.location.hostname+":8000/web/photo/action/getTotalLike";
+        var url = "/web/photo/action/getLike";
 
         var data = {};
         data['image_id'] = image_id;
@@ -130,13 +133,18 @@ jQuery(function($) {
             async: false,
         });
         if (request.responseJSON.total) {
-            return request.responseJSON.total;
+            var like = request.responseJSON.total;
+            var user_like = "";
+            for (var i = 0; i < like.length; i++) {
+                user_like += "<a data-user_id = '"+like[i].user_id+"' href = '/web/user/profile/"+like[i].user_id+"'><span style='display: inline-block;    font-size: 14px;'>"+like[i].user_lastname+" "+like[i].user_firstname+"</span></a>"+" ";
+            }
+            return user_like;
         }
-        return 0;
+        return "";
     }
     var getClassForLoveAction = function(image_id){
 
-        var url = "http://"+window.location.hostname+":8000/web/photo/action/checkLike";
+        var url = "/web/photo/action/checkLike";
 
         var data = {};
         data['image_id'] = image_id;
@@ -157,22 +165,21 @@ jQuery(function($) {
     $('body').on('click','.love', function (e){
 
         var data = {};
-        var numLove = $(e.target).siblings('span.numLove').text();
             
         data['image_id'] = $('input.image_id').val();
 
         var urlPost = $(e.target).parent().attr('href');
 
         if ($(e.target).hasClass('loveHeart')) {
-            loveAction(e, numLove, urlPost, data);
+            loveAction(e, urlPost, data);
         }
         else if($(e.target).hasClass('loved')){
-            unLoveAction(e, numLove, urlPost, data);
+            unLoveAction(e,  urlPost, data);
         }
         /*e.stopPropagation();*/
         e.preventDefault();
     });
-    var loveAction = function (e,  numLove, urlPost, data){
+    var loveAction = function (e,  urlPost, data){
        if ($(e.target).hasClass( 'loveHeart')) {
 
         urlPost = urlPost+"/like";
@@ -184,12 +191,14 @@ jQuery(function($) {
         })
         .done(function(  data ){
             $(e.target).removeClass("loveHeart").addClass("loved");
-            numLove = Number(numLove) + 1;
-            $(e.target).siblings('span.numLove').text(numLove);
+            
+            var temp = "<a data-user_id = '"+data.user_id+"' href='/web/user/profile/"+data.user_id+"'><span style='display: inline-block;    font-size: 14px;'>"+data.username+"<span></a>"+" ";
+            
+            $(e.target).after(temp);
         });
        }
     }
-    var unLoveAction = function (e , numLove, urlPost, data){
+    var unLoveAction = function (e , urlPost, data){
         if ($(e.target).hasClass('loved')) {
 
         urlPost = urlPost+"/dislike/"+data['image_id'];
@@ -201,8 +210,14 @@ jQuery(function($) {
         })
         .done(function(  data ){
             $(e.target).removeClass("loved").addClass("loveHeart");
-            numLove = Number(numLove) - 1;
-            $(e.target).siblings('span.numLove').text(numLove);
+            var name = $(e.target).siblings("a");
+
+            for (var i = 0; i < name.length; i++) {
+                if( $(name[i]).data("user_id") == data ){
+                    $(name[i]).remove();
+                }
+            }
+           console.log(data);
         });
        }
     }
@@ -211,7 +226,7 @@ jQuery(function($) {
 =============================================================================*/
     var getFlow = function (image_id) 
     {
-        var url = "http://"+window.location.hostname+":8000/web/photo/action/checkFollow";
+        var url = "/web/photo/action/checkFollow";
         var data = {};
 
         data['image_id'] = image_id;
@@ -224,10 +239,10 @@ jQuery(function($) {
             async: false,
         });
         if ( request.responseJSON.follow === "follow") {
-            return "<button class = 'follow'> Theo dõi </button>";
+            return "<button class = 'follow'> Follow </button>";
         }
         else if( request.responseJSON.follow  === "following" ){ 
-            return "<button class = 'following'>Đang theo dõi</button>";
+            return "<button class = 'following'>Following</button>";
         }
         else if( request.responseJSON.follow === "duplicate id"){
             return "";
@@ -236,18 +251,18 @@ jQuery(function($) {
     }
     $('body').on('mouseenter','.following' , function (e){
         $(this).removeClass("following").addClass("unfollow");
-        $(this).text("Bỏ theo dõi");
+        $(this).text("Unfollow");
     });
     $('body').on('mouseleave','.unfollow' , function (e){
         $(this).removeClass("unfollow").addClass("following");
-        $(this).text("Đang theo dõi");
+        $(this).text("Following");
     });
 
         $('body').on('click','.follow', function (e){
 
             var data = {};
                 
-            data['image_id'] = $('input.image_id').val();
+            data['follow_to_user_id'] = $(e.target).parents().data("user_id");
 
             var urlPost = $(e.target).parent().attr('href');
 
@@ -260,11 +275,10 @@ jQuery(function($) {
 
             var data = {};
                 
-            data['image_id'] = $('input.image_id').val();
+            data['follow_to_user_id'] = $(e.target).parents().data("user_id");
 
             var urlPost = $(e.target).parent().attr('href');
 
-          
             unfollowAction(e, urlPost, data);
             
             e.preventDefault();
@@ -280,13 +294,14 @@ jQuery(function($) {
         })
         .done(function(  data ){
             $(e.target).removeClass("follow").addClass("following");
-            $(e.target).text("Đang theo dõi");
+            $(e.target).text("Following");
+            $('#numFollow').text( parseInt ( $('#numFollow').text()) + 1 );
         });
        }
 
        var unfollowAction = function (e, urlPost, data) {
 
-        urlPost = urlPost+"unfollow/"+data['image_id'];
+        urlPost = urlPost+"unfollow/"+data['follow_to_user_id'];
         $.ajax({
             url: urlPost,
             type: 'delete',
@@ -300,16 +315,16 @@ jQuery(function($) {
                 $(e.target).removeClass("following").addClass("follow");
             }
             
-            $(e.target).text("Theo dõi");
+            $(e.target).text("Follow");
         });
        }
 /*===========================================================================
                             COMMENT
 =============================================================================*/
 
-var getCommentImage = function ( image_id ) {
+var getCommentImage = function ( image_id , idMe ) {
 
-    var url = "http://"+window.location.hostname+":8000/web/photo/action/getComment";
+    var url = "/web/photo/action/getComment";
     var data = {};
 
     data['image_id'] = image_id;
@@ -329,8 +344,8 @@ var getCommentImage = function ( image_id ) {
             comment += "<div class = 'otherComment'><img src = '"+all_comment[i]['avatar']+"'>";
             comment += "<a href = '#'><span class= 'usernameComment'>"+all_comment[i]['last_name']+" "+all_comment[i]['first_name']+"</span></a>";
             comment += "<span class = 'contentComment'>"+all_comment[i]['content']+"</span>";
-            if (all_comment[i]['user_id'] == window.sessionStorage.getItem('id')) {
-                comment += "<a href = '/web/photo/action/deleteComment/"+all_comment[i]['id']+"' class = 'remove-comment'> <span class = 'delete-comment'> </span></a>";
+            if (all_comment[i]['user_id'] == idMe ) {
+                comment += "<a href = '/web/photo/action/deleteComment/"+all_comment[i]['id']+"' class = 'remove-comment'> <span data-toggle='tooltip' title='delete comment!' class = 'delete-comment' style = 'margin-top: 3px !important;'> </span></a>";
             }
             comment += "</div>";
         }
@@ -345,8 +360,9 @@ $('body').on('submit', '#formComment', function(e){
     data['content'] = $('input#comment').val();
     data['image_id'] = $('input.image_id').val();
     
-    var urlPost = $(this).attr("action");
-    var url = "http://"+window.location.hostname+":8000"+urlPost;
+ if (data['content'] != "") {
+       var urlPost = $(this).attr("action");
+    var url = urlPost;
 
     $.ajax({
         url: url,
@@ -357,6 +373,7 @@ $('body').on('submit', '#formComment', function(e){
     .done(function( data ){
         addComment( data );
     });
+ }
     
   e.preventDefault();
 });
@@ -366,7 +383,7 @@ var addComment = function (data) {
     var comment = "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
             comment += "<a href = '#'><span class= 'usernameComment'>"+data['username']+"</span></a>";
             comment += "<span class = 'contentComment'>"+data['content']+"</span>";
-            comment += "<a class = 'remove-comment' href = '/web/photo/action/deleteComment/"+data['id']+"'> <span class = 'delete-comment'> </span></a>";
+            comment += "<a class = 'remove-comment' href = '/web/photo/action/deleteComment/"+data['id']+"'> <span data-toggle='tooltip' title='delete comment!' class = 'delete-comment' style = 'margin-top: 3px !important;'> </span></a>";
             comment += "</div>";
     $('#formComment').append(comment);
     $('input#comment').val("");
@@ -383,7 +400,17 @@ var addComment = function (data) {
             async: false,
         });
         if (result.responseJSON.delete) {
-            $(this).parents(".otherComment").remove();   
+            if ($(this).parents(".otherComment").length > 0) {
+                $(this).parents(".otherComment").remove(); 
+            }
+              if ($(this).parents(".comment").length > 0) {
+                var comment = $(this).parents(".active-photo").siblings(".headerInfor").children().children(".comment-icon");
+
+                comment.text(parseInt(comment.text()) - 1);
+                $(this).parents(".comment").remove(); 
+
+            }
+              
         }
     
        e.preventDefault();

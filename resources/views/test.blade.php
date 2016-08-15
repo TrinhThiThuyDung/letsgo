@@ -1,19 +1,37 @@
-<?php
-$end_time =  new DateTime();
-$start_time = new DateTime("2016-05-04 05:59:14");
-$since_start = $start_time->diff($end_time);
-if ($since_start->y != 0) {
-	echo $since_start->y." năm";
-}elseif ($since_start->m != 0) {
-	echo $since_start->m." tháng";
-}elseif ($since_start->d != 0) {
-	echo $since_start->d." ngày";
-}elseif ($since_start->h != 0) {
-	echo $since_start->h." giờ";
-}elseif ($since_start->i != 0) {
-	echo $since_start->i." phút";
-}else{
-	echo $since_start->s." giây";
-}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
 
- ?>
+  <title>Instagram-like Filters with jQuery | Tutorialzine Demo</title>
+  <link href="{{url('css/filer/style.css')}}" rel="stylesheet" />
+
+  <!-- Include the Yanone Kaffeesatz font -->
+  <link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,200" rel="stylesheet" />
+
+</head>
+<body>
+
+  <h1>Instagram <b>Filters</b></h1>
+  <div id="photo"></div>
+
+  <div id="filterContainer">
+    <ul id="filters">
+      <li> <a href="#" id="normal">Normal</a> </li>
+      <li> <a href="#" id="vintage">Vintage</a> </li>
+      <li> <a href="#" id="lomo">Lomo</a> </li>
+      <li> <a href="#" id="clarity">Clarity</a> </li>
+      <li> <a href="#" id="sinCity">Sin City</a> </li>
+      <!-- 14 More filters go here -->
+    </ul>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="{{url('js/filer/filereader.min.js')}}"></script>
+  <script src="{{url('js/filer/caman.full.js')}}"></script>
+  <script src="{{url('js/filer/jquery.mousewheel.min.js')}}"></script>
+  <script src="{{url('js/filer/script.js')}}"></script>
+
+</body>
+</html>

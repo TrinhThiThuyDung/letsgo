@@ -60,9 +60,9 @@ Route::group(['prefix' => 'web'], function(){
 							'as' => 'web/photo/action/checkLike', 
 							'uses' => 'LikeController@checkLike']
 		);
-		Route::post('/photo/action/getTotalLike', [ 
-							'as' => 'web/photo/action/getTotalLike', 
-							'uses' => 'LikeController@getTotalLike']
+		Route::post('/photo/action/getLike', [ 
+							'as' => 'web/photo/action/getLike', 
+							'uses' => 'LikeController@getLike']
 		);
 		Route::post('/photo/action/like', [ 
 							'as' => 'web/photo/action/like', 
@@ -84,7 +84,7 @@ Route::group(['prefix' => 'web'], function(){
 							'uses' => 'FollowController@addFollow']
 		);
 
-		Route::delete('/photo/action/unfollow/{image_id}', [ 
+		Route::delete('/photo/action/unfollow/{user_id}', [ 
 							'as' => 'web/photo/action/unfollow', 
 							'uses' => 'FollowController@deleteFollow']
 		);

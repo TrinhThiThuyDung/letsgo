@@ -2,7 +2,7 @@
 
 
 @section('title')
-Chòi Ảnh
+Photo by kind
 @endsection
  @section('link')
 

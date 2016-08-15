@@ -35,7 +35,7 @@ class FollowRepositoryEloquent implements FollowRepository
     {
        $result = Follow::where([
              ['user_follower_id' , (int)$data['user_id']],
-             ['user_followed_id' , (int)$data['user_id_image']]
+             ['user_followed_id' , (int)$data['user_image_id']]
         ])->delete();
        return $result;
     }
@@ -49,6 +49,37 @@ class FollowRepositoryEloquent implements FollowRepository
                    ->get();
         return $result;
     }
-
+    public function getFollow( $user_id )
+    {
+        $user_follow = $this->getIdUserFollow( $user_id );
+    
+        $follow = DB::table("users")
+                    ->whereNotIn("users.id",$user_follow)
+                    ->select("users.id as user_id", "users.last_name as user_lastname", "users.first_name as user_firstname", "users.avatar as avatar")
+                    ->orderByRaw('RAND()')
+                    ->take(12)
+                    ->get();
+            if (count($follow) < 3) {
+                $total = count($follow);
+            } else { $total = 3; }
+        for ($i=0; $i < $total; $i++) { 
+            $follow[$i]->image = [];
+            $follow[$i]->image = ImageFacade::getPhotoOfUser( $follow[$i]->user_id );
+        }
+       return $follow;
+    }
+    protected function getIdUserFollow($user_id)
+    {
+        $result = DB::table("follows")
+                   ->where("follows.user_follower_id", $user_id )
+                   ->select ("follows.user_followed_id")
+                   ->get();
+        $result_2 = [];
+        for ($i = 0; $i < count($result); $i++) { 
+            $result_2[$i] = $result[$i]->user_followed_id;
+        }
+        $result_2[$i] = $user_id;
+        return $result_2;
+    }
 }
 ?>

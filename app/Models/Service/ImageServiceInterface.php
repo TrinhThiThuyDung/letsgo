@@ -15,6 +15,7 @@ interface ImageServiceInterface{
 	function getAllUserFollow($user_id);
 	function getImagesByCategory($category_id);
 	function getPhotoByCategory();
+	function countTotalPhoto( $user_id );
 	
 }
 ?>

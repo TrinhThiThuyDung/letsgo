@@ -49,7 +49,7 @@ class FollowController extends Controller
     }
     public function deleteFollow(Request $request)
     {
-    	$data['image_id'] = $request->image_id;
+    	$data['user_image_id'] = $request->user_id;
     	$data['user_id'] = $this->user_id;
 
     	$result = FollowServiceFacade::deleteFollow( $data );

@@ -54,15 +54,10 @@ $(document).ready(function(){
 
                         }
                         else if(results.status == 'success'){
-                         
-                                if($('#remember-me').is(':checked')){
-                                // Lưu trữ
-                                    window.localStorage.setItem("id" , results.id );
-                                    window.sessionStorage.setItem( "username" , results.name);
-                                }
+                
                                 window.sessionStorage.setItem("id" , results.id );
                                 window.sessionStorage.setItem( "username" , results.name);
-                        
+                     
                             document.location.href  = "/web/photo";
                         }
                     },

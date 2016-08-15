@@ -10,5 +10,6 @@ interface LikeRepository
     function checkLike( $data );
     function getTotalLike( $data );
     function getPhotoUserLike($user_id);
+    function getLike( $image_id );
   
 }
