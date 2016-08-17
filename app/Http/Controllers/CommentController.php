@@ -31,7 +31,8 @@ class CommentController extends Controller
                 'username'   => $result['username'],
                 'avatar'     => $result['avatar'],
                 'image_id'   => $result['image_id'],
-                'user_id'    => $result['user_id']
+                'user_id'    => $result['user_id'],
+                'id'        => $result['id']
     		]);
     	}
     	return response()->json(['result' => 'error']);

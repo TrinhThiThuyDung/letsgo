@@ -131,20 +131,20 @@
         <div class="card">
         
             <ul class="nav nav-tabs" role="tablist">
-                <li style="margin-left: 8%;" role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">Tất cả</a></li>
-                  <li role="presentation"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Cuộc sống</a></li>
-                <li role="presentation"><a href="#nature" aria-controls="nature" role="tab" data-toggle="tab">Thiên nhiên </a></li>
+                <li style="margin-left: 8%;" role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">Any</a></li>
+                  <li role="presentation"><a href="#moment" aria-controls="moment" role="tab" data-toggle="tab">Life</a></li>
+                <li role="presentation"><a href="#nature" aria-controls="nature" role="tab" data-toggle="tab">Nature </a></li>
                                         
-                <li role="presentation"><a href="#people" aria-controls="people" role="tab" data-toggle="tab">Con người</a></li>
-                <li role="presentation"><a href="#animals" aria-controls="animals" role="tab" data-toggle="tab">Động vật</a></li>
-                <li role="presentation"><a href="#discovery" aria-controls="discovery" role="tab" data-toggle="tab">Khám phá</a></li>
+                <li role="presentation"><a href="#people" aria-controls="people" role="tab" data-toggle="tab">People</a></li>
+                <li role="presentation"><a href="#animals" aria-controls="animals" role="tab" data-toggle="tab">Pets</a></li>
+                <li role="presentation"><a href="#discovery" aria-controls="discovery" role="tab" data-toggle="tab">Discovery</a></li>
                 <!-- <li role="presentation"><a href="#more" aria-controls="more" role="tab" data-toggle="tab">Xem nhiều hơn </a></li> -->
             </ul>
            
         </div>
             <!-- Tab panes -->
-          <div class=" row tab-content">
-           <div role="tabpanel" class="tab-pane active" id="all">
+          <div class=" row tab-content" style="text-align: center;">
+           <div role="tabpanel" class="tab-pane active" id="all" style="text-align: center;">
            <?php  if ($photo['all']) {
             $all = $photo['all'];
              for ($i = 0; $i < count($all); $i+=3) { 
@@ -163,7 +163,7 @@
                 <div class="well">
                     <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
                     <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
-                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                        <span>This photo of <?php echo $user_name; ?></span>
                     </div>
                 </div>          
               </div> 
@@ -194,7 +194,7 @@
                 <div class="well">
                     <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
                     <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
-                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                        <span>This photo of <?php echo $user_name; ?></span>
                     </div>
                 </div>          
               </div> 
@@ -225,7 +225,7 @@
                 <div class="well">
                     <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
                     <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
-                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                        <span>This photo of <?php echo $user_name; ?></span>
                     </div>
                 </div>          
               </div> 
@@ -256,7 +256,7 @@
                 <div class="well">
                     <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
                     <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
-                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                        <span>This photo of <?php echo $user_name; ?></span>
                     </div>
                 </div>          
               </div> 
@@ -287,7 +287,7 @@
                 <div class="well">
                     <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
                     <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
-                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                        <span>This photo of <?php echo $user_name; ?></span>
                     </div>
                 </div>          
               </div> 
@@ -318,7 +318,7 @@
                 <div class="well">
                     <img class="thumbnail img-responsive" style="margin:auto;" alt="<?php echo $name; ?>" src="<?php echo $url; ?>" />
                     <div class="name" style="color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;">
-                        <span>Bức ảnh của <?php echo $user_name; ?></span>
+                        <span>This photo of <?php echo $user_name; ?></span>
                     </div>
                 </div>          
               </div> 
@@ -334,7 +334,7 @@
              <div class="see-more" style="    float: right; margin: 10px 0;
     width: 122px;
     font-size: 18px;
-    font-style: italic;"><a href = "{{url('web/photo/show/images/')}}" id="see-more"> Xem tiếp...</a></div>
+    font-style: italic;"><a href = "{{url('web/photo/show/images/')}}" id="see-more"> view more...</a></div>
           </div>
         </div>
       </div>
@@ -349,10 +349,10 @@
       <div class="well4">
         <div class="container center wow fadeInUp" data-wow-delay="0.2s">
           
-          <h2>ĐĂNG KÝ LET'S GO</h2>
+          <h2>SIGN UP LET'S GO</h2>
 
           <h3 style="text-transform: uppercase;">để cùng lưu giữ lại những giây phút đẹp của bạn qua những bức ảnh</h3>
-          <a class="btn" href='{{url("/auth/register")}}' style="line-height: 24px; font-size: 18px; color: white;">ĐĂNG KÝ NGAY</a>
+          <a class="btn" href='{{url("/auth/register")}}' style="line-height: 24px; font-size: 18px; color: white;">SIGN UP NOW</a>
 
           <div class="copyright">
             © <span id="copyright-year"></span> BACH KHOA HA NOI - HEDSPI
@@ -382,5 +382,18 @@
      }
     });
   });
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+      $( ".animation" ).css({
+        "display": "block"
+      }).fadeIn();
+    } else {
+      $( ".animation" ).css({
+        "display": "none"
+      }).fadeOut();
+    }
+  });
+
 </script>
 @endsection

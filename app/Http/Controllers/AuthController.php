@@ -66,11 +66,11 @@ class AuthController extends Controller
             $result = UserServiceFacade::authenticate($user);
             
             if ( $result == 0 ) {
-                return response()->json([ 'status'=>'error' , 'error' => 'Sai email!']);
+                return response()->json([ 'status'=>'error' , 'error' => 'Wrong email! Please try again!']);
                 
             }
             else if( $result == -1 ){
-                return response()->json([ 'status'=>'error' , 'error' => 'Sai mật khẩu!']);
+                return response()->json([ 'status'=>'error' , 'error' => 'Wrong password! Please try again!']);
             }
             
             $request->session()->put('id', $result['id']);
@@ -112,7 +112,7 @@ class AuthController extends Controller
         $result = UserServiceFacade::createNewUser($user);
         
         if ( $result == null ) {
-            return response()->json(['status'=>'error' , 'error' => 'Email này đã có người đăng ký, hãy chọn cho mình email khác :)']);
+            return response()->json(['status'=>'error' , 'error' => 'This email already subscribers, please choose a different email :)']);
         }
         $request->session()->put('id', $result['id']);
         

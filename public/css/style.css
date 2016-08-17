@@ -370,9 +370,9 @@ footer * + .copyright {
 
 .error-sign {
   display: block;
-    background: #F1D992;
+ /*   background: #F1D992;*/
     height: 50px;
-    text-align: center;
+   /* text-align: center;*/
     padding: 14px;
     margin: auto;
     color: #F50909;

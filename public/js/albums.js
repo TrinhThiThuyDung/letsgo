@@ -65,7 +65,7 @@ jQuery(function($) {
                 modalHtml += "<div style ='overflow-y: auto; display: block;height: 100%; overflow-x: hidden; border-radius: 3px;'> <div class = 'gallerryImgHeader'><img class = 'avatar' src = '"+avatar+"'><div class='baseInforImg'><span class='carouselGallery-modal-username'><a href='/web/user/profile/"+user_id+"'>"+username+"</a> </span>"
                 modalHtml += "<span class='carouselGallery-modal-location'>"+time+" "+location+"</span></div><a class = 'flow' href = '/web/photo/action/' data-user_id = '"+user_id+"'>"+getFlow(image_id)+"</a></div>";
                 modalHtml += "<div class = 'likeTextShare' style = 'display: inline-block;'> <div > <span class='carouselGallery-item-modal-likes' style = ' display: inline-block;'>";
-                modalHtml += "<a href = 'photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
+                modalHtml += "<a href = '/web/photo/action' class = 'love' ><span class='icons icon-heart "+getClassForLoveAction(image_id)+"'></span>";
                 modalHtml += ""+getTotalLike(image_id)+"</a>";
                 modalHtml += "</span><span class = 'share' style = 'float: right; padding: 8px;'></span></div>";
                 modalHtml += "<span class='carouselGallery-modal-imagetext'>";
@@ -136,7 +136,7 @@ jQuery(function($) {
             var like = request.responseJSON.total;
             var user_like = "";
             for (var i = 0; i < like.length; i++) {
-                user_like += "<a data-user_id = '"+like[i].user_id+"' href = '/web/user/profile/"+like[i].user_id+"'><span style='display: inline-block;    font-size: 14px;'>"+like[i].user_lastname+" "+like[i].user_firstname+"</span></a>"+" ";
+                user_like += "<a class='userName' data-user_id = '"+like[i].user_id+"' href = '/web/user/profile/"+like[i].user_id+"'><span style='display: inline-block;    font-size: 14px;'>"+like[i].user_lastname+" "+like[i].user_firstname+"</span></a>"+" ";
             }
             return user_like;
         }
@@ -192,7 +192,7 @@ jQuery(function($) {
         .done(function(  data ){
             $(e.target).removeClass("loveHeart").addClass("loved");
             
-            var temp = "<a data-user_id = '"+data.user_id+"' href='/web/user/profile/"+data.user_id+"'><span style='display: inline-block;    font-size: 14px;'>"+data.username+"<span></a>"+" ";
+            var temp = "<a class='userName' data-user_id = '"+data.user_id+"' href='/web/user/profile/"+data.user_id+"'><span style='display: inline-block;    font-size: 14px;'>"+data.username+"<span></a>"+" ";
             
             $(e.target).after(temp);
         });
@@ -209,15 +209,18 @@ jQuery(function($) {
             dataType: 'json',
         })
         .done(function(  data ){
-            $(e.target).removeClass("loved").addClass("loveHeart");
-            var name = $(e.target).siblings("a");
 
+            var name = $('.carouselGallery-item-modal-likes').find("a.userName");
+
+            $(e.target).removeClass("loved").addClass("loveHeart");
+            
             for (var i = 0; i < name.length; i++) {
-                if( $(name[i]).data("user_id") == data ){
+                var id = parseInt( $(name[i]).data("user_id") );
+                if(  id == data ){
                     $(name[i]).remove();
                 }
             }
-           console.log(data);
+           
         });
        }
     }
@@ -285,7 +288,7 @@ jQuery(function($) {
         });
       var followAction = function (e, urlPost, data) {
           
-        urlPost = urlPost+"follow";
+        urlPost = urlPost+"follow"; //urlPost = /web/photo/action/follow
         $.ajax({
             url: urlPost,
             data: { "data": data},
@@ -314,7 +317,7 @@ jQuery(function($) {
             if ($(e.target).hasClass("following")) {
                 $(e.target).removeClass("following").addClass("follow");
             }
-            
+             $('#numFollow').text( parseInt ( $('#numFollow').text()) - 1 );
             $(e.target).text("Follow");
         });
        }
@@ -380,7 +383,7 @@ $('body').on('submit', '#formComment', function(e){
 
 var addComment = function (data) {
   
-    var comment = "<div class = 'otherComment'><img src = '../images/avatar/default-avatar.jpg'>";
+    var comment = "<div class = 'otherComment'><img src = '"+data['avatar']+"'>";
             comment += "<a href = '#'><span class= 'usernameComment'>"+data['username']+"</span></a>";
             comment += "<span class = 'contentComment'>"+data['content']+"</span>";
             comment += "<a class = 'remove-comment' href = '/web/photo/action/deleteComment/"+data['id']+"'> <span data-toggle='tooltip' title='delete comment!' class = 'delete-comment' style = 'margin-top: 3px !important;'> </span></a>";

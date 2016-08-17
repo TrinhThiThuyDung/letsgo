@@ -37,7 +37,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right" style="padding-right: 15px;     font-size: 17px;">
-        <li><a class="sign-up-in" href="{{url('/auth/signin')}}" style="font-family: Architects Daughter,cursive; ">ĐĂNG NHẬP</a></li>
+        <li><a class="sign-up-in" href="{{url('/auth/signin')}}" style="font-family: Architects Daughter,cursive; ">SIGN IN</a></li>
       </ul>
     </div>
   </div>
@@ -47,12 +47,12 @@
       <div class="signup-content">
         <div class="container">
           <div class="page-header" style="margin: 40px 20px;">
-            <h1 class="logo" style="color: #04DAF1 !important;">LET'S GO <small>Chào mừng tới thế giới của Let's Go!</small></h1>
+            <h1 class="logo" style="color: #04DAF1 !important;">LET'S GO <small>Welcome to Let's Go World!</small></h1>
           </div>
           <div class="panel panel-info" style="width: 945px; margin-left: 261px;">
             
               <div class="panel-heading">
-                <h3 class="panel-title">Đăng Ký Một Tài Khoản Mới</h3>
+                <h3 class="panel-title">Register a new account</h3>
               </div>
               <div class="panel-body">
             <form role="form" id = "form-register" method="post" action="{{url('/auth/register')}}">
@@ -61,12 +61,12 @@
                         <div class="col-md-12">
                          
                             <div class="form-group">
-                                <label class="control-label">Họ của bạn</label>
-                                <input name="last_name" minlength="1"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Họ Của Bạn"  />
+                                <label class="control-label">Last name</label>
+                                <input name="last_name" minlength="1"  maxlength="100" type="text" required="required" class="form-control" placeholder=" Enter here"  />
                             </div>
                             <div class="form-group">
-                                <label class="control-label"> Tên của bạn </label>
-                                <input  name="first_name" minlength="1" maxlength="100" type="text" required="required" class="form-control" placeholder=" Tên của bạn" />
+                                <label class="control-label"> First name </label>
+                                <input  name="first_name" minlength="1" maxlength="100" type="text" required="required" class="form-control" placeholder=" Enter here" />
                             </div>
                            
                         </div>
@@ -88,14 +88,14 @@
                         <div class="col-md-12">
                          
                             <div class="form-group">
-                                <label class="control-label">Mật Khẩu</label>
-                                <input id="pass" name="pass" maxlength="200" type="password" required="required" class="form-control" placeholder="Mật khẩu" />
+                                <label class="control-label">Password</label>
+                                <input id="pass" name="pass" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter here" />
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Xác Nhận Mật Khẩu</label>
-                                <input  id ="confirm_pass" name="confirm_password" maxlength="200" type="password" required="required" class="form-control" placeholder="Nhập lại mật khẩu" />
+                                <label class="control-label">Confirm password</label>
+                                <input  id ="confirm_pass" name="confirm_password" maxlength="200" type="password" required="required" class="form-control" placeholder="Enter here" />
                             </div>
-                            <button class="btn btn-success btn-lg pull-right" type="submit">Đăng Ký!</button>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Register!</button>
                         </div>
                     </div>
                 </div>

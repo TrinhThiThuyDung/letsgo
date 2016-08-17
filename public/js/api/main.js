@@ -153,7 +153,7 @@ $('.delete').click(function(event){
          dataType: 'json',
          url: url,
          success: function(result){
-             console.log(result);
+          
             if (result) {
                var html = "";
                for (var i = 0; i < result.length; i++) {
@@ -161,12 +161,12 @@ $('.delete').click(function(event){
                   html+="<div class='well' style = 'max-width: 386px; display: inline-block; min-width: 365px;'>";
                   html+="<img style = 'width: 100%; height: 100%;' class='thumbnail img-responsive' alt="+result[i]['name']+" src='"+src+"' />";
                   html+="<div class='name' style='color: rgb(236, 108, 108); margin-left: 15px; font-style: italic; font-size: 17px;'>";
-                  html+="<span>Bức ảnh của "+result[i]['user_lastname']+" "+result[i]['user_firstname']+"</span></div>";
+                  html+="<span>This photo of "+result[i]['user_lastname']+" "+result[i]['user_firstname']+"</span></div>";
                   html+="</div>";
                }
              $('#'+category_name).html(html);
              window.location = url;
-           /* history.pushState({}, null, newUrl);*/
+         
             }
          }
        });
@@ -189,11 +189,13 @@ $('.delete').click(function(event){
     if ($(window).scrollTop() > offsetPixels) {
       $( ".scroll" ).css({
         "position": "fixed",
-        "top": "68px"
+        "top": "68px",
+        "width" : "25%"
       });
     } else {
       $( ".scroll" ).css({
-        "position": "static"
+        "position": "relative",
+        "width" : "100%"
       });
     }
   });

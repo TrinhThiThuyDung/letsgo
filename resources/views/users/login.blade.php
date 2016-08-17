@@ -1,7 +1,7 @@
 
 @extends('layout/main-layout')
 
-@section('title','Đăng nhập')
+@section('title','Sign In')
 
 
 @section('link')
@@ -37,7 +37,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right" style="padding-right: 15px;     font-size: 17px;">
-        <li><a class="sign-up-in" href="{{url('/auth/register')}}" style="font-family: Architects Daughter,cursive; ">ĐĂNG KÝ</a></li>
+        <li><a class="sign-up-in" href="{{url('/auth/register')}}" style="font-family: Architects Daughter,cursive; ">SIGN UP</a></li>
       </ul>
     </div>
   </div>
@@ -47,12 +47,12 @@
       <div class="signup-content">
         <div class="container">
           <div class="page-header" style="margin: 40px 20px;">
-            <h1 class="logo" style="color: #04DAF1 !important;">LET'S GO <small>Chào mừng tới thế giới của Let's Go!</small></h1>
+            <h1 class="logo" style="color: #04DAF1 !important;">LET'S GO <small>Welcome to Let's Go World!</small></h1>
           </div>
           <div class="panel panel-info" style="width: 945px; margin-left: 261px;">
             
               <div class="panel-heading">
-                <h3 class="panel-title">Đăng Nhập</h3>
+                <h3 class="panel-title">Sign In</h3>
               </div>
               <div class="panel-body">
             <form id="form-signin" class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
@@ -60,15 +60,15 @@
                             <input id="email" name="email" minlength="6" maxlength="100" type="email" placeholder="Email" class="form-control input-md">
                          </div>
                           <div class="spacing">
-                            <input type="checkbox"  name="remember_me" id="remember-me" checked="checked"><small>Nhớ Đăng Nhập</small>
+                            <input type="checkbox"  name="remember_me" id="remember-me" checked="checked"><small>Remember me</small>
                           </div>
 
                            <div class="form-group" style="margin:0px;">
-                              <input id="password" minlength="6" maxlength="100" name="password" type="password" placeholder="Mật khẩu" class="form-control input-md">
+                              <input id="password" minlength="6" maxlength="100" name="password" type="password" placeholder="Password" class="form-control input-md">
                           </div>
-                          <div class="spacing"><a href="#"><small>Bạn quên mật khẩu? Đừng lo!</small></a><br/></div>
+                          <div class="spacing"><a href="#"><small>Forget password? Don't worry!</small></a><br/></div>
 
-                          <button style="width: 120px !important;" id="singlebutton" type="submit" name="singlebutton" class="btn btn-info btn-sm pull-right">Đăng Nhập</button>
+                          <button style="width: 120px !important;" id="singlebutton" type="submit" name="singlebutton" class="btn btn-info btn-sm pull-right">Sign In</button>
                       
             </form>
            <!--  <div class="or" style="width: 100%;">

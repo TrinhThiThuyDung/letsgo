@@ -169,14 +169,18 @@ class TimeDate
                       } ?></span></div>
 
                 </div>
-                <div class="infor-active">
-                  <span class = "icon icon-love"><?php if (isset( $image->likeTotal) ) {
+                <div class="infor-active" style = 'width: 28%;'>
+                  <span class = "icon icon-love" <?php if($image->user_id == $user_id) echo "style='margin-left: 110px;'"; ?> ><?php if (isset( $image->likeTotal) ) {
                     echo count($image->likeTotal);
                   }else echo 0;  ?></span>
                   <span class = "icon comment-icon"><?php if (isset( $image->commentTotal)) {
                     echo count($image->commentTotal);
                   }else echo 0; ?></span>
-                  <span class = "icon icon-share">5</span>
+                  <?php if($image->user_id != $user_id){if ($image->follow) {
+                                      echo "<a href = '/web/photo/action/' data-user_id = '".$image->user_id."'><button class = 'following' style = 'width: 52%;'>Following</button></a>";
+                                    }else{
+                                      echo "<a href = '/web/photo/action/' data-user_id = '".$image->user_id."'><button class = 'follow' style = 'width: 52%;'>Follow me</button></a>";
+                                    } }?>
                 </div>
                 <div class = "caption" style = "margin: 4px;">
                   <span> <?php if ($image->describe) {
@@ -209,19 +213,18 @@ class TimeDate
                    
                   </div>
                   <div class="comment-photo">
-                  <span style = "font-style: oblique; font-weight: bold;">Do you want comment :3</span>
+                    <span style = "font-style: oblique; font-weight: bold;">Do you want comment :3</span>
                    <div class = "add-comment" data-id = "<?php echo $image->id; ?>">
                     <form method="post" action="/web/photo/action/comment" id= "commentForm">
-                    <textarea name="comment" class = "commentPhoto" placeholder="Comment here!!!"></textarea>
-                      
+                      <textarea name="comment" class = "commentPhoto" placeholder="Comment here!!!"></textarea>
                     </form>
                   </div>
                   <?php if (isset($image->commentTotal)) {
                     if (count($image->commentTotal) > 4) {
-                      echo "<a href= '#' class = 'view-more' style = 'margin: 9px; display: block;'><span style = 'color: #04656f; '>Hiện tất cả các bình luận</span></a>";
+                      echo "<a href= '#' class = 'view-more' style = 'margin: 9px; display: block;'><span style = 'color: #04656f; '>View all comment</span></a>";
                     }
       ?>
-      <a href = "#" class = "view-less" style = "display: none;margin: 9px;"><span style = ' color: #04656f; margin: 9px;'> Ẩn comment </span></a>
+      <a href = "#" class = "view-less" style = "display: none;margin: 9px;"><span style = ' color: #04656f; margin: 9px;'> Hide comment </span></a>
       <?php
                     $y = 0;
                     foreach ($image->commentTotal as $key => $value) {
@@ -273,7 +276,7 @@ class TimeDate
 
 <script type="text/javascript">
 
-  var _gaq = _gaq || [];
+ /* var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);
   _gaq.push(['_trackPageview']);
@@ -282,7 +285,7 @@ class TimeDate
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  })();*/
 $(function() {
     $("img.lazy").lazyload();
 });

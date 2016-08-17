@@ -109,7 +109,7 @@ class PhotoController extends Controller
         case 'all':
             $category_id = 1;
             break;
-         case 'moment':
+         case 'life':
             $category_id = 2;
             break;
          case 'nature':
@@ -118,7 +118,7 @@ class PhotoController extends Controller
          case 'people':
             $category_id = 4;
             break;
-         case 'animals':
+         case 'pets':
             $category_id = 5;
             break;
          case 'discovery':
@@ -142,7 +142,7 @@ class PhotoController extends Controller
         case 'all':
             $category_id = 1;
             break;
-         case 'moment':
+         case 'life':
             $category_id = 2;
             break;
          case 'nature':
@@ -151,7 +151,7 @@ class PhotoController extends Controller
          case 'people':
             $category_id = 4;
             break;
-         case 'animals':
+         case 'pets':
             $category_id = 5;
             break;
          case 'discovery':
@@ -170,7 +170,8 @@ class PhotoController extends Controller
      */
     public function showPhotoUserFollow(Request $request)
     {
-        $all_image = ImageServiceFacade::getAllUserFollow( $this->user_id );
+        $all_image = ImageServiceFacade::getAllPhotoUserFollow( $this->user_id );
+    
         return view("follow-page")->with(['data'    => $all_image]);
     }
 
@@ -320,9 +321,7 @@ class PhotoController extends Controller
         $image = ImageServiceFacade::getPhotoById( $image_id );  //get image in data get name 
     
         if($image){
-            $result = ImageServiceFacade::deletePhoto( $image_id );
-            if ($result) {
-                $image = $image[0];
+              $image = $image[0];
 
                
                 $image_1 = $this->user_id."/".$image->name;
@@ -333,9 +332,13 @@ class PhotoController extends Controller
 
                 $result = $this->deleteImageOnFolder( $image_delete );
                 
+                
+            if ($result) {
+                $result = ImageServiceFacade::deletePhoto( $image_id );
                 if ($result) {
                       return response()->json(['status' => 'success']);
                 }
+
             }
         }
         return response()->json(['status' => 'error']);

@@ -68,7 +68,7 @@ class FollowRepositoryEloquent implements FollowRepository
         }
        return $follow;
     }
-    protected function getIdUserFollow($user_id)
+    public function getIdUserFollow($user_id)
     {
         $result = DB::table("follows")
                    ->where("follows.user_follower_id", $user_id )
@@ -76,9 +76,9 @@ class FollowRepositoryEloquent implements FollowRepository
                    ->get();
         $result_2 = [];
         for ($i = 0; $i < count($result); $i++) { 
-            $result_2[$i] = $result[$i]->user_followed_id;
+            $result_2[$i] = (int)$result[$i]->user_followed_id;
         }
-        $result_2[$i] = $user_id;
+        $result_2[$i] = (int)$user_id;
         return $result_2;
     }
 }

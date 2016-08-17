@@ -37,7 +37,38 @@
   }
 </style>
 @endsection
+<?php 
+$user_id = $array_data['user']->user_id;
+$user_name = $array_data['user']->last_name." ".$array_data['user']->first_name;
+class TimeDate
+{
+  
+  public function time($created_at)
+{
+   $end_time =  new DateTime(); 
+    $start_time = new DateTime($created_at);
+    $since_start = $start_time->diff($end_time);
+    $end_time =  new DateTime();
 
+    if ($since_start->y != 0) {
+      return $since_start->y." year ago";
+    }elseif ($since_start->m != 0) {
+      return $since_start->m." months ago";
+    }elseif ($since_start->d != 0) {
+      return $since_start->d." day ago";
+    }elseif ($since_start->h != 0) {
+      return $since_start->h." hour ago";
+    }elseif ($since_start->i != 0) {
+      return $since_start->i." minute ago";
+    }else{
+      if( $since_start->s  == 0 ) 
+        return "Just now";
+      return $since_start->s." seconds ago";
+    } 
+ }
+}
+
+ ?>
 
 @section('content')
   @include('layout/nagavition')
@@ -66,10 +97,10 @@
  <div class="tab-nav">
   	   <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist" style="width: 100%; background: #f0f7fc url(/images/form-button-white-25px.png) repeat-x top;">
-                       <li class="tab-user active" style="    margin-left: 23%;"><a href="#men" role="tab" data-toggle="tab">Ảnh</a></li>
-                       <li><a id="like-user-tab" href="#women" role="tab" data-toggle="tab">Ảnh yêu thích</a></li>
-                       <li><a id="update-user-tab" href="#kids" role="tab" data-toggle="tab">Thông tin cá nhân</a></li>
-                       <li><a id="follow-user-tab" href="#sports" role="tab" data-toggle="tab">Theo dõi</a></li>
+                       <li class="tab-user active" style="    margin-left: 23%;"><a href="#men" role="tab" data-toggle="tab">My Photo</a></li>
+                       <li><a id="like-user-tab" href="#women" role="tab" data-toggle="tab">Love Photo</a></li>
+                       <li><a id="update-user-tab" href="#kids" role="tab" data-toggle="tab">Profile Infomation</a></li>
+                       <li><a id="follow-user-tab" href="#sports" role="tab" data-toggle="tab">Follow List</a></li>
                     </ul>  
     				 <div class="profile-content" style="background: url(/images/ironpatern.png); background-repeat: repeat; padding: 0;">
     				    <!-- Tab panes -->
@@ -81,10 +112,12 @@
                               if ($data['user_photo']) {
                                 $i = 0;
                                  foreach ($data['user_photo'] as $key => $photo) {
+                                  $date = new TimeDate();
+                                  $time = $date->time($photo->created_at);
                                   ?>
-                                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;" class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $username; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" >
+                                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;" class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $username; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" data-idme = "<?php echo $user_id; ?>" data-time = "<?php echo $time; ?>" data-user_id = "<?php echo $photo->user_id; ?>">
                                   <a href = "#" class = "photo-link"> 
-                                    <img style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
+                                    <img class = "lazy" style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
                                    
                                   </a>
                                   <?php  if ($id == $user_id) { ?>
@@ -101,7 +134,7 @@
                               
                              <?php }else{ ?>
               								<div class="empty-images">
-                                  <span>Bạn chưa upload bức ảnh nào! Hãy cùng upload ảnh ngay nào :)</span>        
+                                  <span>No photo :)</span>        
                               </div>
               						<?php } ?>
                           </div>
@@ -113,12 +146,14 @@
               	 	<div class="carouselGallery-col-60" style="text-align: left;">
                   <?php if (!$data['user_like']) { ?>
                   <div class="empty-images">
-                        <span>Bạn chưa có ảnh nào thích!</span>        
+                        <span>No photo you love!</span>        
                               </div>
                <?php   }else{ 
                 $i = 1;
-                foreach ($data['user_like'] as $key => $photo) { ?>
-                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;"class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $photo->user_lastname." ".$photo->user_firstname; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" >
+                foreach ($data['user_like'] as $key => $photo) { 
+                  $date = new TimeDate();
+                                  $time = $date->time($photo->created_at); ?>
+                  <div style = "max-width: 300px; height: 250px;display: inline-block; margin: 40px 10px; text-align: center;"class = "photo carouselGallery-col-1 carouselGallery-carousel" data-avatar = "<?php echo $avatar; ?>" data-index="<?php echo ++$i; ?>" data-id = "<?php echo $photo->id; ?>" data-username="<?php echo $photo->user_lastname." ".$photo->user_firstname; ?>" data-imagetext="<?php echo $photo->describe; ?>" data-location="<?php echo $photo->location; ?>" data-imagepath="<?php echo $photo->url."/".$photo->name; ?>" data-idme = "<?php echo $user_id; ?>" data-time = "<?php echo $time; ?>" data-user_id = "<?php echo $photo->user_id; ?>">
                           <a href = "#" class = "photo-link"> 
                             <img style = "width: 100%; object-fit: cover;height: 100%;" src="<?php echo $photo->url."/".$photo->resize_1; ?>"  style="height: 254px;"> </img>
                         </a>
@@ -145,13 +180,13 @@
                                     $all_infor = $data['user_all_infor'][0];
                                   } ?>
                                     <dl>
-                                      <dt>Tên: </dt>
+                                      <dt>Full name: </dt>
                                       <dd> <?php if(isset($all_infor)) {
                                                     echo $all_infor->last_name." ".$all_infor->first_name;
                                                   }   ?></dd>
                                     </dl>
                                     <dl>
-                                      <dt>Giới tính: </dt>
+                                      <dt>Gender: </dt>
                                       <dd><?php if (isset($all_infor->gender)) {
                                         if ($all_infor->gender === "female") {
                                           echo "Nữ";
@@ -161,7 +196,7 @@
                                       } ?></dd>
                                     </dl>
                                     <dl>
-                                      <dt>Ngày sinh: </dt>
+                                      <dt>Birthday: </dt>
                                       <dd> <?php if(isset($all_infor->birthday)) {
                                                     if($all_infor->birthday != '0000-00-00'){
                                                       echo $all_infor->birthday;
@@ -169,11 +204,11 @@
                                                   }   ?></dd>
                                     </dl>
                                      <dl>
-                                      <dt>Bạn là: </dt>
+                                      <dt>You are: </dt>
                                       <dd> @if(isset($all_infor->position)) {{ $all_infor->position }} @endif</dd>
                                     </dl>
                                     <dl>
-                                      <dt>Bạn ở: </dt>
+                                      <dt>You live in: </dt>
                                       <dd>@if(isset($all_infor->address)) {{ $all_infor->address }} @endif</dd>
                                     </dl>
                                   </div>
@@ -182,10 +217,10 @@
                              
                             </div>
                              <div class="info-active">
-                             <h4 class="textHeading">Hoạt động</h4>
+                             <h4 class="textHeading">Activity</h4>
                                 <div class="contentActive">
                                   <dl>
-                                    <dt>Tham gia: </dt>
+                                    <dt>Joined: </dt>
                                     <dd><?php if (isset($data['user_all_infor'])) {
 
                                        $timer = explode("-", $data['user_all_infor'][0]->created_at);
@@ -193,11 +228,11 @@
                                     } ?></dd>
                                   </dl>
                                   <dl>
-                                    <dt>Đã đóng góp ảnh: </dt>
+                                    <dt>Photo uploaded: </dt>
                                     <dd><?php if(isset($data['user_activity'])) echo $data['user_activity']['images']; else 0; ?> ảnh</dd>
                                   </dl>
                                   <dl>
-                                    <dt>Lượt thích ảnh: </dt>
+                                    <dt>Photo loved: </dt>
                                     <dd><?php if(isset($data['user_activity'])) echo $data['user_activity']['like']; else 0; ?> ảnh</dd>
                                   </dl>
                                 </div>
@@ -209,59 +244,59 @@
                                 if ($id == $user_id) {
                               ?>
                               <div class="update-profile">
-                               <h3 class="textHeading">Cập nhật thông tin cá nhân</h3>
+                               <h3 class="textHeading">Update profile information</h3>
                                <div class="content-info" style="text-align: left;">
                                 <form  id="formUpdateProfile" action="{{url('web/user/profile/update')}}" method="post" style="margin-left: 10px;" >
                                 <input type="hidden" name="user_id" value="<?php echo $array_data['user']->user_id; ?>">
                                 <dl>
-                                  <dt>Họ: </dt>
+                                  <dt>Last name: </dt>
                                   <dd>
                                      <input type="text" name="last_name">
                                   </dd>
                                 </dl>
                                 <dl>
-                                  <dt>Tên: </dt>
+                                  <dt>Frist name: </dt>
                                   <dd>
                                       <input type="text" name="first_name">
                                   </dd>
                                 </dl>
                                  <dl>
-                                  <dt>Số điện thoại: </dt>
+                                  <dt>Phone: </dt>
                                   <dd>
                                        <input type="tel" name="phone">
                                   </dd>
                                 </dl>
                                 
                                 <dl>
-                                  <dt>Bạn sống ở: </dt>
+                                  <dt>You live in: </dt>
                                   <dd>
                                       <input type="text" name="address">
                                   </dd>
                                 </dl>
                                 <dl>
-                                  <dt>Ngày sinh: </dt>
+                                  <dt>Birthday: </dt>
                                   <dd>
                                       <input type="date" name="birthday">
                                   </dd>
                                 </dl>
                                
                                    <dl>
-                                  <dt>Hiện bạng đang là: </dt>
+                                  <dt>Now, you are (student,...): </dt>
                                   <dd>
                                       <input type="text" name="position">
                                   </dd>
                                 </dl>
                                  <dl style="width: 327px;">
-                                  <dt>Bạn là: </dt>
+                                  <dt>You are: </dt>
                                   <dd style="width: 100% !important; margin: 0px 3px; padding: 3px;">
                                   <div class="checkbox checkbox-primary">
-                                      <input type="radio" name="gender" value="male"> Nam<br>
-                                      <input type="radio" name="gender" value="female"> Nữ<br>
+                                      <input type="radio" name="gender" value="male"> Male<br>
+                                      <input type="radio" name="gender" value="female"> Female<br>
                                       </div>
                                   </dd>
                                 </dl>
                             
-                               <input id="buttonUpdate" class="btn btn-info" type="submit" style="margin: 0 43px;" value = "Cập Nhật"/>
+                               <input id="buttonUpdate" class="btn btn-info" type="submit" style="margin: 0 43px;" value = "Update"/>
                                    <dl>
                                   <dt id ="result" style = "color: rgba(228, 45, 45, 0.78);"> </dt>
                                 </dl>

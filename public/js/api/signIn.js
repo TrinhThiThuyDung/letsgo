@@ -20,15 +20,15 @@ $(document).ready(function(){
         },
         messages:{
             email: {
-                minlength: "Email ít nhất có 6 ký tự!",
-                maxlength: "Email tối đa dài 50 ký tự!",
-                required: "Email bắt buộc phải điền!",
-                email: "Địa chỉ email phải có dạng name@domain.com!"
+                minlength: "Email at least 6 characters!",
+                maxlength: "Maximum length of 50 characters!",
+                required: "Email required to fill!",
+                email: "Email address must have the format name@domain.com!"
             },
             password: {
-                minlength: "Mật khẩu ít nhất có 6 ký tự!",
-                maxlength: "Mật khẩu tối đa dài 20 ký tự!",
-                required: "Bạn phải điền mật khẩu!"
+                minlength: "Password at least 6 characters!",
+                maxlength: "Maximum length of 20 characters!",
+                required: "Password required to fill!"
             }
             
         },
@@ -63,7 +63,7 @@ $(document).ready(function(){
                     },
                     error : function(  xhr, status, errors ){
                        swal({  
-                                    title: "Lỗi!",   
+                                    title: "Error!",   
                                     text: errors+".",   
                                        
                                     showConfirmButton: true,
@@ -113,31 +113,31 @@ $(document).ready(function(){
         },
         messages:{
             first_name: {
-                minlength: "Họ của bạn nên có ít nhất 1 ký tự!",
-                maxlength: "Tối đa là 50 ký tự! Họ của bạn không nên quá dài, rất là khó gọi!",
-                required: "Hãy điền Họ của bạn để chúng tôi còn biết bạn là ai!"
+                minlength: "Your last name should be at least 1 character!",
+                maxlength: "A maximum of 50 characters! They should not be too long, it is very hard to call!",
+                required: "Please fill your last name so we know who you are!"
             },
             last_name: {
-                minlength: "Tên của bạn nên có ít nhất 1 ký tự!",
-                maxlength: "Tối đa là 50 ký tự! Tên của bạn không nên quá dài, rất là khó gọi!",
-                required: "Cho chúng tôi biết tên của bạn chứ!"
+                minlength: "Your name should be at least 1 character!",
+                maxlength: "A maximum of 50 characters! They should not be too long, it is very hard to call!",
+                required: "Please fill your first name so we know who you are!"
             },
             email: {
-                minlength: "Cái tên miền cũng quá 6 ký tự rồi! Hãy điền email của bạn trung thực nào!",
-                maxlength: "Tối đa là 50 ký tự nhé!",
-                required: "Hãy cho chúng tôi email của bạn!",
-                email: "Email của bạn phải có dạng name@domain.com!"
+                minlength: "Please enter your email!",
+                maxlength: "A maximum of 50 characters!",
+                required: "Give us your email!",
+                email: "Your email must be format name@domain.com!"
             },
             pass: {
-                minlength: "Mật khẩu quá ngắn nhỉ, hãy điền ít nhất là 6 ký tự!",
-                maxlength: "Quá dài rồi, chỉ nên 20 ký tự thôi!",
-                required: "Hãy điền mật khẩu không bạn sẽ bị hack đấy!"
+                minlength: "Password is too short, right, fill at least 6 characters!",
+                maxlength: "Too long, just 20 characters!",
+                required: "Please enter the password!"
             },
             confirm_password: {
-                minlength: "Mật khẩu quá ngắn nhỉ, hãy điền ít nhất là 6 ký tự!",
-                maxlength: "Quá dài rồi, chỉ nên 20 ký tự thôi!",
-                required: "Hãy điền mật khẩu không bạn sẽ bị hack đấy!",
-                equalTo: "Mật khẩu không khớp nhau!"
+                minlength: "Password is too short, right, fill at least 6 characters!",
+                maxlength: "Too long, just 20 characters!",
+                required: "Please enter the password!",
+                equalTo: "Passwords do not match!"
             },
             
         },
@@ -153,7 +153,7 @@ $(document).ready(function(){
                 $(form).ajaxSubmit({
                     success: function(results){
                         if(results.status == 'error'){
-                            swal({  title: "Lỗi!",   
+                            swal({  title: "Error!",   
                                     text: results.error+".",   
                                     timer: 2000,   
                                     showConfirmButton: false,
@@ -168,7 +168,7 @@ $(document).ready(function(){
                         }
                     },
                     error: function( xhr,status,error ){
-                        swal.showInputError("Trạng thái: "+status+"\n Lỗi: "+error);
+                        swal.showInputError("status: "+status+"\n Error: "+error);
                     }
                 });
             return false;

@@ -67,7 +67,7 @@
                                        <div >
                                        <?php 
                                         if ( $total_noti_not_seen == 0 && $total_noti_seen == 0) { ?>
-                                  <span style="font-style: italic; border-radius: none"> BYou have no notification..</span>
+                                  <span style="font-style: italic; border-radius: none"> You have no notification..</span>
                                         <?php 
                                         }
                                         else{
@@ -190,7 +190,7 @@
                                     <li>
                                       <a href="{{url('web/auth/logout')}}" id="signout">
                                       <i class="glyphicon glyphicon-flag"></i>
-                                      Sing Out </a>
+                                      Sign Out </a>
                                     </li>
                                   </ul>
                                 </div>
@@ -274,9 +274,9 @@
                             <option value="1">Any</option>
                             <option value="2">Life</option>
                             <option value="3">Nature</option>  
-                            <option value="2">People</option>
-                            <option value="3">Pets</option>
-                            <option value="4">Discovery</option>
+                            <option value="4">People</option>
+                            <option value="5">Pets</option>
+                            <option value="6">Discovery</option>
                           </select>
                         </div>
                        

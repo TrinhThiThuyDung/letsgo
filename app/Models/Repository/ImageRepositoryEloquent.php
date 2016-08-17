@@ -7,6 +7,7 @@ namespace App\Models\Repository;
 use App\Models\Entities\Image;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Repository\LikeFacade;
+use App\Models\Repository\FollowFacade;
 
 use DB;
 /**
@@ -63,6 +64,10 @@ class ImageRepositoryEloquent implements ImageRepository
 
 			$totalComment = CommentFacade::getAllCommentOfImage($images[$i]->id);
 
+			$data = ['user_id'	=> $user_id, 'user_id_image'	=> $images[$i]->user_id ];
+
+			$images[$i]->follow = FollowFacade::checkFollow( $data );
+
 			if (!empty($totalLike)) {
 				$images[$i]->likeTotal = [];
 				$images[$i]->likeTotal = $totalLike;
@@ -83,8 +88,13 @@ class ImageRepositoryEloquent implements ImageRepository
 		$date = date('Y-m-d', $two_week_ago);
 
 		$numTotal = DB::table("images")
-				->where("created_at","<", $date)
+				->where("created_at",">=", $date)
 				->count();
+		if ( $numTotal <= 500 ) {
+			return $numTotal = DB::table("images")
+				->where("created_at","<=", $date)
+				->count();
+		}
 		return $numTotal;
 	}
 

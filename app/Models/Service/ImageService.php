@@ -7,6 +7,7 @@ use App\Models\Entities\Image;
 use DB;
 use App\Models\Repository\LikeFacade;
 use App\Models\Repository\CommentFacade;
+use App\Models\Repository\FollowFacade;
 
 /**
 * 
@@ -36,14 +37,14 @@ class ImageService implements ImageServiceInterface
 		$del_like = $this->deleteAllLikeCommentNotifiOfImage( $image_id, "likes");
 		$del_comment = $this->deleteAllLikeCommentNotifiOfImage( $image_id, "comments");
 
-		$result = DB::table('images')->where('id', '=', $image_id)->delete();
+		$result = DB::table('images')->where('id', '=', (int)$image_id)->delete();
 		return $result;
 	}
 
 	public function deleteAllLikeCommentNotifiOfImage($image_id, $table)
 	{
 		$noti = DB::table($table)->select("notication_id")->where("image_id", $image_id )->get();
-		$del = DB::table($table)->where("image_id", $image_id)->delete();
+		$del = DB::table($table)->where("image_id","=", $image_id)->delete();
 		if ($noti) {
 			foreach ($noti as $key => $value) {
 				DB::table("notications")->where("id", (int) $value->notication_id )->delete();
@@ -70,16 +71,35 @@ class ImageService implements ImageServiceInterface
 	{
 		return ImageFacade::findIdUserOfImage($image);
 	}
-	public function getAllUserFollow($user_id)
+	public function getAllPhotoUserFollow($user_id)
 	{
-		$result = DB::table("follows")->join("users", "users.id", "=", "follows.user_followed_id")
-								      ->select("user_followed_id", "users.last_name as user_lastname", "users.first_name as user_firstname", "users.avatar as user_avatar")->where("user_follower_id", $user_id)->get();
+		$followed = FollowFacade::getIdUserFollow($user_id);
+		
+		unset($followed[count($followed) - 1]);
 
+		$images = DB::table("images")->join("users", "users.id", "=", "images.user_id")
+									 ->whereIn("images.user_id", $followed)
+									 ->select("images.*", "users.last_name as user_lastname", "users.first_name as user_firstname", "users.avatar as avatar")
+									 ->orderBy('images.created_at', 'desc')
+									 ->get();
+		$i = 0;
 
-		foreach ($result as $key => $value) {
-			$value->image =  $this->getImagesByUserId( $value->user_followed_id );
+		while ($i < count($images)) {
+			$totalLike = LikeFacade::getLike( $images[$i]->id );
+
+			$totalComment = CommentFacade::getAllCommentOfImage($images[$i]->id);
+
+			if (!empty($totalLike)) {
+				$images[$i]->likeTotal = [];
+				$images[$i]->likeTotal = $totalLike;
+			}
+			if (count($totalComment) > 0) {
+				$images[$i]->commentTotal = $totalComment;
+			}
+			$i++;
 		}
-		return $result;
+
+		return $images;
 	}
 	public function getImagesByUserId( $user_id )
 	{
@@ -93,13 +113,13 @@ class ImageService implements ImageServiceInterface
 	{
 		if ($category_id == 1) {
 			$result = DB::table("images")->join("users", "images.user_id", "=", "users.id")
-											->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname')
+											->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname', 'users.avatar as avatar')
 											->orderBy("created_at", "desc")
 											->get();
 			return $result;
 		}
 		return $result = DB::table("images")->join("users", "images.user_id", "=", "users.id")
-											->select("images.*", "users.last_name as user_lastname", 'users.first_name as user_firstname')
+											->select("images.*" , "users.last_name as user_lastname", 'users.first_name as user_firstname',  'users.avatar as avatar')
 											->where("kind_id", $category_id)
 											->orderBy("created_at", "desc")
 											->get();
