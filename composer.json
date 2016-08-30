@@ -10,7 +10,9 @@
         "twbs/bootstrap": "^3.3",
         "league/flysystem": "^1.0",
         "intervention/image": "^2.3",
-        "laravelcollective/html": "5.2.*"
+        "laravelcollective/html": "5.2.*",
+        "laravel/socialite": "^2.0",
+        "guzzlehttp/guzzle": "^6.2"
  
     },
     "require-dev": {

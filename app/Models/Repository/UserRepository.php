@@ -7,6 +7,7 @@ interface UserRepository
 {
 	
     function checkLogin($data);
+    
     function createUser($user);
  
     function getInforUser( $user_id );

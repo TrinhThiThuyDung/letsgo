@@ -53,7 +53,8 @@
     <script src="{{url('js/filer/caman.full.js')}}"></script>
     <script src="{{url('js/filer/jquery.mousewheel.min.js')}}"></script>
     <script type="text/javascript" src="{{url('js/api/upload.js')}}"></script>
-    <!-- <script type="text/javascript" src="{{url('js/main.js')}}"></script> -->
+
+    <script type="text/javascript" src="{{url('js/api/socialite.js')}}"></script>
 
    
     <!-- The template to display files available for upload -->

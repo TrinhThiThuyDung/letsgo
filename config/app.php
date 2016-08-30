@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => 'http://letsgo-hedspi.com',
+    'url' => 'localhost',
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +148,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-       Collective\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
         /*
@@ -209,8 +211,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Form' => Collective\Html\FormFacade::class,
-      'Html' => Collective\Html\HtmlFacade::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

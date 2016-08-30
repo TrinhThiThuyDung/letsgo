@@ -40,11 +40,7 @@
                   </div>
                   <div class="panel-body">
                     <div class="row">
-                     <!--  <div class="col-md-5" >
-                        <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 100%; margin: 19px 0;" /></a><br/>
-                  
-                        <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 100%; margin: 19px 0;" /></a>
-                      </div> -->
+                     
                     <div class="col-md-12">
                       <form id="form-signin" class="form-horizontal" method="post" action="{{url('/auth/signin')}}">
                         <fieldset>
@@ -59,13 +55,21 @@
                            <div class="form-group">
                               <input id="password" minlength="6" maxlength="100" name="password" type="password" placeholder="Enter Password" class="form-control input-md">
                           </div>
-                          <div class="spacing"><a href="#"><small>Forget password? Don't worry!</small></a><br/></div>
-
+                         <!--  <div class="spacing"><a href="#"><small>Forget password? Don't worry!</small></a><br/></div>
+ -->
                           <button style="width: 120px !important;" id="singlebutton" type="submit" name="singlebutton" class="btn btn-info btn-sm pull-right">Sign In</button>
                         </fieldset>
                       </form>
                   </div>
-                </div>
+                   <div class="or">
+                    <span class="signup_only">or</span>
+                  </div>
+                   <div class="col-md-12" >
+                        <a href="redirect" class="faceLog"  style="display: inline-block; width: 48%; float: left;"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 100%; margin: 19px 0;" /></a>
+                  
+                        <a href="#" style="display: inline-block; width: 48%; float: right;"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 100%; margin: 19px 0;" /></a>
+                      </div>
+                </div> 
               </div>
             </div>
           </div>
@@ -150,7 +154,7 @@
                     </div>
                 </div>
             </form>
-       <!--      <div class="or">
+            <div class="or">
               <span class="signup_only">or</span>
             </div>
             <div class="rom">
@@ -158,7 +162,7 @@
                    <a href="#"><img class="id" src="{{url('images/content-image/facebook.png')}}" style="width: 48%; float: left;" /></a>
                         <a href="#"><img class="id" src="{{url('images/content-image/google.png')}}" style="width: 48%; float: right;" /></a>
             </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>

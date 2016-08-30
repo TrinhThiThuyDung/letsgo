@@ -21,14 +21,14 @@ class Authenticate
 
         if (!$request->session()->has("id")) {
             /*if user not a session but have a cookie*/
-             if($request->cookie("id") ){
+           /*  if($request->cookie("id") ){
                 $request->session()->put('id', $request->cookie("id"));
                 return $next($request);
             }
-            else{
+            else{*/
                 $response = ['status' => 'notLogin'];
                 return redirect()->route("login");
-            }
+           // }
         }
         return $next($request);
     }

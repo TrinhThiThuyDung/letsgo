@@ -77,7 +77,7 @@ class AuthController extends Controller
             $request->session()->put('username', $result['user_name']);
 
             $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name'] ];
-
+            
             if (!empty($user['remember_me'])) {
                 
                  return response()->json($messageResponse)->withCookie(cookie()->forever( 'id' , $result['id']));
@@ -118,7 +118,7 @@ class AuthController extends Controller
         
         $messageResponse = ['status'=>'success' , 'id' => $result['id'] , 'name' => $result['user_name']];
 
-        return response()->json($messageResponse);
+        return response()->json($messageResponse); 
            
     }
 

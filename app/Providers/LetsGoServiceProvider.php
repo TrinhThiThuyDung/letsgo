@@ -73,13 +73,20 @@ class LetsGoServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Models\Service\FollowServiceInterface',
             'App\Models\Service\FollowService');
+
         $this->app->bind(
             'App\Models\Repository\KindRepository',
             'App\Models\Repository\KindRepositoryEloquent');
-
         $this->app->bind(
             'App\Models\Service\KindServiceInterface',
-            'App\Models\Service\KindService');
+            'App\Models\Service\KindService'); 
+
+        $this->app->bind(
+            'App\Models\Repository\SocialAccountRepository',
+            'App\Models\Repository\SocialAccountRepositoryEloquent');
+        $this->app->bind(
+            'App\Models\Service\SocialAccountServiceInterface',
+            'App\Models\Service\SocialAccountService');
         
     }
 }

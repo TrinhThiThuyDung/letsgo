@@ -13,7 +13,13 @@
 Route::get('/test', function(){
 	return view("test");
 });
+
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
+
 Route::group(['prefix' => 'web'], function(){
+
+
 	Route::get('/', array( 'as'=>'webIndex' , 'uses'=> 'MainController@getIndex' ));
 	Route::get('/photo/show/images/{category_name}',[
 						'as'	=> 'web/photo/show/images/',

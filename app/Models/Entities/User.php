@@ -45,6 +45,10 @@ use Illuminate\Database\Eloquent\Model;
     public function comments()
     {
         return $this->hasMany('Comment');
+    } 
+    public function social_accounts()
+    {
+        return $this->hasOne('SocialAccount');
     }
 }
 
